@@ -15,7 +15,7 @@ class ProposalController extends Controller
     {
         // $login = Login::all();
         // return response()->json($login);
-        return view('welcome');
+        return view('proposal');
     }
 
     /**
