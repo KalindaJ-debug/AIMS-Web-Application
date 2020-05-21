@@ -13,12 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::
-Route::get('/dataEntry', function () {
-    return view('welcome');
-});
+Route::resource('proposal', 'ProposalController'); 
 
-Route::get('/Test', function () {
-    return view('welcome');
-});
+
 
