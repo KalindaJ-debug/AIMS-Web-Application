@@ -42,7 +42,7 @@
                     <td>Rajagiriya</td>
                     <td>Region 2</td>
                     <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">Primary</button></td>
+                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">View</button></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
@@ -51,7 +51,7 @@
                     <td>Magul Maha Viharaya</td>
                     <td>Region 2</td>
                     <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">Primary</button></td>
+                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">View</button></td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
@@ -60,7 +60,7 @@
                     <td>Jaffna</td>
                     <td>Region 2</td>
                     <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">Primary</button></td>
+                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">View</button></td>
                 </tr>
             </tbody>
         </table>
