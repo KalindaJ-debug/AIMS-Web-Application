@@ -15,7 +15,7 @@ class ProposalController extends Controller
     {
         // $login = Login::all();
         // return response()->json($login);
-        return view('proposal');
+        return view('approval');
     }
 
     /**
@@ -36,12 +36,7 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
-        $login = new Login([
-            'email' => $request->get('email'),
-            'password' => $request->get('password')
-        ]);
-        $login->save();
-        return response()->json('Successfully added');
+        
     }
 
     /**
@@ -52,7 +47,7 @@ class ProposalController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('approvalDescription')->with('id', $id);
     }
 
     /**
