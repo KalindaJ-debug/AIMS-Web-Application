@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('proposal', 'ProposalController'); 
+Route::resource('proposal', 'ApprovalController'); 
 
 
 
