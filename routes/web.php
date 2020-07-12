@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('proposal', 'ApprovalController'); 
+Route::resource('approval', 'ApprovalController'); 
+Route::resource('registration', 'RegistrationController'); 
+
 
 
 

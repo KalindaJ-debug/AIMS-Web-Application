@@ -12,11 +12,29 @@
         <title>Approval Description {{ $id }}</title>
     </head>
     <body>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            
+                
+                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-language"></i> Language</button>
+                <button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+            </div>
+        </nav>
+        
+        </br>
 
         <div class="container">
-            <h2 style="text-align: center;">Approval Description</h2>
             
-            <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal';"><i class="fas fa-arrow-left"> Back</i></button>
+            <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-arrow-left"> Back</i></button>
             
             </br></br>
 
@@ -113,8 +131,26 @@
             </form>
 
             </br>
+            </br>
+            </br>
+            </br>
         </div>
-        
+
+        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    AIMS (Agriculture Information Management System)                   
+                </ul>
+                
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="far fa-question-circle"></i> About Us</button>
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-phone-volume"></i> Contact Us</button>
+            </div>
+        </nav>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

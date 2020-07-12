@@ -13,14 +13,35 @@
 
         <title>Approval</title>
     </head>
-    <body>
+    <body style="background-color:#2E933C;">
     
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable();
         });
     </script>
-    <div class="container">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            
+                
+                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-language"></i> Language</button>
+                <button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+            </div>
+        </nav>
+    <div class="container" style="background-color:white;">
+
+        
+
+        <h2 style="text-align: center;">Approval</h2>
         
         <table id="datatable" class="table">
             <thead class="thead-light">
@@ -42,7 +63,7 @@
                     <td>Rajagiriya</td>
                     <td>Region 2</td>
                     <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">View</button></td>
+                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';">View</button></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
@@ -51,7 +72,7 @@
                     <td>Magul Maha Viharaya</td>
                     <td>Region 2</td>
                     <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">View</button></td>
+                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';">View</button></td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
@@ -65,6 +86,21 @@
             </tbody>
         </table>
         
+        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    AIMS (Agriculture Information Management System)                   
+                </ul>
+                
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="far fa-question-circle"></i> About Us</button>
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-phone-volume"></i> Contact Us</button>
+            </div>
+        </nav>
+
     </div>
 
     <!-- Optional JavaScript -->
