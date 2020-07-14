@@ -107,8 +107,7 @@
                     const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
 
                     inpFile.addEventListener("change", function() {
-
-                        
+  
                         console.log("test");
                         const file = this.files[0];
 
