@@ -34,6 +34,10 @@ class CreateCropsTable extends Migration
             $table->timestamps();
             $table->foreign('crop_id')->references('id')->on('crops');
         });
+
+        Artisan::call('db:seed', [
+            '--class' => CropSeeder::class
+        ]);
     }
 
     /**

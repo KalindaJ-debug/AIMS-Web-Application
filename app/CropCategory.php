@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CropCategory extends Model
 {
+    protected $table = 'crop_categories';
+
     public function crops()
     {
         return $this->hasMany('App\Crop');
