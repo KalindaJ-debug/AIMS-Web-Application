@@ -108,7 +108,6 @@
 
                     inpFile.addEventListener("change", function() {
   
-                        console.log("test");
                         const file = this.files[0];
 
                         if (file)
@@ -119,7 +118,6 @@
                             previewImage.style.display = "block";
 
                             reader.addEventListener("load", function() {
-                                console.log(this);
                                 previewImage.setAttribute("src", this.result);
                             });
 

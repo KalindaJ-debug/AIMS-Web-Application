@@ -85,8 +85,8 @@
 
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
+                                    <input class="form-check-input" type="checkbox" id="data">
+                                    <label class="form-check-label" for="data">
                                         Approve Data
                                     </label>
                                 </div>
@@ -107,8 +107,8 @@
 
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
+                                    <input class="form-check-input" type="checkbox" id="external">
+                                    <label class="form-check-label" for="external">
                                         Approve Data
                                     </label>
                                 </div>
@@ -122,7 +122,7 @@
             <form>
                 <div class="form-row">
                     <div class="col">
-                        <button type="button" class="btn btn-outline-success btn-lg"><i class="fas fa-check"></i> Approve</button>
+                        <button type="button" class="btn btn-outline-success btn-lg" id="approve"><i class="fas fa-check"></i> Approve</button>
                     </div>
                     <div class="col">
                         <button type="button" class="btn btn-outline-danger btn-lg"><i class="fas fa-times-circle"></i> Decline</button>
@@ -151,6 +151,25 @@
             </div>
         </nav>
 
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please check the checkboxes
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -158,3 +177,33 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </body>
 </html>
+
+<script>
+    $( document ).ready(function() {
+        $("#approve").click(function()
+        {
+            $(this).data('clicked', true);
+            console.log("Test");
+            
+            var data = document.getElementById("data");
+            var external = document.getElementById("external");
+
+            if (data.checked == true)
+            {
+                console.log("Test 1");
+                if (external.checked == true)
+                {
+                    console.log("Test 2");
+                }
+                else 
+                {
+                    $('#errorModal').modal('show');
+                }
+            }
+            else
+            {
+                $('#errorModal').modal('show');
+            }
+        });
+    });    
+</script>
