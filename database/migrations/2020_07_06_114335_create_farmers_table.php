@@ -21,9 +21,13 @@ class CreateFarmersTable extends Migration
             $table->string('password');
             $table->bigInteger('telephoneNo');
             $table->string('nic');
-            $table->string('nicImage')->nullable;
+            $table->string('nicImage')->nullable();
             $table->timestamps();
         });
+
+        Artisan::call('db:seed', [
+            '--class' => FarmerSeeder::class
+        ]);
     }
 
     /**
