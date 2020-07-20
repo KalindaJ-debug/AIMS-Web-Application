@@ -57,31 +57,14 @@
             </thead>
             <tbody>
                 <tr>
+                    <!-- foreach({{ $approval }} as $app) {  -->
                     <th scope="row">1</th>
-                    <td>Kalinda Jayasinghe</td>
+                    <td> $app->farmer_id </td>
                     <td>Western</td>
                     <td>Rajagiriya</td>
                     <td>Region 2</td>
                     <td><p style="color:blue">Pending</p></td>
                     <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';">View</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Kalinda Jayasinghe</td>
-                    <td>Eastern</td>
-                    <td>Magul Maha Viharaya</td>
-                    <td>Region 2</td>
-                    <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';">View</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Kalinda Jayasinghe</td>
-                    <td>Nothern</td>
-                    <td>Jaffna</td>
-                    <td>Region 2</td>
-                    <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/proposal/1';">View</button></td>
                 </tr>
             </tbody>
         </table>

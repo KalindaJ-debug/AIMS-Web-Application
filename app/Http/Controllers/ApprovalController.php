@@ -15,7 +15,8 @@ class ApprovalController extends Controller
     {
         // $login = Login::all();
         // return response()->json($login);
-        return view('approval');
+        $approval = App\Province::all();
+        return view('approval')->with('approval', $approval);
     }
 
     /**

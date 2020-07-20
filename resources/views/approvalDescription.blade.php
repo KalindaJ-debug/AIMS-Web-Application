@@ -50,27 +50,27 @@
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Farmer Name</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="Kalinda Jayasinghe" readonly>
+                                <input type="text" class="form-control" id="" value="Kalinda Jayasinghe" readonly>
                             </div>
                             
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Crop Name</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="Paddy" readonly>
+                                <input type="text" class="form-control" id="" value="Paddy" readonly>
                             </div>
                           
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Variety</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="Ld 66" readonly>
+                                <input type="text" class="form-control" id="" value="Ld 66" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Province</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="Western" readonly>
+                                <input type="text" class="form-control" id="" value="Western" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">District</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="Colombo" readonly>
+                                <input type="text" class="form-control" id="" value="Colombo" readonly>
                             </div>
 
                             <div class="form-group">
