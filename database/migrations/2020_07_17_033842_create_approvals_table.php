@@ -23,7 +23,7 @@ class CreateApprovalsTable extends Migration
             $table->foreign('district_id')->references('id')->on('districts');
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
-            $table->boolean('status');
+            $table->integer('status');
             $table->timestamps();
         });
 

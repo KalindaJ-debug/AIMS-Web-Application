@@ -47,7 +47,8 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">Approval ID</th>
-                    <th scope="col">Farmer Name</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
                     <th scope="col">Province</th>
                     <th scope="col">District</th>
                     <th scope="col">Region</th>
@@ -56,16 +57,36 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <!-- foreach({{ $approval }} as $app) {  -->
-                    <th scope="row">1</th>
-                    <td> $app->farmer_id </td>
-                    <td>Western</td>
-                    <td>Rajagiriya</td>
-                    <td>Region 2</td>
-                    <td><p style="color:blue">Pending</p></td>
-                    <td><button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';">View</button></td>
-                </tr>
+                <?php
+                
+                $approval = App\Approval::all();
+                //dd($approval);
+
+                foreach($approval as $app){
+                    $farmer = App\Farmer::where('id', $app->id)->first();
+                    $province = App\Province::where('id', $app->province_id)->first();
+                    $district = App\District::where('id', $app->district_id)->first();
+                    $region = App\Region::where('id', $app->region_id)->first();
+
+
+                    echo '<tr> 
+                        <th scope="row">'.$app->id.'</th> 
+                        <td>'.$farmer->firstName.'</td>
+                        <td>'.$farmer->lastName.'</td>  
+                        <td>'.$province->name.'</td> 
+                        <td>'.$district->name.'</td> 
+                        <td>'.$region->name.'</td>';
+                        if($app->status == 0) {
+                            echo "<td><p style='color:blue'>Pending</p></td>";
+                        } else if ($app->status == 1) {
+                            echo "<td><p style='color:green'>Accepted</p></td>";
+                        }else {
+                            echo "<td><p style='color:red'>Declined</p></td>";
+                        } 
+                        echo '<td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/'.$app->id.'">View</a></td>
+                    </tr>';
+                }         
+                ?>
             </tbody>
         </table>
         
@@ -90,6 +111,4 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
-    </body>
 </html>

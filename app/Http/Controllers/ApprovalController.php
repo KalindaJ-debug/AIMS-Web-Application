@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Approval;
 
 class ApprovalController extends Controller
 {
@@ -15,8 +16,9 @@ class ApprovalController extends Controller
     {
         // $login = Login::all();
         // return response()->json($login);
-        $approval = App\Province::all();
-        return view('approval')->with('approval', $approval);
+        $approval = Approval::all();
+        // dd($approval);
+        return view('approval', ['approval' => $approval]);
     }
 
     /**
