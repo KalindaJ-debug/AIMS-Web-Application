@@ -12,6 +12,7 @@ use App\ApprovalData;
 use App\CropCategory;
 use App\Crop;
 use App\Variety;
+use App\Harvest;
 
 class ApprovalController extends Controller
 {
@@ -60,6 +61,23 @@ class ApprovalController extends Controller
         if ($request->input('status') == "approved")
         {
             $approval->status = 1;
+            $approval->other = null;
+            $approval->inaccurate = false;
+            
+            $data = ApprovalData::where('approval_id', $approval->id)->first();
+
+            $harvest = new Harvest;
+
+            $harvest->farmer_id = $approval->farmer_id;
+            $harvest->province_id = $approval->province_id;
+            $harvest->district_id = $approval->district_id;
+            $harvest->region_id = $data->region_id;
+            $harvest->category_id = $approval->category_id;
+            $harvest->crop_id = $data->crop_id;
+            $harvest->variety_id = $data->variety_id;
+            $harvest->cultivatedLand = $data->cultivatedLand;
+
+            $harvest->save();
         }
         else
         {
@@ -67,9 +85,11 @@ class ApprovalController extends Controller
             if ($request->input('other') == null)
             {
                 $approval->inaccurate = true;
+                $approval->other = null;
             }
             else
             {
+                $approval->inaccurate = false;
                 $approval->other = $request->input('other');
             }
         }
