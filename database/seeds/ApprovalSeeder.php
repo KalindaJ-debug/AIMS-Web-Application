@@ -32,7 +32,7 @@ class ApprovalSeeder extends Seeder
             'province_id' => $province->id,
             'district_id' => $district->id,
             'region_id' => $region->id,
-            'status' => 1
+            'status' => 0
         ]);
     }
 }

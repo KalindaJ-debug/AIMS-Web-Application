@@ -14,11 +14,7 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        // $login = Login::all();
-        // return response()->json($login);
-        $approval = Approval::all();
-        // dd($approval);
-        return view('approval', ['approval' => $approval]);
+        return view('approval');
     }
 
     /**
@@ -39,7 +35,26 @@ class ApprovalController extends Controller
      */
     public function store(Request $request)
     {
-        
+       //dd($request->request);
+        $approval = Approval::where('id', $request->input('id'))->first();
+        $approval->status = 1;
+        $approval->save();
+        return redirect()->action('ApprovalController@index');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function decline(Request $request)
+    {
+       //dd($request->request);
+        $approval = Approval::where('id', $request->input('id'))->first();
+        $approval->status = 1;
+        $approval->save();
+        return redirect()->action('ApprovalController@index');
     }
 
     /**
