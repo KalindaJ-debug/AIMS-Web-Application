@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Approval;
+use App\Farmer;
+use App\Province;
+use App\District;
+use App\Region;
+use App\ApprovalData;
+use App\CropCategory;
+use App\Crop;
+use App\Variety;
 
 class ApprovalController extends Controller
 {
@@ -14,7 +22,18 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        return view('approval');
+        // $farmer = App\Farmer::where('id', $app->id)->first();
+        //             $province = App\Province::where('id', $app->province_id)->first();
+        //             $district = App\District::where('id', $app->district_id)->first();
+        //             $region = App\Region::where('id', $app->region_id)->first();
+
+
+        //dd(Farmer::with('lands')->get());
+
+        $approval = Approval::all();
+        $farmer = Farmer::all();
+        $province = Province::where('id', 1)->first();
+        return view('approval', array('farmer' => $farmer, 'province' => $province, 'approval' => $approval));
     }
 
     /**
@@ -35,24 +54,25 @@ class ApprovalController extends Controller
      */
     public function store(Request $request)
     {
-       //dd($request->request);
+        //dd($request->request);
         $approval = Approval::where('id', $request->input('id'))->first();
-        $approval->status = 1;
-        $approval->save();
-        return redirect()->action('ApprovalController@index');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function decline(Request $request)
-    {
-       //dd($request->request);
-        $approval = Approval::where('id', $request->input('id'))->first();
-        $approval->status = 1;
+        //dd($request->input('status'));
+        if ($request->input('status') == "approved")
+        {
+            $approval->status = 1;
+        }
+        else
+        {
+            $approval->status = 2;
+            if ($request->input('other') == null)
+            {
+                $approval->inaccurate = true;
+            }
+            else
+            {
+                $approval->other = $request->input('other');
+            }
+        }
         $approval->save();
         return redirect()->action('ApprovalController@index');
     }
@@ -65,7 +85,18 @@ class ApprovalController extends Controller
      */
     public function show($id)
     {
-        return view('approvalDescription')->with('id', $id);
+        $data = ApprovalData::where('approval_id', $id)->first();
+        
+        $approval = Approval::where('id', $id)->first();
+        $farmer = Farmer::where('id', $approval->farmer_id)->first();
+
+        $category = CropCategory::where('id', $data->category_id)->first();
+        $crop = Crop::where('id', $data->crop_id)->first();
+        $variety = Variety::where('id', $data->variety_id)->first();
+        $province = Province::where('id', $data->province_id)->first();
+        $district = District::where('id', $data->district_id)->first();
+        $region = Region::where('id', $data->region_id)->first();
+        return view('approvalDescription', array('approval' => $data, 'farmer' => $farmer, 'province' => $province, 'district' => $district, 'region' => $region, 'category' => $category, 'crop' => $crop, 'variety' => $variety))->with('id', $id);
     }
 
     /**

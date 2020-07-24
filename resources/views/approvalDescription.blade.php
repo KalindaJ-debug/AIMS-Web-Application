@@ -12,26 +12,7 @@
         <title>Approval Description {{ $id }}</title>
     </head>
     <body>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            
-                
-                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-language"></i> Language</button>
-                <button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
-            </div>
-        </nav>
-        
-        </br>
-
+        <?php ?>
         <div class="container">
             
             <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-arrow-left"> Back</i></button>
@@ -49,38 +30,48 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Farmer Name</label>
-                                <input type="text" class="form-control" id="" value="Kalinda Jayasinghe" readonly>
+                                <label for="">Farmer First Name</label>
+                                <input type="text" class="form-control" id="" value="{{ $farmer->firstName }}" readonly>
                             </div>
                             
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Crop Name</label>
-                                <input type="text" class="form-control" id="" value="Paddy" readonly>
+                                <label for="">Farmer Last Name</label>
+                                <input type="text" class="form-control" id="" value="{{ $farmer->lastName }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Crop Category</label>
+                                <input type="text" class="form-control" id="" value="{{ $category->name }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Crop Name</label>
+                                <input type="text" class="form-control" id="" value="{{ $crop->name }}" readonly>
                             </div>
                           
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Variety</label>
-                                <input type="text" class="form-control" id="" value="Ld 66" readonly>
+                                <label for="">Variety</label>
+                                <input type="text" class="form-control" id="" value="{{ $variety->name }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Province</label>
-                                <input type="text" class="form-control" id="" value="Western" readonly>
+                                <label for="">Province</label>
+                                <input type="text" class="form-control" id="" value="{{ $province->name }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">District</label>
-                                <input type="text" class="form-control" id="" value="Colombo" readonly>
+                                <label for="">District</label>
+                                <input type="text" class="form-control" id="" value="{{ $district->name }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Region</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="Region 1" readonly>
+                                <label for="">Region</label>
+                                <input type="text" class="form-control" id="" value="{{ $region->name }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Cultivated Land</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="21.2" readonly>
+                                <label for="">Cultivated Land</label>
+                                <input type="text" class="form-control" id="" value="{{ $approval->cultivatedLand }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -181,9 +172,11 @@
                     </div>
                     <form method="post" action="{{action('ApprovalController@store')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $id }}">
+                        <input type="hidden" name="status" value="denied">
                         <div class="modal-body">
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="accuracy" name="accuracy">
+                                <input type="checkbox" class="form-check-input" id="accuracy" name="accuracy" onclick="clearOther()">
                                 <label class="form-check-label" for="other">Inaccurate Data</label>
                             </div>
                             <div class="form-group form-check">
@@ -243,6 +236,13 @@
                 {
                     document.getElementById('other').readOnly = true;
                 }
+            }
+
+            function clearOther()
+            {
+                document.getElementById('other').value = "";
+                document.getElementById('other').readOnly = true;
+                document.getElementById("otherCheck").checked = false;
             }
         </script>
     </body>

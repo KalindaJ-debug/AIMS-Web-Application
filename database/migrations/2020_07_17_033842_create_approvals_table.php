@@ -24,6 +24,8 @@ class CreateApprovalsTable extends Migration
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
             $table->integer('status');
+            $table->boolean('inaccurate')->nullable();
+            $table->string('other')->nullable();
             $table->timestamps();
         });
 

@@ -14,7 +14,7 @@
         <title>Approval</title>
     </head>
     <body style="background-color:#2E933C;">
-    
+
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable();
@@ -57,36 +57,24 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                
-                $approval = App\Approval::all();
-                //dd($approval);
-
-                foreach($approval as $app){
-                    $farmer = App\Farmer::where('id', $app->id)->first();
-                    $province = App\Province::where('id', $app->province_id)->first();
-                    $district = App\District::where('id', $app->district_id)->first();
-                    $region = App\Region::where('id', $app->region_id)->first();
-
-
-                    echo '<tr> 
-                        <th scope="row">'.$app->id.'</th> 
-                        <td>'.$farmer->firstName.'</td>
-                        <td>'.$farmer->lastName.'</td>  
-                        <td>'.$province->name.'</td> 
-                        <td>'.$district->name.'</td> 
-                        <td>'.$region->name.'</td>';
-                        if($app->status == 0) {
-                            echo "<td><p style='color:blue'>Pending</p></td>";
-                        } else if ($app->status == 1) {
-                            echo "<td><p style='color:green'>Accepted</p></td>";
-                        }else {
-                            echo "<td><p style='color:red'>Declined</p></td>";
-                        } 
-                        echo '<td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/'.$app->id.'">View</a></td>
-                    </tr>';
-                }         
-                ?>
+            @foreach ($approval as $app)
+                <tr> 
+                    <th scope="row">{{$app->id}}</th> 
+                    <td>{{ $farmer[0]->firstName }}</td>
+                    <td>{{$app->farmer_id}}</td>  
+                    <td>{{$app->farmer_id}}</td> 
+                    <td>{{$app->farmer_id}}</td> 
+                    <td>{{$app->farmer_id}}</td>
+                    <td>@if ($app->status == 0))
+                        <p style='color:blue'>Pending</p>
+                    @elseif ($app->status == 1)
+                        <p style='color:green'>Accepted</p>
+                    @else
+                        <p style='color:red'>Declined</p>
+                    @endif</td>
+                    <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/{{$app->id}}">View</a></td>
+                </tr> 
+            @endforeach        
             </tbody>
         </table>
         
