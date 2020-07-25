@@ -58,13 +58,19 @@
             </thead>
             <tbody>
             @foreach ($approval as $app)
+                @php
+                    $farmer = App\Farmer::where('id', $app->farmer_id)->first();
+                    $province = App\Province::where('id', $app->province_id)->first();
+                    $district = App\District::where('id', $app->district_id)->first();
+                    $region = App\Region::where('id', $app->region_id)->first();
+                @endphp
                 <tr> 
                     <th scope="row">{{$app->id}}</th> 
-                    <td>{{ $farmer[0]->firstName }}</td>
-                    <td>{{$app->farmer_id}}</td>  
-                    <td>{{$app->farmer_id}}</td> 
-                    <td>{{$app->farmer_id}}</td> 
-                    <td>{{$app->farmer_id}}</td>
+                    <td>{{ $farmer->firstName }}</td>
+                    <td>{{ $farmer->lastName }}</td>  
+                    <td>{{ $province->name }}</td> 
+                    <td>{{ $district->name }}</td> 
+                    <td>{{ $region->name }}</td>
                     <td>@if ($app->status == 0)
                         <p style='color:blue'>Pending</p>
                     @elseif ($app->status == 1)

@@ -23,18 +23,8 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        // $farmer = App\Farmer::where('id', $app->id)->first();
-        //             $province = App\Province::where('id', $app->province_id)->first();
-        //             $district = App\District::where('id', $app->district_id)->first();
-        //             $region = App\Region::where('id', $app->region_id)->first();
-
-
-        //dd(Farmer::with('lands')->get());
-
         $approval = Approval::all();
-        $farmer = Farmer::all();
-        $province = Province::where('id', 1)->first();
-        return view('approval', array('farmer' => $farmer, 'province' => $province, 'approval' => $approval));
+        return view('approval', array('approval' => $approval));
     }
 
     /**
@@ -55,9 +45,8 @@ class ApprovalController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->request);
         $approval = Approval::where('id', $request->input('id'))->first();
-        //dd($request->input('status'));
+        
         if ($request->input('status') == "approved")
         {
             $approval->status = 1;
