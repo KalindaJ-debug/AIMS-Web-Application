@@ -12,46 +12,34 @@
         <title>Approval Description {{ $id }}</title>
     </head>
     <body>
-        <?php ?>
         <div class="container">
-            
             <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-arrow-left"> Back</i></button>
             
             </br></br>
-
             <div class="row">
                 <div class="col-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Crop</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">External Factors</a>
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Farmer</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Crop</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">External Factors</a>
                     </div>
                 </div>
                 <div class="col-9">
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="form-group">
-                                <label for="">Farmer First Name</label>
+                                <label for="">First Name</label>
                                 <input type="text" class="form-control" id="" value="{{ $farmer->firstName }}" readonly>
                             </div>
-                            
+                                
                             <div class="form-group">
-                                <label for="">Farmer Last Name</label>
+                                <label for="">Other Name</label>
+                                <input type="text" class="form-control" id="" value="{{ $farmer->otherName }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Last Name</label>
                                 <input type="text" class="form-control" id="" value="{{ $farmer->lastName }}" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Crop Category</label>
-                                <input type="text" class="form-control" id="" value="{{ $category->name }}" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Crop Name</label>
-                                <input type="text" class="form-control" id="" value="{{ $crop->name }}" readonly>
-                            </div>
-                          
-                            <div class="form-group">
-                                <label for="">Variety</label>
-                                <input type="text" class="form-control" id="" value="{{ $variety->name }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -68,6 +56,38 @@
                                 <label for="">Region</label>
                                 <input type="text" class="form-control" id="" value="{{ $region->name }}" readonly>
                             </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <div class="form-group">
+                                <label for="">Crop Category</label>
+                                <input type="text" class="form-control" id="" value="{{ $category->name }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Crop Name</label>
+                                <input type="text" class="form-control" id="" value="{{ $crop->name }}" readonly>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="">Variety</label>
+                                <input type="text" class="form-control" id="" value="{{ $variety->name }}" readonly>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Cultivation Start Date</label>
+                                    <input type="text" class="form-control" id="inputEmail4" value="{{ $approval->startDate }}" readonly>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Cultivation End Date</label>
+                                    <input type="text" class="form-control" id="inputPassword4" value="{{ $approval->endDate }}" readonly>
+                                </div>
+                            </div>
+                                
+                            <div class="form-group">
+                                <label for="">Harvest Amount</label>
+                                <input type="text" class="form-control" id="" value="{{ $approval->harvestedAmount }}" readonly>
+                            </div>
 
                             <div class="form-group">
                                 <label for="">Cultivated Land</label>
@@ -83,9 +103,7 @@
                                 </div>
                             </div> 
                         </div>
-                        
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Average Rainfall</label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1" value="4.2" readonly>
@@ -104,12 +122,11 @@
                                     </label>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
             </div>
-
+            
             <form>
                 <div class="form-row">
                     <div class="col">
@@ -268,11 +285,13 @@
                 }
                 else 
                 {
+                    //$('.alert').alert();
                     $('#errorModal').modal('show');
                 }
             }
             else
             {
+                //$('.alert').alert();
                 $('#errorModal').modal('show');
             }
         });

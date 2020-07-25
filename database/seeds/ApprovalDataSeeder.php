@@ -27,7 +27,11 @@ class ApprovalDataSeeder extends Seeder
             'province_id' => $province->id,
             'district_id' => $district->id,
             'region_id' => $region->id,
-            'cultivatedLand' => 1668.9864
+            'cultivatedLand' => 1668.9864,
+            'season' => 'Yala',
+            'startDate' => '2020-04-15',
+            'endDate' => '2020-05-01',
+            'harvestedAmount' => 456
         ]);
 
         $approval = App\Approval::where('id', 2)->first();
@@ -46,7 +50,11 @@ class ApprovalDataSeeder extends Seeder
             'province_id' => $province->id,
             'district_id' => $district->id,
             'region_id' => $region->id,
-            'cultivatedLand' => 154.32456
+            'cultivatedLand' => 154.32456,
+            'season' => 'Maha',
+            'startDate' => '2020-06-15',
+            'endDate' => '2020-08-01',
+            'harvestedAmount' => 456
         ]);
     }
 }

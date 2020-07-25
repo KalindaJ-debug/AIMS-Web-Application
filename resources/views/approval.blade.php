@@ -65,7 +65,7 @@
                     <td>{{$app->farmer_id}}</td> 
                     <td>{{$app->farmer_id}}</td> 
                     <td>{{$app->farmer_id}}</td>
-                    <td>@if ($app->status == 0))
+                    <td>@if ($app->status == 0)
                         <p style='color:blue'>Pending</p>
                     @elseif ($app->status == 1)
                         <p style='color:green'>Accepted</p>

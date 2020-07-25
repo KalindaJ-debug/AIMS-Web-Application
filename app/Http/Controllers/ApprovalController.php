@@ -72,10 +72,14 @@ class ApprovalController extends Controller
             $harvest->province_id = $approval->province_id;
             $harvest->district_id = $approval->district_id;
             $harvest->region_id = $data->region_id;
-            $harvest->category_id = $approval->category_id;
+            $harvest->category_id = $data->category_id;
             $harvest->crop_id = $data->crop_id;
             $harvest->variety_id = $data->variety_id;
             $harvest->cultivatedLand = $data->cultivatedLand;
+            $harvest->season= $data->season;
+            $harvest->startDate= $data->startDate;
+            $harvest->endDate= $data->endDate;
+            $harvest->harvestedAmount= $data->harvestedAmount;
 
             $harvest->save();
         }
