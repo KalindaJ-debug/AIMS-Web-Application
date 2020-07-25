@@ -28,23 +28,23 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="form-group">
-                                <label for="">First Name</label>
-                                <input type="text" class="form-control" id="" value="{{ $farmer->firstName }}" readonly>
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" value="{{ $farmer->firstName }}" readonly>
                             </div>
                                 
                             <div class="form-group">
-                                <label for="">Other Name</label>
-                                <input type="text" class="form-control" id="" value="{{ $farmer->otherName }}" readonly>
+                                <label for="otherName">Other Name</label>
+                                <input type="text" class="form-control" id="otherName" value="{{ $farmer->otherName }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="">Last Name</label>
-                                <input type="text" class="form-control" id="" value="{{ $farmer->lastName }}" readonly>
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" value="{{ $farmer->lastName }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="">Province</label>
-                                <input type="text" class="form-control" id="" value="{{ $province->name }}" readonly>
+                                <label for="province">Province</label>
+                                <input type="text" class="form-control" id="province" value="{{ $province->name }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -53,24 +53,24 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="">Region</label>
-                                <input type="text" class="form-control" id="" value="{{ $region->name }}" readonly>
+                                <label for="region">Region</label>
+                                <input type="text" class="form-control" id="region" value="{{ $region->name }}" readonly>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="form-group">
-                                <label for="">Crop Category</label>
-                                <input type="text" class="form-control" id="" value="{{ $category->name }}" readonly>
+                                <label for="category">Crop Category</label>
+                                <input type="text" class="form-control" id="category" value="{{ $category->name }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="">Crop Name</label>
-                                <input type="text" class="form-control" id="" value="{{ $crop->name }}" readonly>
+                                <label for="crop">Crop Name</label>
+                                <input type="text" class="form-control" id="crop" value="{{ $crop->name }}" readonly>
                             </div>
                             
                             <div class="form-group">
-                                <label for="">Variety</label>
-                                <input type="text" class="form-control" id="" value="{{ $variety->name }}" readonly>
+                                <label for="variety">Variety</label>
+                                <input type="text" class="form-control" id="variety" value="{{ $variety->name }}" readonly>
                             </div>
 
                             <div class="form-row">
@@ -85,13 +85,13 @@
                             </div>
                                 
                             <div class="form-group">
-                                <label for="">Harvest Amount</label>
-                                <input type="text" class="form-control" id="" value="{{ $approval->harvestedAmount }}" readonly>
+                                <label for="amount">Harvest Amount</label>
+                                <input type="text" class="form-control" id="amount" value="{{ $approval->harvestedAmount }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="">Cultivated Land</label>
-                                <input type="text" class="form-control" id="" value="{{ $approval->cultivatedLand }}" readonly>
+                                <label for="land">Cultivated Land</label>
+                                <input type="text" class="form-control" id="land" value="{{ $approval->cultivatedLand }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -105,13 +105,13 @@
                         </div>
                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Average Rainfall</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="4.2" readonly>
+                                <label for="average">Average Rainfall</label>
+                                <input type="text" class="form-control" id="average" value="4.2" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Damaged Land</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" value="24.2" readonly>
+                                <label for="damage">Damaged Land</label>
+                                <input type="text" class="form-control" id="damage" value="24.2" readonly>
                             </div>
 
                             <div class="form-group">
@@ -126,6 +126,8 @@
                     </div>
                 </div>
             </div>
+
+            <div data-alerts="alerts" data-titles='{"error": "<em>Danger Title!</em>"}' data-fade="2000" ></div>
             
             <form>
                 <div class="form-row">

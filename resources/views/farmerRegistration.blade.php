@@ -29,14 +29,19 @@
                 display: none;
                 width: 100%;
             }
+            body {
+                background-image: url('{{ asset('images/registrationbBackground.jpg') }}');
+            }
         </style>
         <title>Farmer Registration</title>
     </head>
 
     <body>
-        <div class="container">
+        
+        </br>
+        <div class="container" style="background-color:white; border-radius: 25px; padding: 20px;">
 
-            <h2 style="text-align: left;">Farmer Registration</h2>
+            <h2 style="text-align: left;" class="display-4">Farmer Registration</h2>
 
             </br>
             </br>
@@ -66,36 +71,39 @@
                     <small id="emailHelp" class="form-text text-muted">Minimum eight characters, at least one letter and one number.</small>
                 </div>
 
-                <div class="form-group">
-                    <label for="telephoneNo">Telephone Number</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">+94</span>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="telephoneNo">Telephone Number</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">+94</span>
+                            </div>
+                            <input name="telephoneNo" type="number" class="form-control" aria-label="Telephone Number" minlength="1" maxlength="9" placeholder="7XXXXXXXXX" required>
                         </div>
-                        <input name="telephoneNo" type="number" class="form-control" aria-label="Telephone Number" minlength="1" maxlength="9" placeholder="7XXXXXXXXX" required>
+                        <small id="emailHelp" class="form-text text-muted">eg.7XXXXXXXXX.</small>
                     </div>
-                    <small id="emailHelp" class="form-text text-muted">eg.7XXXXXXXXX.</small>
+                    <div class="form-group col-md-6">
+                        <label for="nic">NIC Number</label>
+                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required>
+                        <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="nic">NIC Number</label>
-                    <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required>
-                    <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="image">NIC Image</label>
-                    <input name="image" type="file" class="form-control-file" id="image" accept="image/*" required>
+                <div class="jumbotron">
+                    <div class="form-group">
+                        <label for="image">NIC Image</label>
+                        <input name="image" type="file" class="form-control-file" id="image" accept="image/*" required>
 
-                    <div class="image-preview" id="imagePreview">
-                        <img src="" alt="Image Preview" class="image-preview__image">
-                        <span class="image-preview__default-text">Image Preview</span>
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image d-block w-100 img-fluid rounded">
+                            <span class="image-preview__default-text">Image Preview</span>
+                        </div>
                     </div>
                 </div>
 
                 </br>
 
-                <button type="submit" name="submit" class="btn btn-outline-secondary">Continue</button>
+                <button type="submit" name="submit" class="btn btn-outline-secondary btn-lg btn-block" data-toggle="button" aria-pressed="false">Continue</button>
             </form>
 
             <script>
@@ -127,5 +135,7 @@
                 });
             </script>
         </div>
+
+        </br>
     </body>
 </html>

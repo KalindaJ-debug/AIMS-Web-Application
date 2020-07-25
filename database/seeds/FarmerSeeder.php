@@ -16,6 +16,7 @@ class FarmerSeeder extends Seeder
         foreach (range(1,10) as $index) {
 	        DB::table('farmers')->insert([
                 'firstName' => $faker->firstName,
+                'otherName' => $faker->firstNameMale,
                 'lastName' => $faker->lastName,
                 'telephoneNo' => '773734324',
                 'nic' => $faker->streetName,
