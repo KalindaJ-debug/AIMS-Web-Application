@@ -28,23 +28,20 @@
             .image-preview__image {
                 display: none;
                 width: 100%;
-            }
-            body {
-                background-image: url('{{ asset('images/registrationbBackground.jpg') }}');
+                height: 100%;
             }
         </style>
         <title>Farmer Registration</title>
     </head>
 
-    <body>
+    <body style="background-color:#52BE80;">
         
         </br>
+
         <div class="container" style="background-color:white; border-radius: 25px; padding: 20px;">
 
-            <h2 style="text-align: left;" class="display-4">Farmer Registration</h2>
-
-            </br>
-            </br>
+            <img src="{{ asset('images/farmer.png') }}" class="img-fluid img-thumbnail rounded float-left" alt="Farmer" height="300px">
+            <h2 style="text-align: center;" class="display-4">Farmer Registration</h2>
 
             <form method="post" action="{{action('RegistrationController@store')}}" enctype="multipart/form-data" id="farmerRegistration"> 
 
@@ -82,6 +79,7 @@
                         </div>
                         <small id="emailHelp" class="form-text text-muted">eg.7XXXXXXXXX.</small>
                     </div>
+                                
                     <div class="form-group col-md-6">
                         <label for="nic">NIC Number</label>
                         <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required>
@@ -101,41 +99,41 @@
                     </div>
                 </div>
 
-                </br>
-
-                <button type="submit" name="submit" class="btn btn-outline-secondary btn-lg btn-block" data-toggle="button" aria-pressed="false">Continue</button>
+                <div class="text-center">
+                    <button type="submit" name="submit" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
             </form>
-
-            <script>
-                $( document ).ready(function() {
-                    
-                    const inpFile = document.getElementById("image");
-                    const previewContainer = document.getElementById("imagePreview");
-                    const previewImage = previewContainer.querySelector(".image-preview__image");
-                    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-
-                    inpFile.addEventListener("change", function() {
-  
-                        const file = this.files[0];
-
-                        if (file)
-                        {
-                            const reader = new FileReader();
-
-                            previewDefaultText.style.display = "none";
-                            previewImage.style.display = "block";
-
-                            reader.addEventListener("load", function() {
-                                previewImage.setAttribute("src", this.result);
-                            });
-
-                            reader.readAsDataURL(file);
-                        }
-                    });
-                });
-            </script>
         </div>
-
+        
         </br>
+
+        <script>
+            $( document ).ready(function() {
+                        
+                const inpFile = document.getElementById("image");
+                const previewContainer = document.getElementById("imagePreview");
+                const previewImage = previewContainer.querySelector(".image-preview__image");
+                const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+                inpFile.addEventListener("change", function() {
+    
+                    const file = this.files[0];
+
+                    if (file)
+                    {
+                        const reader = new FileReader();
+
+                        previewDefaultText.style.display = "none";
+                        previewImage.style.display = "block";
+
+                        reader.addEventListener("load", function() {
+                            previewImage.setAttribute("src", this.result);
+                        });
+
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

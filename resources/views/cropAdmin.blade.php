@@ -13,8 +13,8 @@
 
         <title>Approval</title>
     </head>
-    <body>
-    <!-- style="background-color:#2E933C;" -->
+    <body style="background-color:#2E933C;">
+
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable();
@@ -41,12 +41,10 @@
 
         
 
-        <h2 class="display-4">Approval</h2>
+        <h2 style="text-align: center;">Approval</h2>
         
-        </br>
-
         <table id="datatable" class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
                 <tr>
                     <th scope="col">Approval ID</th>
                     <th scope="col">First Name</th>
@@ -59,12 +57,10 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($approval as $app)
+            @foreach ($varieties as $variety)
                 @php
-                    $farmer = App\Farmer::where('id', $app->farmer_id)->first();
-                    $province = App\Province::where('id', $app->province_id)->first();
-                    $district = App\District::where('id', $app->district_id)->first();
-                    $region = App\Region::where('id', $app->region_id)->first();
+                    $crop = App\Crop::where('id', $variety->farmer_id)->first();
+                    $category = App\CropCategory::where('id', $app->province_id)->first();
                 @endphp
                 <tr> 
                     <th scope="row">{{$app->id}}</th> 
@@ -73,13 +69,6 @@
                     <td>{{ $province->name }}</td> 
                     <td>{{ $district->name }}</td> 
                     <td>{{ $region->name }}</td>
-                    <td>@if ($app->status == 0)
-                        <p style='color:blue'>Pending</p>
-                    @elseif ($app->status == 1)
-                        <p style='color:green'>Accepted</p>
-                    @else
-                        <p style='color:red'>Declined</p>
-                    @endif</td>
                     <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/{{$app->id}}">View</a></td>
                 </tr> 
             @endforeach        

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
+Route::resource('crop', 'CropController'); 
 
 
 
