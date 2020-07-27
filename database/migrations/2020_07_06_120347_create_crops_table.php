@@ -23,16 +23,16 @@ class CreateCropsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('type_id');
-            $table->timestamps();
             $table->foreign('type_id')->references('id')->on('crop_categories');
+            $table->timestamps();
         });
 
         Schema::create('varieties', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('crop_id');
-            $table->timestamps();
             $table->foreign('crop_id')->references('id')->on('crops');
+            $table->timestamps();
         });
 
         Artisan::call('db:seed', [

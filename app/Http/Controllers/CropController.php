@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Variety;
 
 class CropController extends Controller
 {
@@ -14,6 +15,7 @@ class CropController extends Controller
     public function index()
     {
         $variety = Variety::all();
+        //dd($variety);
         return view('cropAdmin', array('varieties' => $variety));
     }
 

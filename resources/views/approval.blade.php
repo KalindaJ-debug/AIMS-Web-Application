@@ -39,8 +39,6 @@
         </nav>
     <div class="container" style="background-color:white;">
 
-        
-
         <h2 class="display-4">Approval</h2>
         
         </br>
@@ -102,7 +100,8 @@
         </nav>
 
     </div>
-
+    
+    </body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
