@@ -74,6 +74,7 @@
                         <th scope="row">{{ $category->name }}</th>
                         <td><p style='color:blue'>{{ $crops->name }}</p></td>
                         <td>
+                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editCrop(@json($crops->name), @json($crops->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -115,6 +116,8 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <!-- Edit Tables  -->
 
             <div class="modal" tabindex="-1" role="dialog" id="editCategory">
                 <div class="modal-dialog">
@@ -193,6 +196,38 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Update Dependancy -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="updateCrop">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update Crop</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="update">
+                                <input type="hidden" name="category" value="Crop">
+                                <input type="hidden" id="updateCategoryId" name="id">
+                                <select name="categoryId" id="cropOption">
+                                    @foreach ($categoryList as $category)
+                                        <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
     <!-- Optional JavaScript -->
@@ -222,6 +257,14 @@
             $('#editVariety').modal('show');
             document.getElementById("editVarietyText").value = name;
             document.getElementById("editVarietyId").value = id;
+        } 
+
+        function updateCropTable(id)
+        {
+            console.log(id);
+            $('#updateCrop').modal('show');
+            document.getElementById("updateCategoryId").value = id;
+            $('#cropOption option[value=id]').prop('selected', 'selected').change();
         } 
     </script>
 </html>

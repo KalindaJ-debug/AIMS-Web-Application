@@ -20,7 +20,7 @@ class CropController extends Controller
         $crop = Crop::all();
         $category = CropCategory::all();
         //dd($variety);
-        return view('cropAdmin', array('varieties' => $variety, 'crop' => $crop, 'category' => $category));
+        return view('cropAdmin', array('varieties' => $variety, 'crop' => $crop, 'category' => $category, 'categoryList' => $category, 'cropList' => $crop));
     }
 
     /**
@@ -69,6 +69,17 @@ class CropController extends Controller
                 $variety->name = $request->input('name');
         
                 $variety->save();
+            }
+        }
+        else if ($request->input('function') == "update")
+        {
+            if ($request->input('category') == "Crop")
+            {
+                $crop = Crop::where('id', $request->input('id'))->first();
+
+                $crop->type_id = $request->input('categoryId');
+        
+                $crop->save();
             }
         }
 
