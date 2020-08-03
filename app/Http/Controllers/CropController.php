@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CropCategory;
+use App\Crop;
 use App\Variety;
 
 class CropController extends Controller
@@ -15,8 +17,10 @@ class CropController extends Controller
     public function index()
     {
         $variety = Variety::all();
+        $crop = Crop::all();
+        $category = CropCategory::all();
         //dd($variety);
-        return view('cropAdmin', array('varieties' => $variety));
+        return view('cropAdmin', array('varieties' => $variety, 'crop' => $crop, 'category' => $category));
     }
 
     /**
@@ -37,7 +41,20 @@ class CropController extends Controller
      */
     public function store(Request $request)
     {
-       //
+        //dd($request->request);
+        if ($request->input('function') == "edit")
+        {
+            if ($request->input('category') == "Category")
+            {
+                $category = CropCategory::where('id', $request->input('id'))->first();
+
+                $category->name = $request->input('name');
+        
+                $category->save();
+            }
+        }
+
+        return redirect()->action('CropController@index');
     }
 
     /**

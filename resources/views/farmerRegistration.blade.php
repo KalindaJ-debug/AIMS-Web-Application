@@ -87,6 +87,23 @@
                     </div>
                 </div>
 
+                <!-- <div class="jumbotron">
+                    <div class="form-group">
+                        <label for="image">NIC Image</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" id="image" accept="image/*" required>
+                                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                            </div>
+                        </div>
+
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image d-block w-100 img-fluid rounded">
+                            <span class="image-preview__default-text">Image Preview</span>
+                        </div>
+                    </div>
+                </div> -->
+
                 <div class="jumbotron">
                     <div class="form-group">
                         <label for="image">NIC Image</label>

@@ -10,24 +10,89 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        
         <title>Crop</title>
     </head>
     <body>
     <!-- style="background-color:#2E933C;" -->
         <script>
             $(document).ready( function () {
-                $('#datatable').DataTable();
+                $('#varietyTable').DataTable();
+                $('#cropTable').DataTable();
+                $('#categoryTable').DataTable();
             });
         </script>
         
         <div class="container" style="background-color:white;">
 
+            <h2 class="display-4">Crop Category</h2>
+            
+            </br>
+
+            <table class="table" id="categoryTable"> 
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Crop Category</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($category as $categories)
+                    <tr>
+                        <th scope="row">{{ $categories->name }}</th>
+                        <td>
+                            <script>
+                                var name = @json($categories->name);
+                            </script>
+                            <!-- onclick="editCategory(name)" -->
+                            <button type="button" class="btn btn-warning" onclick='editCategory(@json($categories->name), @json($categories->id))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            </br>
+
             <h2 class="display-4">Crop</h2>
             
             </br>
 
-            <table class="table" id="datatable"> 
+            <table class="table" id="cropTable"> 
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Crop Category</th>
+                        <th scope="col">Crop</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($crop as $crops)
+                    @php
+                        $category = App\CropCategory::where('id', $crops->type_id)->first();
+                    @endphp
+                    <tr>
+                        <th scope="row">{{ $category->name }}</th>
+                        <td><p style='color:blue'>{{ $crops->name }}</p></td>
+                        <td>
+                            <i class="fas fa-plus" data-toggle="tooltip" data-placement="top" title="Add"></i>
+                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+                            <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            </br>
+
+            <h2 class="display-4">Variety</h2>
+            
+            </br>
+
+            <table class="table" id="varietyTable"> 
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Crop Category</th>
@@ -45,17 +110,90 @@
                     <tr>
                         <th scope="row">{{ $category->name }}</th>
                         <td>{{ $crop->name }}</td>
-                        <td>{{ $variety->name }}</td>
-                        <td>@mdo</td>
+                        <td><p style='color:blue'>{{ $variety->name }}</p></td>
+                        <td>
+                            <i class="fas fa-plus" data-toggle="tooltip" data-placement="top" title="Add"></i>
+                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+                            <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
 
+            <div class="modal" tabindex="-1" role="dialog" id="editCategory">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data" id="farmerRegistration">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="edit">
+                                <input type="hidden" name="category" value="Category">
+                                <input type="hidden" id="editCategoryId" name="id">
+                                <input class="form-control" type="text" placeholder="Readonly input here..." id="editCategoryText" name="name">
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" tabindex="-1" role="dialog" id="editCrop">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Crop</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data" id="farmerRegistration">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="edit">
+                                <input type="hidden" name="category" value="Crop">
+                                <input type="hidden" id="editCropId" name="id">
+                                <input class="form-control" type="text" placeholder="Readonly input here..." id="editCropText" name="name">
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        function editCategory(name, id)
+        {
+            // $(document).ready(function(){
+            //     $('#test').val(name);
+            // });
+            $('#editCategory').modal('show');
+            document.getElementById("editCategoryText").value = name;
+            document.getElementById("editCategoryId").value = id;
+        } 
+
+        function editCrop(name, id)
+        {
+            $('#editCrop').modal('show');
+            document.getElementById("editCropText").value = name;
+            document.getElementById("editCropId").value = id;
+        } 
+    </script>
 </html>

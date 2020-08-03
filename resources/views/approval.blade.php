@@ -14,12 +14,11 @@
         <title>Approval</title>
     </head>
     <body>
-    <!-- style="background-color:#2E933C;" -->
-    <script>
-        $(document).ready( function () {
-            $('#datatable').DataTable();
-        });
-    </script>
+        <script>
+            $(document).ready( function () {
+                $('#datatable').DataTable();
+            });
+        </script>
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
@@ -37,70 +36,69 @@
                 <button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
             </div>
         </nav>
-    <div class="container" style="background-color:white;">
-
-        <h2 class="display-4">Approval</h2>
         
-        </br>
+        <div class="container" style="background-color:white;">
 
-        <table id="datatable" class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Approval ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Province</th>
-                    <th scope="col">District</th>
-                    <th scope="col">Region</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach ($approval as $app)
-                @php
-                    $farmer = App\Farmer::where('id', $app->farmer_id)->first();
-                    $province = App\Province::where('id', $app->province_id)->first();
-                    $district = App\District::where('id', $app->district_id)->first();
-                    $region = App\Region::where('id', $app->region_id)->first();
-                @endphp
-                <tr> 
-                    <th scope="row">{{$app->id}}</th> 
-                    <td>{{ $farmer->firstName }}</td>
-                    <td>{{ $farmer->lastName }}</td>  
-                    <td>{{ $province->name }}</td> 
-                    <td>{{ $district->name }}</td> 
-                    <td>{{ $region->name }}</td>
-                    <td>@if ($app->status == 0)
-                        <p style='color:blue'>Pending</p>
-                    @elseif ($app->status == 1)
-                        <p style='color:green'>Accepted</p>
-                    @else
-                        <p style='color:red'>Declined</p>
-                    @endif</td>
-                    <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/{{$app->id}}">View</a></td>
-                </tr> 
-            @endforeach        
-            </tbody>
-        </table>
-        
-        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
-            </a>
+            <h2 class="display-4">Approval</h2>
+            
+            </br>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    AIMS (Agriculture Information Management System)                   
-                </ul>
-                
-                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="far fa-question-circle"></i> About Us</button>
-                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-phone-volume"></i> Contact Us</button>
-            </div>
-        </nav>
+            <table id="datatable" class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Approval ID</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Province</th>
+                        <th scope="col">District</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($approval as $app)
+                    @php
+                        $farmer = App\Farmer::where('id', $app->farmer_id)->first();
+                        $province = App\Province::where('id', $app->province_id)->first();
+                        $district = App\District::where('id', $app->district_id)->first();
+                        $region = App\Region::where('id', $app->region_id)->first();
+                    @endphp
+                    <tr> 
+                        <th scope="row">{{$app->id}}</th> 
+                        <td>{{ $farmer->firstName }}</td>
+                        <td>{{ $farmer->lastName }}</td>  
+                        <td>{{ $province->name }}</td> 
+                        <td>{{ $district->name }}</td> 
+                        <td>{{ $region->name }}</td>
+                        <td>@if ($app->status == 0)
+                            <p style='color:blue'>Pending</p>
+                        @elseif ($app->status == 1)
+                            <p style='color:green'>Accepted</p>
+                        @else
+                            <p style='color:red'>Declined</p>
+                        @endif</td>
+                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/{{$app->id}}">View</a></td>
+                    </tr> 
+                @endforeach        
+                </tbody>
+            </table>
+            
+            <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
+                </a>
 
-    </div>
-    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        AIMS (Agriculture Information Management System)                   
+                    </ul>
+                    
+                    <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="far fa-question-circle"></i> About Us</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-phone-volume"></i> Contact Us</button>
+                </div>
+            </nav>
+        </div>
     </body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
