@@ -52,6 +52,24 @@ class CropController extends Controller
         
                 $category->save();
             }
+
+            if ($request->input('category') == "Crop")
+            {
+                $crop = Crop::where('id', $request->input('id'))->first();
+
+                $crop->name = $request->input('name');
+        
+                $crop->save();
+            }
+
+            if ($request->input('category') == "Variety")
+            {
+                $variety = Variety::where('id', $request->input('id'))->first();
+
+                $variety->name = $request->input('name');
+        
+                $variety->save();
+            }
         }
 
         return redirect()->action('CropController@index');

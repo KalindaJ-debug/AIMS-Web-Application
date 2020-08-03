@@ -42,9 +42,6 @@
                     <tr>
                         <th scope="row">{{ $categories->name }}</th>
                         <td>
-                            <script>
-                                var name = @json($categories->name);
-                            </script>
                             <!-- onclick="editCategory(name)" -->
                             <button type="button" class="btn btn-warning" onclick='editCategory(@json($categories->name), @json($categories->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
@@ -77,9 +74,8 @@
                         <th scope="row">{{ $category->name }}</th>
                         <td><p style='color:blue'>{{ $crops->name }}</p></td>
                         <td>
-                            <i class="fas fa-plus" data-toggle="tooltip" data-placement="top" title="Add"></i>
-                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
-                            <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+                            <button type="button" class="btn btn-warning" onclick='editCrop(@json($crops->name), @json($crops->id))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                     @endforeach
@@ -112,9 +108,8 @@
                         <td>{{ $crop->name }}</td>
                         <td><p style='color:blue'>{{ $variety->name }}</p></td>
                         <td>
-                            <i class="fas fa-plus" data-toggle="tooltip" data-placement="top" title="Add"></i>
-                            <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
-                            <i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+                            <button type="button" class="btn btn-warning" onclick='editVariety(@json($variety->name), @json($variety->id))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                     @endforeach
@@ -131,7 +126,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data" id="farmerRegistration">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Category">
@@ -157,12 +152,38 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data" id="farmerRegistration">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Crop">
                                 <input type="hidden" id="editCropId" name="id">
                                 <input class="form-control" type="text" placeholder="Readonly input here..." id="editCropText" name="name">
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" tabindex="-1" role="dialog" id="editVariety">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Crop</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="edit">
+                                <input type="hidden" name="category" value="Variety">
+                                <input type="hidden" id="editVarietyId" name="id">
+                                <input class="form-control" type="text" placeholder="Readonly input here..." id="editVarietyText" name="name">
                         </div>
                         <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-dark">Continue</button>
@@ -194,6 +215,13 @@
             $('#editCrop').modal('show');
             document.getElementById("editCropText").value = name;
             document.getElementById("editCropId").value = id;
+        } 
+
+        function editVariety(name, id)
+        {
+            $('#editVariety').modal('show');
+            document.getElementById("editVarietyText").value = name;
+            document.getElementById("editVarietyId").value = id;
         } 
     </script>
 </html>
