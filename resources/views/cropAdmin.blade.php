@@ -43,6 +43,7 @@
                         <th scope="row">{{ $categories->name }}</th>
                         <td>
                             <!-- onclick="editCategory(name)" -->
+                            <button type="button" class="btn btn-success" onclick='addCategory()'><i class="fas fa-plus"></i> Add</button>
                             <button type="button" class="btn btn-warning" onclick='editCategory(@json($categories->name), @json($categories->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -74,7 +75,8 @@
                         <th scope="row">{{ $category->name }}</th>
                         <td><p style='color:blue'>{{ $crops->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id))'><i class="fas fa-pen-alt"></i> Update</button>
+                            <button type="button" class="btn btn-success" onclick='updateVarietyTable()'><i class="fas fa-plus"></i> Add</button>
+                            <button type="button" class="btn btn-primary" onclick='updateCropTable()'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editCrop(@json($crops->name), @json($crops->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -109,6 +111,8 @@
                         <td>{{ $crop->name }}</td>
                         <td><p style='color:blue'>{{ $variety->name }}</p></td>
                         <td>
+                            <button type="button" class="btn btn-success" onclick='updateVarietyTable()'><i class="fas fa-plus"></i> Add</button>
+                            <button type="button" class="btn btn-primary" onclick='updateVarietyTable(@json($variety->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editVariety(@json($variety->name), @json($variety->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -228,6 +232,64 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal" tabindex="-1" role="dialog" id="updateVariety">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update Variety</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="update">
+                                <input type="hidden" name="category" value="Variety">
+                                <input type="hidden" id="updateCropId" name="id">
+                                <select name="cropId" id="varietyOption">
+                                    @foreach ($cropList as $crop)
+                                        <option value='{{ $crop->id }}'>{{ $crop->name }}</option>
+                                    @endforeach
+                                </select>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Dependancy -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="addCategory">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="add">
+                                <input type="hidden" name="category" value="Crop">
+                                <input class="form-control" type="text" placeholder="Enter new name here..." name="name">
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </body>
     <!-- Optional JavaScript -->
@@ -235,6 +297,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
+        // Edit Functions 
         function editCategory(name, id)
         {
             // $(document).ready(function(){
@@ -261,10 +324,30 @@
 
         function updateCropTable(id)
         {
-            console.log(id);
             $('#updateCrop').modal('show');
             document.getElementById("updateCategoryId").value = id;
             $('#cropOption option[value=id]').prop('selected', 'selected').change();
+        } 
+
+        // Update Functions
+        function updateCropTable(id)
+        {
+            $('#updateCrop').modal('show');
+            document.getElementById("updateCategoryId").value = id;
+            $('#cropOption option[value=id]').prop('selected', 'selected').change();
+        } 
+
+        function updateVarietyTable(id)
+        {
+            $('#updateVariety').modal('show');
+            document.getElementById("updateCropId").value = id;
+            $('#varietyOption option[value=id]').prop('selected', 'selected').change();
+        } 
+
+        //Add Functions 
+        function addCategory()
+        {
+            $('#addCategory').modal('show');
         } 
     </script>
 </html>
