@@ -49,18 +49,28 @@ class RegistrationController extends Controller
         $farmer->telephoneNo = $request->input('telephoneNo');
         $farmer->nic = $request->input('nic');
         
-        //dd($request->hasfile('image'));
-        if ($request->hasfile('image'))
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time() . '.' . $extension;
+        $farmer->nicImage = $fileName;
+
+        $saved = $farmer->save();
+
+        if (!$saved)
         {
-            //dd($request->file('image'));
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $fileName = time() . '.' . $extension;
-            // $file->move('uploads/farmer/', $fileName);
-            $farmer->nicImage = $fileName;
+            $state = "Failed";
+            return redirect()->action('RegistrationController@index')->with('state', $state);
+        }
+        // //dd($request->hasfile('image'));
+        // if ($request->hasfile('image'))
+        // {
+        //     $file = $request->file('image');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $fileName = time() . '.' . $extension;
+        //     $farmer->nicImage = $fileName;
     
-            $farmer->save();
-        } 
+        //     $farmer->save();
+        // } 
         
         return redirect()->action('RegistrationController@index');
     }

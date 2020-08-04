@@ -3,6 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Approval;
+use App\Farmer;
+use App\Province;
+use App\District;
+use App\Region;
+use App\ApprovalData;
+use App\CropCategory;
+use App\Crop;
+use App\Variety;
+use App\Harvest;
 
 class ApprovalController extends Controller
 {
@@ -13,9 +23,8 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        // $login = Login::all();
-        // return response()->json($login);
-        return view('approval');
+        $approval = Approval::all();
+        return view('approval', array('approval' => $approval));
     }
 
     /**
@@ -36,7 +45,49 @@ class ApprovalController extends Controller
      */
     public function store(Request $request)
     {
+        $approval = Approval::where('id', $request->input('id'))->first();
         
+        if ($request->input('status') == "approved")
+        {
+            $approval->status = 1;
+            $approval->other = null;
+            $approval->inaccurate = false;
+            
+            $data = ApprovalData::where('approval_id', $approval->id)->first();
+
+            $harvest = new Harvest;
+
+            $harvest->farmer_id = $approval->farmer_id;
+            $harvest->province_id = $approval->province_id;
+            $harvest->district_id = $approval->district_id;
+            $harvest->region_id = $data->region_id;
+            $harvest->category_id = $data->category_id;
+            $harvest->crop_id = $data->crop_id;
+            $harvest->variety_id = $data->variety_id;
+            $harvest->cultivatedLand = $data->cultivatedLand;
+            $harvest->season= $data->season;
+            $harvest->startDate= $data->startDate;
+            $harvest->endDate= $data->endDate;
+            $harvest->harvestedAmount= $data->harvestedAmount;
+
+            $harvest->save();
+        }
+        else
+        {
+            $approval->status = 2;
+            if ($request->input('other') == null)
+            {
+                $approval->inaccurate = true;
+                $approval->other = null;
+            }
+            else
+            {
+                $approval->inaccurate = false;
+                $approval->other = $request->input('other');
+            }
+        }
+        $approval->save();
+        return redirect()->action('ApprovalController@index');
     }
 
     /**
@@ -47,7 +98,18 @@ class ApprovalController extends Controller
      */
     public function show($id)
     {
-        return view('approvalDescription')->with('id', $id);
+        $data = ApprovalData::where('approval_id', $id)->first();
+        
+        $approval = Approval::where('id', $id)->first();
+        $farmer = Farmer::where('id', $approval->farmer_id)->first();
+
+        $category = CropCategory::where('id', $data->category_id)->first();
+        $crop = Crop::where('id', $data->crop_id)->first();
+        $variety = Variety::where('id', $data->variety_id)->first();
+        $province = Province::where('id', $data->province_id)->first();
+        $district = District::where('id', $data->district_id)->first();
+        $region = Region::where('id', $data->region_id)->first();
+        return view('approvalDescription', array('approval' => $data, 'farmer' => $farmer, 'province' => $province, 'district' => $district, 'region' => $region, 'category' => $category, 'crop' => $crop, 'variety' => $variety))->with('id', $id);
     }
 
     /**

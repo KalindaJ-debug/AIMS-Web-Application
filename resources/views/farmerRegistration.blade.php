@@ -28,18 +28,20 @@
             .image-preview__image {
                 display: none;
                 width: 100%;
+                height: 100%;
             }
         </style>
         <title>Farmer Registration</title>
     </head>
 
-    <body>
-        <div class="container">
+    <body style="background-color:#52BE80;">
+        
+        </br>
 
-            <h2 style="text-align: left;">Farmer Registration</h2>
+        <div class="container" style="background-color:white; border-radius: 25px; padding: 20px;">
 
-            </br>
-            </br>
+            <img src="{{ asset('images/farmer.png') }}" class="img-fluid img-thumbnail rounded float-left" alt="Farmer" height="300px">
+            <h2 style="text-align: center;" class="display-4">Farmer Registration</h2>
 
             <form method="post" action="{{action('RegistrationController@store')}}" enctype="multipart/form-data" id="farmerRegistration"> 
 
@@ -66,69 +68,89 @@
                     <small id="emailHelp" class="form-text text-muted">Minimum eight characters, at least one letter and one number.</small>
                 </div>
 
-                <div class="form-group">
-                    <label for="telephoneNo">Telephone Number</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">+94</span>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="telephoneNo">Telephone Number</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">+94</span>
+                            </div>
+                            <input name="telephoneNo" type="number" class="form-control" aria-label="Telephone Number" minlength="1" maxlength="9" placeholder="7XXXXXXXXX" required>
                         </div>
-                        <input name="telephoneNo" type="number" class="form-control" aria-label="Telephone Number" minlength="1" maxlength="9" placeholder="7XXXXXXXXX" required>
+                        <small id="emailHelp" class="form-text text-muted">eg.7XXXXXXXXX.</small>
                     </div>
-                    <small id="emailHelp" class="form-text text-muted">eg.7XXXXXXXXX.</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="nic">NIC Number</label>
-                    <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required>
-                    <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="image">NIC Image</label>
-                    <input name="image" type="file" class="form-control-file" id="image" accept="image/*" required>
-
-                    <div class="image-preview" id="imagePreview">
-                        <img src="" alt="Image Preview" class="image-preview__image">
-                        <span class="image-preview__default-text">Image Preview</span>
+                                
+                    <div class="form-group col-md-6">
+                        <label for="nic">NIC Number</label>
+                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required>
+                        <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
                     </div>
                 </div>
 
-                </br>
+                <!-- <div class="jumbotron">
+                    <div class="form-group">
+                        <label for="image">NIC Image</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" id="image" accept="image/*" required>
+                                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                            </div>
+                        </div>
 
-                <button type="submit" name="submit" class="btn btn-outline-secondary">Continue</button>
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image d-block w-100 img-fluid rounded">
+                            <span class="image-preview__default-text">Image Preview</span>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="jumbotron">
+                    <div class="form-group">
+                        <label for="image">NIC Image</label>
+                        <input name="image" type="file" class="form-control-file" id="image" accept="image/*" required>
+
+                        <div class="image-preview" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image d-block w-100 img-fluid rounded">
+                            <span class="image-preview__default-text">Image Preview</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" name="submit" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
             </form>
-
-            <script>
-                $( document ).ready(function() {
-                    
-                    const inpFile = document.getElementById("image");
-                    const previewContainer = document.getElementById("imagePreview");
-                    const previewImage = previewContainer.querySelector(".image-preview__image");
-                    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-
-                    inpFile.addEventListener("change", function() {
-
-                        
-                        console.log("test");
-                        const file = this.files[0];
-
-                        if (file)
-                        {
-                            const reader = new FileReader();
-
-                            previewDefaultText.style.display = "none";
-                            previewImage.style.display = "block";
-
-                            reader.addEventListener("load", function() {
-                                console.log(this);
-                                previewImage.setAttribute("src", this.result);
-                            });
-
-                            reader.readAsDataURL(file);
-                        }
-                    });
-                });
-            </script>
         </div>
+        
+        </br>
+
+        <script>
+            $( document ).ready(function() {
+                        
+                const inpFile = document.getElementById("image");
+                const previewContainer = document.getElementById("imagePreview");
+                const previewImage = previewContainer.querySelector(".image-preview__image");
+                const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+                inpFile.addEventListener("change", function() {
+    
+                    const file = this.files[0];
+
+                    if (file)
+                    {
+                        const reader = new FileReader();
+
+                        previewDefaultText.style.display = "none";
+                        previewImage.style.display = "block";
+
+                        reader.addEventListener("load", function() {
+                            previewImage.setAttribute("src", this.result);
+                        });
+
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
