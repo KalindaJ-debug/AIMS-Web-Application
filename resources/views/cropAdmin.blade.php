@@ -45,7 +45,7 @@
                             <!-- onclick="editCategory(name)" -->
                             <button type="button" class="btn btn-success" onclick='addCategory()'><i class="fas fa-plus"></i> Add</button>
                             <button type="button" class="btn btn-warning" onclick='editCategory(@json($categories->name), @json($categories->id))'><i class="fas fa-edit"></i> Edit</button>
-                            <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
+                            <button type="button" class="btn btn-danger" onclick='deleteCategory(@json($categories->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                     @endforeach
@@ -75,10 +75,10 @@
                         <th scope="row">{{ $category->name }}</th>
                         <td><p style='color:blue'>{{ $crops->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-success" onclick='updateVarietyTable()'><i class="fas fa-plus"></i> Add</button>
-                            <button type="button" class="btn btn-primary" onclick='updateCropTable()'><i class="fas fa-pen-alt"></i> Update</button>
+                            <button type="button" class="btn btn-success" onclick='addCrop()'><i class="fas fa-plus"></i> Add</button>
+                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editCrop(@json($crops->name), @json($crops->id))'><i class="fas fa-edit"></i> Edit</button>
-                            <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
+                            <button type="button" class="btn btn-danger" onclick='deleteCrop(@json($crops->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                     @endforeach
@@ -111,10 +111,10 @@
                         <td>{{ $crop->name }}</td>
                         <td><p style='color:blue'>{{ $variety->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-success" onclick='updateVarietyTable()'><i class="fas fa-plus"></i> Add</button>
+                            <button type="button" class="btn btn-success" onclick='addVariety()'><i class="fas fa-plus"></i> Add</button>
                             <button type="button" class="btn btn-primary" onclick='updateVarietyTable(@json($variety->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editVariety(@json($variety->name), @json($variety->id))'><i class="fas fa-edit"></i> Edit</button>
-                            <button type="button" class="btn btn-danger" id="deleteCategory"><i class="fas fa-trash"></i> Delete</button>
+                            <button type="button" class="btn btn-danger" onclick='deleteVariety(@json($variety->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                     @endforeach
@@ -138,7 +138,10 @@
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Category">
                                 <input type="hidden" id="editCategoryId" name="id">
-                                <input class="form-control" type="text" placeholder="Readonly input here..." id="editCategoryText" name="name">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input class="form-control" type="text" placeholder="Readonly input here..." id="editCategoryText" name="name">
+                                </div>
                         </div>
                         <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-dark">Continue</button>
@@ -164,7 +167,10 @@
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Crop">
                                 <input type="hidden" id="editCropId" name="id">
-                                <input class="form-control" type="text" placeholder="Readonly input here..." id="editCropText" name="name">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input class="form-control" type="text" placeholder="Readonly input here..." id="editCropText" name="name">
+                                </div>
                         </div>
                         <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-dark">Continue</button>
@@ -190,7 +196,12 @@
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Variety">
                                 <input type="hidden" id="editVarietyId" name="id">
-                                <input class="form-control" type="text" placeholder="Readonly input here..." id="editVarietyText" name="name">
+
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input class="form-control" type="text" placeholder="Readonly input here..." id="editVarietyText" name="name">
+                                </div>
+
                         </div>
                         <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-dark">Continue</button>
@@ -218,11 +229,16 @@
                                 <input type="hidden" name="function" value="update">
                                 <input type="hidden" name="category" value="Crop">
                                 <input type="hidden" id="updateCategoryId" name="id">
-                                <select name="categoryId" id="cropOption">
-                                    @foreach ($categoryList as $category)
-                                        <option value='{{ $category->id }}'>{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
+
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select name="categoryId" id="cropOption" class="form-control">
+                                        @foreach ($categoryList as $category)
+                                            <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                         </div>
                         <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-dark">Continue</button>
@@ -248,11 +264,16 @@
                                 <input type="hidden" name="function" value="update">
                                 <input type="hidden" name="category" value="Variety">
                                 <input type="hidden" id="updateCropId" name="id">
-                                <select name="cropId" id="varietyOption">
-                                    @foreach ($cropList as $crop)
-                                        <option value='{{ $crop->id }}'>{{ $crop->name }}</option>
-                                    @endforeach
-                                </select>
+
+                                <div class="form-group">
+                                    <label>Crop</label>
+                                    <select name="cropId" id="varietyOption" class="form-control">
+                                        @foreach ($cropList as $crop)
+                                            <option value='{{ $crop->id }}'>{{ $crop->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                         </div>
                         <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-dark">Continue</button>
@@ -278,11 +299,122 @@
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="function" value="add">
-                                <input type="hidden" name="category" value="Crop">
-                                <input class="form-control" type="text" placeholder="Enter new name here..." name="name">
+                                <input type="hidden" name="category" value="Category">
+
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter new name here..." name="name">
+                                </div>
+            
                         </div>
                         <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" tabindex="-1" role="dialog" id="addCrop">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="add">
+                                <input type="hidden" name="category" value="Crop">
+
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select name="catgoryId" class="form-control">
+                                        @foreach ($categoryAddList as $category)
+                                            <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter new name here..." name="name">
+                                </div>
+                                
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" tabindex="-1" role="dialog" id="addVariety">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="add">
+                                <input type="hidden" name="category" value="Variety">
+
+                                <div class="form-group">
+                                    <label>Crop</label>
+                                    <select name="cropId" class="form-control">
+                                        @foreach ($cropAddList as $crop)
+                                            <option value='{{ $crop->id }}'>{{ $crop->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter new name here..." name="name">
+                                </div>  
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Dependancy -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="deleteData">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteHeading">Delete Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="function" value="delete">
+                                <input type="hidden" name="category" id="deleteCategoryId">
+                                <input type="hidden" name="id" id="cropId">
+
+                                <p>Are are you sure you want to delete</p>  
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-danger">Continue</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </form>
                         </div>
@@ -348,6 +480,41 @@
         function addCategory()
         {
             $('#addCategory').modal('show');
+        } 
+        
+        function addCrop()
+        {
+            $('#addCrop').modal('show');
+        } 
+
+        function addVariety()
+        {
+            $('#addVariety').modal('show');
+        } 
+
+        //Delete Functions
+        function deleteCategory(id)
+        {
+            $('#deleteData').modal('show');
+            document.getElementById("deleteHeading").innerHTML = "Delete Category";
+            document.getElementById("deleteCategoryId").value = "Category";
+            document.getElementById("cropId").value = id;
+        } 
+
+        function deleteCrop(id)
+        {
+            $('#deleteData').modal('show');
+            document.getElementById("deleteHeading").innerHTML = "Delete Crop";
+            document.getElementById("deleteCategoryId").value = "Crop";
+            document.getElementById("cropId").value = id;
+        } 
+
+        function deleteVariety(id)
+        {
+            $('#deleteData').modal('show');
+            document.getElementById("deleteHeading").innerHTML = "Delete Variety";
+            document.getElementById("deleteCategoryId").value = "Variety";
+            document.getElementById("cropId").value = id;
         } 
     </script>
 </html>

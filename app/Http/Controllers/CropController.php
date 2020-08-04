@@ -20,7 +20,7 @@ class CropController extends Controller
         $crop = Crop::all();
         $category = CropCategory::all();
         //dd($variety);
-        return view('cropAdmin', array('varieties' => $variety, 'crop' => $crop, 'category' => $category, 'categoryList' => $category, 'cropList' => $crop));
+        return view('cropAdmin', array('varieties' => $variety, 'crop' => $crop, 'category' => $category, 'categoryList' => $category, 'cropList' => $crop, 'categoryAddList' => $category, 'cropAddList' => $crop));
     }
 
     /**
@@ -93,18 +93,63 @@ class CropController extends Controller
         }
         else if ($request->input('function') == "add")
         {
+            if ($request->input('category') == "Category")
+            {
+                $category = new CropCategory;
+
+                $category->name = $request->input('name');
+        
+                $category->save();
+            }
+
             if ($request->input('category') == "Crop")
             {
-                $crop = new CropCategory;
+                $crop = new Crop;
+
+                $crop->type_id = $request->input('catgoryId');
 
                 $crop->name = $request->input('name');
         
                 $crop->save();
             }
+
+            if ($request->input('category') == "Variety")
+            {
+                $variety = new Variety;
+
+                $variety->crop_id = $request->input('cropId');
+
+                $variety->name = $request->input('name');
+        
+                $variety->save();
+            }
+        }
+        else if ($request->input('function') == "delete")
+        {
+            if ($request->input('category') == "Category")
+            {
+                $category = CropCategory::where('id', $request->input('id'))->first();
+        
+                $category->delete();
+            }
+
+            if ($request->input('category') == "Crop")
+            {
+                $crop = Crop::where('id', $request->input('id'))->first();
+        
+                $crop->delete();
+            }
+
+            if ($request->input('category') == "Variety")
+            {
+                $variety = Variety::where('id', $request->input('id'))->first();
+
+                $variety->delete();
+            }
         }
 
         return redirect()->action('CropController@index');
-    }
+    } 
 
     /**
      * Display the specified resource.
