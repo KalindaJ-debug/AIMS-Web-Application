@@ -13,6 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//index page
+Route::get('/', function () {
+    return view('index');
+});
+
+//contact us
+Route::get('contact', function () {
+    return view('contactus');
+});
+
+//admindashboard
+Route::get('admin', function () {
+    return view('admindashboard');
+});
+
+//map
+Route::get('map', function () {
+    return view('map');
+});
+
+//adminharvest
+Route::get('adminharvest', function () {
+    return view('adminharvest');
+});
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
 Route::resource('crop', 'CropController'); 
