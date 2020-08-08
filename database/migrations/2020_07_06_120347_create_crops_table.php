@@ -35,9 +35,9 @@ class CreateCropsTable extends Migration
             $table->timestamps();
         });
 
-        Artisan::call('db:seed', [
-            '--class' => CropSeeder::class
-        ]);
+        // Artisan::call('db:seed', [
+        //     '--class' => CropSeeder::class
+        // ]);
     }
 
     /**

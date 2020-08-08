@@ -35,9 +35,9 @@ class CreateProvincesTable extends Migration
             $table->foreign('district_id')->references('id')->on('districts');
         });
 
-        Artisan::call('db:seed', [
-            '--class' => ProvinceSeeder::class
-        ]);
+        // Artisan::call('db:seed', [
+        //     '--class' => ProvinceSeeder::class
+        // ]);
     }
 
     /**
