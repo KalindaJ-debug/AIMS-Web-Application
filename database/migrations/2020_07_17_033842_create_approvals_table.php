@@ -29,9 +29,9 @@ class CreateApprovalsTable extends Migration
             $table->timestamps();
         });
 
-        Artisan::call('db:seed', [
-            '--class' => ApprovalSeeder::class
-        ]);
+        // Artisan::call('db:seed', [
+        //     '--class' => ApprovalSeeder::class
+        // ]);
     }
 
     /**

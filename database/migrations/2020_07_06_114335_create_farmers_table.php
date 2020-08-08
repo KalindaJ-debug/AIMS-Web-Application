@@ -25,9 +25,9 @@ class CreateFarmersTable extends Migration
             $table->timestamps();
         });
 
-        Artisan::call('db:seed', [
-            '--class' => FarmerSeeder::class
-        ]);
+        // Artisan::call('db:seed', [
+        //     '--class' => FarmerSeeder::class
+        // ]);
     }
 
     /**
