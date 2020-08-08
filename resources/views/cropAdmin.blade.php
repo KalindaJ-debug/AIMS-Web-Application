@@ -42,7 +42,6 @@
                     <tr>
                         <th scope="row">{{ $categories->name }}</th>
                         <td>
-                            <!-- onclick="editCategory(name)" -->
                             <button type="button" class="btn btn-success" onclick='addCategory()'><i class="fas fa-plus"></i> Add</button>
                             <button type="button" class="btn btn-warning" onclick='editCategory(@json($categories->name), @json($categories->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteCategory(@json($categories->id))'><i class="fas fa-trash"></i> Delete</button>
@@ -432,9 +431,6 @@
         // Edit Functions 
         function editCategory(name, id)
         {
-            // $(document).ready(function(){
-            //     $('#test').val(name);
-            // });
             $('#editCategory').modal('show');
             document.getElementById("editCategoryText").value = name;
             document.getElementById("editCategoryId").value = id;

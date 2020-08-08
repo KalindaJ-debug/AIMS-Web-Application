@@ -32,8 +32,8 @@
                 </ul>
             
                 
-                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-language"></i> Language</button>
-                <button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-language"></i> Language</button>
+                <button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
             </div>
         </nav>
         
@@ -53,6 +53,7 @@
                         <th scope="col">District</th>
                         <th scope="col">Region</th>
                         <th scope="col">Status</th>
+                        <!-- <th scope="col">Land</th> -->
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -78,6 +79,7 @@
                         @else
                             <p style='color:red'>Declined</p>
                         @endif</td>
+                        <!-- <td><button type="button" class="btn btn-dark">Land Details</button></td> -->
                         <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/{{$app->id}}">View</a></td>
                     </tr> 
                 @endforeach        
