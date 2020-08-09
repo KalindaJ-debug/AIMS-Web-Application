@@ -17,6 +17,22 @@ Route::resource('approval', 'ApprovalController');
 Route::resource('registration', 'RegistrationController'); 
 Route::resource('crop', 'CropController'); 
 
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/feedback', function () {
+    return view('feedback');
+});
+
+Route::get('/feedback-registered', function () {
+    return view('feedback-registered');
+});
+
+Route::get('/land-registration', function () {
+    return view('land-registration');
+});
+
 
 
 
