@@ -14,32 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 //index page
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/index', 'PagesController@index');
 
 //contact us
-Route::get('contact', function () {
-    return view('contactus');
-});
+Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('admin', function () {
-    return view('admindashboard');
-});
+Route::get('/admindash', 'PagesController@admindash');
 
 //map
-Route::get('map', function () {
-    return view('map');
-});
+Route::get('/map', 'PagesController@map');
 
 //adminharvest
-Route::get('adminharvest', function () {
-    return view('adminharvest');
-});
+Route::get('/adminharvest', 'PagesController@adminharvest');
+
+
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
-Route::resource('crop', 'CropController'); 
+Route::resource('crop', 'CropController');
 
 Route::get('/home', function () {
     return view('home');

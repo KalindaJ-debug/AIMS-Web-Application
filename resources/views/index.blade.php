@@ -41,7 +41,7 @@
           <div class="col-md-6 col-sm-6">
             <div class="showcase-right">
               <div class="row">
-                  <button type="button" class="btn btn-outline-success">English</button>
+                  <button type="button" onclick="location.href='{{url('home')}}';" class="btn btn-outline-success">English</button>
               </div>
               <br>
               <div class="row">
