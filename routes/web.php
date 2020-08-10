@@ -53,6 +53,9 @@ Route::get('/welcome', function(){
     return view('welcome');
 });
 
+Route::get('/feedback-management', function(){
+    return view('feedback-management');
+});
 
 
 
