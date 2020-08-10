@@ -16,6 +16,16 @@ class CreateLandsTable extends Migration
         Schema::create('lands', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('farmer_id');
+            $table->string('addressNo');
+            $table->string('streetName');
+            $table->string('laneName');
+            $table->string('town');
+            $table->string('city');
+            $table->string('gnd');
+            $table->integer('postalCode')->nullable();
+            $table->integer('planningNumber')->nullable();
+            $table->string('landRegistration')->nullable();
+            $table->bigInteger('landExtend');
             $table->timestamps();
             $table->foreign('farmer_id')->references('id')->on('farmers');
         });
