@@ -19,7 +19,7 @@ class CreateFeedbackAdminsTable extends Migration
             $table->string('dataEntry'); 
             $table->string('dataApproval');
             $table->string('login');
-            $table->string('dataEntry');
+            $table->string('dataReport');
             $table->string('description'); 
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
