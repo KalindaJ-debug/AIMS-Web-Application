@@ -25,45 +25,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif; background-color: white;">
     <!-- header begins -->
-    <div class="header" style="height:150px;background-color:#08260E;">
-      <div class="row">
-        <!-- logo and description -->
-        <div class="col-6">
-          <!-- horizontal card -->
-          <div class="card mb-3" style="max-width:60%;background-color:#08260E;border:none;">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="assets/img/DOA emblem.png" class="card-img" alt="headerLogo" style="width:120px;height:120px;margin-left:20px;margin-top:10px;margin-bottom:10px;">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body text-center" style="padding:30px;color:white;">
-                <h5 class="card-title">Agriculture Information Management System | AIMS </h5>
-                <p class="card-text">Department of Agriculture.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        </div>
-        <!-- return to language and login buttons -->
-        <div class="col-6" style="height:150px;">
-
-          <div class="card text-right" style="background-color:#08260E;margin-right:20px;border:none;">
-          <div class="card-body">
-
-            <h5 class="card-title" style="color:white;margin-right:80px;"><i class="fa fa-user-circle mr-3"></i>FIELD OFFICER</h5>
-            <p class="card-text" style="color:white;margin-right:80px;"><i class="fas fa-exchange-alt mr-3"></i>Change Language</p>
-            <!-- buttons -->
-
-              <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Login to AIMS"><i class="fas fa-sign-in-alt mr-3"></i>Sign In</a>
-                <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Return to Language Options"><i class="fas fa-language mr-3"></i>Language</a>
-            <!-- buttons end -->
-          </div>
-        </div>
-
-        </div>
-      </div>
-    </div>
+    @include('layouts.headerfo')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -449,44 +411,7 @@
      <!-- body ends -->
 
      <!-- footer begins -->
-     <div class="mt-5 pt-5 pb-5 footer">
-       <div class="container">
-         <div class="row">
-
-           <div class="col-lg-5 col-xs-12 about-company">
-             <h2>AIMS</h2>
-             <p class="pr-5 text-white-50">Agriculture Information Management System     Department of Agriculture, Kandy </p>
-             <img src="assets/img/Department of Agriculture.png" alt="logo" style="width:50px;height:50px;">
-           </div>
-
-           <div class="col-lg-3 col-xs-12 links">
-             <h4 class="mt-lg-0 mt-sm-3">Other Sites</h4>
-               <ul class="m-0 p-0">
-                 <li>- <a href="http://www.croplook.net/">Crop Look</a></li>
-                 <li>- <a href="https://www.doa.gov.lk/index.php/en/">Department of Agriculture</a></li>
-                 <li>- <a href="http://agri.pdn.ac.lk/">Faculty of Agriculture</a></li>
-                 <li>- <a href="http://agri.pdn.ac.lk/agen/">Department of Agricultural Engineering</a></li>
-                 <li>- <a href="http://www.gic.gov.lk/gic/index.php?option=com_org&Itemid=4&id=40&task=org&lang=en">Government Information Centre | Faculty of Agriculture</a></li>
-                 <li>- <a href="http://www.agrimin.gov.lk/web/index.php/about-us-3">Ministry of Agriculture</a></li>
-               </ul>
-           </div>
-
-           <div class="col-lg-4 col-xs-12 location">
-             <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-             <p>No 25, Labuduwa Sri Damma Mawatha, Peradeniya 20400</p>
-             <p class="mb-0"><i class="fa fa-phone mr-3"></i>(0812) 388 331</p>
-             <p><i class="fas fa-envelope mr-3"></i>headagbiol@pdn.ac.lk</p>
-
-           </div>
-         </div>
-
-         <div class="row mt-5">
-           <div class="col copyright">
-             <p class=""><small class="text-white-50">Copyright © 2020. All Rights Reserved.</small></p>
-           </div>
-         </div>
-       </div>
-     </div>
+     @include('layouts.footer')
      <!-- footer ends -->
 
      <!-- jquery validation links -->
