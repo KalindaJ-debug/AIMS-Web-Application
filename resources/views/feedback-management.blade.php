@@ -37,7 +37,58 @@
      <div class="content">
 
        <!-- feedback Managment Home Page begins -->
-      
+      <!-- feedback jambrotron begins -->
+      <div class="jumbotron jumbotron-fluid" style="background:none;">
+        <div class="container">
+          <h1 class="display-5" style="margin-left:400px;">Feedback Inquiries</h1>
+          <hr class="my-4">
+          <!-- cards section begins -->
+          <div class="row">
+            <div class="col-6">
+              <!-- column #1 -->
+              <div class="card text-center">
+                <div class="card-header">
+                  <i class="fas fa-globe mr-3"></i> Public
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title" style="color:green;"> <i class="fa fa-comment mr-2" style="color:green;" aria-hidden="true"></i> New Feedback Available!</h5>
+                  <img src="assets/img/important.png" alt="email"> <br>
+                  <p class="card-text" style="margin-top:10px;">View public feedback to provide fast-track responses</p>
+                  <a href="#" class="btn btn-success">Read Feedback</a>
+                </div>
+                <div class="card-footer text-muted">
+                  <i class="fa fa-envelope mr-3" aria-hidden="true"></i> 2 messages received
+                </div>
+              </div>
+
+            </div>
+            <!-- column #1 ends -->
+
+            <div class="col-6">
+              <!-- column #2 -->
+              <div class="card text-center">
+                <div class="card-header">
+                  <i class="fa fa-users mr-3" aria-hidden="true"></i> Registered Users
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title" style="color:#3090C7;"> <i class="fa fa-check-circle mr-2" style="color:#3090C7;" aria-hidden="true"></i> Completed Feedback Responses!</h5>
+                  <img src="assets/img/mail.png" alt="mail">
+                  <br>
+                  <p class="card-text" style="margin-top:10px;">View regsitered user feedback to provide responses</p>
+                  <a href="#" class="btn btn-success">Read Feedback</a>
+                </div>
+                <div class="card-footer text-muted">
+                  <i class="fa fa-envelope mr-3" aria-hidden="true"></i> 0 messages received
+                </div>
+              </div>
+
+            </div>
+            <!-- column #2 ends -->
+            </div>
+            <hr>
+          </div>
+        </div>
+        <!-- end of feedback jumbrtron -->
        <!-- feedback Management Home Page ends -->
 
      </div>
