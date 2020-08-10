@@ -49,6 +49,10 @@ Route::get('/land-registration', function () {
     return view('land-registration');
 });
 
+Route::get('/welcome', function(){
+    return view('welcome');
+});
+
 
 
 
