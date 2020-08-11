@@ -61,4 +61,7 @@ Route::post('adminFeedback', 'FeedbackController@adminAdd');
 
 Route::get('adminFeedbackPage', 'FeedbackController@index');
 
+Route::get('/feedback-view-public', function () {
+    return view('feedback-view-public');
+});
 
