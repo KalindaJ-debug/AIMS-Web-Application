@@ -3,18 +3,14 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-
     <!-- Bootstrap -->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     
     <!-- scrool reveal api-->
@@ -125,6 +121,7 @@
             <div class="card">
               <div class="card-body text-center bg-primary rounded-top">
                <div class="user-box">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
               </div>
               <h5 class="mb-1 text-white">Amal Perera</h5>
               <h6 class="text-light">Agriculture Inspector</h6>
@@ -287,6 +284,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Change profile</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="file">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Website</label>
                             <div class="col-lg-9">
                                 <input class="form-control" type="url" value="">
@@ -338,11 +341,11 @@
             </div>
         </div>
       </div>
-      </div>   
+      </div>
+        
     </div>
 </div>
       <!-- footer begins -->
-    <div class="footer" style="height:400px;background-color:#08260E;">
      <div class="mt-5 pt-5 pb-5 footer">
        <div class="container">
          <div class="row">
@@ -364,13 +367,16 @@
                  <li>- <a href="http://www.agrimin.gov.lk/web/index.php/about-us-3">Ministry of Agriculture</a></li>
                </ul>
            </div>
+
            <div class="col-lg-4 col-xs-12 location">
              <h4 class="mt-lg-0 mt-sm-4">Location</h4>
              <p>No 25, Labuduwa Sri Damma Mawatha, Peradeniya 20400</p>
              <p class="mb-0"><i class="fa fa-phone mr-3"></i>(0812) 388 331</p>
              <p><i class="fas fa-envelope mr-3"></i>headagbiol@pdn.ac.lk</p>
+
            </div>
          </div>
+
          <div class="row mt-5">
            <div class="col copyright">
              <p class=""><small class="text-white-50">Copyright © 2020. All Rights Reserved.</small></p>
@@ -378,9 +384,9 @@
          </div>
        </div>
      </div>
-</div>
      <!-- footer ends -->
     </div>
   </div>
 </body>
+
 </html>

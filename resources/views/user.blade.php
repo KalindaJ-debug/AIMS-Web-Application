@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
   
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -11,7 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <!-- scrool reveal api-->
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="style.css">
@@ -43,7 +45,7 @@
               <img src="images/DOA emblem.png" class="card-img" alt="headerLogo" style="width:120px;height:150px;margin-left:20px;margin-top:10px;margin-bottom:10px;">
             </div>
             <div class="col-md-8">
-              <div class="card-body text-center" style="padding:10px;color:white;">
+              <div class="card-body text-left" style="padding:10px;color:white;">
                 <h4 class="card-title">Agriculture Information Management System | AIMS </h4>
                 <h6 class="card-text">Department of Agriculture</h6>
                 <h6 class="card-text">කෘෂිකර්ම දෙපාර්තමේන්තුව</h6>
@@ -185,7 +187,6 @@
   </div>
 </div>
       <!-- footer begins -->
-    <div class="footer" style="height:400px;background-color:#08260E;">
      <div class="mt-5 pt-5 pb-5 footer">
        <div class="container">
          <div class="row">
@@ -224,7 +225,6 @@
          </div>
        </div>
      </div>
-</div>
      <!-- footer ends -->
     </div>
   </div>

@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="eng">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <meta charset="utf-8">
   
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!--<meta name="viewport"
+  content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
-
     <!-- Bootstrap -->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     
-    <!-- scrool reveal api-->
-    <script src="https://unpkg.com/scrollreveal"></script>
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <title>
-    Agriculture Information Managmnet System
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
-  </head>
-<body>
-		
-<!-- header begins -->
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- scrool reveal api-->
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <title>Agriculture Information Management System | AIMS </title>
+</head>
+ <!-- header begins -->
     <div class="header" style="height:170px;background-color:#08260E;">
       <div class="row">
         <!-- logo and description -->
@@ -46,7 +41,7 @@
               <img src="images/DOA emblem.png" class="card-img" alt="headerLogo" style="width:120px;height:150px;margin-left:20px;margin-top:10px;margin-bottom:10px;">
             </div>
             <div class="col-md-8">
-              <div class="card-body text-center" style="padding:10px;color:white;">
+              <div class="card-body text-left" style="padding:10px;color:white;">
                 <h4 class="card-title">Agriculture Information Management System | AIMS </h4>
                 <h6 class="card-text">Department of Agriculture</h6>
                 <h6 class="card-text">කෘෂිකර්ම දෙපාර්තමේන්තුව</h6>
@@ -78,7 +73,7 @@
     </div>
     
 
-<object align="navbar-left">
+    <object align="navbar-left">
 <div class="p-3 mb-2 bg-success text-white" >
   <nav class="navbar navbar-expand-md navbar-dark">
       <!-- <a class="navbar-brand" href="#">Home</a> -->
@@ -119,6 +114,7 @@
 
 </div>
 </object>
+<!--header end-->
 <div class="wrapper-editor">
     <title>Crop Details</title>
   <div class="row d-flex justify-content-center modalWrapper">
@@ -185,7 +181,7 @@
 </div>
 <object align="navbar-left">
 
-  <nav class="navbar navbar-style">
+  
     <div class="container">
       <div class="navbar-center">
       <ul class="nav navbar-nav navbar-center">
@@ -193,11 +189,11 @@
       <a href="" class="btn btn-info btn-rounded btn-primary" data-toggle="modal" data-target="#modalAdd">Add Crop Details<i
           class="fas fa-plus-square ml-1"></i></a>
   </ul>
-</nav>
+
 </div>
 </div>
 <div class="container-fluid" style="padding: 0">
-	<div class = "container">
+  <div class = "container">
   <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
@@ -219,8 +215,8 @@
         <th class="th-sm">Status
 
         </th>
-		
-		<th class="th-sm">Actions
+    
+    <th class="th-sm">Actions
 
         </th>
       </tr>
@@ -233,14 +229,14 @@
         <td>6.1</td>
         <td>2011/04/25</td>
         <td>Pending</td>
-		<td>
+    <td>
        <a href="" class="btn btn-info btn-rounded btn-primary" data-toggle="modal" data-target="#modalAdd">View<i
          class="far fa-eye" class="fas fa-plus-square ml-1"></i></a>
-   		<a href="" class="btn btn-info btn-rounded btn-warning" data-toggle="modal" data-target="#modalAdd">Edit<i
+      <a href="" class="btn btn-info btn-rounded btn-warning" data-toggle="modal" data-target="#modalAdd">Edit<i
           class="fas fa-plus-square ml-1"></i></a>
-		<a href="" class="btn btn-info btn-rounded btn-danger" data-toggle="modal" data-target="#modalAdd">Delete<i
+    <a href="" class="btn btn-info btn-rounded btn-danger" data-toggle="modal" data-target="#modalAdd">Delete<i
           class="fas fa-minus-square ml-1"></i></a>
-		</td>
+    </td>
       </tr>
       <tr>
         <td>Beans</td>
@@ -295,8 +291,8 @@
   </table>
 </tbody></table>
 </div>
-  <!-- footer begins -->
-  <div class="footer" style="height:400px;background-color:#08260E;">
+  
+   <!-- footer begins -->
      <div class="mt-5 pt-5 pb-5 footer">
        <div class="container">
          <div class="row">
@@ -335,7 +331,6 @@
          </div>
        </div>
      </div>
-</div>
      <!-- footer ends -->
 </div>
 </div>
