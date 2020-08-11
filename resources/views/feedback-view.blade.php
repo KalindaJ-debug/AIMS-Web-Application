@@ -220,12 +220,12 @@
         <div class="modal-content">
           <form>
             <div class="modal-header">
-              <h4 class="modal-title">Delete Feedback Records</h4>
+              <h4 class="modal-title">Delete Administrative Assistance Request Records</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
               <img src="assets/img/delete.png" alt="delete" style="margin-left:350px;margin-top:20px;">
-              <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete these feedback record(s)?</p>
+              <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete these administrative assistance request record(s)?</p>
               <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
             </div>
             <div class="modal-footer">
@@ -244,12 +244,12 @@
           <div class="modal-content">
             <form>
               <div class="modal-header">
-                <h4 class="modal-title">Delete All Feedback Records</h4>
+                <h4 class="modal-title">Delete All Administrative Assistance Request Records</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
               <div class="modal-body">
                 <img src="assets/img/quit.png" alt="delete" style="margin-left:350px;margin-top:20px;">
-                <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete all feedback records?</p>
+                <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete all the administrative assistance request records?</p>
                 <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
               </div>
               <div class="modal-footer">
