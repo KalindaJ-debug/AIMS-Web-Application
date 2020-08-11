@@ -63,6 +63,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">Your email will be secure.</small>
+                </div>
+
+                <div class="form-group">
                     <label for="password">Password</label>
                     <input name="password" type="password" class="form-control" id="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
                     <small id="emailHelp" class="form-text text-muted">Minimum eight characters, at least one letter and one number.</small>

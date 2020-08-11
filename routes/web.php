@@ -57,5 +57,8 @@ Route::get('/feedback-management', function(){
     return view('feedback-management');
 });
 
+Route::post('adminFeedback', 'FeedbackController@adminAdd');
+
+Route::get('adminFeedbackPage', 'FeedbackController@index');
 
 

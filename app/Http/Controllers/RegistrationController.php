@@ -48,7 +48,8 @@ class RegistrationController extends Controller
         $farmer->password = Hash::make($request->input('password'));
         $farmer->telephoneNo = $request->input('telephoneNo');
         $farmer->nic = $request->input('nic');
-        
+        $farmer->email = $request->input('email');
+
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
         $fileName = time() . '.' . $extension;
