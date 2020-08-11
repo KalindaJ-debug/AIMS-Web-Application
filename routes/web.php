@@ -65,3 +65,7 @@ Route::get('/feedback-view-public', function () {
     return view('feedback-view-public');
 });
 
+Route::get('/feedback-view', function () {
+    return view('feedback-view');
+});
+
