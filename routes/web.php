@@ -69,3 +69,28 @@ Route::get('/feedback-view', function () {
     return view('feedback-view');
 });
 
+//Routes for Data Visualization
+Route::get('/', function () {
+    return view('paddySummary');
+});
+
+Route::get('/paddySummary', function () {
+    return view('paddySummary');
+});
+
+Route::get('/ofc', function () {
+    return view('ofc');
+});
+
+Route::get('/vegetable', function () {
+    return view('vegetable');
+});
+
+Route::get('/harvest', function () {
+    return view('harvest');
+});
+
+Route::get('/croplist', function () {
+    return view('croplist');
+});
+
