@@ -84,7 +84,7 @@ class RegistrationController extends Controller
      */
     public function show($id)
     {
-        return view('approvalDescription')->with('id', $id);
+        
     }
 
     /**
