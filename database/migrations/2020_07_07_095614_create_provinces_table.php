@@ -19,10 +19,6 @@ class CreateProvincesTable extends Migration
             $table->timestamps();
         });
 
-        Artisan::call('db:seed', [
-            '--class' => ProvinceSeeder::class
-        ]);
-
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -31,10 +27,6 @@ class CreateProvincesTable extends Migration
             $table->foreign('province_id')->references('id')->on('provinces');
         });
 
-        // Artisan::call('db:seed', [
-        //     '--class' => ProvinceSeeder::class
-        // ]);
-
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -42,6 +34,10 @@ class CreateProvincesTable extends Migration
             $table->timestamps();
             $table->foreign('district_id')->references('id')->on('districts');
         });
+
+        // Artisan::call('db:seed', [
+        //     '--class' => ProvinceSeeder::class
+        // ]);
     }
 
     /**

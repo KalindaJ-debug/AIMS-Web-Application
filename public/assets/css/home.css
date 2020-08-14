@@ -1,0 +1,81 @@
+/* Import files */
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap'); */
+@font-face{
+    font-family: 'Raleway', sans-serif;;
+    src:url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+}
+
+body {
+
+  font-family: 'Raleway', sans-serif;
+  max-width:100%;
+  overflow-x: hidden;
+}
+
+/* Footer styling */
+
+.footer{
+  background: #08260E;
+  color:white;
+  /* bottom: 0; */
+  width: 100%;
+
+  .links{
+    ul {list-style-type: none;}
+    li a{
+      color: white;
+      transition: color .2s;
+      &:hover{
+        text-decoration:none;
+        color: #4180CB;
+        }
+    }
+    
+  }
+  .about-company{
+    i{font-size: 25px;}
+    a{
+      color:white;
+      transition: color .2s;
+      &:hover{color:#4180CB}
+    }
+  }
+  .location{
+    i{font-size: 18px;}
+  }
+  .copyright p{border-top:1px solid rgba(255,255,255,.1);}
+}
+
+/* Nav bar styling */
+nav {
+  background-color: #061912;
+  position:relative;
+}
+
+/* Header Styling */
+.header{
+    width: 100%;
+    background-color:#204E4A;
+    height:150px;
+}
+
+/* Carousal Styles */
+.carousal-inner {
+  width: 100%;
+  position: absolute;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.carousel .carousel-indicators li {
+  background-color: #A9E072;
+  background-color: rgba(169, 224, 114);
+}
+
+.carousel .carousel-indicators .active {
+    background-color: #154223;
+}
+
+.card {
+  border: unset;
+}

@@ -17,13 +17,18 @@ class CreateFarmersTable extends Migration
             $table->id();
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('otherName');
+            $table->string('otherName')->nullable();
+            $table->string('email')->unique();
             $table->string('password');
             $table->bigInteger('telephoneNo');
             $table->string('nic');
-            $table->string('nicImage')->nullable;
+            $table->string('nicImage')->nullable();
             $table->timestamps();
         });
+
+        // Artisan::call('db:seed', [
+        //     '--class' => FarmerSeeder::class
+        // ]);
     }
 
     /**

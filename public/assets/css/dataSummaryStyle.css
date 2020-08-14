@@ -1,0 +1,82 @@
+.btn-group{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.white-bg-color{
+    background-color: #e7ebef;
+}
+
+
+.main-panel{
+    position: relative;
+    float: right;
+    width: 100% ; 
+}
+
+.sidebar{
+    margin-right: 10px;
+    background-color: white;
+    
+}
+
+.nav-link{
+    color: black;
+    font-size: 15px;
+    
+}
+
+.nav-link:hover{
+    color:white;
+    background-color:darkgreen;
+}
+
+.wrapper{
+    margin-top: 10px;
+}
+
+.card-header-pills {
+    margin-right: 0rem;
+    margin-left: 0rem;
+}
+
+.active{
+    background-color: darkgreen;
+    color: white;
+}
+
+.vegBgImage{
+    margin-top: 20px;
+    height: inherit;
+    width: inherit;
+    border-width: 0.1rem;
+    border-color: #e7ebef;
+    display: block;
+    
+  }
+
+.harvestBgImage{
+    height: 500px;
+    width: 365px;
+}
+
+.thead-newbg{
+    background-color: #6bdb85;
+    
+}
+
+#print, #export{
+    float: right;
+    margin-left: 1rem;
+    width: 5rem;
+}
+
+
+#paddyBtn{
+    margin-left: 8rem;
+}
+#ofcBtn{
+    margin-left: 19rem;
+}
+#vegBtn{
+    margin-left: 16rem;
+}
+
