@@ -94,3 +94,10 @@ Route::get('/croplist', function () {
     return view('croplist');
 });
 
+Route::get('/land-records', function () {
+    return view('land-records');
+});
+
+Route::get('/land-update', function () {
+    return view('land-record-update');
+});
