@@ -14,7 +14,7 @@ class AddFarmerIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('farmer_id')->references('id')->on('farmers');
+            $table->foreign('farmer_id')->references('id')->on('farmers')->nullable();
         });
     }
 

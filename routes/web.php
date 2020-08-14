@@ -20,7 +20,7 @@ Route::get('/index', 'PagesController@index');
 Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('/admindash', 'PagesController@admindash');
+Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('role');
 
 //map
 Route::get('/map', 'PagesController@map');
@@ -98,3 +98,4 @@ Route::get('/croplist', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
