@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 //index page
+Route::get('/', 'PagesController@index');
 Route::get('/index', 'PagesController@index');
+
 
 //contact us
 Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('role');
+Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('roleCheck');
 
 //map
 Route::get('/map', 'PagesController@map');
@@ -70,10 +72,6 @@ Route::get('/feedback-view', function () {
 });
 
 //Routes for Data Visualization
-Route::get('/', function () {
-    return view('paddySummary');
-});
-
 Route::get('/paddySummary', function () {
     return view('paddySummary');
 });

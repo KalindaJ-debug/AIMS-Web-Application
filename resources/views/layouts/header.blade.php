@@ -37,14 +37,25 @@
 
         <div class="card text-right" style="background-color:#08260E;margin-right:20px;border:none;">
         <div class="card-body">
-
-          <h5 class="card-title" style="color:white;margin-right:80px;"><i class="fas fa-globe mr-3"></i>PUBLIC</h5>
+        @guest
+        <h5 class="card-title" style="color:white;margin-right:80px;"><i class="fas fa-globe mr-3"></i>Public</h5>
+          @else
+          <h5 class="card-title" style="color:white;margin-right:80px;"><i class="fas fa-globe mr-3"></i>{{ Auth::user()->role }}</h5>
+        @endguest
           <p class="card-text" style="color:white;margin-right:80px;"><i class="fas fa-exchange-alt mr-3"></i>Change Language</p>
           <!-- buttons -->
+          @guest
+          <a href="{{ route('login') }}" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Login to AIMS"><i class="fas fa-sign-in-alt mr-3"></i>Log In</a>
+          @else
+            <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Logout from AIMS"><i class="fas fa-sign-in-alt mr-3"></i>Log Out</a>
+          @endguest<!-- buttons end -->
+          <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Return to Language Options"><i class="fas fa-language mr-3"></i>Language</a>
 
-            <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Login to AIMS"><i class="fas fa-sign-in-alt mr-3"></i>Sign In</a>
-              <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Return to Language Options"><i class="fas fa-language mr-3"></i>Language</a>
-          <!-- buttons end -->
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
         </div>
       </div>
 
