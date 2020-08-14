@@ -23,15 +23,15 @@
     <!-- scrool reveal api-->
     <script src="https://unpkg.com/scrollreveal"></script>
 
-    <title>Land Registration | AIMS </title>
+    <title>Update Land Information | AIMS </title>
   </head>
   <body style="font-family: 'Raleway', sans-serif;">
     <!-- header begins -->
-    @include('/layouts.headerAdmin')
+    @include('layouts.headerAdmin')
     <!-- header ends -->
 
     <!-- nav bar begins -->
-    @include('/layouts.navbar')
+    @include('layouts.navbar')
 
     <!-- nav bar ends -->
 
@@ -45,25 +45,24 @@
           <div class="land-register">
             <br><br>
             <!-- title -->
-            <h1> Land Registration </h1>
+            <h1> Land Information </h1>
             <!-- form -->
             <div class="land-form">
               <div class="card" style="width: 85rem;border-radius: 10px;">
                 <div class="card-body">
-                  <h5 class="card-title">Enter Land Registration Details here</h5>
+                  <h5 class="card-title">Modify Land Registration Details here</h5>
                   <br>
                   <!-- form begins here -->
                   <form id="form-land" class="landForm" action="test.php" method="post">
-                    <input type="hidden" name="type" value="land">
                     <p class="card-text"> Land Owner's Name </p>
 
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Full Name</span>
                       </div>
-                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true' value="{{ $firstName ?? '' }}">
-                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true' value="{{ $otherName ?? '' }}">
-                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true' value="{{ $lastName ?? '' }}">
+                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true'>
+                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true'>
+                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true'>
                     </div>
                     <br>
                     <button href="https://www.google.com/" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
@@ -397,7 +396,7 @@
     <!-- bode ends here -->
 
     <!-- footer begins -->
-    @include('/layouts.footer')
+   @include('layouts.footer')
     <!-- footer ends here -->
 
     <!-- jquery validation links -->

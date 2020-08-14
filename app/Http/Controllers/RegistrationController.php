@@ -81,7 +81,7 @@ class RegistrationController extends Controller
         }
         else if ($request->input('type') == "land")
         {
-            // Ama code
+            // Ama code - store land info
         }
     }
 
