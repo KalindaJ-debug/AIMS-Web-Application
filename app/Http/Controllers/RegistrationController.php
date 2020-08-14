@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Farmer;
+use App\Land;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -18,6 +20,7 @@ class RegistrationController extends Controller
         // $login = Login::all();
         // return response()->json($login);
         return view('farmerRegistration');
+
     }
 
     /**
@@ -95,8 +98,13 @@ class RegistrationController extends Controller
     {
         // dd($id);
         $farmer = Farmer::where('id', $id)->first();
+        $provincesList = DB::table('provinces')->distinct()->get();
+        $districtsList = DB::table('districts')->distinct()->get();
 
-        return view('land-registration', array('firstName' => $farmer->firstName, 'lastName' => $farmer->lastName, 'otherName' => $farmer->otherName));
+        return view('land-registration', array('firstName' => $farmer->firstName, 'lastName' => $farmer->lastName, 'otherName' => $farmer->otherName, 'provincesList'=> $provincesList, 'districtsList'=>$districtsList));
+         
+       
+    
     }
 
     /**

@@ -61,9 +61,9 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Full Name</span>
                       </div>
-                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true' value="{{ $firstName ?? '' }}">
-                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true' value="{{ $otherName ?? '' }}">
-                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true' value="{{ $lastName ?? '' }}">
+                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true' value="{{ $firstName }}">
+                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true' value="{{ $otherName }}">
+                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true' value="{{ $lastName }}">
                     </div>
                     <br>
                     <button href="https://www.google.com/" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
@@ -102,31 +102,14 @@
                       </div>
                       <select class="custom-select" id="selectDistrict" name="district" required>
                         <option selected value="none">Select District...</option>
-                        <option value="Ampara">Ampara</option>
-                        <option value="Anuradhapura">Anuradhapura</option>
-                        <option value="Badulla">Badulla</option>
-                        <option value="Batticaloa">Batticaloa</option>
-                        <option value="Colombo">Colombo</option>
-                        <option value="Galle">Galle</option>
-                        <option value="Gampaha">Gampaha</option>
-                        <option value="Hambantota">Hambantota</option>
-                        <option value="Jaffna">Jaffna</option>
-                        <option value="Kalutara">Kalutara</option>
-                        <option value="Kandy">Kandy</option>
-                        <option value="Kegalle">Kegalle</option>
-                        <option value="Kilinochchi">Kilinochchi</option>
-                        <option value="Kurunegala">Kurunegala</option>
-                        <option value="Mannar">Mannar</option>
-                        <option value="Matale">Matale</option>
-                        <option value="Matara">Matara</option>
-                        <option value="Monaragala">Monaragala</option>
-                        <option value="Mullaitivu">Mullaitivu</option>
-                        <option value="Nuwara Eliya">Nuwara Eliya</option>
-                        <option value="Polonnaruwa">Polonnaruwa</option>
-                        <option value="Puttalam">Puttalam</option>
-                        <option value="Ratnapura">Ratnapura</option>
-                        <option value="Trincomalee">Trincomalee</option>
-                        <option value="Vavuniya">Vavuniya</option>
+
+                        @if($districtsList != null)
+                          
+                          @foreach ($districtsList as $item)
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+                          @endforeach
+
+                        @endif
 
                       </select>
 
@@ -134,17 +117,18 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="selectProvince" style="width:90px;">Province</label>
                       </div>
+ 
                       <select class="custom-select" id="selectProvince" name="province" required>
                         <option selected value="none">Select Province...</option>
-                        <option value="Central">Central Province</option>
-                        <option value="Eastern">Eastern Province</option>
-                        <option value="Nothern">Nothern Province</option>
-                        <option value="Southern">Southern Province</option>
-                        <option value="Western">Western Province</option>
-                        <option value="North-Western">North-Western Province</option>
-                        <option value="North-Central">North-Central Province</option>
-                        <option value="Uva">Uva Province</option>
-                        <option value="Sabaragumawa">Sabaragumawa Province</option>
+
+                        @if($provincesList != null)
+                          
+                          @foreach ($provincesList as $item)
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+                          @endforeach
+
+                        @endif
+
                       </select>
 
                     </div>
