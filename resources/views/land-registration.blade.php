@@ -53,20 +53,23 @@
                   <h5 class="card-title">Enter Land Registration Details here</h5>
                   <br>
                   <!-- form begins here -->
-                  <form id="form-land" class="landForm" action="test.php" method="post">
-                    <input type="hidden" name="type" value="land">
+                <form id="form-land" class="landForm" method="POST" enctype="multipart/form-data" action="{{ action('RegistrationController@store') }}" >
+                  
+                  {{ csrf_field() }}  
+
+                  <input type="hidden" name="type" value="land">
                     <p class="card-text"> Land Owner's Name </p>
 
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Full Name</span>
                       </div>
-                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true' value="{{ $firstName }}">
-                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true' value="{{ $otherName }}">
-                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true' value="{{ $lastName }}">
+                      <input name="firstName" type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true' value="{{ $firstName }}">
+                      <input name="middleName" type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true' value="{{ $otherName }}">
+                      <input name="lastName" type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true' value="{{ $lastName }}">
                     </div>
                     <br>
-                    <button href="https://www.google.com/" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
+                    <button href="{{'farmerRegistration'}}" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
                     <!-- end of change/save button group -->
 
                     <!-- enter land information -->
@@ -328,7 +331,7 @@
                         <div class="panel-full">
                           <div class="button_outer">
                             <div class="btn_upload">
-                              <input type="file" id="upload_file" name="">
+                              <input type="file" id="upload_file" name="landImage">
                               <i class="fa fa-upload mr-3" aria-hidden="true"></i> Upload Image
                             </div>
                             <div class="processing_bar"></div>
@@ -352,7 +355,7 @@
                     </div>
                     <!-- end of confirmation -->
                     <div class="btn-submit">
-                      <a href="landFormSubmitted.php"> <button type="button" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> </a>
+                      <button type="submit" name="submit" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> 
                     </div>
 
                   </form>
