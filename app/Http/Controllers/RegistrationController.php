@@ -39,41 +39,50 @@ class RegistrationController extends Controller
     public function store(Request $request)
     {
         //dd($request->request);
-
-        $farmer = new Farmer; 
-
-        $farmer->firstName = $request->input('firstName');
-        $farmer->lastName = $request->input('lastName');
-        $farmer->otherName = $request->input('otherName');
-        $farmer->password = Hash::make($request->input('password'));
-        $farmer->telephoneNo = $request->input('telephoneNo');
-        $farmer->nic = $request->input('nic');
-        $farmer->email = $request->input('email');
-
-        $file = $request->file('image');
-        $extension = $file->getClientOriginalExtension();
-        $fileName = time() . '.' . $extension;
-        $farmer->nicImage = $fileName;
-
-        $saved = $farmer->save();
-
-        if (!$saved)
+        if ($request->input('type') == "farmer")
         {
-            $state = "Failed";
-            return redirect()->action('RegistrationController@index')->with('state', $state);
-        }
-        // //dd($request->hasfile('image'));
-        // if ($request->hasfile('image'))
-        // {
-        //     $file = $request->file('image');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $fileName = time() . '.' . $extension;
-        //     $farmer->nicImage = $fileName;
+            $farmer = new Farmer; 
+
+            $farmer->firstName = $request->input('firstName');
+            $farmer->lastName = $request->input('lastName');
+            $farmer->otherName = $request->input('otherName');
+            $farmer->password = Hash::make($request->input('password'));
+            $farmer->telephoneNo = $request->input('telephoneNo');
+            $farmer->nic = $request->input('nic');
+            $farmer->email = $request->input('email');
     
-        //     $farmer->save();
-        // } 
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $extension;
+            $farmer->nicImage = $fileName;
+    
+            $saved = $farmer->save();
+    
+            if (!$saved)
+            {
+                $state = "Failed";
+                return redirect()->action('RegistrationController@index')->with('state', $state);
+            }
+    
+            // //dd($request->hasfile('image'));
+            // if ($request->hasfile('image'))
+            // {
+            //     $file = $request->file('image');
+            //     $extension = $file->getClientOriginalExtension();
+            //     $fileName = time() . '.' . $extension;
+            //     $farmer->nicImage = $fileName;
         
-        return redirect()->action('RegistrationController@index');
+            //     $farmer->save();
+            // } 
+            
+            $farmer = Farmer::where('email', $request->input('email'))->first();
+    
+            return redirect('registration/' . $farmer->id . '');
+        }
+        else if ($request->input('type') == "land")
+        {
+            // Ama code
+        }
     }
 
     /**
@@ -84,7 +93,10 @@ class RegistrationController extends Controller
      */
     public function show($id)
     {
-        
+        // dd($id);
+        $farmer = Farmer::where('id', $id)->first();
+
+        return view('land-registration', array('firstName' => $farmer->firstName, 'lastName' => $farmer->lastName, 'otherName' => $farmer->otherName));
     }
 
     /**
