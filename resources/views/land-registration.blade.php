@@ -125,15 +125,16 @@
                   <br>
                   <!-- form begins here -->
                   <form id="form-land" class="landForm" action="test.php" method="post">
+                    <input type="hidden" name="type" value="land">
                     <p class="card-text"> Land Owner's Name </p>
 
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Full Name</span>
                       </div>
-                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true'>
-                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true'>
-                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true'>
+                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true' value="{{ $firstName }}">
+                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true' value="{{ $otherName }}">
+                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true' value="{{ $lastName }}">
                     </div>
                     <br>
                     <button href="https://www.google.com/" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
