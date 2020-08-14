@@ -94,3 +94,7 @@ Route::get('/croplist', function () {
     return view('croplist');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
