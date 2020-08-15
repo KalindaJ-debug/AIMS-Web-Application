@@ -31,7 +31,11 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+    <!-- header begins -->
+      @include('layouts.header')
+    <!-- header ends -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">AIMS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -346,6 +350,9 @@
 </div>
 
 
+<!-- footer begins -->
+  @include('layouts.footer')
+<!-- footer ends -->
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/pie.js"></script>
