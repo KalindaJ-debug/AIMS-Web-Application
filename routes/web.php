@@ -92,13 +92,11 @@ Route::get('/croplist', function () {
     return view('croplist');
 });
 
-<<<<<<< HEAD
-
-Auth::routes();
+//route needed for authentication purposes
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-=======
 Route::get('/land-records', function () {
     return view('land-records');
 });
@@ -106,4 +104,3 @@ Route::get('/land-records', function () {
 Route::get('/land-update', function () {
     return view('land-record-update');
 });
->>>>>>> 0313731b2498f727f7974ab6cf78b43b028ca945
