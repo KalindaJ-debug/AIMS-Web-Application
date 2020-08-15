@@ -17,8 +17,7 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        
-
+    
         // $login = Login::all();
         // return response()->json($login);
         return view('farmerRegistration');
@@ -83,10 +82,11 @@ class RegistrationController extends Controller
         
             //     $farmer->save();
             // } 
-            
+            $ffid = $farmer->id;
+
             $farmer = Farmer::where('email', $request->input('email'))->first();
     
-            return redirect('registration/' . $farmer->id . '');
+            return redirect('registration/' . $ffid . '');
         }
         else if ($request->input('type') == "land")
         {
@@ -134,9 +134,9 @@ class RegistrationController extends Controller
 
             $farmid = $latestRecord->id;
             //success redirection
-            return redirect('land-form-success')->with('farmid',$farmid);
-            // return redirect()->route('land-form-success', ['latestRecord'=> $latestRecord]); //farmer record array
-            
+            // return redirect('land-form-success')->with('farmid',$farmid);
+            // return redirect()->route('land-form-success', ['farmid'=> $farmid]); //farmer record array
+            return redirect('land-form-success/' . $latestRecord->id . '');
             
         }
     }
@@ -147,10 +147,10 @@ class RegistrationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $id)
     {
         // dd($id);
-        $farmer = Farmer::where('id', $id)->first();
+        $farmer = Farmer::where('id', $id)->first(); 
         $provincesList = DB::table('provinces')->distinct()->get();
         $districtsList = DB::table('districts')->distinct()->get();
 
@@ -200,12 +200,8 @@ class RegistrationController extends Controller
     //         $fid = $request->session()->get('error');
     //     }
 
-    //     if(session('another'!=null)){
-    //         $fid = $request->session()->get('another');
-    //     }
-
     //     $farmer = Farmer::where('id', $fid)->first();
 
-    //     return view('land-registration', array('firstName' => $farmer->firstName, 'lastName' => $farmer->lastName, 'otherName' => $farmer->otherName));
+    //     return view('land-registration', array('firstName' => $farmer->firstName,lastName' => $farmer->lastName, 'otherName' => $farmer->otherName));
     // }
 }

@@ -36,9 +36,9 @@
           <br> <br> <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>
           If not, please select 'Complete'to navigate to the main dashboard.</p>
           <br>
-
+        <p>{{Request::segment(2)}}</p>
         <!-- button set -->
-        <button type="button" name="back" onclick="{{ url('land-registration') }}" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Register More Land Information"> <i class="fa fa-plus-circle mr-3" aria-hidden="true"></i> Register More</button> 
+        <button type="button" name="back" onclick="location.href='{{ url( route('land-registration',[Request::segment(2)]) ) }}'" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Register More Land Information"> <i class="fa fa-plus-circle mr-3" aria-hidden="true"></i> Register More</button> 
         <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Go To Admin Dashboard" style="margin-left:550px;"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Complete!</button>
       </div>
     </div>

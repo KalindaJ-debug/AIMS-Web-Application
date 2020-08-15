@@ -38,14 +38,14 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::post('/land-registration', 'RegisterController@store');
+Route::get('/land-registration', 'RegistrationController@show')->name('land-registration');
 
 // Route::match(['get', 'post'], 'land-registration/{id}', function($id) {
 //     return view('land-registration').$id;
 // });
 
-Route::get('/land-form-success', function () {
-    return view('land-form-success');
+Route::get('/land-form-success/{id}', function ($id) {
+    return view('land-form-success')->with($id);
 });
 
 Route::get('/feedback', function () {
