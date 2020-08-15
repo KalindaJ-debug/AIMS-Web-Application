@@ -42,7 +42,12 @@ class FarmerController extends Controller
         {
             $farmer = Farmer::where('id', $request->input('id'))->first();
 
-            $farmer->name = $request->input('name');
+            $farmer->firstName = $request->input('firstName');
+            $farmer->lastName = $request->input('lastName');
+            $farmer->otherName = $request->input('otherName');
+            $farmer->email = $request->input('email');
+            $farmer->telephoneNo = $request->input('telephoneNo');
+            $farmer->nic = $request->input('nic');
         
             $farmer->save();
         }

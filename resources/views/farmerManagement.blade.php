@@ -52,7 +52,7 @@
                         <td>{{ $farmers->nic }}</td>
                         <td>
                             <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($farmers->id))'><i class="fas fa-landmark"></i> Land Details</button>
-                            <button type="button" class="btn btn-warning" onclick='editCrop(@json($errors->name), @json($errors->id))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-warning" onclick='editFarmer(@json($farmers->id), @json($farmers->firstName), @json($farmers->otherName), @json($farmers->lastName), @json($farmers->email), @json($farmers->telephoneNo), @json($farmers->nic))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteFarmer(@json($farmers->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
@@ -199,6 +199,81 @@
                 </div>
             </div>
 
+            <!-- Edit Modal  -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="editFarmer">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('FarmerController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="function" value="edit">
+                                <input type="hidden" id="editFarmerId" name="id">
+
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input class="form-control" type="text" id="editFarmerFirstName" name="firstName">
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label>Other Name</label>
+                                    <input class="form-control" type="text" id="editFarmerOtherName" name="otherName">
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input class="form-control" type="text" id="editFarmerLastName" name="lastName">
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" name="email" class="form-control" aria-describedby="emailHelp" id="editFarmerEmail">
+                                    <small id="emailHelp" class="form-text text-muted">Your email will be secure.</small>
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label for="telephoneNo">Telephone Number</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">+94</span>
+                                        </div>
+                                        <input name="telephoneNo" type="number" class="form-control" aria-label="Telephone Number" minlength="1" maxlength="9" placeholder="7XXXXXXXXX" required id="editFarmerTelephone">
+                                    </div>
+                                    <small id="emailHelp" class="form-text text-muted">eg.7XXXXXXXXX.</small>
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label for="nic">NIC Number</label>
+                                    <input name="nic" type="text" class="form-control" minlength="10" minlength="11" required id="editFarmerNIC">
+                                    <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>                            
+
         </div>
     </body>
     <!-- Optional JavaScript -->
@@ -215,6 +290,18 @@
         {
             $('#deleteFramer').modal('show');
             document.getElementById("farmerId").value = id;
+        } 
+
+        function editFarmer(id, firstName, otherName, lastName, email, telephone, nic)
+        {
+            $('#editFarmer').modal('show');
+            document.getElementById("editFarmerId").value = id;
+            document.getElementById("editFarmerFirstName").value = firstName;
+            document.getElementById("editFarmerOtherName").value = otherName;
+            document.getElementById("editFarmerLastName").value = lastName;
+            document.getElementById("editFarmerEmail").value = email;
+            document.getElementById("editFarmerTelephone").value = telephone;
+            document.getElementById("editFarmerNIC").value = nic;
         } 
     </script>
 </html>
