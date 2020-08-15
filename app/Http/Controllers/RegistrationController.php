@@ -147,7 +147,7 @@ class RegistrationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $id)
+    public function show($id)
     {
         // dd($id);
         $farmer = Farmer::where('id', $id)->first(); 
