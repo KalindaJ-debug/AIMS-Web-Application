@@ -17,6 +17,8 @@ class RegistrationController extends Controller
      */
     public function index()
     {
+        
+
         // $login = Login::all();
         // return response()->json($login);
         return view('farmerRegistration');
@@ -123,14 +125,16 @@ class RegistrationController extends Controller
 
             //save land details
             $success = $land->save();
-            
+            $error = null;
+
             if(!$success){
                 $error = "Land Registration Failed";
-                return redirect()->action('RegistrationController@index')->with('state', $error); //redirect to farmer registration
+                return redirect()->action('RegistrationController@index')->with('state', $error); //redirect to land registration page
             }
 
+            $farmid = $latestRecord->id;
             //success redirection
-            return redirect('land-form-success').$latestRecord->id;
+            return redirect('land-form-success')->with('farmid',$farmid);
             // return redirect()->route('land-form-success', ['latestRecord'=> $latestRecord]); //farmer record array
             
             
@@ -189,4 +193,19 @@ class RegistrationController extends Controller
     {
         //
     }
+
+    // public function landIndex(Request $request, $id){
+
+    //     if(session('error')!=null){
+    //         $fid = $request->session()->get('error');
+    //     }
+
+    //     if(session('another'!=null)){
+    //         $fid = $request->session()->get('another');
+    //     }
+
+    //     $farmer = Farmer::where('id', $fid)->first();
+
+    //     return view('land-registration', array('firstName' => $farmer->firstName, 'lastName' => $farmer->lastName, 'otherName' => $farmer->otherName));
+    // }
 }

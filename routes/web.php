@@ -38,11 +38,11 @@ Route::get('/home', function () {
     return view('home');
 });
 
-// Route::post('/land-registration', 'RegisterController@store');
+Route::post('/land-registration', 'RegisterController@store');
 
-Route::match(['get', 'post'], 'land-registration/{id}', function($id) {
-    return view('land-registration').$id;
-});
+// Route::match(['get', 'post'], 'land-registration/{id}', function($id) {
+//     return view('land-registration').$id;
+// });
 
 Route::get('/land-form-success', function () {
     return view('land-form-success');
