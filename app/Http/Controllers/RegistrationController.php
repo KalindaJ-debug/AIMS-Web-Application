@@ -123,15 +123,15 @@ class RegistrationController extends Controller
 
             //save land details
             $success = $land->save();
-
-            if($success){
+            
+            if(!$success){
                 $error = "Land Registration Failed";
                 return redirect()->action('RegistrationController@index')->with('state', $error); //redirect to farmer registration
             }
 
-            //redirect to
-            
-            return redirect()->route('land-form-success', ['latestRecord'=> $latestRecord]); //farmer record array
+            //success redirection
+            return redirect('land-form-success').$latestRecord->id;
+            // return redirect()->route('land-form-success', ['latestRecord'=> $latestRecord]); //farmer record array
             
             
         }
