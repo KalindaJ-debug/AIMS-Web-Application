@@ -51,7 +51,7 @@
                         <td>{{ $farmers->telephoneNo }}</td>
                         <td>{{ $farmers->nic }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($farmers->id))'><i class="fas fa-landmark"></i> Land Details</button>
+                            <button type="button" class="btn btn-primary" onclick='landFarmer(@json($farmers->id))'><i class="fas fa-landmark"></i> Land Details</button>
                             <button type="button" class="btn btn-warning" onclick='editFarmer(@json($farmers->id), @json($farmers->firstName), @json($farmers->otherName), @json($farmers->lastName), @json($farmers->email), @json($farmers->telephoneNo), @json($farmers->nic))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteFarmer(@json($farmers->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -274,6 +274,36 @@
                 </div>
             </div>                            
 
+
+            <!-- Land Modal -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="landFarmer">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Land</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('FarmerController@store')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="function" value="land">
+                                <input type="hidden" name="id" id="farmerIdLand">
+
+                                <p>Click Continue to go to land details</p>  
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-danger">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </body>
     <!-- Optional JavaScript -->
@@ -302,6 +332,12 @@
             document.getElementById("editFarmerEmail").value = email;
             document.getElementById("editFarmerTelephone").value = telephone;
             document.getElementById("editFarmerNIC").value = nic;
+        } 
+
+        function landFarmer(id)
+        {
+            $('#deleteFramer').modal('show');
+            document.getElementById("farmerIdLand").value = id;
         } 
     </script>
 </html>
