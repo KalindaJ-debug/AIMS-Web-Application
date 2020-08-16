@@ -22,13 +22,14 @@ Route::get('/index', 'PagesController@index');
 Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('roleCheck');
+Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('auth','roleCheck','verified');
 
 //map
 Route::get('/map', 'PagesController@map');
 
 //adminharvest
 Route::get('/adminharvest', 'PagesController@adminharvest');
+
 
 
 Route::resource('approval', 'ApprovalController'); 

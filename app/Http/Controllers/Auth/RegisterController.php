@@ -34,17 +34,18 @@ class RegisterController extends Controller
      * @return void
      */
 
-    /*public function __construct()
+    public function __construct()
     {
-        $this->middleware('guest');
-    }*/
+        $this->middleware('auth');
+        $this->middleware('roleCheck');
+    }
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::REGISTER; 
+    protected $redirectTo = RouteServiceProvider::HOME; 
 
     /**
      * Get a validator for an incoming registration request.
