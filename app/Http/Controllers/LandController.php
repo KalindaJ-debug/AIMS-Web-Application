@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Farmer;
+use App\Land;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +16,30 @@ class LandController extends Controller
      */
     public function index()
     {
-        //index fucntion - 20205283
-        return view('land-records'); //view land records
+        $id = 31; //farmer id
+
+        //fetch data 
+        $farmer = Farmer::where('id', $id)->first(); //farmer name
+        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->get();
+        // $landRecords = $landRecords::with('provinces')->get();
+        $count = $landRecords->count(); //number of records
+
+        if($landRecords != null){
+            //return land records
+        return view('land-records', 
+            array(
+                'firstName' => $farmer->firstName, 
+                'lastName' => $farmer->lastName, 
+                'landRecords' => $landRecords, 
+                'count' => $count
+            )
+        ); //view land records
+
+        } //end of if
+        else{
+            return view('home');
+        }
+        
     }
 
     /**
@@ -47,8 +71,7 @@ class LandController extends Controller
      */
     public function show($id)
     {
-        //list items for each farmer id
-        $landRecords = DB::table('lands')->select()->distinct()->where('id', $id);
+        //
     }
 
     /**

@@ -37,7 +37,7 @@
      <!-- body begins -->
      <div class="content">
        <!-- feedback Management Public View  -->
-       <h1 class="display-5" style="margin-left:200px;margin-top:40px;">John Smith</h1>
+     <h1 class="display-5" style="margin-left:200px;margin-top:40px;">{{ $firstName }} {{ $lastName }} </h1>
 
        <!-- view table begins -->
        <div class="container-xl">
@@ -63,112 +63,46 @@
       								<label for="selectAll"></label>
       							</span>
       						</th>
-                            <th>No</th>
-                            <th>Address No</th>  
-                            <th>Lane / Street</th>
-                            <th>City</th>  
-                            <th>District</th>
-                            <th>Province</th>
-      						<th>Land Extent (ha)</th>
-      						<th>Actions</th>
+                      <th>No</th>
+                      <th>Address No</th>  
+                      <th>Lane</th>
+                      <th>City</th>  
+                      <th>District</th>
+                      <th>Province</th>
+                      <th>Land Extent (ha)</th>
+                      <th>Actions</th>
       					</tr>
       				</thead>
       				<tbody>
-      					<tr>
+
+                @php
+                    $i = 0;
+                @endphp
+
+                {{-- row begins --}}
+                @foreach ($landRecords as $item)
+                <tr>
       						<td>
       							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
+                    <input type="checkbox" name="options[]" value="{{ $i++ }}">
       								<label for="checkbox1"></label>
       							</span>
       						</td>
-                            <td>1</td>
-                            <td>17/1</td>  
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
+                  <td>{{ $i }}</td>
+                  <td>{{ $item->addressNo }}</td>  
+      						<td>{{$item->laneName}}</td>
+                  <td>{{$item->city}}</td>
+                  <td>{{$item->districts->name}}</td>
+                  <td>{{$item->provinces->name}}</td>
+      						<td class="font-italic">{{$item->landExtend}}</td>
       						<td>
-                                <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox2"></label>
-      							</span>
-      						</td>
-                              <td>2</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                  <td>
                     <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
       							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
       						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox3"></label>
-      							</span>
-      						</td>
-                              <td>3</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                            <td>
-                                <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox4"></label>
-      							</span>
-      						</td>
-                              <td>4</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                  <td>
-      							<a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox5"></label>
-      							</span>
-      						</td>
-                              <td>5</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                  <td>
-                    <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
+                </tr>
+                @endforeach
+                {{-- row ends  --}}
+
       				</tbody>
       			</table>
       			<div class="clearfix">

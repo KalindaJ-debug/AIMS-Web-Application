@@ -17,4 +17,9 @@ class District extends Model
     }
 
     protected $table = 'districts';
+
+    public function land()
+    {
+        return $this->hasMany('App\Land','district_id', 'id');
+    }
 }
