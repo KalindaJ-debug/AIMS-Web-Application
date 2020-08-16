@@ -113,3 +113,7 @@ Route::get('/land-records', function () {
 Route::get('/land-update', function () {
     return view('land-record-update');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
