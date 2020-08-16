@@ -59,6 +59,7 @@
                 {{ csrf_field() }}
 
                 <input type="hidden" name="type" value="farmer">
+                
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">First and Last name</span>
