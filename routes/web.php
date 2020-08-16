@@ -36,6 +36,7 @@ Route::get('/adminharvest', 'PagesController@adminharvest');
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
 Route::resource('crop', 'CropController');
+Route::resource('farmer', 'FarmerController');
 Route::resource('land', 'LandController');
 
 Route::get('/home', function () {
