@@ -30,6 +30,7 @@
             
             </br>
 
+            <button type="button" class="btn btn-success" onclick='addCategory()'><i class="fas fa-plus"></i> Add</button>
             <table class="table" id="categoryTable"> 
                 <thead class="thead-dark">
                     <tr>
@@ -42,7 +43,6 @@
                     <tr>
                         <th scope="row">{{ $categories->name }}</th>
                         <td>
-                            <button type="button" class="btn btn-success" onclick='addCategory()'><i class="fas fa-plus"></i> Add</button>
                             <button type="button" class="btn btn-warning" onclick='editCategory(@json($categories->name), @json($categories->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteCategory(@json($categories->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -57,6 +57,7 @@
             
             </br>
 
+            <button type="button" class="btn btn-success" onclick='addCrop()'><i class="fas fa-plus"></i> Add</button>
             <table class="table" id="cropTable"> 
                 <thead class="thead-dark">
                     <tr>
@@ -74,7 +75,6 @@
                         <th scope="row">{{ $category->name }}</th>
                         <td><p style='color:blue'>{{ $crops->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-success" onclick='addCrop()'><i class="fas fa-plus"></i> Add</button>
                             <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editCrop(@json($crops->name), @json($crops->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteCrop(@json($crops->id))'><i class="fas fa-trash"></i> Delete</button>
@@ -90,6 +90,7 @@
             
             </br>
 
+            <button type="button" class="btn btn-success" onclick='addVariety()'><i class="fas fa-plus"></i> Add</button>
             <table class="table" id="varietyTable"> 
                 <thead class="thead-dark">
                     <tr>
@@ -110,7 +111,6 @@
                         <td>{{ $crop->name }}</td>
                         <td><p style='color:blue'>{{ $variety->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-success" onclick='addVariety()'><i class="fas fa-plus"></i> Add</button>
                             <button type="button" class="btn btn-primary" onclick='updateVarietyTable(@json($variety->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editVariety(@json($variety->name), @json($variety->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteVariety(@json($variety->id))'><i class="fas fa-trash"></i> Delete</button>

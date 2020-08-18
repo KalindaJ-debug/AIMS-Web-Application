@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +36,21 @@ Route::get('/adminharvest', 'PagesController@adminharvest');
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
 Route::resource('crop', 'CropController');
+Route::resource('farmer', 'FarmerController');
+Route::resource('land', 'LandController');
 
 Route::get('/home', function () {
     return view('home');
+});
+
+Route::get('/land-registration', 'RegistrationController@show')->name('land-registration');
+
+// Route::match(['get', 'post'], 'land-registration/{id}', function($id) {
+//     return view('land-registration').$id;
+// });
+
+Route::get('/land-form-success/{id}', function ($id) {
+    return view('land-form-success')->with($id);
 });
 
 Route::get('/feedback', function () {
@@ -45,10 +59,6 @@ Route::get('/feedback', function () {
 
 Route::get('/feedback-registered', function () {
     return view('feedback-registered');
-});
-
-Route::get('/land-registration', function () {
-    return view('land-registration');
 });
 
 Route::get('/welcome', function(){
@@ -118,3 +128,9 @@ Route::get('/land-update', function () {
     return view('land-record-update');
 });
 
+<<<<<<< HEAD
+=======
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> c55f4d755efdcdbc14cacb1957220dd6abbc37e0
