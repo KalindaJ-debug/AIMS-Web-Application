@@ -39,11 +39,29 @@
 
     <body style="width:100%;">
         
-        @include('layouts.headerAdmin')
+        @include('layouts.header')
         @include('layouts.navbar')
 
         <div class="container" style="background-color:white; border-radius: 25px; padding: 20px;">
 
+            @error('email') 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong> Email already exists
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
+
+            @error('nic') 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong> Invalid NIC length
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
+        
             <div class="row">
                 <div class="col-9">
                     <h2 style="margin-top:30px;" class="display-4">Farmer Registration</h2>
@@ -101,7 +119,7 @@
                                 
                     <div class="form-group col-md-6">
                         <label for="nic">NIC Number</label>
-                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required>
+                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required pattern="[0-10]{10}[x|X|v|V]$">
                         <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
                     </div>
                 </div>

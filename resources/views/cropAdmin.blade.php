@@ -15,6 +15,9 @@
         <title>Crop</title>
     </head>
     <body>
+
+        @include('layouts.header')
+        @include('layouts.navbar')
     <!-- style="background-color:#2E933C;" -->
         <script>
             $(document).ready( function () {
@@ -422,6 +425,8 @@
             </div>
 
         </div>
+
+        @include('layouts.footer')
     </body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

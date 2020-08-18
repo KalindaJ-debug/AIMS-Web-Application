@@ -46,7 +46,12 @@ class RegistrationController extends Controller
 
         //dd($request->request);
         if ($request->input('type') == "farmer")
-        {
+        {            
+            $request->validate([
+                'email' => 'required|unique:farmers,email|email:rfc,dns',
+                'nic' => 'required|min:10|max:11'
+            ]);
+
             $farmer = new Farmer; 
 
             $farmer->firstName = $request->input('firstName');
@@ -56,22 +61,23 @@ class RegistrationController extends Controller
             $farmer->telephoneNo = $request->input('telephoneNo');
             $farmer->nic = $request->input('nic');
             $farmer->email = $request->input('email');
-            
+                
             $pubEmail = $request->input('email'); //public email
 
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $extension;
             $farmer->nicImage = $fileName;
-    
+        
             $saved = $farmer->save();
-    
+        
             if (!$saved)
             {
                 $state = "Failed";
-                return redirect()->action('RegistrationController@index')->with('state', $state);
+                dd("Test123");
+                return redirect()->action('RegistrationController@index');
             }
-    
+        
             // //dd($request->hasfile('image'));
             // if ($request->hasfile('image'))
             // {
@@ -79,14 +85,13 @@ class RegistrationController extends Controller
             //     $extension = $file->getClientOriginalExtension();
             //     $fileName = time() . '.' . $extension;
             //     $farmer->nicImage = $fileName;
-        
+            
             //     $farmer->save();
             // } 
-            $ffid = $farmer->id;
+            //$ffid = $farmer->id;
 
-            $farmer = Farmer::where('email', $request->input('email'))->first();
-    
-            return redirect('registration/' . $ffid . '');
+            return redirect('registration/' . $farmer->id . '');
+
         }
         else if ($request->input('type') == "land")
         {
