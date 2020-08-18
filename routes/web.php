@@ -128,9 +128,6 @@ Route::get('/land-update', function () {
     return view('land-record-update');
 });
 
-<<<<<<< HEAD
-=======
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> c55f4d755efdcdbc14cacb1957220dd6abbc37e0
