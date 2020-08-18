@@ -119,7 +119,7 @@
                                 
                     <div class="form-group col-md-6">
                         <label for="nic">NIC Number</label>
-                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required pattern="[0-10]{10}[x|X|v|V]$">
+                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required pattern="[0-9]{9}[x|X|v|V]$">
                         <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
                     </div>
                 </div>
