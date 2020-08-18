@@ -92,13 +92,24 @@ Route::get('/croplist', function () {
     return view('croplist');
 });
 
-<<<<<<< HEAD
+//Route::resource('feedback','FeedbackController');
+Route::get('feedback-view-public', 'FeedbackController@indexPublic');
+Route::get('feedback', 'FeedbackController@createPublic');
+Route::post('feedback', 'FeedbackController@storePublic');
+
+Route::get('feedback-view', 'FeedbackController@indexRegistered');
+Route::get('feedback-registered', 'FeedbackController@createRegistered');
+Route::post('feedback-registered', 'FeedbackController@storeRegistered');
+
+//Route::get('feedback-view-public', 'FeedbackController@show');
+Route::post('feedback-view-public', 'FeedbackController@destroyPublic');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-=======
+
 Route::get('/land-records', function () {
     return view('land-records');
 });
@@ -106,4 +117,4 @@ Route::get('/land-records', function () {
 Route::get('/land-update', function () {
     return view('land-record-update');
 });
->>>>>>> 0313731b2498f727f7974ab6cf78b43b028ca945
+
