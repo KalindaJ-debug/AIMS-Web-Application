@@ -140,6 +140,10 @@ class LandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete selected row
+        $land = Land::find($id); 
+        $land->delete();
+        return redirect('land-records'); //display records
+
     }
 }
