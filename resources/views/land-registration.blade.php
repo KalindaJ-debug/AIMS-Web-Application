@@ -27,82 +27,11 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif;">
     <!-- header begins -->
-    <div class="header" style="height:150px;background-color:#08260E;">
-      <div class="row">
-        <!-- logo and description -->
-        <div class="col-6">
-          <!-- horizontal card -->
-          <div class="card mb-3" style="max-width:60%;background-color:#08260E;border:none;">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="assets/img/DOA emblem.png" class="card-img" alt="headerLogo" style="width:120px;height:120px;margin-left:20px;margin-top:10px;margin-bottom:10px;">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body text-center" style="padding:30px;color:white;">
-                <h5 class="card-title">Agriculture Information Management System | AIMS </h5>
-                <p class="card-text">Department of Agriculture.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        </div>
-        <!-- return to language and login buttons -->
-        <div class="col-6" style="height:150px;">
-
-          <div class="card text-right" style="background-color:#08260E;margin-right:20px;border:none;">
-          <div class="card-body">
-
-            <h5 class="card-title" style="color:white;margin-right:80px;"> <i class="fa fa-unlock-alt mr-3" aria-hidden="true"></i> ADMIN</h5>
-            <p class="card-text" style="color:white;margin-right:80px;"><i class="fas fa-exchange-alt mr-3"></i>Change Language</p>
-            <!-- buttons -->
-
-              <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Login to AIMS"><i class="fas fa-sign-in-alt mr-3"></i>Sign Out</a>
-                <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Return to Language Options"><i class="fas fa-language mr-3"></i>Language</a>
-            <!-- buttons end -->
-          </div>
-        </div>
-
-        </div>
-      </div>
-    </div>
+    @include('/layouts.headerAdmin')
     <!-- header ends -->
 
     <!-- nav bar begins -->
-    <nav class="navbar navbar-expand-md navbar-dark">
-      <!-- <a class="navbar-brand" href="#">Home</a> -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Dashboard <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#">User Management</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Crop Management</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Device Management</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Statistics</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Data Entry Management</a>
-          </li>
-
-        </ul>
-        <form class="form-inline my-2 my-lg-1" style="width:630px;">
-          <input class="form-control mr-sm-2" style="width:500px;" type="text" placeholder="Search AIMS" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Enter To Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="top" title="Search Crops"> <i class="fas fa-search mr-3"> </i> Search </button>
-        </form>
-      </div>
-    </nav>
+    @include('/layouts.navbar')
 
     <!-- nav bar ends -->
 
@@ -124,19 +53,23 @@
                   <h5 class="card-title">Enter Land Registration Details here</h5>
                   <br>
                   <!-- form begins here -->
-                  <form id="form-land" class="landForm" action="test.php" method="post">
+                <form id="form-land" class="landForm" method="POST" enctype="multipart/form-data" action="{{ action('RegistrationController@store') }}" >
+                  
+                  {{ csrf_field() }}  
+
+                  <input type="hidden" name="type" value="land">
                     <p class="card-text"> Land Owner's Name </p>
 
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Full Name</span>
                       </div>
-                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true'>
-                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true'>
-                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true'>
+                      <input name="firstName" type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true' value="{{ $firstName }}">
+                      <input name="middleName" type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true' value="{{ $otherName }}">
+                      <input name="lastName" type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true' value="{{ $lastName }}">
                     </div>
                     <br>
-                    <button href="https://www.google.com/" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
+                    <button href="{{'farmerRegistration'}}" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
                     <!-- end of change/save button group -->
 
                     <!-- enter land information -->
@@ -172,31 +105,14 @@
                       </div>
                       <select class="custom-select" id="selectDistrict" name="district" required>
                         <option selected value="none">Select District...</option>
-                        <option value="Ampara">Ampara</option>
-                        <option value="Anuradhapura">Anuradhapura</option>
-                        <option value="Badulla">Badulla</option>
-                        <option value="Batticaloa">Batticaloa</option>
-                        <option value="Colombo">Colombo</option>
-                        <option value="Galle">Galle</option>
-                        <option value="Gampaha">Gampaha</option>
-                        <option value="Hambantota">Hambantota</option>
-                        <option value="Jaffna">Jaffna</option>
-                        <option value="Kalutara">Kalutara</option>
-                        <option value="Kandy">Kandy</option>
-                        <option value="Kegalle">Kegalle</option>
-                        <option value="Kilinochchi">Kilinochchi</option>
-                        <option value="Kurunegala">Kurunegala</option>
-                        <option value="Mannar">Mannar</option>
-                        <option value="Matale">Matale</option>
-                        <option value="Matara">Matara</option>
-                        <option value="Monaragala">Monaragala</option>
-                        <option value="Mullaitivu">Mullaitivu</option>
-                        <option value="Nuwara Eliya">Nuwara Eliya</option>
-                        <option value="Polonnaruwa">Polonnaruwa</option>
-                        <option value="Puttalam">Puttalam</option>
-                        <option value="Ratnapura">Ratnapura</option>
-                        <option value="Trincomalee">Trincomalee</option>
-                        <option value="Vavuniya">Vavuniya</option>
+
+                        @if($districtsList != null)
+                          
+                          @foreach ($districtsList as $item)
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+                          @endforeach
+
+                        @endif
 
                       </select>
 
@@ -204,17 +120,18 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="selectProvince" style="width:90px;">Province</label>
                       </div>
+ 
                       <select class="custom-select" id="selectProvince" name="province" required>
                         <option selected value="none">Select Province...</option>
-                        <option value="Central">Central Province</option>
-                        <option value="Eastern">Eastern Province</option>
-                        <option value="Nothern">Nothern Province</option>
-                        <option value="Southern">Southern Province</option>
-                        <option value="Western">Western Province</option>
-                        <option value="North-Western">North-Western Province</option>
-                        <option value="North-Central">North-Central Province</option>
-                        <option value="Uva">Uva Province</option>
-                        <option value="Sabaragumawa">Sabaragumawa Province</option>
+
+                        @if($provincesList != null)
+                          
+                          @foreach ($provincesList as $item)
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+                          @endforeach
+
+                        @endif
+
                       </select>
 
                     </div>
@@ -414,7 +331,7 @@
                         <div class="panel-full">
                           <div class="button_outer">
                             <div class="btn_upload">
-                              <input type="file" id="upload_file" name="">
+                              <input type="file" id="upload_file" name="landImage">
                               <i class="fa fa-upload mr-3" aria-hidden="true"></i> Upload Image
                             </div>
                             <div class="processing_bar"></div>
@@ -438,7 +355,7 @@
                     </div>
                     <!-- end of confirmation -->
                     <div class="btn-submit">
-                      <a href="landFormSubmitted.php"> <button type="button" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> </a>
+                      <button type="submit" name="submit" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> 
                     </div>
 
                   </form>
@@ -467,44 +384,7 @@
     <!-- bode ends here -->
 
     <!-- footer begins -->
-    <div class="mt-5 pt-5 pb-5 footer">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-5 col-xs-12 about-company">
-            <h2>AIMS</h2>
-            <p class="pr-5 text-white-50">Agriculture Information Management System     Department of Agriculture, Kandy </p>
-            <img src="assets/img/Department of Agriculture.png" alt="logo" style="width:50px;height:50px;">
-          </div>
-
-          <div class="col-lg-3 col-xs-12 links">
-            <h4 class="mt-lg-0 mt-sm-3">Other Sites</h4>
-              <ul class="m-0 p-0">
-                <li>- <a href="http://www.croplook.net/">Crop Look</a></li>
-                <li>- <a href="https://www.doa.gov.lk/index.php/en/">Department of Agriculture</a></li>
-                <li>- <a href="http://agri.pdn.ac.lk/">Faculty of Agriculture</a></li>
-                <li>- <a href="http://agri.pdn.ac.lk/agen/">Department of Agricultural Engineering</a></li>
-                <li>- <a href="http://www.gic.gov.lk/gic/index.php?option=com_org&Itemid=4&id=40&task=org&lang=en">Government Information Centre | Faculty of Agriculture</a></li>
-                <li>- <a href="http://www.agrimin.gov.lk/web/index.php/about-us-3">Ministry of Agriculture</a></li>
-              </ul>
-          </div>
-
-          <div class="col-lg-4 col-xs-12 location">
-            <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-            <p>No 25, Labuduwa Sri Damma Mawatha, Peradeniya 20400</p>
-            <p class="mb-0"><i class="fa fa-phone mr-3"></i>(0812) 388 331</p>
-            <p><i class="fas fa-envelope mr-3"></i>headagbiol@pdn.ac.lk</p>
-
-          </div>
-        </div>
-
-        <div class="row mt-5">
-          <div class="col copyright">
-            <p class=""><small class="text-white-50">Copyright © 2020. All Rights Reserved.</small></p>
-          </div>
-        </div>
-      </div>
-    </div>
+    @include('/layouts.footer')
     <!-- footer ends here -->
 
     <!-- jquery validation links -->

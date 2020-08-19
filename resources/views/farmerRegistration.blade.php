@@ -4,6 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        {{-- External CSS --}}
+        <link rel="stylesheet" href="{{ url('assets/css/home.css') }}">
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -34,19 +37,29 @@
         <title>Farmer Registration</title>
     </head>
 
-    <body style="background-color:#52BE80;">
+    <body style="width:100%;">
         
-        </br>
+        @include('layouts.headerAdmin')
+        @include('layouts.navbar')
 
         <div class="container" style="background-color:white; border-radius: 25px; padding: 20px;">
 
-            <img src="{{ asset('images/farmer.png') }}" class="img-fluid img-thumbnail rounded float-left" alt="Farmer" height="300px">
-            <h2 style="text-align: center;" class="display-4">Farmer Registration</h2>
-
+            <div class="row">
+                <div class="col-9">
+                    <h2 style="margin-top:30px;" class="display-4">Farmer Registration</h2>
+                </div>
+                <div class="col-3">
+                    <img src="{{ asset('images/farmer.png') }}" class="img-fluid img-thumbnail rounded float-left" alt="Farmer" style="height:150px;margin-right:50px;width:300px;">
+                </div>
+            </div>
+         
+            <hr>
             <form method="post" action="{{action('RegistrationController@store')}}" enctype="multipart/form-data" id="farmerRegistration"> 
 
                 {{ csrf_field() }}
 
+                <input type="hidden" name="type" value="farmer">
+                
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">First and Last name</span>
@@ -60,6 +73,12 @@
                 <div class="form-group">
                     <label for="otherName">Other Names</label>
                     <input name="otherName" type="text" class="form-control" id="otherName" placeholder="Other name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">Your email will be secure.</small>
                 </div>
 
                 <div class="form-group">
@@ -122,7 +141,7 @@
             </form>
         </div>
         
-        </br>
+        @include('layouts.footer')
 
         <script>
             $( document ).ready(function() {

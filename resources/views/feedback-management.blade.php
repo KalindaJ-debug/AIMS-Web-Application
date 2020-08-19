@@ -54,7 +54,7 @@
                   <h5 class="card-title" style="color:green;"> <i class="fa fa-comment mr-2" style="color:green;" aria-hidden="true"></i> New Feedback Available!</h5>
                   <img src="assets/img/important.png" alt="email"> <br>
                   <p class="card-text" style="margin-top:10px;">View public feedback to provide fast-track responses</p>
-                  <a href="#" class="btn btn-success">Read Feedback</a>
+                <a href="{{ url('feedback-view-public') }}" class="btn btn-success">Read Feedback</a>
                 </div>
                 <div class="card-footer text-muted">
                   <i class="fa fa-envelope mr-3" aria-hidden="true"></i> 2 messages received
@@ -75,7 +75,7 @@
                   <img src="assets/img/mail.png" alt="mail">
                   <br>
                   <p class="card-text" style="margin-top:10px;">View regsitered user feedback to provide responses</p>
-                  <a href="#" class="btn btn-success">Read Feedback</a>
+                <a href="{{ url('feedback-view') }}" class="btn btn-success">Read Feedback</a>
                 </div>
                 <div class="card-footer text-muted">
                   <i class="fa fa-envelope mr-3" aria-hidden="true"></i> 0 messages received
@@ -111,7 +111,7 @@
          duration:2000,
          origin:'bottom',
          distance: '200px',
-         delay:100
+         delay:50
        });
 
      </script>
