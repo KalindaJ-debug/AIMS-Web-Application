@@ -28,6 +28,19 @@ Route::get('/map', 'PagesController@map');
 //adminharvest
 Route::get('/adminharvest', 'PagesController@adminharvest');
 
+//data Entry
+Route::get('/dataEntry', 'DataController@index');
+Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
+
+
+//User admin
+//Route::get('/user',"UserController@index")->name('user');
+
+//userView Admin
+//Route::get("/userView","viewController@index")->name('userView');
+
+//device view
+//Route::get("/device","deviceController@index")->name('device');
 
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
