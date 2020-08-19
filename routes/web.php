@@ -112,9 +112,14 @@ Route::get('feedback-registered', 'FeedbackController@createRegistered');
 Route::post('feedback-registered', 'FeedbackController@storeRegistered');
 
 //Route::get('feedback-view-public', 'FeedbackController@show');
-Route::post('feedback-view-public', 'FeedbackController@destroyPublic');
+//Route::post('feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
+
+Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
 
 
+
+
+//RAaaaaaaaaggggggggaaaaaaaaaaaavvvvvvvvvviiiiiiiiiiiiiiiii
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
