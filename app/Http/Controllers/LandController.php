@@ -21,7 +21,7 @@ class LandController extends Controller
 
         //fetch data 
         $farmer = Farmer::where('id', $id)->first(); //farmer name
-        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->get();
+        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->paginate(5);
         // $landRecords = $landRecords::with('provinces')->get();
         $count = $landRecords->count(); //number of records
 
