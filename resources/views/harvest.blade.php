@@ -16,11 +16,20 @@
     
     
 
-    <title>Data Summary</title>
+    <title>Data Summary | AIMS</title>
 </head>
 <body class="white-bg-color" >
+
+    <!-- header begins -->
+    @include('layouts.header')
+    <!-- header ends -->
+
+    <!-- nav bar begins -->
+    @include('layouts.navbar')
+
+    <!-- nav bar ends -->
     <div class="wrapper d-flex align-items-stretch ">
-        <div class="sidebar" style="width: 280px; height: 400px; ">
+        <div class="sidebar" style="width: 280px; height: inherit; ">
 
         <ul class="nav flex-column" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
 
@@ -150,4 +159,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
 </body>
+
+<!-- footer begins -->
+@include('layouts.footer')
+     <!-- footer ends -->
 </html>
