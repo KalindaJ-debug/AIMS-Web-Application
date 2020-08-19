@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Farmer;
 use App\Land;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -83,6 +84,9 @@ class LandController extends Controller
     public function edit($id)
     {
         //
+        $land = Land::find($id); //capture farmer_id
+
+        return view('land-record-update', ['id' => $land->id, 'address' => $land->addressNo, 'street' => $land->streetName, 'lane' => $land->laneName, 'town' => $land->town, 'city' => $land->city, 'gnd' => $land->gnd, 'province' => $land->province_id, 'district' => $land->district_id, 'postalCode' => $land->postalCode, 'planningNumber' => $land->planningNumber, 'landExtend' => $land->landExtend]);
     }
 
     /**
@@ -94,7 +98,36 @@ class LandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //update land record
+        $land = Land::find($id);
+
+        //update fields
+        //input fields - location
+        $land->addressNo = $request->input('addressNumber');
+        $land->streetName = $request->input('street');
+        $land->laneName = $request->input('lane');
+        $land->town = $request->input('town');
+        // $land->city = $request->input('city');
+        // $land->gnd = $request->input('grama');
+        // $land->province_id = $request->input('province');
+        // $land->district_id = $request->input('district');
+        $land->postalCode = $request->input('postal');
+        $land->planningNumber = $request->input('planNo');
+
+        //land registration - image
+        if($request->hasFile('landImage')){
+            $image = $request->file('landImage');
+            $extension = $image->getClientOriginalExtension(); //img extension
+            $landImage = time().'.'.$extension; //name image file
+            $image->move('uploads/landRegistration/', $landImage); //move image file to folder
+            $land->landRegistration = $landImage; //update db with filename
+        } 
+        
+        //land extent value in ha
+        $land->landExtend = $request->input('hectares');
+
+        $land->save();
+        return redirect('home'); 
     }
 
     /**

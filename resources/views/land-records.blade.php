@@ -26,7 +26,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif; background-color: white;">
     <!-- header begins -->
-    @include('layouts.headerAdmin')
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -74,13 +74,16 @@
       					</tr>
       				</thead>
       				<tbody>
-
+               
                 @php
                     $i = 0;
                 @endphp
 
                 {{-- row begins --}}
                 @foreach ($landRecords as $item)
+              <form action="land-records/{{$item->id}}/edit" method="get" name="edit">
+                <input type="hidden" name="landId" value="{{$item->id}}">
+                  {{ csrf_field() }}
                 <tr>
       						<td>
       							<span class="custom-checkbox">
@@ -96,12 +99,13 @@
                   <td>{{$item->provinces->name}}</td>
       						<td class="font-italic">{{$item->landExtend}}</td>
       						<td>
-                    <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
+                  <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
       							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
       						</td>
                 </tr>
                 @endforeach
                 {{-- row ends  --}}
+              </form>
 
       				</tbody>
       			</table>

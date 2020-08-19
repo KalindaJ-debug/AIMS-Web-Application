@@ -185,7 +185,7 @@
                       <div class="input-group-prepend ml-3">
                         <label class="input-group-text" for="selectGN" style="width:110px;">Postal Code</label>
                       </div>
-                      <input type="text" name="postal" aria-label="PostalCode" class="form-control" placeholder="Postal Code" id="postalc" required>
+                    <input type="text" name="postal" aria-label="PostalCode" class="form-control" value="{{ $land->postalCode}}" id="postalc" required>
                     </div>
                     <div class="row">
                       <div class="col-9">
@@ -209,13 +209,13 @@
                         <span class="input-group-text">Land Extent in Hectares (ha) </span>
 
                       </div>
-                      <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" placeholder="XXX (ha)" required>
+                      <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" value="{{$land->landExtend}}" required>
 
                       <div class="input-group-prepend">
                         <span class="input-group-text">Planning Number </span>
                       </div>
 
-                      <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" placeholder="Planning No" required>
+                      <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" value="{{ $land->planningNumber }}" required>
 
                     </div>
                     <br>
@@ -323,7 +323,7 @@
                     </div>
                     <hr>
                     <!-- upload image of land registeration doc -->
-                    <p class="card-text">Upload Image of the Land Registration</p>
+                    <p class="card-text">Upload New Image of the Land Registration</p>
 
                     <!-- referenced code -->
                     <main class="main_full">

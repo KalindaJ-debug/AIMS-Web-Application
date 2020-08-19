@@ -27,7 +27,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif;">
     <!-- header begins -->
-    @include('layouts.headerAdmin')
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -53,33 +53,21 @@
                   <h5 class="card-title">Modify Land Registration Details here</h5>
                   <br>
                   <!-- form begins here -->
-                  <form id="form-land" class="landForm" action="test.php" method="post">
-                    <p class="card-text"> Land Owner's Name </p>
-
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Full Name</span>
-                      </div>
-                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true'>
-                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true'>
-                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true'>
-                    </div>
-                    <br>
-                    <button href="https://www.google.com/" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
-                    <!-- end of change/save button group -->
-
+                <form id="form-land" class="landForm" enctype="multipart/form-data" action="{{ url('land-records/'. $id. '') }}" method="POST">
+                  {{ csrf_field() }}  
+                  @method('PUT')
                     <!-- enter land information -->
                     <p class="card-text">Enter land location details </p>
                     <div class="input-group" aria-describedby="address">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Location</span>
                       </div>
-                      <input type="text" aria-label="AssessmentNo" class="form-control col-2" placeholder="Address No" aria-describedby="addressNo" name="addressNumber" required>
-                      <input type="text" aria-label="Street" class="form-control col-10" placeholder="Street Name" style="max-width:610px;" name="street" required>
+                    <input type="text" aria-label="AssessmentNo" class="form-control col-2" aria-describedby="addressNo" name="addressNumber" value="{{ $address }}" required>
+                      <input type="text" aria-label="Street" class="form-control col-10" value="{{ $street }}" style="max-width:610px;" name="street" required>
 
                     </div>
-                    <input type="text" aria-label="Lane" name="lane" class="form-control" placeholder="Lane Name" style="margin-left:88px;width:830px;">
-                    <input type="text" aria-label="Town" name="town" class="form-control" placeholder="Town" style="margin-left:88px;width:830px;">
+                    <input type="text" aria-label="Lane" name="lane" class="form-control" value="{{ $lane }}" style="margin-left:88px;width:830px;">
+                  <input type="text" aria-label="Town" name="town" class="form-control" value="{{ $town }}" style="margin-left:88px;width:830px;">
                     <small id="address" class="form-text text-muted">Enter location details according to the availability of each section of the original land location address</small>
                     <br>
 
@@ -89,7 +77,7 @@
                         <label class="input-group-text" for="selectCity" style="width:90px;">City</label>
                       </div>
                       <select class="custom-select" id="selectCity" name="city" required>
-                        <option selected value="none">Select City...</option>
+                        <option value="none">Select City...</option>
                         <option value="Jaffna">Jaffna</option>
                         <option value="Boralesgamuwa">Boralesgamuwa</option>
                         <option value="Kollonnawa">Kollonnawa</option>
@@ -197,7 +185,7 @@
                       <div class="input-group-prepend ml-3">
                         <label class="input-group-text" for="selectGN" style="width:110px;">Postal Code</label>
                       </div>
-                      <input type="text" name="postal" aria-label="PostalCode" class="form-control" placeholder="Postal Code" id="postalc" required>
+                    <input type="text" name="postal" aria-label="PostalCode" class="form-control" value="{{ $postalCode }}" id="postalc" required>
                     </div>
                     <div class="row">
                       <div class="col-9">
@@ -221,13 +209,13 @@
                         <span class="input-group-text">Land Extent in Hectares (ha) </span>
 
                       </div>
-                      <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" placeholder="XXX (ha)" required>
+                    <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" value="{{ $landExtend }}" required>
 
                       <div class="input-group-prepend">
                         <span class="input-group-text">Planning Number </span>
                       </div>
 
-                      <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" placeholder="Planning No" required>
+                    <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" value="{{ $planningNumber }}" required>
 
                     </div>
                     <br>
@@ -367,9 +355,9 @@
                     </div>
                     <!-- end of confirmation -->
                     <div class="btn-submit">
-                      <a href="landFormSubmitted.php"> <button type="button" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> </a>
+                      <button type="submit" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> 
                     </div>
-
+                    {{-- {{{ Form::hidden('_method', 'PUT') }}} --}}
                   </form>
                   <!-- end of form -->
 

@@ -43,6 +43,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/land-record-update/{id}', function($id){ return view('land-record-update'); });
 
 Route::get('/land-registration', 'RegistrationController@show')->name('land-registration');
 
