@@ -78,6 +78,7 @@
       					</tr>
       				</thead>
               <tbody>
+                
               @if(count($feedbackPublic) > 0)
                 @foreach($feedbackPublic as $fPublic)
                 
@@ -95,11 +96,13 @@
                   <td>{{$fPublic->message}}</td>
                   
                   <td>
-                  <form action="{{ url('FeedbackController@destroyPublic',$fPublic->id) }}" method="POST">
+
+                  <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                  <!-- <form action="" method="POST">
                   @csrf
       							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
       							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal" data-id="{{$fPublic->id}}"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                  </form> 
+                  </form>  -->
                   </td>
                   <td><input id="dataId" type="hidden" value="{{$fPublic->id}}"></input></td>
       					</tr>
@@ -174,7 +177,7 @@
      <div id="deleteSelectedFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form method="post" action="{{url('FeedbackController@destroyPublic', 'data-id') }}">
+          <form method="post" action="{{url('FeedbackController@destroyPublic', $fPublic->id) }}" name="delete">
             @method('delete');
             {{ csrf_field() }}
             <div class="modal-header">
