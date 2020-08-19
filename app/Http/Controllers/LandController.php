@@ -85,8 +85,10 @@ class LandController extends Controller
     {
         //
         $land = Land::find($id); //capture farmer_id
+        $provincesList = DB::table('provinces')->distinct()->get();
+        $districtsList = DB::table('districts')->distinct()->get();
 
-        return view('land-record-update', ['id' => $land->id, 'address' => $land->addressNo, 'street' => $land->streetName, 'lane' => $land->laneName, 'town' => $land->town, 'city' => $land->city, 'gnd' => $land->gnd, 'province' => $land->province_id, 'district' => $land->district_id, 'postalCode' => $land->postalCode, 'planningNumber' => $land->planningNumber, 'landExtend' => $land->landExtend]);
+        return view('land-record-update', ['id' => $land->id, 'address' => $land->addressNo, 'street' => $land->streetName, 'lane' => $land->laneName, 'town' => $land->town, 'city' => $land->city, 'gnd' => $land->gnd, 'province' => $land->province_id, 'district' => $land->district_id, 'postalCode' => $land->postalCode, 'planningNumber' => $land->planningNumber, 'landExtend' => $land->landExtend, 'provincesList' => $provincesList, 'districtsList' => $districtsList]);
     }
 
     /**
@@ -107,10 +109,10 @@ class LandController extends Controller
         $land->streetName = $request->input('street');
         $land->laneName = $request->input('lane');
         $land->town = $request->input('town');
-        // $land->city = $request->input('city');
-        // $land->gnd = $request->input('grama');
-        // $land->province_id = $request->input('province');
-        // $land->district_id = $request->input('district');
+        $land->city = $request->input('city');
+        $land->gnd = $request->input('grama');
+        $land->province_id = $request->input('province');
+        $land->district_id = $request->input('district');
         $land->postalCode = $request->input('postal');
         $land->planningNumber = $request->input('planNo');
 
