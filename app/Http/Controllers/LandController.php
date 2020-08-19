@@ -17,7 +17,7 @@ class LandController extends Controller
      */
     public function index()
     {
-        $id = 31; //farmer id
+        $id = 31; //farmer id - static - not integrated to view farmer details view
 
         //fetch data 
         $farmer = Farmer::where('id', $id)->first(); //farmer name
@@ -32,7 +32,8 @@ class LandController extends Controller
                 'firstName' => $farmer->firstName, 
                 'lastName' => $farmer->lastName, 
                 'landRecords' => $landRecords, 
-                'count' => $count
+                'count' => $count,
+                'farmerID' => $id
             )
         ); //view land records
 
@@ -61,7 +62,10 @@ class LandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Delete all records
+        $fid = $request->input('farmerid'); //fetch hidden field data
+        DB::table('lands')->where('farmer_id', '=', $fid)->delete();
+        return redirect('home'); //display land records page
     }
 
     /**
