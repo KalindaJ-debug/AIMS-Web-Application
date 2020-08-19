@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@index');
 Route::get('/index', 'PagesController@index');
 
-
 //contact us
 Route::get('/contact', 'PagesController@contact');
 
@@ -30,8 +29,13 @@ Route::get('/map', 'PagesController@map');
 //adminharvest
 Route::get('/adminharvest', 'PagesController@adminharvest');
 
+//editpage
+Route::get('/edit',function(){
+    return view('auth.edit');
+});
 
-
+//user controller
+Route::resource('adminuser', 'UserController');
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
 Route::resource('crop', 'CropController');

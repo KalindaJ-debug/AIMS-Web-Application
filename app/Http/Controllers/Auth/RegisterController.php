@@ -36,8 +36,8 @@ class RegisterController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('roleCheck');
+        //$this->middleware('auth');
+        //$this->middleware('roleCheck');
     }
 
     /**
@@ -89,6 +89,6 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return redirect('register');
+        return redirect('register')->with('success','an email has been sent to the registered email');
     }
 }
