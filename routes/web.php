@@ -19,12 +19,11 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'PagesController@index');
 Route::get('/index', 'PagesController@index');
 
-
 //contact us
 Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('roleCheck');
+Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('auth','roleCheck','verified');
 
 //map
 Route::get('/map', 'PagesController@map');
@@ -32,6 +31,7 @@ Route::get('/map', 'PagesController@map');
 //adminharvest
 Route::get('/adminharvest', 'PagesController@adminharvest');
 
+<<<<<<< HEAD
 //data Entry
 Route::get('/dataEntry', 'DataController@index');
 Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
@@ -45,7 +45,15 @@ Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
 
 //device view
 //Route::get("/device","deviceController@index")->name('device');
+=======
+//editpage
+Route::get('/edit',function(){
+    return view('auth.edit');
+});
+>>>>>>> User_Authentication
 
+//user controller
+Route::resource('adminuser', 'UserController');
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
 Route::resource('crop', 'CropController');

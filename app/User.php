@@ -10,6 +10,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,4 +37,5 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

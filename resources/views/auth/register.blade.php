@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+
+    <div class="col-sm-12">
+        @if(session()->get('success'))
+          <div class="alert alert-success">
+            {{ session()->get('success') }}  
+          </div>
+        @endif
+      </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -15,7 +23,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus style="text-transform: capitalize;" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +37,7 @@
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus style="text-transform: capitalize;" >
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +51,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('UserName') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('name') }}" required autocomplete="name" autofocus style="text-transform: capitalize;" >
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">

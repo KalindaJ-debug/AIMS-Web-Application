@@ -39,9 +39,17 @@ class RegisterController extends Controller
      *
      * @return void
      */
+<<<<<<< HEAD
     public function __construct()
     {
         $this->middleware('guest');
+=======
+
+    public function __construct()
+    {
+        //$this->middleware('auth');
+        //$this->middleware('roleCheck');
+>>>>>>> User_Authentication
     }
 
     /**
@@ -49,7 +57,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::REGISTER; 
+    protected $redirectTo = RouteServiceProvider::HOME; 
 
     /**
      * Get a validator for an incoming registration request.
@@ -92,6 +100,6 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return redirect('register');
+        return redirect('register')->with('success','an email has been sent to the registered email');
     }
 }
