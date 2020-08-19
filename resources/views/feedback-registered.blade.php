@@ -92,7 +92,7 @@
             <form id="contact-form" name="contact-form" action="{{action('FeedbackController@adminAdd')}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
 
-                <input type="hidden" name="userID" value="{{ $userID }}">
+                <input type="hidden" name="userID" value="{{ $userID ?? '' }}">
                 <!--Grid row-->
                 <div class="row">
 
@@ -100,7 +100,7 @@
                     <div class="col-md-6">
 
                             <label for="name" class="">Your Name</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" value="{{ $name }}" readonly required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" value="{{session('data')['user']}}" readonly required>
 
                     </div>
                     <!--Grid column-->
@@ -115,7 +115,7 @@
                             <small id="emailHelp" class="form-text text-muted"> <i class="fa fa-user-secret mr-2" aria-hidden="true"></i>This data is protected under confidentiality.</small>
                           </div>
 
-                            <input type="text" id="email" name="email" class="form-control" placeholder="name@email.com" value="{{ $email }}" required readonly>
+                            <input type="text" id="email" name="email" class="form-control" placeholder="name@email.com" value="{{ $email ?? '' }}" required readonly>
                         </div>
                     </div>
                     <!--Grid column-->
