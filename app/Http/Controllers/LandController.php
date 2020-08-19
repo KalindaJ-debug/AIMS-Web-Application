@@ -127,7 +127,7 @@ class LandController extends Controller
         $land->landExtend = $request->input('hectares');
 
         $land->save();
-        return redirect('home'); 
+        return redirect('land-records'); 
     }
 
     /**
