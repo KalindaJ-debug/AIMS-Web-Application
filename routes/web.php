@@ -31,7 +31,6 @@ Route::get('/map', 'PagesController@map');
 //adminharvest
 Route::get('/adminharvest', 'PagesController@adminharvest');
 
-<<<<<<< HEAD
 //data Entry
 Route::get('/dataEntry', 'DataController@index');
 Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
@@ -45,12 +44,10 @@ Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
 
 //device view
 //Route::get("/device","deviceController@index")->name('device');
-=======
 //editpage
 Route::get('/edit',function(){
     return view('auth.edit');
 });
->>>>>>> User_Authentication
 
 //user controller
 Route::resource('adminuser', 'UserController');
@@ -153,10 +150,7 @@ Route::get('/land-records', function () {
 Route::get('/land-update', function () {
     return view('land-record-update');
 });
-<<<<<<< HEAD
-=======
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> a45ed49dc0d03ab9be0ce4fede306c395eae6717

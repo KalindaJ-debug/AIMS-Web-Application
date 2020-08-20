@@ -102,8 +102,9 @@
 
                             <div class="col-md-6">
                                 <select id="role" class="form-control" name="role" required>
-                                    <option value="AI">AI</option>
-                                    <option value="admin">Admin</option>
+                                    <option value="AI">Agricultural Instructor</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="FO">Field Officer</option>
                                 </select>
                             </div>
                         </div>
