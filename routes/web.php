@@ -23,7 +23,7 @@ Route::get('/index', 'PagesController@index');
 Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('auth','roleCheck','verified');
+Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('auth','roleCheck');
 
 //map
 Route::get('/map', 'PagesController@map');
@@ -47,12 +47,12 @@ Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware
 
 
 //user controller
-Route::resource('adminuser', 'UserController')->middleware('auth');
+Route::resource('adminuser', 'UserController')->middleware('auth','roleCheck','verified');
 Route::resource('approval', 'ApprovalController')->middleware('auth'); 
-Route::resource('registration', 'RegistrationController')->middleware('auth');; 
-Route::resource('crop', 'CropController')->middleware('auth');
-Route::resource('farmer', 'FarmerController')->middleware('auth');
-Route::resource('land', 'LandController')->middleware('auth');
+Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');; 
+Route::resource('crop', 'CropController')->middleware('auth','roleCheck');
+Route::resource('farmer', 'FarmerController')->middleware('auth','roleCheck');
+Route::resource('land', 'LandController')->middleware('auth','roleCheck');
 
 Route::get('/home', function () {
     return view('home');
