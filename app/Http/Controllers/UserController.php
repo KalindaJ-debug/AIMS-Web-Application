@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -40,7 +43,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -51,7 +54,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+        $users = User::find($id);
+        $response = Password::broker()->sendResetLink(['email'=>$users->email]);
+
+        if($response == Password::RESET_LINK_SENT){
+
+            return redirect('/adminuser')->with('success', 'Email Sent');
+
+        } else {
+            return redirect('/adminuser')->with('error', 'There was an error sending the email');
+        }
     }
 
     /**
@@ -75,24 +87,46 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string'],
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'role' => ['required'],
-        ]);
-
         $users = User::find($id);
+        $password = $request->input('password');
 
-        $users->name = $request->get('name');
-        $users->lastname = $request->get('lastname');
-        $users->email = $request->get('email');
-        $users->role = $request->get('role');
-
-        $users->save();
-
-        return redirect('/adminuser')->with('success', 'Users updated');
+        if(empty($password)){
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'lastname' => ['required', 'string'],
+                'username' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->ignore($users->id)],
+                'role' => ['required'],
+            ]);
+    
+            $users->name = $request->get('name');
+            $users->lastname = $request->get('lastname');
+            $users->email = $request->get('email');
+            $users->role = $request->get('role');
+    
+            $users->save();
+    
+            return redirect('/adminuser')->with('success', 'User updated');
+        }else{
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'lastname' => ['required', 'string'],
+                'username' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->ignore($users->id)],
+                'role' => ['required'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+    
+            $users->name = $request->get('name');
+            $users->lastname = $request->get('lastname');
+            $users->email = $request->get('email');
+            $users->role = $request->get('role');
+            $users->password = Hash::make($request->get('password'));
+    
+            $users->save();
+    
+            return redirect('/adminuser')->with('success', 'User updated');
+        }        
     }
 
     /**

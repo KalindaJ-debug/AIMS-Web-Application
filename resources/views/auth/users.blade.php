@@ -93,6 +93,13 @@
           </div>
         @endif
     </div>
+    <div class="col-sm-12">
+      @if(session()->get('error'))
+        <div class="alert alert-danger">
+          {{ session()->get('error') }}  
+        </div>
+      @endif
+  </div>
 
     <!-- table -->
     <div class="container-fluid">
@@ -115,7 +122,7 @@
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="home-tab">
-                <table id="datatable" class="display">
+                <table id="table_id" class="display">
                   <thead>
                     <tr>
                       <th >ID</th>
@@ -137,14 +144,18 @@
                             <td>{{$user->lastname}}</td>
                             <td>{{$user->username}}</td>
                             <td>{{$user->email}}</td>
-                            <td></td>
+                            <td><form id="form-reset"action="{{ route('adminuser.show', $user->id)}}" method="get">
+                                @method('PATCH') 
+                                @csrf
+                                <button class="btn btn-primary reset">Reset Password</button>
+                              </form></td>
                             <td>{{$user->role}}</td>
                             <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
                             <td>
                                 <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger delete" type="submit">Delete</button>
+                                    <button class="btn btn-danger delete">Delete</button>
                                 </form>
                         </tr>
                     @endforeach 
@@ -169,14 +180,18 @@
                     <tbody>
                       @foreach($users as $user)
 
-                        @if($user->role == 'admin')
+                        @if($user->role == 'Admin')
                           <tr>
                               <th>{{$user->id}}</th>
                               <td>{{$user->name}}</td>
                               <td>{{$user->lastname}}</td>
                               <td>{{$user->username}}</td>
                               <td>{{$user->email}}</td>
-                              <td></td>
+                              <td><form id="form-reset"action="{{ route('adminuser.show', $user->id)}}" method="get">
+                                @method('PATCH') 
+                                @csrf
+                                <button class="btn btn-primary reset">Reset Password</button>
+                              </form></td>
                               <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
                               <td>
                                   <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
@@ -215,7 +230,11 @@
                                 <td>{{$user->lastname}}</td>
                                 <td>{{$user->username}}</td>
                                 <td>{{$user->email}}</td>
-                                <td></td>
+                                <td><form id="form-reset"action="{{ route('adminuser.show', $user->id)}}" method="get">
+                                  @method('PATCH') 
+                                  @csrf
+                                  <button class="btn btn-primary reset">Reset Password</button>
+                                </form></td>
                                 <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">View</a></td>
                                 <td>
                                     <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
@@ -254,7 +273,11 @@
                                           <td>{{$user->lastname}}</td>
                                           <td>{{$user->username}}</td>
                                           <td>{{$user->email}}</td>
-                                          <td></td>
+                                          <td><form id="form-reset"action="{{ route('adminuser.show', $user->id)}}" method="get">
+                                            @method('PATCH') 
+                                            @csrf
+                                            <button class="btn btn-primary reset">Reset Password</button>
+                                          </form></td>
                                           <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
                                           <td>
                                               <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
@@ -285,13 +308,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 
-
-    <script>
-        $(document).ready( function () {
-            $('#datatable').DataTable();
-        } );
-    </script>
     <script type="text/javascript">
+
+      
+
+      $(document).ready( function () {
+          $('#table_id').DataTable();
+      } );
+
       $('.delete').confirm({
           title: 'Confirm!',
           content: 'Are you sure?',
@@ -306,7 +330,19 @@
           }
       });
 
-
-    </script>
+      $('.reset').confirm({
+          title: 'Confirm!',
+          content: 'Are you sure?',
+          buttons: {
+              confirm: function () {
+                  $.alert('processing');
+                  document.getElementById("form-reset").submit();
+              },
+              cancel: function () {
+                  $.alert('Canceled!');
+              },
+          }
+      });
+  </script>
   </body>
 </html>

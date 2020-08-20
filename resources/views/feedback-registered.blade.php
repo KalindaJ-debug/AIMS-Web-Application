@@ -25,7 +25,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif; background-color: white;">
     <!-- header begins -->
-    @include('layouts.headerfo')
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -89,10 +89,11 @@
 
         <!--Grid column-->
         <div class="col-md-10 mb-md-0 mb-5 ml-5">
-            <form id="contact-form" name="contact-form" action="{{action('FeedbackController@adminAdd')}}" method="post" enctype="multipart/form-data">
+            <form id="contact-form" name="contact-form" action="{{action('FeedbackController@storeRegistered')}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
+              @include('inc.messages')
 
-                <input type="hidden" name="userID" value="{{ $userID ?? '' }}">
+                <input type="hidden" name="userID" value="{{ $userID ?? ''}}">
                 <!--Grid row-->
                 <div class="row">
 
@@ -100,7 +101,7 @@
                     <div class="col-md-6">
 
                             <label for="name" class="">Your Name</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" value="{{session('data')['user']}}" readonly required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" value="{{ $name ?? ''}}" readonly required>
 
                     </div>
                     <!--Grid column-->
