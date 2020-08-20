@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\FeedbackPublic;
 use App\FeedbackAdmin;
+use App\User;
 
 class FeedbackController extends Controller
 {
@@ -87,8 +88,8 @@ class FeedbackController extends Controller
         $feedbackRegistered = new FeedbackAdmin;
         $users = User::where('id', $request->input('id'))->first();
 
-        $feedbackRegistered->name = Auth::user()->name;
-        $feedbackRegistered->email = Auth::user()->email;
+        // $feedbackRegistered->name = $users->name;
+        // $feedbackRegistered->email = $users->email;
         $feedbackRegistered->message = $request->input('message');
 
         $feedbackRegistered->save();
@@ -107,10 +108,19 @@ class FeedbackController extends Controller
     //Delete
     public function destroyPublic($id){
 
-        dd($id);
+        
         $feedbackPublic = FeedbackPublic::find($id);
-        $feedbackPublic->delete();
-        return redirect('/feedback-view-public');
+        $result = $feedbackPublic->delete();
+        
+        return redirect('feedback-view-public');
+
+    //     $feedbackPublic = FeedbackPublic::find($id);
+    //     $feedbackPublic->delete();
+    //     return response()->json([
+    //     'message' => 'Data deleted successfully!'
+
+    //   ]);
+
     }
 
 
