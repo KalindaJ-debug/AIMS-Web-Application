@@ -26,7 +26,7 @@
   <body style="font-family: 'Raleway', sans-serif; background-color: white;">
 
     <!-- header begins -->
-    @include('layouts.headerAdmin')
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->

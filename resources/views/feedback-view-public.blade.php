@@ -32,7 +32,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif; background-color: white;">
     <!-- header begins -->
-    @include('layouts.headerAdmin')
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -74,9 +74,11 @@
       						<th>Subject</th>
       						<th>Message</th>
       						<th>Actions</th>
+
       					</tr>
       				</thead>
               <tbody>
+                
               @if(count($feedbackPublic) > 0)
                 @foreach($feedbackPublic as $fPublic)
                 
@@ -92,11 +94,17 @@
                   <td>{{$fPublic->email}}</td>
                   <td>{{$fPublic->subject}}</td>
                   <td>{{$fPublic->message}}</td>
-
+                  
                   <td>
+
+                  <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                  <!-- <form action="" method="POST">
+                  @csrf
       							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
       							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal" data-id="{{$fPublic->id}}"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
+                  </form>  -->
+                  </td>
+                  <td><input id="dataId" type="hidden" value="{{$fPublic->id}}"></input></td>
       					</tr>
                 @endforeach
                 
@@ -109,24 +117,10 @@
               </tbody>
               
             </table>
-            
+              <!-- Pagination -->
               {{$feedbackPublic->links()}}
               <div class="clearfix">
-              </div>
-            
-      			<!-- <div class="clearfix">
-      				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-      				<ul class="pagination">
-      					<li class="page-item disabled"><a href="#">Previous</a></li>
-      					<li class="page-item"><a href="#" class="page-link">1</a></li>
-      					<li class="page-item"><a href="#" class="page-link">2</a></li>
-      					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-      					<li class="page-item"><a href="#" class="page-link">4</a></li>
-      					<li class="page-item"><a href="#" class="page-link">5</a></li>
-      					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-      				</ul>
-            </div> -->
-            
+              </div>            
       		</div>
       	</div>
       </div>
@@ -183,7 +177,8 @@
      <div id="deleteSelectedFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form id="deleteFeedbackForm" method="post" action="{{action('FeedbackController@destroyPublic')}}">
+          <form method="post" action="{{url('FeedbackController@destroyPublic', $fPublic->id) }}" name="delete">
+            @method('delete');
             {{ csrf_field() }}
             <div class="modal-header">
               <h4 class="modal-title">Delete Feedback Records</h4>
@@ -191,7 +186,7 @@
             </div>
             <div class="modal-body">
               <img src="assets/img/delete.png" alt="delete" style="margin-left:350px;margin-top:20px;">
-              <input type="hidden" name="function" value="delete">
+              <input type="hidden" method="DELETE">
               <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete these feedback record(s)?</p>
               <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
             </div>
@@ -266,36 +261,4 @@
        });
 
      </script>
-
-
-     <!-- Show single record in View Modal -->
-     <script type="text/javascript">
-        
-        $(document).ready(function(){
-
-          var table = $('#datatable').DataTable();
-
-          table.on('click', '.edit', function() {
-            $tr = $(this).closest('tr');
-            if ($($tr).hasClass('child')){
-              $tr = $tr.prev('.parent');
-            }
-
-            var data = table.row($tr).data();
-            console.log(data);
-
-            $('#name').val(data[1]);
-            $('#email').val(data[2]);
-            $('#subject').val(data[3]);
-            $('#message').val(data[4]);
-
-            $('#viewFeedbackForm').attr('action', '/edit/'+data[0]);
-            $('#viewFeedback').modal('show');
-          });
-        });
-     </script>
-
-
-
-
   </body>
