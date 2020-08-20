@@ -29,4 +29,7 @@ class PagesController extends Controller
         return view('map');
     }
 
+    public function register(){
+        return view('auth.register');
+    }
 }

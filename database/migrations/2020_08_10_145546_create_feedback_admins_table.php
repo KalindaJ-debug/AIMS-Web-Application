@@ -15,12 +15,12 @@ class CreateFeedbackAdminsTable extends Migration
     {
         Schema::create('feedback_admins', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('dataEntry')->nullable(); 
             $table->string('dataApproval')->nullable();
             $table->string('login')->nullable();
             $table->string('dataReport')->nullable();
-            $table->string('description'); 
+            $table->string('message'); 
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
