@@ -18,7 +18,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->middleware('verified');
         $users = User::all();
 
         //dd($users['0']);
