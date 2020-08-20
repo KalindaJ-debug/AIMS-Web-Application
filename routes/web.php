@@ -47,10 +47,6 @@ Route::get('/land-record-update/{id}', function($id){ return view('land-record-u
 
 Route::get('/land-registration', 'RegistrationController@show')->name('land-registration');
 
-// Route::match(['get', 'post'], 'land-registration/{id}', function($id) {
-//     return view('land-registration').$id;
-// });
-
 Route::get('/land-form-success/{id}', function ($id) {
     return view('land-form-success')->with($id);
 });
