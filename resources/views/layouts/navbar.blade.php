@@ -38,6 +38,15 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Other Field Crops</a>
         </li>
+        @guest
+          @else
+            @if (Auth::user()->role == 'Admin')
+              <li class="nav-item">
+              <a class="nav-link" href="{{url('admindash')}}">Admin Dashboard</a>
+              </li>
+            @endif
+        @endguest
+        
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Crops</a>
           <div class="dropdown-menu z-index-dropdown" aria-labelledby="dropdown01">

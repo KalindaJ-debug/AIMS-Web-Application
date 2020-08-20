@@ -51,7 +51,7 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Logout from AIMS"><i class="fas fa-sign-in-alt mr-3"></i>Log Out</a>
           @endguest<!-- buttons end -->
-          <a href="#" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Return to Language Options"><i class="fas fa-language mr-3"></i>Language</a>
+        <a href="{{url('index')}}" class="btn btn-light" style="background-color:#10391C;color:white;width:300px;" data-toggle="tooltip" data-placement="top" title="Return to Language Options"><i class="fas fa-language mr-3"></i>Language</a>
 
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               @csrf

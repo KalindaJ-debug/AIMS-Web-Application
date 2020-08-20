@@ -27,8 +27,8 @@
         background: transparent;
       }
       .admin h1{
-        font-size: 7vw;
-        color: white;
+        font-size: 3vw;
+        color: black;
         font-family: 'Raleway', sans-serif;
       }
     </style>
@@ -77,16 +77,15 @@
       </div>
     </nav>
     <!-- end of nav bar -->
-    <div class="wrapper">
+    {{-- <div class="wrapper">
       <div class="parallax" style="height: 18vh; width: 100%">
         <div class="parallax-window" data-parallax="scroll" data-image-src="assets/img/rice.jpg"></div>
       </div>
-    </div>
+    </div> --}}
 
-    <div class="heading d-flex justify-content-center" style="margin:0 auto; height: 28vh;">
-      <span class="admin"><h1>Hello Admin</h1></span>
+    <div class="heading d-flex justify-content-center" style="margin:0 auto; margin-top:80px;">
+    <span class="admin"><h1>Update {{$users->username}}</h1></span>
     </div>
-    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -211,8 +210,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
+  <!-- footer begins -->
+    @include('layouts.footer')
+  <!-- footer ends -->
     <script src="assets/js/pie.js"></script>
     <!-- bootstrap CDN and jQuery CDN-->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

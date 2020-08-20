@@ -55,7 +55,7 @@ class LoginController extends Controller
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
         {
-            if(auth()->user()->role == 'admin'){
+            if(auth()->user()->role == 'Admin'){
                 return redirect()->route('admindash');
             }else{
                 return redirect()->route('home'); 

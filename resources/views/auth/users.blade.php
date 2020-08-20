@@ -15,12 +15,6 @@
     <link rel="stylesheet" href="CSS/plant.css">
     <!-- datatable -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-
-
-  
- 
-
     <style media="screen">
       .parallax-window {
         height: 55vh;
@@ -122,7 +116,7 @@
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="home-tab">
-                <table id="table_id" class="display">
+                <table id="user_table" class="display table table-hover">
                   <thead>
                     <tr>
                       <th >ID</th>
@@ -132,7 +126,8 @@
                       <th >Email</th>
                       <th >Password</th>
                       <th >Role</th>
-                      <th >Other</th>
+                      <th >Edit</th>
+                      <th >Delete</th>
                     </tr>
                   </thead>
                         
@@ -164,7 +159,7 @@
                 <!-- end of table -->
               </div>
               <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="profile-tab">
-                <table class="table table-hover" class="display" id="adminTable">
+                <table class="display table table-hover" id="admin_table">
                     <thead>
                       <tr>
                         <th >ID</th>
@@ -173,7 +168,8 @@
                         <th >Username</th>
                         <th >Email</th>
                         <th >Password</th>
-                        <th >Other</th>
+                        <th >Edit</th>
+                        <th >Delete</th>
                       </tr>
                     </thead>
                           
@@ -207,7 +203,7 @@
 
               </div>
               <div class="tab-pane fade" id="FO" role="tabpanel" aria-labelledby="contact-tab">
-                <table class="table table-hover" class="display" id="FOTable">
+                <table class="display table table-hover" id="FO_table">
                       <thead>
                         <tr>
                           <th >ID</th>
@@ -216,7 +212,8 @@
                           <th >Username</th>
                           <th >Email</th>
                           <th >Password</th>
-                          <th >Other</th>
+                          <th >Edit</th>
+                          <th >Delete</th>
                         </tr>
                       </thead>
                             
@@ -250,7 +247,7 @@
             </div>
 
                         <div class="tab-pane fade" id="AI" role="tabpanel" aria-labelledby="profile-tab">
-                            <table class="table table-hover"class="display" id="AITable">
+                            <table class="display table table-hover" id="AI_table">
                                 <thead>
                                   <tr>
                                     <th >ID</th>
@@ -259,7 +256,8 @@
                                     <th >Username</th>
                                     <th >Email</th>
                                     <th >Password</th>
-                                    <th >Other</th>
+                                    <th >Edit</th>
+                                    <th >Delete</th>
                                   </tr>
                                 </thead>
                                       
@@ -307,14 +305,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script type="text/JavaScript">
+      $(document).ready( function () {
+          $('#user_table').DataTable();
+          $('#admin_table').DataTable();
+          $('#FO_table').DataTable();
+          $('#AI_table').DataTable();
+      } );
+    </script>
 
     <script type="text/javascript">
-
-      
-
-      $(document).ready( function () {
-          $('#table_id').DataTable();
-      } );
 
       $('.delete').confirm({
           title: 'Confirm!',

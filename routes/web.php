@@ -29,11 +29,11 @@ Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middle
 Route::get('/map', 'PagesController@map');
 
 //adminharvest
-Route::get('/adminharvest', 'PagesController@adminharvest');
+Route::get('/adminharvest', 'PagesController@adminharvest')->middleware('auth');
 
 //data Entry
-Route::get('/dataEntry', 'DataController@index');
-Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
+Route::get('/dataEntry', 'DataController@index')->middleware('auth');
+Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware('auth');
 
 
 //User admin
@@ -44,18 +44,15 @@ Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
 
 //device view
 //Route::get("/device","deviceController@index")->name('device');
-//editpage
-Route::get('/edit',function(){
-    return view('auth.edit');
-});
+
 
 //user controller
-Route::resource('adminuser', 'UserController');
-Route::resource('approval', 'ApprovalController'); 
-Route::resource('registration', 'RegistrationController'); 
-Route::resource('crop', 'CropController');
-Route::resource('farmer', 'FarmerController');
-Route::resource('land', 'LandController');
+Route::resource('adminuser', 'UserController')->middleware('auth');
+Route::resource('approval', 'ApprovalController')->middleware('auth'); 
+Route::resource('registration', 'RegistrationController')->middleware('auth');; 
+Route::resource('crop', 'CropController')->middleware('auth');
+Route::resource('farmer', 'FarmerController')->middleware('auth');
+Route::resource('land', 'LandController')->middleware('auth');
 
 Route::get('/home', function () {
     return view('home');
@@ -130,9 +127,9 @@ Route::get('feedback-view-public', 'FeedbackController@indexPublic');
 Route::get('feedback', 'FeedbackController@createPublic');
 Route::post('feedback', 'FeedbackController@storePublic');
 
-Route::get('feedback-view', 'FeedbackController@indexRegistered');
-Route::get('feedback-registered', 'FeedbackController@createRegistered');
-Route::post('feedback-registered', 'FeedbackController@storeRegistered');
+Route::get('feedback-view', 'FeedbackController@indexRegistered')->middleware('auth');
+Route::get('feedback-registered', 'FeedbackController@createRegistered')->middleware('auth');
+Route::post('feedback-registered', 'FeedbackController@storeRegistered')->middleware('auth');
 
 //Route::get('feedback-view-public', 'FeedbackController@show');
 //Route::post('feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
