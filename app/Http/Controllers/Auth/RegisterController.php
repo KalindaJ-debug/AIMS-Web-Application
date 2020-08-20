@@ -38,6 +38,8 @@ class RegisterController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('roleCheck');
+        $this->middleware('verified');
+
     }
 
     /**
