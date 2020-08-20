@@ -32,9 +32,13 @@ Route::get('/map', 'PagesController@map');
 Route::get('/adminharvest', 'PagesController@adminharvest')->middleware('auth');
 
 //data Entry
-Route::get('/dataEntry', 'DataController@index')->middleware('auth');
-Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware('auth');
-
+//Route::get('/dataEntry', 'DataController@index')->middleware('auth');
+//Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware('auth');
+Route::get('/crop-data', 'DataController@index');
+Route::get('/Entry-crop-data', 'DataController@create');
+Route::get('/crop-data/{id}', 'DataController@show');
+Route::get('/crop-data/{id}/delete', 'DataController@destroy');
+Route::resource('crop-data', 'DataController');
 
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
