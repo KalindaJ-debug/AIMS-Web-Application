@@ -49,7 +49,6 @@ class RegistrationController extends Controller
         {            
             $request->validate([
                 'email' => 'required|unique:farmers,email|email:rfc,dns',
-                'nic' => 'required|min:10|max:11'
             ]);
 
             $farmer = new Farmer; 

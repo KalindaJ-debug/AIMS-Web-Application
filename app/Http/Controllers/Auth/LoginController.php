@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+<<<<<<< HEAD
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+=======
+>>>>>>> a45ed49dc0d03ab9be0ce4fede306c395eae6717
 
 class LoginController extends Controller
 {
@@ -36,5 +41,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function login(Request $request)
+    {
+        $input = $request->all();
+
+        $validate = Validator::make($input, [
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $message = $validate->errors();
+        $message = "No such credentials match records";
+
+        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
+        {
+            if(auth()->user()->role == 'admin'){
+                return redirect()->route('admindash');
+            }else{
+                return redirect()->route('home'); 
+            }
+        }else{
+            return redirect()->route('login')->withErrors(['username' => 'username is wrong']);
+        }
     }
 }

@@ -19,12 +19,11 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'PagesController@index');
 Route::get('/index', 'PagesController@index');
 
-
 //contact us
 Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('roleCheck');
+Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('auth','roleCheck','verified');
 
 //map
 Route::get('/map', 'PagesController@map');
@@ -32,7 +31,26 @@ Route::get('/map', 'PagesController@map');
 //adminharvest
 Route::get('/adminharvest', 'PagesController@adminharvest');
 
+//data Entry
+Route::get('/dataEntry', 'DataController@index');
+Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
 
+
+//User admin
+//Route::get('/user',"UserController@index")->name('user');
+
+//userView Admin
+//Route::get("/userView","viewController@index")->name('userView');
+
+//device view
+//Route::get("/device","deviceController@index")->name('device');
+//editpage
+Route::get('/edit',function(){
+    return view('auth.edit');
+});
+
+//user controller
+Route::resource('adminuser', 'UserController');
 Route::resource('approval', 'ApprovalController'); 
 Route::resource('registration', 'RegistrationController'); 
 Route::resource('crop', 'CropController');
@@ -102,9 +120,28 @@ Route::get('/croplist', function () {
     return view('croplist');
 });
 
+//route needed for authentication purposes
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::resource('feedback','FeedbackController');
+Route::get('feedback-view-public', 'FeedbackController@indexPublic');
+Route::get('feedback', 'FeedbackController@createPublic');
+Route::post('feedback', 'FeedbackController@storePublic');
+
+Route::get('feedback-view', 'FeedbackController@indexRegistered');
+Route::get('feedback-registered', 'FeedbackController@createRegistered');
+Route::post('feedback-registered', 'FeedbackController@storeRegistered');
+
+//Route::get('feedback-view-public', 'FeedbackController@show');
+Route::post('feedback-view-public', 'FeedbackController@destroyPublic');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('/land-records', function () {
     return view('land-records');

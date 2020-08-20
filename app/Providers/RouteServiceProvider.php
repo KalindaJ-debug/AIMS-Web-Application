@@ -24,6 +24,13 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     /**
+     * The path to the register route of the application.
+     *
+     * @var string
+     */
+    public const REGISTER = '/register';
+
+    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
