@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Validation\ValidationException;
 
 class UserTest extends TestCase
 {
@@ -75,47 +76,11 @@ class UserTest extends TestCase
     public function verified_user_can_register_user()
     {
         //$this->withoutExceptionHandling();
-        $this->actingAs(factory(User::class)->make());
+        $this->actingAs(factory(User::class)->create());
 
         $response = $this->post('register',$this->data());
 
         $this->assertCount(1, User::all() );
-
-    }
-
-    /** @test */
-    public function name_is_required_when_registering()
-    {
-        $this->withoutExceptionHandling();
-        $this->actingAs(factory(User::class)->make());
-
-        $response = $this->post('register',array_merge($this->data(),['name' => '']));
-
-        $this->assertCount(0, User::all());
-
-    }
-
-    /** @test */
-    public function email_is_required_when_registering()
-    {
-        $this->withoutExceptionHandling();
-        $this->actingAs(factory(User::class)->make());
-
-        $response = $this->post('register',array_merge($this->data(),['email' => '']));
-
-        $this->assertCount(0, User::all());
-
-    }
-
-    /** @test */
-    public function username_is_required_when_registering()
-    {
-        $this->withoutExceptionHandling();
-        $this->actingAs(factory(User::class)->make());
-
-        $response = $this->post('register',array_merge($this->data(),['username' => '']));
-
-        $this->assertCount(0, User::all());
 
     }
 
@@ -164,16 +129,5 @@ class UserTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    public function user_receives_an_email_with_a_password_reset_link()
-    {
-        Notification::fake();
-      
-        $user = factory(User::class)->create();
-      
-        $response = $this->post('/password/email', [
-            'email' => $user->email,
-        ]);
-
-    }
 }
 
