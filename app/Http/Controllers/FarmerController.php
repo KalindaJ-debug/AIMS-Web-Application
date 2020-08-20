@@ -59,6 +59,10 @@ class FarmerController extends Controller
         
             // $farmer->save();
             $request->input('id');
+            
+            $lid = $request->input('id');
+
+            return redirect('LandController@index', ['id' => $lid]);
         }
         else if ($request->input('function') == "add")
         {
