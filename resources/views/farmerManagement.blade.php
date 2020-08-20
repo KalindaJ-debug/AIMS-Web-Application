@@ -299,7 +299,7 @@
                                 <p>Click Continue to go to land details</p>  
                         </div>
                         <div class="modal-footer">
-                                <button type="submit" class="btn btn-outline-danger">Continue</button>
+                                <button type="submit" class="btn btn-outline-primary">Continue</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </form>
                         </div>
@@ -342,7 +342,7 @@
 
         function landFarmer(id)
         {
-            $('#deleteFramer').modal('show');
+            $('#landFarmer').modal('show');
             document.getElementById("farmerIdLand").value = id;
         } 
     </script>
