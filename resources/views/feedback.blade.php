@@ -25,11 +25,11 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif; background-color: white;">
     <!-- header begins -->
-    
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
-    
+    @include('layouts.navbar')
     <!-- nav bar ends -->
 
      <!-- body begins -->
@@ -48,7 +48,7 @@
 
         <!--Grid column-->
         <div class="col-md-10 mb-md-0 mb-5 ml-5 mx-auto">
-            <form id="contact-form" name="contact-form" action="{{action('FeedbackController@store')}}" method="POST">
+            <form id="contact-form" name="contact-form" action="{{action('FeedbackController@storePublic')}}" method="POST">
             @csrf
             @include('inc.messages')
                 <!--Grid row-->

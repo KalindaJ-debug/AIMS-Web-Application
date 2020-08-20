@@ -39,11 +39,29 @@
 
     <body style="width:100%;">
         
-        @include('layouts.headerAdmin')
+        @include('layouts.header')
         @include('layouts.navbar')
 
         <div class="container" style="background-color:white; border-radius: 25px; padding: 20px;">
 
+            @error('email') 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong> Email already exists
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
+
+            @error('nic') 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong> Invalid NIC length
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
+        
             <div class="row">
                 <div class="col-9">
                     <h2 style="margin-top:30px;" class="display-4">Farmer Registration</h2>
@@ -64,15 +82,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">First and Last name</span>
                     </div>
-                    <input name="firstName" type="text" aria-label="First name" class="form-control" placeholder="First name" required>
-                    <input name="lastName" type="text" aria-label="Last name" class="form-control" placeholder="Last name" required>
+                    <input name="firstName" type="text" aria-label="First name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="First name" required>
+                    <input name="lastName" type="text" aria-label="Last name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="Last name" required>
                 </div>
 
                 </br>
 
                 <div class="form-group">
                     <label for="otherName">Other Names</label>
-                    <input name="otherName" type="text" class="form-control" id="otherName" placeholder="Other name">
+                    <input name="otherName" type="text" class="form-control" id="otherName" placeholder="Other name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
                 </div>
 
                 <div class="form-group">
@@ -101,7 +119,7 @@
                                 
                     <div class="form-group col-md-6">
                         <label for="nic">NIC Number</label>
-                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required>
+                        <input name="nic" type="text" class="form-control" id="nic" placeholder="XXXXXXXXXv" minlength="10" minlength="11" required pattern="[0-9]{9}[x|X|v|V]$" oninvalid="setCustomValidity('NIC format is invalid')">
                         <small id="emailHelp" class="form-text text-muted">eg.XXXXXXXXXv.</small>
                     </div>
                 </div>
@@ -169,6 +187,7 @@
                         reader.readAsDataURL(file);
                     }
                 });
+                console.log(navigator.onLine);
             });
         </script>
     </body>

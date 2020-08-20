@@ -35,7 +35,7 @@
     <!-- header begins -->
       @include('layouts.header')
     <!-- header ends -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="#">AIMS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -101,33 +101,31 @@
                       <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
                             <img src="assets/img/field.jpg" class="card-img" alt="...">
                             <div class="card-body">
-                              <h5 class="card-title">Harvest</h5>
-                              <p class="card-text">View and manage all harvest information here.</p>
-                              <a href="#" class="btn btn-primary">Manage Harvests</a>
+                              <h5 class="card-title">Harvest Entry</h5>
+                              <p class="card-text">Add new harvest information into the system</p>
+                            <a href="{{ url('dataentry') }}" class="btn btn-primary">Manage Harvests</a>
                             </div>
                       </div>
                     </div>
                     <div class="col-12 col-sm-6 d-flex justify-content-center">
                       <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
-
-                            <img src="assets/img/user.jpg" class="card-img" alt="...">
-
-                            <div class="card-body">
-                              <h5 class="card-title">Users</h5>
-                              <p class="card-text">Register or manage all users who have access to the system.</p>
-                              <a href="#" class="btn btn-primary">Manage Users</a>
-                            </div>
-                      </div>
+                        <img src="assets/img/farmer.jpg" class="card-img" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Farmers</h5>
+                          <p class="card-text">Register and manage farmers</p>
+                          <a href="{{url('farmer')}}" class="btn btn-primary">Manage Farmers</a>
+                        </div>
+                  </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12 col-sm-6 d-flex justify-content-center">
                       <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
-                            <img src="assets/img/field.jpg" class="card-img" alt="...">
+                            <img src="assets/img/harvest.png" class="card-img" alt="...">
                             <div class="card-body">
-                              <h5 class="card-title">Harvest</h5>
-                              <p class="card-text">View and manage all harvest information here.</p>
-                              <a href="#" class="btn btn-primary">Manage Harvests</a>
+                              <h5 class="card-title">Crop</h5>
+                              <p class="card-text">View and manage all Crop information here.</p>
+                            <a href="{{url('crop')}}" class="btn btn-primary">Manage Crops</a>
                             </div>
                       </div>
                     </div>
@@ -138,8 +136,8 @@
 
                             <div class="card-body">
                               <h5 class="card-title">Users</h5>
-                              <p class="card-text">Register or manage all users who have access to the system.</p>
-                              <a href="#" class="btn btn-primary">Manage Users</a>
+                              <p class="card-text">Register a new user</p>
+                            <a href="{{url('register')}}" class="btn btn-primary">Manage Users</a>
                             </div>
                       </div>
                     </div>
@@ -283,43 +281,43 @@
         <div class="row d-flex justify-content-center">
           <div class="col-12 col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
             <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
-                  <img src="assets/img/field.jpg" class="card-img" alt="...">
+                  <img src="assets/img/feedback.png" class="card-img" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Harvest</h5>
-                    <p class="card-text">View and manage all harvest information here.</p>
-                    <a href="#" class="btn btn-primary">Manage Harvests</a>
+                    <h5 class="card-title">User Feedback</h5>
+                    <p class="card-text">View and manage all user feedback information here.</p>
+                  <a href="{{url('feedback-management')}}" class="btn btn-primary">Manage Feedback</a>
                   </div>
             </div>
           </div>
           <div class="col-12 col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
             <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
 
-                  <img src="assets/img/user.jpg" class="card-img" alt="...">
+                  <img src="assets/img/office.jpg" class="card-img" alt="...">
 
                   <div class="card-body">
                     <h5 class="card-title">Users</h5>
-                    <p class="card-text">Register or manage all users who have access to the system.</p>
-                    <a href="#" class="btn btn-primary">Manage Users</a>
+                    <p class="card-text">Manage all users who have access to the system.</p>
+                  <a href="{{url('adminuser')}}" class="btn btn-primary">Manage Users</a>
                   </div>
             </div>
           </div>
           <div class="col-12 col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
             <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
-                  <img src="assets/img/farmer.jpg" class="card-img" alt="...">
+                  <img src="assets/img/farmer2.jpg" class="card-img" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Farmers</h5>
-                    <p class="card-text">Register and manage farmers</p>
-                    <a href="#" class="btn btn-primary">Manage Farmers</a>
+                    <h5 class="card-title">Requests</h5>
+                    <p class="card-text">Manage Requests</p>
+                  <a href="{{url('approval')}}" class="btn btn-primary">Manage Requests</a>
                   </div>
             </div>
           </div>
           <div class="col-12 col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
             <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
-                  <img src="assets/img/farmer.jpg" class="card-img" alt="...">
+                  <img src="assets/img/vegbg.jpg" class="card-img" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Farmers</h5>
-                    <p class="card-text">Register and manage farmers</p>
-                    <a href="#" class="btn btn-primary">Manage Farmers</a>
+                    <h5 class="card-title">All Island</h5>
+                    <p class="card-text">See descriptive map</p>
+                  <a href="{{url('map')}}" class="btn btn-primary">See More</a>
                   </div>
             </div>
           </div>
@@ -327,35 +325,10 @@
       </div>
     </div>
 
-
-<div class="container-fluid">
-  <div class="row">
-    <!--chart-->
-    <div class="col-lg-6">
-      <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 90%; margin: 0 auto;">
-        <h3>User Activity</h3>
-        <canvas id="myChart"></canvas>
-      </div>
-    </div>
-    <!--chart-->
-    <div class="col-lg-6">
-      <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 90%; margin: 0 auto;">
-        <h3>User Activity</h3>
-        <canvas id="myChart2"></canvas>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-
 <!-- footer begins -->
   @include('layouts.footer')
 <!-- footer ends -->
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/pie.js"></script>
     <!-- bootstrap CDN and jQuery CDN-->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

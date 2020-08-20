@@ -53,12 +53,9 @@ class FarmerController extends Controller
         }
         else if ($request->input('function') == "land")
         {   
-            // $farmer = Farmer::where('id', $request->input('id'))->first();
-
-            // $farmer->type_id = $request->input('categoryId');
-        
-            // $farmer->save();
-            $request->input('id');
+            // $request->input('id');
+            // return redirect('land/' . $request->input('id') . '');
+            return redirect()->action('LandController@index');
         }
         else if ($request->input('function') == "add")
         {

@@ -128,6 +128,23 @@ class CropController extends Controller
         {
             if ($request->input('category') == "Category")
             {
+                $cropCheck = Crop::where('type_id', $request->input('id'))->first();
+                
+                if (!$cropCheck == null)
+                {
+                    $cropList = Crop::where('type_id', $request->input('id'))->get();
+                    foreach ($cropList as $cropValue)
+                    { 
+                        $varietyCheck = Variety::where('crop_id', $cropValue->id)->first();
+
+                        if (!$varietyCheck == null)
+                        {
+                            $variety = Variety::whereIn('crop_id', [$request->input('id')])->delete();
+                        }
+                    } 
+                    $crop = Crop::whereIn('id', [$request->input('id')])->delete();
+                }
+
                 $category = CropCategory::where('id', $request->input('id'))->first();
         
                 $category->delete();
@@ -135,6 +152,13 @@ class CropController extends Controller
 
             if ($request->input('category') == "Crop")
             {
+                $varietyCheck = Variety::where('crop_id', $request->input('id'))->first();
+
+                if (!$varietyCheck == null)
+                {
+                    $variety = Variety::whereIn('crop_id', [$request->input('id')])->delete();
+                }
+                
                 $crop = Crop::where('id', $request->input('id'))->first();
         
                 $crop->delete();

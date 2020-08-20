@@ -19,22 +19,21 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'PagesController@index');
 Route::get('/index', 'PagesController@index');
 
-
 //contact us
 Route::get('/contact', 'PagesController@contact');
 
 //admindashboard
-Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('roleCheck');
+Route::get('/admindash', 'PagesController@admindash')->name('admindash')->middleware('auth','roleCheck');
 
 //map
 Route::get('/map', 'PagesController@map');
 
 //adminharvest
-Route::get('/adminharvest', 'PagesController@adminharvest');
+Route::get('/adminharvest', 'PagesController@adminharvest')->middleware('auth');
 
 //data Entry
-Route::get('/dataEntry', 'DataController@index');
-Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
+Route::get('/dataEntry', 'DataController@index')->middleware('auth');
+Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware('auth');
 
 
 //User admin
@@ -46,11 +45,14 @@ Route::post('/dataEntry', 'DataController@store')->name('dataEntry');
 //device view
 //Route::get("/device","deviceController@index")->name('device');
 
-Route::resource('approval', 'ApprovalController'); 
-Route::resource('registration', 'RegistrationController'); 
-Route::resource('crop', 'CropController');
-Route::resource('farmer', 'FarmerController');
-Route::resource('land', 'LandController');
+
+//user controller
+Route::resource('adminuser', 'UserController')->middleware('auth','roleCheck');
+Route::resource('approval', 'ApprovalController')->middleware('auth'); 
+Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');
+Route::resource('crop', 'CropController')->middleware('auth','roleCheck');
+Route::resource('farmer', 'FarmerController')->middleware('auth','roleCheck');
+Route::resource('land', 'LandController')->middleware('auth','roleCheck');  
 
 Route::get('/home', function () {
     return view('home');
@@ -115,19 +117,29 @@ Route::get('/croplist', function () {
     return view('croplist');
 });
 
+//route needed for authentication purposes
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 //Route::resource('feedback','FeedbackController');
 Route::get('feedback-view-public', 'FeedbackController@indexPublic');
 Route::get('feedback', 'FeedbackController@createPublic');
 Route::post('feedback', 'FeedbackController@storePublic');
 
-Route::get('feedback-view', 'FeedbackController@indexRegistered');
-Route::get('feedback-registered', 'FeedbackController@createRegistered');
-Route::post('feedback-registered', 'FeedbackController@storeRegistered');
+Route::get('feedback-view', 'FeedbackController@indexRegistered')->middleware('auth');
+Route::get('feedback-registered', 'FeedbackController@createRegistered')->middleware('auth');
+Route::post('feedback-registered', 'FeedbackController@storeRegistered')->middleware('auth');
 
 //Route::get('feedback-view-public', 'FeedbackController@show');
-Route::post('feedback-view-public', 'FeedbackController@destroyPublic');
+//Route::post('feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
+
+Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
 
 
+
+
+//RAaaaaaaaaggggggggaaaaaaaaaaaavvvvvvvvvviiiiiiiiiiiiiiiii
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
