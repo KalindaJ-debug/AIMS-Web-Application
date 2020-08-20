@@ -53,21 +53,9 @@ class FarmerController extends Controller
         }
         else if ($request->input('function') == "land")
         {   
-<<<<<<< HEAD
-            // $farmer = Farmer::where('id', $request->input('id'))->first();
-
-            // $farmer->type_id = $request->input('categoryId');
-        
-            // $farmer->save();
-            $request->input('id');
-            
-            $lid = $request->input('id');
-
-            return redirect('LandController@index', ['id' => $lid]);
-=======
             // $request->input('id');
-            return redirect('land/' . $request->input('id') . '');
->>>>>>> 1629819df4de3c61994456080806b258e686ef18
+            return redirect('land-records/' . $request->input('id') . '');
+            
         }
         else if ($request->input('function') == "add")
         {

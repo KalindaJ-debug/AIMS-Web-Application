@@ -77,6 +77,30 @@ class LandController extends Controller
     public function show($id)
     {
         //
+        $lid = Land::find($id);
+        //fetch data 
+        $farmer = Farmer::where('id', $id)->first(); //farmer name
+        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->paginate(5);
+        // $landRecords = $landRecords::with('provinces')->get();
+        $count = $landRecords->total(); //number of records
+
+        if($landRecords != null){
+            //return land records
+        return view('land-records', 
+            array(
+                'firstName' => $farmer->firstName, 
+                'lastName' => $farmer->lastName, 
+                'landRecords' => $landRecords, 
+                'count' => $count,
+                'farmerID' => $id
+            )
+        ); //view land records
+
+        } //end of if
+        else{
+            return view('home');
+        }
+       
     }
 
     /**

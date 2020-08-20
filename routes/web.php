@@ -52,7 +52,7 @@ Route::resource('approval', 'ApprovalController')->middleware('auth');
 Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');; 
 Route::resource('crop', 'CropController')->middleware('auth','roleCheck');
 Route::resource('farmer', 'FarmerController')->middleware('auth','roleCheck');
-Route::resource('land', 'LandController')->middleware('auth','roleCheck');
+Route::resource('land-records', 'LandController')->middleware('auth','roleCheck');
 
 Route::get('/home', function () {
     return view('home');
