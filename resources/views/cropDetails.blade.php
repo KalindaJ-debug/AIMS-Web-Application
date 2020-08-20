@@ -39,16 +39,16 @@
 <!-- nav bar ends -->
 
 <div class="container">
-<form method="post" action="/harvestDetails" enctype="multipart/form-data">
+<form method="post" action="/cropDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
-         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Season(Yala/Maha)</label>
+        <div class="form-group row">
+            <label for="titleid" class="col-sm-3 col-form-label">Seasson(Yala/Maha)</label>
             <div class="col-sm-9">
-            <select class="form-control" name="season">
+            <select class="form-control" name="seasson">
+                  <option></option>
                   <option>Yala</option>
                   <option>Maha</option>
                 </select>
-               <!-- <input name="name" type="text" class="form-control" id="titleid" >-->
             </div>
         </div>
         <div class="form-group row">
@@ -66,19 +66,31 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Start Date</label>
             <div class="col-sm-9">
-                <input name="sdate" type="date" class="form-control" id="titleid">
+                <input name="sDate" type="date" class="form-control" id="sdate">
             </div>
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">End Date</label>
             <div class="col-sm-9">
-                <input name="edate" type="date" class="form-control" id="titleid">
+                <input name="eDate" type="date" class="form-control" id="edate">
             </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Region</label>
+            <label for="publisherid" class="col-sm-3 col-form-label">Province</label>
             <div class="col-sm-9">
-                <input name="region" type="text" class="form-control" id="titleid">
+            <select class="form-control" name="province">
+                  <option></option>
+                  <option>Western Province</option>
+                  <option>Central Province</option>
+                  <option>Eastern Province</option>
+                  <option>Northern Province</option>
+                  <option>Uva Province</option>
+                  <option>Sabaragamuwa Province</option>
+                  <option>Southern Province</option>
+                  <option>North Western Province</option>
+                  <option>North Central Province</option>
+
+                </select>
             </div>
         </div>
         <div class="form-group row">
@@ -89,26 +101,28 @@
                   <option>Colombo</option>
                   <option>Gampaha</option>
                   <option>Kaluthara</option>
+                  
                 </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Province</label>
+            <label for="titleid" class="col-sm-3 col-form-label">Region</label>
             <div class="col-sm-9">
-                <input name="Province" type="text" class="form-control" id="titleid">
+                <input name="region" type="text" class="form-control" id="titleid">
             </div>
         </div>
         <div class="form-group row">
-            <label for="releasedateid" class="col-sm-3 col-form-label">Harvest Amount</label>
+            <label for="titleid" class="col-sm-3 col-form-label">Harvest Amount</label>
             <div class="col-sm-9">
-                <input name="harvest" type="text" class="form-control" id="releasedateid">
-            </div>   
+                <input name="amount" type="text" class="form-control" id="titleid">
+            </div>
         </div>
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(Hect)</label>
             <div class="col-sm-9">
-                <input name="hect" type="text" class="form-control" id="releasedateid">
-            </div>   
+                <input name="hect" type="text" class="form-control" id="releasedateid"
+                       >
+            </div>
         </div>
         <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
@@ -117,6 +131,7 @@
         </div>
     </form>
 </div>
+
 
 <!-- footer begins -->
 @include('layouts.footer')
