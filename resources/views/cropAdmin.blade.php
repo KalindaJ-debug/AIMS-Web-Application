@@ -47,7 +47,7 @@
                         <th scope="row">{{ $categories->name }}</th>
                         <td>
                             <button type="button" class="btn btn-warning" onclick='editCategory(@json($categories->name), @json($categories->id))'><i class="fas fa-edit"></i> Edit</button>
-                            <!-- <button type="button" class="btn btn-danger" onclick='deleteCategory(@json($categories->id))'><i class="fas fa-trash"></i> Delete</button> -->
+                            <button type="button" class="btn btn-danger" onclick='deleteCategory(@json($categories->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                     @endforeach

@@ -32,9 +32,13 @@ Route::get('/map', 'PagesController@map');
 Route::get('/adminharvest', 'PagesController@adminharvest')->middleware('auth');
 
 //data Entry
-Route::get('/dataEntry', 'DataController@index')->middleware('auth');
-Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware('auth');
-
+//Route::get('/dataEntry', 'DataController@index')->middleware('auth');
+//Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware('auth');
+Route::get('/crop-data', 'DataController@index');
+Route::get('/Entry-crop-data', 'DataController@create');
+Route::get('/crop-data/{id}', 'DataController@show');
+Route::get('/crop-data/{id}/delete', 'DataController@destroy');
+Route::resource('crop-data', 'DataController');
 
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
@@ -49,7 +53,7 @@ Route::post('/dataEntry', 'DataController@store')->name('dataEntry')->middleware
 //user controller
 Route::resource('adminuser', 'UserController')->middleware('auth','roleCheck','verified');
 Route::resource('approval', 'ApprovalController')->middleware('auth'); 
-Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');; 
+Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');
 Route::resource('crop', 'CropController')->middleware('auth','roleCheck');
 Route::resource('farmer', 'FarmerController')->middleware('auth','roleCheck');
 Route::resource('land-records', 'LandController')->middleware('auth','roleCheck');
