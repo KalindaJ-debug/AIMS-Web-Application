@@ -14,4 +14,12 @@ class Land extends Model
     {
         return $this->belongsTo('App\Farmer');
     }
+
+    public function provinces(){
+        return $this->belongsTo('App\Province', 'province_id', 'id');
+    }
+
+    public function districts(){
+        return $this->belongsTo('App\District', 'district_id', 'id');
+    }
 }

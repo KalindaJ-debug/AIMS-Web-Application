@@ -12,4 +12,9 @@ class Province extends Model
     }
 
     protected $table = 'provinces';
+
+    public function land()
+    {
+        return $this->hasMany('App\Land','province_id', 'id');
+    }
 }

@@ -27,7 +27,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif;">
     <!-- header begins -->
-    @include('layouts.headerAdmin')
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -53,33 +53,21 @@
                   <h5 class="card-title">Modify Land Registration Details here</h5>
                   <br>
                   <!-- form begins here -->
-                  <form id="form-land" class="landForm" action="test.php" method="post">
-                    <p class="card-text"> Land Owner's Name </p>
-
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Full Name</span>
-                      </div>
-                      <input type="text" aria-label="First name" class="form-control" placeholder="First Name" disabled='true'>
-                      <input type="text" aria-label="Middle name" class="form-control" placeholder="Middle Name" disabled='true'>
-                      <input type="text" aria-label="Last name" class="form-control" placeholder="Last Name" disabled='true'>
-                    </div>
-                    <br>
-                    <button href="https://www.google.com/" class="btn btn-success"  data-toggle="tooltip" data-placement="right" title="Go to User Information">Change</button> <br> <hr>
-                    <!-- end of change/save button group -->
-
+                <form id="form-land" class="landForm" enctype="multipart/form-data" action="{{ url('land-records/'. $id. '') }}" method="POST">
+                  {{ csrf_field() }}  
+                  @method('PUT')
                     <!-- enter land information -->
                     <p class="card-text">Enter land location details </p>
                     <div class="input-group" aria-describedby="address">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Location</span>
                       </div>
-                      <input type="text" aria-label="AssessmentNo" class="form-control col-2" placeholder="Address No" aria-describedby="addressNo" name="addressNumber" required>
-                      <input type="text" aria-label="Street" class="form-control col-10" placeholder="Street Name" style="max-width:610px;" name="street" required>
+                    <input type="text" aria-label="AssessmentNo" class="form-control col-2" aria-describedby="addressNo" name="addressNumber" value="{{ $address }}" required>
+                      <input type="text" aria-label="Street" class="form-control col-10" value="{{ $street }}" style="max-width:610px;" name="street" required>
 
                     </div>
-                    <input type="text" aria-label="Lane" name="lane" class="form-control" placeholder="Lane Name" style="margin-left:88px;width:830px;">
-                    <input type="text" aria-label="Town" name="town" class="form-control" placeholder="Town" style="margin-left:88px;width:830px;">
+                    <input type="text" aria-label="Lane" name="lane" class="form-control" value="{{ $lane }}" style="margin-left:88px;width:830px;">
+                  <input type="text" aria-label="Town" name="town" class="form-control" value="{{ $town }}" style="margin-left:88px;width:830px;">
                     <small id="address" class="form-text text-muted">Enter location details according to the availability of each section of the original land location address</small>
                     <br>
 
@@ -89,7 +77,7 @@
                         <label class="input-group-text" for="selectCity" style="width:90px;">City</label>
                       </div>
                       <select class="custom-select" id="selectCity" name="city" required>
-                        <option selected value="none">Select City...</option>
+                        <option value="none">Select City...</option>
                         <option value="Jaffna">Jaffna</option>
                         <option value="Boralesgamuwa">Boralesgamuwa</option>
                         <option value="Kollonnawa">Kollonnawa</option>
@@ -101,31 +89,20 @@
                       </div>
                       <select class="custom-select" id="selectDistrict" name="district" required>
                         <option selected value="none">Select District...</option>
-                        <option value="Ampara">Ampara</option>
-                        <option value="Anuradhapura">Anuradhapura</option>
-                        <option value="Badulla">Badulla</option>
-                        <option value="Batticaloa">Batticaloa</option>
-                        <option value="Colombo">Colombo</option>
-                        <option value="Galle">Galle</option>
-                        <option value="Gampaha">Gampaha</option>
-                        <option value="Hambantota">Hambantota</option>
-                        <option value="Jaffna">Jaffna</option>
-                        <option value="Kalutara">Kalutara</option>
-                        <option value="Kandy">Kandy</option>
-                        <option value="Kegalle">Kegalle</option>
-                        <option value="Kilinochchi">Kilinochchi</option>
-                        <option value="Kurunegala">Kurunegala</option>
-                        <option value="Mannar">Mannar</option>
-                        <option value="Matale">Matale</option>
-                        <option value="Matara">Matara</option>
-                        <option value="Monaragala">Monaragala</option>
-                        <option value="Mullaitivu">Mullaitivu</option>
-                        <option value="Nuwara Eliya">Nuwara Eliya</option>
-                        <option value="Polonnaruwa">Polonnaruwa</option>
-                        <option value="Puttalam">Puttalam</option>
-                        <option value="Ratnapura">Ratnapura</option>
-                        <option value="Trincomalee">Trincomalee</option>
-                        <option value="Vavuniya">Vavuniya</option>
+
+                        @if($districtsList != null)
+                          
+                          @foreach ($districtsList as $item)
+
+                          @if($district == $item->id){
+                            <option selected value="{{$item->id}}">{{$item->name}}</option>
+                            }
+                            @endif
+
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+                          @endforeach
+
+                        @endif
 
                       </select>
 
@@ -135,15 +112,22 @@
                       </div>
                       <select class="custom-select" id="selectProvince" name="province" required>
                         <option selected value="none">Select Province...</option>
-                        <option value="Central">Central Province</option>
-                        <option value="Eastern">Eastern Province</option>
-                        <option value="Nothern">Nothern Province</option>
-                        <option value="Southern">Southern Province</option>
-                        <option value="Western">Western Province</option>
-                        <option value="North-Western">North-Western Province</option>
-                        <option value="North-Central">North-Central Province</option>
-                        <option value="Uva">Uva Province</option>
-                        <option value="Sabaragumawa">Sabaragumawa Province</option>
+
+                        @if($provincesList != null)
+                          
+                          @foreach ($provincesList as $item)
+
+                            @if($province == $item->id){
+                            <option selected value="{{$item->id}}">{{$item->name}}</option>
+                            }
+                            @endif
+
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+
+                          @endforeach
+
+                        @endif
+
                       </select>
 
                     </div>
@@ -197,7 +181,7 @@
                       <div class="input-group-prepend ml-3">
                         <label class="input-group-text" for="selectGN" style="width:110px;">Postal Code</label>
                       </div>
-                      <input type="text" name="postal" aria-label="PostalCode" class="form-control" placeholder="Postal Code" id="postalc" required>
+                    <input type="text" name="postal" aria-label="PostalCode" class="form-control" value="{{ $postalCode }}" id="postalc" required>
                     </div>
                     <div class="row">
                       <div class="col-9">
@@ -221,13 +205,13 @@
                         <span class="input-group-text">Land Extent in Hectares (ha) </span>
 
                       </div>
-                      <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" placeholder="XXX (ha)" required>
+                    <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" value="{{ $landExtend }}" required>
 
                       <div class="input-group-prepend">
                         <span class="input-group-text">Planning Number </span>
                       </div>
 
-                      <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" placeholder="Planning No" required>
+                    <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" value="{{ $planningNumber }}" required>
 
                     </div>
                     <br>
@@ -367,9 +351,9 @@
                     </div>
                     <!-- end of confirmation -->
                     <div class="btn-submit">
-                      <a href="landFormSubmitted.php"> <button type="button" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> </a>
+                      <button type="submit" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> 
                     </div>
-
+                    {{-- {{{ Form::hidden('_method', 'PUT') }}} --}}
                   </form>
                   <!-- end of form -->
 

@@ -54,8 +54,13 @@ class FarmerController extends Controller
         else if ($request->input('function') == "land")
         {   
             // $request->input('id');
+<<<<<<< HEAD
+            return redirect('land-records/' . $request->input('id') . '');
+            
+=======
             // return redirect('land/' . $request->input('id') . '');
             return redirect()->action('LandController@index');
+>>>>>>> 750fc53acac067ce5a5c78dea298deb334b16fa2
         }
         else if ($request->input('function') == "add")
         {

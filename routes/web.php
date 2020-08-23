@@ -56,17 +56,15 @@ Route::resource('approval', 'ApprovalController')->middleware('auth');
 Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');
 Route::resource('crop', 'CropController')->middleware('auth','roleCheck');
 Route::resource('farmer', 'FarmerController')->middleware('auth','roleCheck');
-Route::resource('land', 'LandController')->middleware('auth','roleCheck');  
+Route::resource('land-records', 'LandController')->middleware('auth','roleCheck');
 
 Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/land-registration', 'RegistrationController@show')->name('land-registration');
+Route::get('/land-record-update/{id}', function($id){ return view('land-record-update'); });
 
-// Route::match(['get', 'post'], 'land-registration/{id}', function($id) {
-//     return view('land-registration').$id;
-// });
+Route::get('/land-registration', 'RegistrationController@show')->name('land-registration');
 
 Route::get('/land-form-success/{id}', function ($id) {
     return view('land-form-success')->with($id);
@@ -147,11 +145,6 @@ Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', funct
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::get('/land-records', function () {
-    return view('land-records');
-});
 
 Route::get('/land-update', function () {
     return view('land-record-update');

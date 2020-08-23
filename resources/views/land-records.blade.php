@@ -26,7 +26,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif; background-color: white;">
     <!-- header begins -->
-    @include('layouts.headerAdmin')
+    @include('layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -37,7 +37,7 @@
      <!-- body begins -->
      <div class="content">
        <!-- feedback Management Public View  -->
-       <h1 class="display-5" style="margin-left:200px;margin-top:40px;">John Smith</h1>
+     <h1 class="display-5" style="margin-left:200px;margin-top:40px;">{{ $firstName }} {{ $lastName }} </h1>
 
        <!-- view table begins -->
        <div class="container-xl">
@@ -63,124 +63,63 @@
       								<label for="selectAll"></label>
       							</span>
       						</th>
-                            <th>No</th>
-                            <th>Address No</th>  
-                            <th>Lane / Street</th>
-                            <th>City</th>  
-                            <th>District</th>
-                            <th>Province</th>
-      						<th>Land Extent (ha)</th>
-      						<th>Actions</th>
+                      <th>No</th>
+                      <th>Address No</th>  
+                      <th>Lane</th>
+                      <th>City</th>  
+                      <th>District</th>
+                      <th>Province</th>
+                      <th>Land Extent (ha)</th>
+                      <th>Actions</th>
       					</tr>
       				</thead>
       				<tbody>
-      					<tr>
+               
+                @php
+                    $i = 0;
+                @endphp
+
+                {{-- row begins --}}
+                @foreach ($landRecords as $item)
+              <form action="land-records/{{$item->id}}/edit" method="get" name="edit">
+                <input type="hidden" name="landId" value="{{$item->id}}">
+                  {{ csrf_field() }}
+                <tr>
       						<td>
       							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
+                    <input type="checkbox" name="options[]" value="{{ $i++ }}">
       								<label for="checkbox1"></label>
       							</span>
       						</td>
-                            <td>1</td>
-                            <td>17/1</td>  
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
+                  <td>{{ $i }}</td>
+                  <td>{{ $item->addressNo }}</td>  
+      						<td>{{$item->laneName}}</td>
+                  <td>{{$item->city}}</td>
+                  <td>{{$item->districts->name}}</td>
+                  <td>{{$item->provinces->name}}</td>
+      						<td class="font-italic">{{$item->landExtend}}</td>
       						<td>
-                                <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
+                  <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
       							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
       						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox2"></label>
-      							</span>
-      						</td>
-                              <td>2</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                  <td>
-                    <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox3"></label>
-      							</span>
-      						</td>
-                              <td>3</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                            <td>
-                                <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox4"></label>
-      							</span>
-      						</td>
-                              <td>4</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                  <td>
-      							<a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox5"></label>
-      							</span>
-      						</td>
-                              <td>5</td>
-                              <td>17/1</td>
-      						<td>Araliya Lane</td>
-                            <td>Boralesgamuwa</td>
-                            <td>Colombo</td>
-                            <td>Western</td>
-      						<td class="font-italic">142537</td>
-                  <td>
-                    <a href="{{ url('land-record-update') }}"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
+                </tr>
+                @endforeach
+                {{-- row ends  --}}
+              </form>
+
       				</tbody>
       			</table>
       			<div class="clearfix">
-      				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+            <div class="hint-text">Showing <b>{{ $count }}</b> out of <b> {{ $landRecords->total() }} </b> entries</div>
       				<ul class="pagination">
-      					<li class="page-item disabled"><a href="#">Previous</a></li>
+              <li class="page-item">{{ $landRecords->links() }}</li>
+      					{{-- <li class="page-item disabled"><a href="#">Previous</a></li>
       					<li class="page-item"><a href="#" class="page-link">1</a></li>
       					<li class="page-item"><a href="#" class="page-link">2</a></li>
       					<li class="page-item active"><a href="#" class="page-link">3</a></li>
       					<li class="page-item"><a href="#" class="page-link">4</a></li>
       					<li class="page-item"><a href="#" class="page-link">5</a></li>
-      					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+      					<li class="page-item"><a href="#" class="page-link">Next</a></li> --}}
       				</ul>
       			</div>
       		</div>
@@ -198,7 +137,9 @@
      <div id="deleteSelectedFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form>
+          <form action="land-records/{{$item->id}}" method="post" name="delete">
+            @method('delete')
+            {{ csrf_field() }}
             <div class="modal-header">
               <h4 class="modal-title">Delete Registered Land Records</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -210,7 +151,7 @@
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-              <input type="submit" class="btn btn-danger" value="Delete">
+              <button type="submit" class="btn btn-danger" value="Delete">Delete </button>
             </div>
           </form>
         </div>
@@ -222,7 +163,9 @@
      <div id="deleteFeedback" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <form>
+            <form action="land-records" method="POST" name="deleteAll">
+              {{ csrf_field() }}
+            <input type="hidden" name="farmerid" value="{{$farmerID}}">
               <div class="modal-header">
                 <h4 class="modal-title">Delete All Registered Land Records</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -234,7 +177,7 @@
               </div>
               <div class="modal-footer">
                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                <input type="submit" class="btn btn-danger" value="Delete">
+                <button type="submit" class="btn btn-danger" value="Delete">Delete </button>
               </div>
             </form>
           </div>
