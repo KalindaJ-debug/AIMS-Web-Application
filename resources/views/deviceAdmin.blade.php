@@ -502,21 +502,6 @@
             document.getElementById("cropId").value = id;
         } 
 
-        function deleteCrop(id)
-        {
-            $('#deleteData').modal('show');
-            document.getElementById("deleteHeading").innerHTML = "Delete Crop";
-            document.getElementById("deleteCategoryId").value = "Crop";
-            document.getElementById("cropId").value = id;
-        } 
-
-        function deleteVariety(id)
-        {
-            $('#deleteData').modal('show');
-            document.getElementById("deleteHeading").innerHTML = "Delete Variety";
-            document.getElementById("deleteCategoryId").value = "Variety";
-            document.getElementById("cropId").value = id;
-        } 
     </script>
 </html><!doctype html>
 <html lang="en">
