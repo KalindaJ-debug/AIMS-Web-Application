@@ -159,5 +159,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('device', 'DeviceController@index');
 Route::post('device-add', 'DeviceController@addDevice');
 Route::post('device-edit', 'DeviceController@editDevice');
-Route::get('device-delete/{$id}', 'DeviceController@deleteDevice');
+Route::post('device-delete', 'DeviceController@deleteDevice');
 
