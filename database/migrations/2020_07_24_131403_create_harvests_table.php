@@ -15,29 +15,16 @@ class CreateHarvestsTable extends Migration
     {
         Schema::create('harvests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('farmer_id');
-            $table->foreign('farmer_id')->references('id')->on('farmers');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('crop_categories');
-            $table->unsignedBigInteger('crop_id');
-            $table->foreign('crop_id')->references('id')->on('crops');
-            $table->unsignedBigInteger('variety_id');
-            $table->foreign('variety_id')->references('id')->on('varieties');
-            $table->unsignedBigInteger('province_id');
-            $table->foreign('province_id')->references('id')->on('provinces');
-            $table->unsignedBigInteger('district_id');
-            $table->foreign('district_id')->references('id')->on('districts');
-            $table->unsignedBigInteger('region_id');
-            $table->foreign('region_id')->references('id')->on('regions');
+            $table->unsignedBigInteger('cultivation_id');
+            $table->foreign('cultivation_id')->references('id')->on('cultivations');
             $table->string('season')->nullable();
-            $table->date('startDate');
-            $table->date('endDate');
+            $table->date('harvestedDate');
             $table->integer('harvestedAmount');
-            $table->double('cultivatedLand', 17, 10);
+            $table->double('harvestedLand', 17, 10);
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
