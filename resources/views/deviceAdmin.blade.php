@@ -21,16 +21,51 @@
     <!-- style="background-color:#2E933C;" -->
         <script>
             $(document).ready( function () {
+                $('#userTable').DataTable();
                 $('#farmerTable').DataTable();
             });
         </script>
         
         <div class="container" style="background-color:white;">
-            <h2 class="display-4">Farmer</h2>
+            <h2 class="display-4">User Device Management</h2>
             
             </br>
 
-            <button type="button" class="btn btn-success" onclick='addDevice()'><i class="fas fa-plus"></i> Add</button>
+            <button type="button" class="btn btn-success" onclick='addUserDevice()'><i class="fas fa-plus"></i> Add</button>
+
+            <table class="table" id="userTable"> 
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Device ID</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Mac Address</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($deviceUser as $deviceUsers)
+                    <tr>
+                        <th scope="row">{{ $deviceUsers->id }}</th>
+                        <td>{{ $deviceUsers->user->name }}</td>
+                        <td>{{ $deviceUsers->user->lastname }}</td>
+                        <td>{{ $deviceUsers->macAddress }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning" onclick='editUserDevice(@json($deviceUsers->id), @json($deviceUsers->macAddress))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-danger" onclick='deleteUserDevice(@json($deviceUsers->id))'><i class="fas fa-trash"></i> Delete</button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            </br>
+
+            <h2 class="display-4">Farmer Device Management</h2>
+            
+            </br>
+
+            <button type="button" class="btn btn-success" onclick='addFarmerDevice()'><i class="fas fa-plus"></i> Add</button>
 
             <table class="table" id="farmerTable"> 
                 <thead class="thead-dark">
@@ -43,15 +78,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($device as $devices)
+                    @foreach ($deviceFarmer as $deviceFarmers)
                     <tr>
-                        <th scope="row">{{ $devices->id }}</th>
-                        <td>{{ $devices->user->name }}</td>
-                        <td>{{ $devices->user->lastname }}</td>
-                        <td>{{ $devices->macAddress }}</td>
+                        <th scope="row">{{ $deviceFarmers->id }}</th>
+                        <td>{{ $deviceFarmers->farmer->firstName }}</td>
+                        <td>{{ $deviceFarmers->farmer->lastName }}</td>
+                        <td>{{ $deviceFarmers->macAddress }}</td>
                         <td>
-                            <button type="button" class="btn btn-warning" onclick='editDevice(@json($devices->id), @json($devices->macAddress))'><i class="fas fa-edit"></i> Edit</button>
-                            <button type="button" class="btn btn-danger" onclick='deleteDevice(@json($devices->id))'><i class="fas fa-trash"></i> Delete</button>
+                            <button type="button" class="btn btn-warning" onclick='editFarmerDevice(@json($deviceFarmers->id), @json($deviceFarmers->macAddress))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-danger" onclick='deleteDevice(@json($deviceFarmers->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
                     @endforeach
@@ -60,7 +95,7 @@
 
             <!-- Add Modal -->
 
-            <div class="modal" tabindex="-1" role="dialog" id="addDevice">
+            <div class="modal" tabindex="-1" role="dialog" id="addUserDevice">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -70,7 +105,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{action('DeviceController@addDevice')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{action('DeviceController@addUserDevice')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
     
                                 <div class="form-group">
@@ -78,6 +113,45 @@
                                     <select name="userId" class="form-control">
                                         @foreach ($userAdd as $user)
                                             <option value='{{ $user->id }}'>{{ $user->name }} {{ $user->lastname }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label for="otherName">Mac Address</label>
+                                    <input name="address" type="text" class="form-control" placeholder="Mac Address">
+                                </div>
+
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-primary">Continue <i class="fas fa-arrow-right"></i></button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" tabindex="-1" role="dialog" id="addFarmerDevice">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Farmer</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('DeviceController@addFarmerDevice')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+    
+                                <div class="form-group">
+                                    <label>Farmer Details</label>
+                                    <select name="farmerId" class="form-control">
+                                        @foreach ($farmerAdd as $farmer)
+                                            <option value='{{ $farmer->id }}'>{{ $farmer->firstName }} {{ $farmer->lastName }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -129,25 +203,25 @@
 
             <!-- Edit Modal  -->
 
-            <div class="modal" tabindex="-1" role="dialog" id="editDevice">
+            <div class="modal" tabindex="-1" role="dialog" id="editUserDevice">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Edit Category</h5>
+                            <h5 class="modal-title">Edit Device</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{action('DeviceController@editDevice')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{action('DeviceController@editUserDevice')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <input type="hidden" id="editDeviceId" name="id">
+                                <input type="hidden" id="editUserDeviceId" name="id">
 
                                 <div class="form-group">
                                     <label>User Details</label>
-                                    <select name="userId" class="form-control">
-                                        @foreach ($userEdit as $user)
-                                            <option value='{{ $user->id }}'>{{ $user->name }} {{ $user->lastname }}</option>
+                                    <select name="farmerId" class="form-control">
+                                        @foreach ($farmerEdit as $farmer)
+                                            <option value='{{ $farmer->id }}'>{{ $farmer->firstName }} {{ $farmer->lastName }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -156,7 +230,7 @@
 
                                 <div class="form-group">
                                     <label for="otherName">Mac Address</label>
-                                    <input name="address" type="text" id="deviceEdit" class="form-control" placeholder="Mac Address">
+                                    <input name="address" type="text" id="deviceUserEdit" class="form-control" placeholder="Mac Address">
                                 </div>
                                 
                         </div>
@@ -169,6 +243,45 @@
                 </div>
             </div>                            
 
+            <div class="modal" tabindex="-1" role="dialog" id="editFarmerDevice">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Device</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('DeviceController@editUserDevice')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="hidden" id="editFarmerDeviceId" name="id">
+
+                                <div class="form-group">
+                                    <label>User Details</label>
+                                    <select name="farmerId" class="form-control">
+                                        @foreach ($farmerEdit as $farmer)
+                                            <option value='{{ $farmer->id }}'>{{ $farmer->firstName }} {{ $farmer->lastName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label for="otherName">Mac Address</label>
+                                    <input name="address" type="text" id="deviceFarmerEdit" class="form-control" placeholder="Mac Address">
+                                </div>
+                                
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @include('layouts.footer')
 
     </body>
@@ -177,9 +290,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
-        function addDevice()
+        function addUserDevice()
         {
-            $('#addDevice').modal('show');
+            $('#addUserDevice').modal('show');
         } 
 
         function deleteDevice(id)
@@ -188,12 +301,24 @@
             document.getElementById("deviceId").value = id;
         } 
 
-        function editDevice(id, macAddress)
+        function editUserDevice(id, macAddress)
         {
-            $('#editDevice').modal('show');
-            document.getElementById("editDeviceId").value = id;
-            document.getElementById("deviceEdit").value = macAddress;
+            $('#editUserDevice').modal('show');
+            document.getElementById("editUserDeviceId").value = id;
+            document.getElementById("deviceUserEdit").value = macAddress;
         } 
+
+        function addFarmerDevice()
+        {
+            $('#addFarmerDevice').modal('show');
+        } 
+
+        function editFarmerDevice(id, macAddress)
+        {
+            $('#editFarmerDevice').modal('show');
+            document.getElementById("editFarmerDeviceId").value = id;
+            document.getElementById("deviceFarmerEdit").value = macAddress;
+        }  
 
     </script>
 </html>
