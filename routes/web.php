@@ -138,10 +138,6 @@ Route::post('feedback-registered', 'FeedbackController@storeRegistered')->middle
 
 Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
 
-
-
-
-//RAaaaaaaaaggggggggaaaaaaaaaaaavvvvvvvvvviiiiiiiiiiiiiiiii
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
