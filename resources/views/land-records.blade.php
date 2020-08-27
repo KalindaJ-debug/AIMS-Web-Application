@@ -113,13 +113,6 @@
             <div class="hint-text">Showing <b>{{ $count }}</b> out of <b> {{ $landRecords->total() }} </b> entries</div>
       				<ul class="pagination">
               <li class="page-item">{{ $landRecords->links() }}</li>
-      					{{-- <li class="page-item disabled"><a href="#">Previous</a></li>
-      					<li class="page-item"><a href="#" class="page-link">1</a></li>
-      					<li class="page-item"><a href="#" class="page-link">2</a></li>
-      					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-      					<li class="page-item"><a href="#" class="page-link">4</a></li>
-      					<li class="page-item"><a href="#" class="page-link">5</a></li>
-      					<li class="page-item"><a href="#" class="page-link">Next</a></li> --}}
       				</ul>
       			</div>
       		</div>
@@ -137,7 +130,7 @@
      <div id="deleteSelectedFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form action="land-records/{{$item->id}}" method="post" name="delete">
+          <form action="{{$item->id}}" method="post" name="delete">
             @method('delete')
             {{ csrf_field() }}
             <div class="modal-header">
@@ -145,7 +138,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-              <img src="assets/img/delete.png" alt="delete" style="margin-left:350px;margin-top:20px;">
+            <img src="{{ url('assets/img/delete.png') }}" alt="delete" style="margin-left:350px;margin-top:20px;">
               <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete these registered land record(s)?</p>
               <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
             </div>
@@ -171,7 +164,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
               <div class="modal-body">
-                <img src="assets/img/quit.png" alt="delete" style="margin-left:350px;margin-top:20px;">
+              <img src="{{ url('assets/img/quit.png') }}" alt="delete" style="margin-left:350px;margin-top:20px;">
                 <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete all the registered land records?</p>
                 <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
               </div>
