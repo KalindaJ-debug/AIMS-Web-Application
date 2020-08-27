@@ -52,16 +52,17 @@ class DataController extends Controller
         ]);
 
         $game = new cropDetails;
+        $game->category_id = request('category_id');
         $game->name = request('name');
-        $game->variety = request('variety');
-        $game->region = request('region');
-        $game->district = request('district');
-        $game->hect = request('hect');
-        $game->sDate = request('sDate');
-        $game->seasson = request('seasson');
-        $game->province = request('province');
-        $game->amount = request('amount');
-        $game->eDate = request('eDate');
+        $game->variety_id = request('variety_id');
+        $game->region_id = request('region_id');
+        $game->district_id = request('district_id');
+        $game->cultivatedLand = request('cultivatedLand');
+        $game->startDate = request('startDate');
+        $game->season = request('season');
+        $game->province_id = request('province_id');
+        $game->harvestedAmount = request('harvestedAmount');
+        $game->endDate = request('endDate');
         $game->save();
         
         return redirect()->action('DataController@index');
