@@ -15,8 +15,10 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('farmer_id')->nullable();
+            $table->foreign('farmer_id')->references('id')->on('farmers');
             $table->string('macAddress');
             $table->timestamps();
         });

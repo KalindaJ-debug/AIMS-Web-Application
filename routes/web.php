@@ -157,7 +157,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Device Management 
 
 Route::get('device', 'DeviceController@index');
-Route::post('device-add', 'DeviceController@addDevice');
-Route::post('device-edit', 'DeviceController@editDevice');
-Route::get('device-delete/{$id}', 'DeviceController@deleteDevice');
-
+Route::post('device-user-add', 'DeviceController@addUserDevice');
+Route::post('device-user-edit', 'DeviceController@editUserDevice');
+Route::post('device-delete', 'DeviceController@deleteDevice');
+Route::post('device-farmer-add', 'DeviceController@addFarmerDevice');
+Route::post('device-farmer-edit', 'DeviceController@editFarmerDevice');
+Route::post('device-farmerManagement-add', 'DeviceController@addFarmerManagement');
+Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManagement');

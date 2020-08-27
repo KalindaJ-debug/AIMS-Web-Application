@@ -14,4 +14,9 @@ class Farmer extends Model
     {
         return $this->hasMany('App\Land');
     }
+
+    public function device()
+    {
+        return $this->hasOne('App\Device', 'id');
+    }
 }
