@@ -80,4 +80,30 @@ class DeviceController extends Controller
 
         return redirect()->action('DeviceController@index');
     }
+
+    public function addFarmerManagement(Request $request)
+    {
+        $device = new Device;
+
+        $device->farmer_id = $request->input('farmerId');
+
+        $device->macAddress = $request->input('address');
+
+        $device->save();
+
+        return redirect()->action('FarmerController@index');
+    }
+
+    public function editFarmerManagement(Request $request)
+    {
+        $device = Device::where('id', $request->input('deviceId'))->first();
+
+        $device->farmer_id = $request->input('farmerId');
+
+        $device->macAddress = $request->input('address');
+
+        $device->save();
+
+        return redirect()->action('FarmerController@index');
+    }
 }
