@@ -64,15 +64,17 @@
         @foreach($contacts as $contact)
         <tr>
             <td>{{$contact->id}}</td>
+            <td>{{$contact->season}}</td>
+            <td>{{$contact->category_id}}</td>
             <td>{{$contact->name}}</td>
             <td>{{$contact->variety}}</td>
-            <td>{{$contact->sDate}}</td>
-            <td>{{$contact->eDate}}</td>
-            <td>{{$contact->province}}</td>
-            <td>{{$contact->district}}</td>
-            <td>{{$contact->region}}</td>
-            <td>{{$contact->amount}}</td>
-            <td>{{$contact->hect}}</td>
+            <td>{{$contact->startDate}}</td>
+            <td>{{$contact->endDate}}</td>
+            <td>{{$contact->province_id}}</td>
+            <td>{{$contact->district_id}}</td>
+            <td>{{$contact->region_id}}</td>
+            <td>{{$contact->harvestedAmount}}</td>
+            <td>{{$contact->cultivatedLand}}</td>
             <td>
                 <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
             </td>
