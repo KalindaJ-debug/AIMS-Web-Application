@@ -39,16 +39,16 @@ class DataController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'variety' => 'required',
-            'region' => 'required',
-            'district' => 'required',
-            'hect' => 'required',
-            'sDate' => 'required',
-            'seasson' => 'required',
-            'province' => 'required',
-            'province' => 'required',
-            'amount' => 'required',
-            'eDate' => 'required',
+            'variety_id' => 'required',
+            'region_id' => 'required',
+            'district_id' => 'required',
+            'cultivatedLand' => 'required',
+            'startDate' => 'required',
+            'season' => 'required',
+            'category_id' => 'required',
+            'province_id' => 'required',
+            'harvestedAmount' => 'required',
+            'endDate' => 'required',
         ]);
 
         $game = new cropDetails;
