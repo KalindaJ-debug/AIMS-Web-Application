@@ -72,7 +72,7 @@ class DeviceController extends Controller
     {
         $device = Device::where('id', $request->input('id'))->first();
 
-        $device->farmer_id = $request->input('userId');
+        $device->farmer_id = $request->input('farmerId');
 
         $device->macAddress = $request->input('address');
 

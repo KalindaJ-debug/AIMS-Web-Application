@@ -51,7 +51,7 @@
                         <td>{{ $deviceUsers->user->lastname }}</td>
                         <td>{{ $deviceUsers->macAddress }}</td>
                         <td>
-                            <button type="button" class="btn btn-warning" onclick='editUserDevice(@json($deviceUsers->id), @json($deviceUsers->macAddress))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-warning" onclick='editUserDevice(@json($deviceUsers->id), @json($deviceUsers->macAddress), @json($deviceUsers->user_id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteUserDevice(@json($deviceUsers->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
@@ -85,7 +85,7 @@
                         <td>{{ $deviceFarmers->farmer->lastName }}</td>
                         <td>{{ $deviceFarmers->macAddress }}</td>
                         <td>
-                            <button type="button" class="btn btn-warning" onclick='editFarmerDevice(@json($deviceFarmers->id), @json($deviceFarmers->macAddress))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-warning" onclick='editFarmerDevice(@json($deviceFarmers->id), @json($deviceFarmers->macAddress), @json($deviceFarmers->farmer_id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteDevice(@json($deviceFarmers->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
@@ -219,7 +219,7 @@
 
                                 <div class="form-group">
                                     <label>User Details</label>
-                                    <select name="farmerId" class="form-control">
+                                    <select name="farmerId" id="userEditSelect" class="form-control">
                                         @foreach ($farmerEdit as $farmer)
                                             <option value='{{ $farmer->id }}'>{{ $farmer->firstName }} {{ $farmer->lastName }}</option>
                                         @endforeach
@@ -253,13 +253,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{action('DeviceController@editUserDevice')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{action('DeviceController@editFarmerDevice')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" id="editFarmerDeviceId" name="id">
 
                                 <div class="form-group">
-                                    <label>User Details</label>
-                                    <select name="farmerId" class="form-control">
+                                    <label>Farmer Details</label>
+                                    <select name="farmerId" id="farmerEditSelect" class="form-control">
                                         @foreach ($farmerEdit as $farmer)
                                             <option value='{{ $farmer->id }}'>{{ $farmer->firstName }} {{ $farmer->lastName }}</option>
                                         @endforeach
@@ -301,11 +301,12 @@
             document.getElementById("deviceId").value = id;
         } 
 
-        function editUserDevice(id, macAddress)
+        function editUserDevice(id, macAddress, userId)
         {
             $('#editUserDevice').modal('show');
             document.getElementById("editUserDeviceId").value = id;
             document.getElementById("deviceUserEdit").value = macAddress;
+            document.getElementById("userEditSelect").value = userId;
         } 
 
         function addFarmerDevice()
@@ -313,11 +314,12 @@
             $('#addFarmerDevice').modal('show');
         } 
 
-        function editFarmerDevice(id, macAddress)
+        function editFarmerDevice(id, macAddress, farmerId)
         {
             $('#editFarmerDevice').modal('show');
             document.getElementById("editFarmerDeviceId").value = id;
             document.getElementById("deviceFarmerEdit").value = macAddress;
+            document.getElementById("farmerEditSelect").value = farmerId;
         }  
 
     </script>
