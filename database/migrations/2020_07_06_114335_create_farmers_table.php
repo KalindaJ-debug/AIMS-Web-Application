@@ -23,7 +23,6 @@ class CreateFarmersTable extends Migration
             $table->string('password');
             $table->bigInteger('telephoneNo');
             $table->string('nic');
-            $table->string('email');
             $table->string('nicImage')->nullable();
             $table->timestamps();
         });
