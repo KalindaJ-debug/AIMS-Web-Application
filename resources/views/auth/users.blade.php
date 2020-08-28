@@ -443,7 +443,8 @@
     </div>
 
   </body>
-
+      
+  <!-- Device Functions  -->
   <script type="text/javascript">
     function deviceAdd(userId)
     {
