@@ -386,7 +386,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Device Add</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" onclick='deviceAddClose()'aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -403,7 +403,7 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-outline-primary">Continue</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" onclick='deviceAddClose()'>Close</button>
                 </form>
             </div>
           </div>
@@ -415,9 +415,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Device Add</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <h5 class="modal-title">Device Edit</h5>
+            <button type="button" class="close" data-dismiss="modal" onclick='deviceEditClose()'aria-label="Close">
+            <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
@@ -434,7 +434,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-primary">Continue</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" onclick='deviceEditClose()'>Close</button>
               </form>
             </div>
           </div>
@@ -459,6 +459,16 @@
       document.getElementById("farmerEditDeviceId").value = userId;
       document.getElementById("deviceId").value = deviceID;
       document.getElementById("addressFarmer").value = macAddress;
+    }
+
+    function deviceEditClose()
+    {
+      $('#deviceEdit').hide();
+    }
+
+    function deviceAddClose()
+    {
+      $('#deviceAdd').hide();
     }
   </script>
 
