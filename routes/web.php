@@ -164,3 +164,5 @@ Route::post('device-farmer-add', 'DeviceController@addFarmerDevice');
 Route::post('device-farmer-edit', 'DeviceController@editFarmerDevice');
 Route::post('device-farmerManagement-add', 'DeviceController@addFarmerManagement');
 Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManagement');
+Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
+Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');

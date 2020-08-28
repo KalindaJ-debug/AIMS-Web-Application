@@ -106,4 +106,30 @@ class DeviceController extends Controller
 
         return redirect()->action('FarmerController@index');
     }
+
+    public function addUserManagement(Request $request)
+    {
+        $device = new Device;
+
+        $device->user_id = $request->input('userId');
+
+        $device->macAddress = $request->input('address');
+
+        $device->save();
+
+        return redirect()->action('UserController@index');
+    }
+
+    public function editUserManagement(Request $request)
+    {
+        $device = Device::where('id', $request->input('deviceId'))->first();
+
+        $device->user_id = $request->input('userId');
+
+        $device->macAddress = $request->input('address');
+
+        $device->save();
+
+        return redirect()->action('UserController@index');
+    }
 }

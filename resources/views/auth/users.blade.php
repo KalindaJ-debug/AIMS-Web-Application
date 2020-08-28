@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="CSS/plant.css">
     <!-- datatable -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style media="screen">
       .parallax-window {
         height: 55vh;
@@ -126,6 +130,7 @@
                       <th >Email</th>
                       <th >Password</th>
                       <th >Role</th>
+                      <th >Device</th>
                       <th >Edit</th>
                       <th >Delete</th>
                     </tr>
@@ -145,6 +150,13 @@
                                 <button class="btn btn-primary reset">Reset Password</button>
                               </form></td>
                             <td>{{$user->role}}</td>
+                            <td>
+                              @if ($user->device)
+                                  <button type="button" class="btn btn-dark" onclick='deviceEdit(@json($user->id), @json($user->device->id), @json($user->device->macAddress))'><i class="fas fa-mobile"></i> Edit Device</button>
+                              @else
+                                  <button type="button" class="btn btn-dark" onclick='deviceAdd(@json($user->id))'><i class="fas fa-mobile"></i> Add Device</button>
+                              @endif
+                            </td>
                             <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
                             <td>
                                 <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
@@ -168,6 +180,7 @@
                         <th >Username</th>
                         <th >Email</th>
                         <th >Password</th>
+                        <th >Device</th>
                         <th >Edit</th>
                         <th >Delete</th>
                       </tr>
@@ -188,6 +201,13 @@
                                 @csrf
                                 <button class="btn btn-primary reset">Reset Password</button>
                               </form></td>
+                              <td>
+                                @if ($user->device)
+                                    <button type="button" class="btn btn-dark" onclick='deviceEdit(@json($user->id), @json($user->device->id), @json($user->device->macAddress))'><i class="fas fa-mobile"></i> Edit Device</button>
+                                @else
+                                    <button type="button" class="btn btn-dark" onclick='deviceAdd(@json($user->id))'><i class="fas fa-mobile"></i> Add Device</button>
+                                @endif
+                              </td>
                               <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
                               <td>
                                   <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
@@ -212,6 +232,7 @@
                           <th >Username</th>
                           <th >Email</th>
                           <th >Password</th>
+                          <th >Device</th>
                           <th >Edit</th>
                           <th >Delete</th>
                         </tr>
@@ -232,6 +253,13 @@
                                   @csrf
                                   <button class="btn btn-primary reset">Reset Password</button>
                                 </form></td>
+                                <td>
+                                  @if ($user->device)
+                                      <button type="button" class="btn btn-dark" onclick='deviceEdit(@json($user->id), @json($user->device->id), @json($user->device->macAddress))'><i class="fas fa-mobile"></i> Edit Device</button>
+                                  @else
+                                      <button type="button" class="btn btn-dark" onclick='deviceAdd(@json($user->id))'><i class="fas fa-mobile"></i> Add Device</button>
+                                  @endif
+                                </td>
                                 <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">View</a></td>
                                 <td>
                                     <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
@@ -256,6 +284,7 @@
                                     <th >Username</th>
                                     <th >Email</th>
                                     <th >Password</th>
+                                    <th >Device</th>
                                     <th >Edit</th>
                                     <th >Delete</th>
                                   </tr>
@@ -276,6 +305,13 @@
                                             @csrf
                                             <button class="btn btn-primary reset">Reset Password</button>
                                           </form></td>
+                                          <td>
+                                            @if ($user->device)
+                                                <button type="button" class="btn btn-dark" onclick='deviceEdit(@json($user->id), @json($user->device->id), @json($user->device->macAddress))'><i class="fas fa-mobile"></i> Edit Device</button>
+                                            @else
+                                                <button type="button" class="btn btn-dark" onclick='deviceAdd(@json($user->id))'><i class="fas fa-mobile"></i> Add Device</button>
+                                            @endif
+                                          </td>
                                           <td><a href="{{ route('adminuser.edit',$user->id)}}" class="btn btn-primary">Edit</a></td>
                                           <td>
                                               <form id="form-delete"action="{{ route('adminuser.destroy', $user->id)}}" method="post">
@@ -344,5 +380,85 @@
           }
       });
   </script>
+
+    <div class="modal" tabindex="-1" role="dialog" id="deviceAdd">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Device Add</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="{{action('DeviceController@addUserManagement')}}" enctype="multipart/form-data">
+            {{ csrf_field() }}
+
+            <input type="hidden" name="userId" id="farmerDeviceId">
+
+            <div class="form-group">
+              <label for="otherName">Mac Address</label>
+                <input name="address" type="text" class="form-control" placeholder="Mac Address">
+                </div> 
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-outline-primary">Continue</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="deviceEdit">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Device Add</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="{{action('DeviceController@editUserManagement')}}" enctype="multipart/form-data">
+                {{ csrf_field() }}
+
+                <input type="hidden" name="deviceId" id="deviceId">
+                <input type="hidden" name="userId" id="farmerEditDeviceId">
+
+              <div class="form-group">
+                <label for="otherName">Mac Address</label>
+                <input name="address" type="text" id="addressFarmer" class="form-control" placeholder="Mac Address">
+              </div> 
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-primary">Continue</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
+
+  <script type="text/javascript">
+    function deviceAdd(userId)
+    {
+      console.log("Test");
+      $('#deviceAdd').show();
+      document.getElementById("farmerDeviceId").value = userId;
+    }
+
+    function deviceEdit(userId, deviceID, macAddress)
+    {
+      $('#deviceEdit').show();
+      document.getElementById("farmerEditDeviceId").value = userId;
+      document.getElementById("deviceId").value = deviceID;
+      document.getElementById("addressFarmer").value = macAddress;
+    }
+  </script>
+
 </html>
