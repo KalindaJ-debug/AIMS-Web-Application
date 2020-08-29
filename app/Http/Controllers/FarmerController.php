@@ -40,6 +40,11 @@ class FarmerController extends Controller
         //dd($request->request);
         if ($request->input('function') == "edit")
         {
+            $request->validate([
+                'email' => 'unique:farmers,email|email:rfc,dns',
+                'username' => 'required|unique:farmers,userName'
+            ]);
+
             $farmer = Farmer::where('id', $request->input('id'))->first();
 
             $farmer->firstName = $request->input('firstName');
@@ -48,6 +53,7 @@ class FarmerController extends Controller
             $farmer->email = $request->input('email');
             $farmer->telephoneNo = $request->input('telephoneNo');
             $farmer->nic = $request->input('nic');
+            $farmer->userName = $request->input('username');
         
             $farmer->save();
         }
@@ -60,6 +66,11 @@ class FarmerController extends Controller
         }
         else if ($request->input('function') == "add")
         {
+            $request->validate([
+                'email' => 'unique:farmers,email|email:rfc,dns',
+                'username' => 'required|unique:farmers,userName'
+            ]);
+
             $farmer = new Farmer; 
 
             $farmer->firstName = $request->input('firstName');
@@ -69,6 +80,7 @@ class FarmerController extends Controller
             $farmer->telephoneNo = $request->input('telephoneNo');
             $farmer->nic = $request->input('nic');
             $farmer->email = $request->input('email');
+            $farmer->userName = $request->input('username');
     
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
