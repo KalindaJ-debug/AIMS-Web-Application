@@ -78,7 +78,7 @@
                         <th scope="row">{{ $category->name }}</th>
                         <td><p style='color:blue'>{{ $crops->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id))'><i class="fas fa-pen-alt"></i> Update</button>
+                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id), @json($crops->category->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editCrop(@json($crops->name), @json($crops->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteCrop(@json($crops->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -114,7 +114,7 @@
                         <td>{{ $crop->name }}</td>
                         <td><p style='color:blue'>{{ $variety->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick='updateVarietyTable(@json($variety->id))'><i class="fas fa-pen-alt"></i> Update</button>
+                            <button type="button" class="btn btn-primary" onclick='updateVarietyTable(@json($variety->id), @json($variety->crop->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editVariety(@json($variety->name), @json($variety->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteVariety(@json($variety->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
@@ -455,26 +455,28 @@
             document.getElementById("editVarietyId").value = id;
         } 
 
-        function updateCropTable(id)
-        {
-            $('#updateCrop').modal('show');
-            document.getElementById("updateCategoryId").value = id;
-            $('#cropOption option[value=id]').prop('selected', 'selected').change();
-        } 
+        // function updateCropTable(id)
+        // {
+        //     $('#updateCrop').modal('show');
+        //     document.getElementById("updateCategoryId").value = id;
+        //     $('#cropOption option[value=id]').prop('selected', 'selected').change();
+        // } 
 
         // Update Functions
-        function updateCropTable(id)
+        function updateCropTable(id, categoryId)
         {
             $('#updateCrop').modal('show');
             document.getElementById("updateCategoryId").value = id;
             $('#cropOption option[value=id]').prop('selected', 'selected').change();
+            document.getElementById("cropOption").value = categoryId;
         } 
 
-        function updateVarietyTable(id)
+        function updateVarietyTable(id, cropId)
         {
             $('#updateVariety').modal('show');
             document.getElementById("updateCropId").value = id;
             $('#varietyOption option[value=id]').prop('selected', 'selected').change();
+            document.getElementById("varietyOption").value = cropId;
         } 
 
         //Add Functions 
