@@ -96,10 +96,16 @@ class RegistrationController extends Controller
         {
             // Ama code - store land info
             $land = new Land; //model obj
-        
+            
             //farmer_id = name match
-            $latestRecord = DB::table('farmers')->latest('updated_at')->first();
+            // $latestRecord = DB::table('farmers')->latest('updated_at')->first();
+            $farId = $request->input('fid');
+            $latestRecord = DB::table('farmers')->distinct()->where('id', $farId)->first();
+            
+            // dd($latestRecord);
+
             $land->farmer_id = $latestRecord->id; //farmer id
+
             //input fields - location
             $land->addressNo = $request->input('addressNumber');
             $land->streetName = $request->input('street');
@@ -128,19 +134,18 @@ class RegistrationController extends Controller
             $land->landExtend = $request->input('hectares');
 
             //save land details
-            $success = $land->save();
-            $error = null;
+            $land->save();
 
-            if(!$success){
-                $error = "Land Registration Failed";
-                return redirect()->action('RegistrationController@index')->with('state', $error); //redirect to land registration page
-            }
-
-            $farmid = $latestRecord->id;
-            //success redirection
-            // return redirect('land-form-success')->with('farmid',$farmid);
-            // return redirect()->route('land-form-success', ['farmid'=> $farmid]); //farmer record array
-            return redirect('land-form-success/' . $latestRecord->id . '');
+            // if($land->id == null){
+            //     $error = "Land Registration Failed";
+            //     return redirect()->action('RegistrationController@index')->with('state', $error); //redirect to land registration page
+            // }
+           
+            // $farmid = $latestRecord->id;
+               
+            return redirect('land-form-success/' . $latestRecord->id . ''); //success redirection
+            
+            
             
         }
     }

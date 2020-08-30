@@ -27,7 +27,7 @@
   </head>
   <body style="font-family: 'Raleway', sans-serif;">
     <!-- header begins -->
-    @include('/layouts.headerAdmin')
+    @include('/layouts.header')
     <!-- header ends -->
 
     <!-- nav bar begins -->
@@ -58,6 +58,7 @@
                   {{ csrf_field() }}  
 
                   <input type="hidden" name="type" value="land">
+                  <input type="hidden" name="fid" value="{{Request::segment(2)}}">
                     <p class="card-text"> Land Owner's Name </p>
 
                     <div class="input-group">
@@ -185,7 +186,7 @@
                       <div class="input-group-prepend ml-3">
                         <label class="input-group-text" for="selectGN" style="width:110px;">Postal Code</label>
                       </div>
-                    <input type="text" name="postal" aria-label="PostalCode" class="form-control" value="{{ $land->postalCode}}" id="postalc" required>
+                    <input type="text" name="postal" aria-label="PostalCode" class="form-control" id="postalc" required>
                     </div>
                     <div class="row">
                       <div class="col-9">
@@ -209,13 +210,13 @@
                         <span class="input-group-text">Land Extent in Hectares (ha) </span>
 
                       </div>
-                      <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" value="{{$land->landExtend}}" required>
+                      <input id="hec" name="hectares" type="text" aria-label="Hectares" class="form-control field-hectares" required>
 
                       <div class="input-group-prepend">
                         <span class="input-group-text">Planning Number </span>
                       </div>
 
-                      <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" value="{{ $land->planningNumber }}" required>
+                      <input type="text" name="planNo" aria-label="PlanningNo" class="form-control" required>
 
                     </div>
                     <br>
