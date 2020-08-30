@@ -65,11 +65,13 @@ class RegistrationController extends Controller
 
             $pubEmail = $request->input('email'); //public email
 
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $fileName = time() . '.' . $extension;
-            $farmer->nicImage = $fileName;
-        
+            if ($request->has('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $extension;
+                $farmer->nicImage = $fileName;
+            }
+            
             $saved = $farmer->save();
         
             if (!$saved)

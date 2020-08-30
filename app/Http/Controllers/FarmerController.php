@@ -82,11 +82,13 @@ class FarmerController extends Controller
             $farmer->email = $request->input('email');
             $farmer->userName = $request->input('username');
     
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $fileName = time() . '.' . $extension;
-            $farmer->nicImage = $fileName;
-    
+            if ($request->has('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $extension;
+                $farmer->nicImage = $fileName;
+            }
+            
             $saved = $farmer->save();
         }
         else if ($request->input('function') == "delete")

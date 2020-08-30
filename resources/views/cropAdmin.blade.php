@@ -12,7 +12,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         
-        <title>Crop</title>
+        <title>Farmer Management</title>
     </head>
     <body>
 
@@ -78,7 +78,7 @@
                         <th scope="row">{{ $category->name }}</th>
                         <td><p style='color:blue'>{{ $crops->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id), @json($crops->category->id))'><i class="fas fa-pen-alt"></i> Update</button>
+                            <button type="button" class="btn btn-primary" onclick='updateCropTable(@json($crops->id), @json($category->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editCrop(@json($crops->name), @json($crops->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteCrop(@json($crops->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
