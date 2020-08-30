@@ -62,8 +62,8 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/land-records-empty', function () {
-    return view('land-records-empty');
+Route::get('/land-records-empty/{id}', function ($id) {
+    return view('land-records-empty'. $id);
 });
 
 Route::get('/land-record-update/{id}', function($id){ return view('land-record-update'); });

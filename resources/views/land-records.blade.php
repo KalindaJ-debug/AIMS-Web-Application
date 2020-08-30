@@ -75,40 +75,46 @@
       					</tr>
       				</thead>
       				<tbody>
-               
+
                 @php
                     $i = 0;
                 @endphp
 
-                {{-- row begins --}}
-                @foreach ($landRecords as $item)
-              <form action="{{$item->id}}/edit" method="get" name="edit">
-                <input type="hidden" name="landId" value="{{$item->id}}">
-                  {{ csrf_field() }}
-                <tr>
-      						<td>
-      							{{-- <span class="custom-checkbox">
-                    <input type="checkbox" name="options[]" value="{{ $i++ }}">
-      								<label for="checkbox1"></label>
-                    </span> --}}
-                    
-      						</td>
-                  <td> {{ $item->id }} </td>
-                  <td>{{ $item->addressNo }}</td>  
-      						<td>{{$item->laneName}}</td>
-                  <td>{{$item->city}}</td>
-                  <td>{{$item->districts->name}}</td>
-                  <td>{{$item->provinces->name}}</td>
-      						<td class="font-italic">{{$item->landExtend}}</td>
-      						<td>
-                  <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-                </tr>
-                
-                @endforeach
+                @if ($count <= 0)
+                  {{"$count Records Found"}}
+
+                @elseif($count > 0)
+                  {{ "$count Records Found" }}
+                  {{-- row begins --}}
+                  @foreach ($landRecords as $item)
+                  
+                  <form action="{{$item->id}}/edit" method="get" name="edit">
+                    <input type="hidden" name="landId" value="{{$item->id}}">
+                      {{ csrf_field() }}
+                      <tr>
+                        <td>
+                          {{-- <span class="custom-checkbox">
+                          <input type="checkbox" name="options[]" value="{{ $i++ }}">
+                            <label for="checkbox1"></label>
+                          </span> --}}
+                          
+                        </td>
+                        <td> {{ $item->id }} </td>
+                        <td>{{ $item->addressNo }}</td>  
+                        <td>{{$item->laneName}}</td>
+                        <td>{{$item->city}}</td>
+                        <td>{{$item->districts->name}}</td>
+                        <td>{{$item->provinces->name}}</td>
+                        <td class="font-italic">{{$item->landExtend}}</td>
+                        <td>
+                        <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
+                          <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                        </td>
+                      </tr>
+                  </form>
+                  @endforeach
                 {{-- row ends  --}}
-              </form>
+                @endif
 
       				</tbody>
       			</table>
@@ -159,7 +165,7 @@
      <div id="deleteFeedback" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <form action="land-records" method="POST" name="deleteAll">
+          <form action="{{ route('land-records.store') }}" method="POST" name="deleteAll">
               {{ csrf_field() }}
             <input type="hidden" name="farmerid" value="{{$farmerID}}">
               <div class="modal-header">

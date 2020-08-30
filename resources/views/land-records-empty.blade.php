@@ -45,10 +45,17 @@
       				<div class="row">
       					<div class="col-sm-6">
       						<h2>All Registered Land Records</b></h2>
-      					</div>
+                </div>
+
+                @php
+                  $farmer_id = Request::segment(2); //fetch farmer ID
+                @endphp
+                {{-- redirect to land registration page with farmer id --}}
+              
       					<div class="col-sm-6">
-      						<a class="btn btn-success"><i class="fa fa-plus mr-3" aria-hidden="true"></i> <span>Register</span></a>
-      						
+                <form action="{{ route('registration.show', $farmer_id) }}" method="get">
+      						<button type="submit" class="btn btn-success"><i class="fa fa-plus mr-3" aria-hidden="true"></i> <span>Register</span></button>
+                </form>
       					</div>
       				</div>
       			</div>
@@ -80,9 +87,11 @@
                         <div class="col-1">
                             <img src="{{ url('assets/img/empty.png') }}" alt="empty" style="height:30px;"> 
                         </div>
+                        
                         <div class="col-10">
                             <h5> Sorry there are no land records to be found </h5>
                         </div>
+                      
                     </div>
                     
                 </div> 

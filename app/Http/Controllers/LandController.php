@@ -43,7 +43,8 @@ class LandController extends Controller
         //Delete all records
         $fid = $request->input('farmerid'); //fetch hidden field data
         DB::table('lands')->where('farmer_id', '=', $fid)->delete();
-        return redirect('home'); //display land records page
+        return redirect('land-records/'. $fid . '');
+        // return redirect('home'); //display land records page
     }
 
     /**
@@ -61,8 +62,8 @@ class LandController extends Controller
         $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->paginate(5);
         // $landRecords = $landRecords::with('provinces')->get();
         $count = $landRecords->total(); //number of records
-
-        if($landRecords != null){
+        // dd($count);
+        if($landRecords != null && $count > 0){
             //return land records
         return view('land-records', 
             array(
@@ -76,7 +77,7 @@ class LandController extends Controller
 
         } //end of if
         else{
-            return view('home');
+            return view('land-records-empty');
         }
        
     }
@@ -89,6 +90,7 @@ class LandController extends Controller
      */
     public function edit(Request $request)
     {
+        // dd($request->input('landId'));
         //
         $id = $request->input('landId');
         $land = Land::find($id); //capture farmer_id
@@ -107,7 +109,6 @@ class LandController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         //update land record
         $land = Land::find($id);
 
