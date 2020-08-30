@@ -107,11 +107,12 @@ class LandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         //update land record
         $land = Land::find($id);
 
-        //update fields
+        if($land != null){
+            //update fields
         //input fields - location
         $land->addressNo = $request->input('addressNumber');
         $land->streetName = $request->input('street');
@@ -136,8 +137,17 @@ class LandController extends Controller
         //land extent value in ha
         $land->landExtend = $request->input('hectares');
 
+        $fid = $land->farmer_id; //fetch farmer id
+
         $land->save();
-        return redirect('land-records'); 
+
+        return redirect('land-records/'. $fid . ''); //display farmer records - show
+        }
+        else {
+
+            return redirect('home'); //error
+        }
+        
     }
 
     /**

@@ -45,16 +45,19 @@
           <div class="land-register">
             <br><br>
             <!-- title -->
-            <h1> Land Information </h1>
+          <h1> Land Information </h1>
             <!-- form -->
             <div class="land-form">
               <div class="card" style="width: 85rem;border-radius: 10px;">
                 <div class="card-body">
-                  <h5 class="card-title">Modify Land Registration Details here</h5>
+                  <h4 class="card-title">Modify Land Registration Details here</h4>
                   <br>
+                <h5>Land Record ID : {{ $id }}</h5> <br>
+                <input type="hidden" name="land_id" value="{{ $id }}">
                   <!-- form begins here -->
-                <form id="form-land" class="landForm" enctype="multipart/form-data" action="" method="POST">
-                  @method('put')
+                <form id="form-land" class="landForm" enctype="multipart/form-data" action="{{ route('land-records.update', $id) }}" method="post" >
+                  @method('PUT')
+
                   {{ csrf_field() }}  
                 <input type="hidden" name="id" value="{{$id}}"> 
                     <!-- enter land information -->

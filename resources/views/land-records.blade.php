@@ -83,7 +83,7 @@
                 {{-- row begins --}}
                 @foreach ($landRecords as $item)
               <form action="{{$item->id}}/edit" method="get" name="edit">
-                
+                <input type="hidden" name="landId" value="{{$item->id}}">
                   {{ csrf_field() }}
                 <tr>
       						<td>
@@ -91,7 +91,7 @@
                     <input type="checkbox" name="options[]" value="{{ $i++ }}">
       								<label for="checkbox1"></label>
                     </span> --}}
-                    <input type="hidden" name="landId" value="{{$item->id}}">
+                    
       						</td>
                   <td> {{ $item->id }} </td>
                   <td>{{ $item->addressNo }}</td>  
