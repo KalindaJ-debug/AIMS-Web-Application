@@ -58,12 +58,13 @@
       				<thead>
       					<tr>
       						<th>
-      							<span class="custom-checkbox">
+      							{{-- <span class="custom-checkbox">
       								<input type="checkbox" id="selectAll" class="selectAll">
       								<label for="selectAll"></label>
-      							</span>
+                    </span> --}}
+                    
       						</th>
-                      <th>No</th>
+                      <th>Land ID</th>
                       <th>Address No</th>  
                       <th>Lane</th>
                       <th>City</th>  
@@ -81,17 +82,18 @@
 
                 {{-- row begins --}}
                 @foreach ($landRecords as $item)
-              <form action="land-records/{{$item->id}}/edit" method="get" name="edit">
-                <input type="hidden" name="landId" value="{{$item->id}}">
+              <form action="{{$item->id}}/edit" method="get" name="edit">
+                
                   {{ csrf_field() }}
                 <tr>
       						<td>
-      							<span class="custom-checkbox">
+      							{{-- <span class="custom-checkbox">
                     <input type="checkbox" name="options[]" value="{{ $i++ }}">
       								<label for="checkbox1"></label>
-      							</span>
+                    </span> --}}
+                    <input type="hidden" name="landId" value="{{$item->id}}">
       						</td>
-                  <td>{{ $i }}</td>
+                  <td> {{ $item->id }} </td>
                   <td>{{ $item->addressNo }}</td>  
       						<td>{{$item->laneName}}</td>
                   <td>{{$item->city}}</td>
@@ -103,6 +105,7 @@
       							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
       						</td>
                 </tr>
+                
                 @endforeach
                 {{-- row ends  --}}
               </form>

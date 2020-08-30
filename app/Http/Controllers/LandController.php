@@ -17,30 +17,8 @@ class LandController extends Controller
      */
     public function index($iid)
     {
-        // $id = 31; //farmer id - static - not integrated to view farmer details view
-        $id = Land::find($iid);
-        //fetch data 
-        $farmer = Farmer::where('id', $id)->first(); //farmer name
-        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->paginate(5);
-        // $landRecords = $landRecords::with('provinces')->get();
-        $count = $landRecords->total(); //number of records
-
-        if($landRecords != null){
-            //return land records
-        return view('land-records', 
-            array(
-                'firstName' => $farmer->firstName, 
-                'lastName' => $farmer->lastName, 
-                'landRecords' => $landRecords, 
-                'count' => $count,
-                'farmerID' => $id
-            )
-        ); //view land records
-
-        } //end of if
-        else{
-            return view('home');
-        }
+        // load land records view list
+    //    
         
     }
 
@@ -109,9 +87,10 @@ class LandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
         //
+        $id = $request->input('landId');
         $land = Land::find($id); //capture farmer_id
         $provincesList = DB::table('provinces')->distinct()->get();
         $districtsList = DB::table('districts')->distinct()->get();
@@ -128,6 +107,7 @@ class LandController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         //update land record
         $land = Land::find($id);
 
@@ -170,8 +150,9 @@ class LandController extends Controller
     {
         //Delete selected row
         $land = Land::find($id); 
-        $land->delete();
-        return redirect('land-records'); //display records
+        $farmerId = $land->farmer_id; //store farmer id
+        $land->delete(); //delete record
+        return redirect('land-records/'. $farmerId . ''); //display farmer records - show
 
     }
 }

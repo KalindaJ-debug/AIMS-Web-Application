@@ -53,9 +53,10 @@
                   <h5 class="card-title">Modify Land Registration Details here</h5>
                   <br>
                   <!-- form begins here -->
-                <form id="form-land" class="landForm" enctype="multipart/form-data" action="{{ url('land-records/'. $id. '') }}" method="POST">
+                <form id="form-land" class="landForm" enctype="multipart/form-data" action="" method="POST">
+                  @method('put')
                   {{ csrf_field() }}  
-                  @method('PUT')
+                <input type="hidden" name="id" value="{{$id}}"> 
                     <!-- enter land information -->
                     <p class="card-text">Enter land location details </p>
                     <div class="input-group" aria-describedby="address">
@@ -353,7 +354,6 @@
                     <div class="btn-submit">
                       <button type="submit" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> 
                     </div>
-                    {{-- {{{ Form::hidden('_method', 'PUT') }}} --}}
                   </form>
                   <!-- end of form -->
 
