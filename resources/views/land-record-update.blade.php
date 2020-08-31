@@ -53,6 +53,20 @@
                   <h4 class="card-title">Modify Land Registration Details here</h4>
                   <br>
                 <h5>Land Record ID : {{ $id }}</h5> <br>
+
+                {{-- Display error messages --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <br>
+                @endif
+            {{-- End Error Message div  --}}
+            
                 <input type="hidden" name="land_id" value="{{ $id }}">
                   <!-- form begins here -->
                 <form id="form-land" class="landForm" enctype="multipart/form-data" action="{{ route('land-records.update', $id) }}" method="post" >

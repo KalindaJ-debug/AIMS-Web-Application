@@ -52,6 +52,20 @@
                 <div class="card-body">
                   <h5 class="card-title">Enter Land Registration Details here</h5>
                   <br>
+
+                  {{-- Display error messages --}}
+                  @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                      <br>
+                  @endif
+                  {{-- End Error Message div  --}}
+
                   <!-- form begins here -->
                 <form id="form-land" class="landForm" method="POST" enctype="multipart/form-data" action="{{ action('RegistrationController@store') }}" >
                   

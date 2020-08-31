@@ -92,9 +92,25 @@ class RegistrationController extends Controller
             return redirect('registration/' . $farmer->id . '');
 
         }
-        else if ($request->input('type') == "land")
+        else if ($request->input('type') == "land") //Land Module - 20205283
         {
-            // Ama code - store land info
+            //Code to validate form input
+            $request->validate([
+                'fid' => ['required'],
+                'addressNumber' => ['required', 'between:1,10'],
+                'street' => ['nullable', 'max:50'],
+                'lane' => ['required', 'string' ,'max:100'],
+                'town' => ['nullable', 'max:50'],
+                'city' => ['required'],
+                'grama' => ['required'],
+                'district' => ['required'],
+                'province' => ['required'],
+                'postal' => ['required', 'numeric', 'digits:5'],
+                'planNo' => ['required', 'numeric', 'digits:8'],
+                'hectares' => ['required', 'numeric']
+            ]); //end of validations
+
+            //store land info
             $land = new Land; //model obj
             
             //farmer_id = name match

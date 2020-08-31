@@ -109,6 +109,23 @@ class LandController extends Controller
      */
     public function update(Request $request, $id)
     {
+       //Code to validate form input
+            $request->validate([
+                
+                'addressNumber' => ['required', 'between:1,10'],
+                'street' => ['nullable', 'max:50'],
+                'lane' => ['required', 'string' ,'max:100'],
+                'town' => ['nullable', 'max:50'],
+                'city' => ['required'],
+                'grama' => ['required'],
+                'district' => ['required'],
+                'province' => ['required'],
+                'postal' => ['required', 'numeric', 'digits:5'],
+                'planNo' => ['required', 'numeric', 'digits:8'],
+                'hectares' => ['required', 'numeric']
+
+            ]); //end of validations
+
         //update land record
         $land = Land::find($id);
 
