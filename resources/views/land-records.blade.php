@@ -49,7 +49,13 @@
       						<h2>All Registered Land Records</b></h2>
       					</div>
       					<div class="col-sm-6">
-      						<a class="btn btn-success"><i class="fa fa-sort mr-3" aria-hidden="true"></i> <span>Sort</span></a>
+                  {{-- <a class="btn btn-success"><i class="fa fa-sort mr-3" aria-hidden="true"></i> <span>Sort</span></a> --}}
+                  @php
+                       $farmer_id = Request::segment(2); //fetch farmer ID
+                  @endphp
+                  <form action="{{ route('registration.show', $farmer_id) }}" method="get">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-plus mr-3" aria-hidden="true"></i> <span>Register</span></button>
+                  </form>
       						<a href="#deleteFeedback" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash mr-3" aria-hidden="true"></i> <span>Delete All Records</span></a>
       					</div>
       				</div>
