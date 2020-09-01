@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Auth;
 use App\cropDetails;
 use App\dataEntry;
+use App\cultivation;
+use App\farmer;
+use App\Province;
+use App\CropCategory;
+use App\crop;
+use App\variety;
+use App\district;
+use App\region;
 
 class DataController extends Controller
 {
@@ -15,7 +23,7 @@ class DataController extends Controller
     {
         // $login = Login::all();
         // return response()->json($login);
-        $contacts = cropDetails ::all();
+        $contacts = cultivation ::all();
         return view('crop.index', compact('contacts'));
         
     }
@@ -26,7 +34,14 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view('cropDetails');
+        $province = Province::all();
+        $CropCategory = CropCategory::all();
+        $crop = crop::all();
+        $variety = variety::all();
+        $district = district::all();
+        $region = region::all();
+        $farmer = farmer::all();
+        return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer));
     }
 
     /**
@@ -38,22 +53,28 @@ class DataController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'farmer_id' => 'required',
+            'category_id' => 'required',
+            'crop_id' => 'required',
             'variety_id' => 'required',
             'region_id' => 'required',
             'district_id' => 'required',
             'cultivatedLand' => 'required',
             'startDate' => 'required',
             'season' => 'required',
-            'category_id' => 'required',
             'province_id' => 'required',
             'harvestedAmount' => 'required',
             'endDate' => 'required',
+        ],[
+            'farmer_id.required'=>'farmer ID is required!',
+            'harvestedAmount.required'=>'harvested amount must be an interger value in Kg!',
+            'cultivatedLand.required'=>'cultivated amount must be an interger value in Ha!',
         ]);
 
-        $game = new cropDetails;
+        $game = new cultivation;
+        $game->farmer_id = request('farmer_id');
         $game->category_id = request('category_id');
-        $game->name = request('name');
+        $game->crop_id = request('crop_id');
         $game->variety_id = request('variety_id');
         $game->region_id = request('region_id');
         $game->district_id = request('district_id');
@@ -76,7 +97,7 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        $product = cropDetails::find($id);
+        $product = cultivation::find($id);
         return view('crop.show',compact('product'));
     }
 
@@ -111,7 +132,7 @@ class DataController extends Controller
      */
     public function destroy($id)
     {
-        $contact = cropDetails::find($id);
+        $contact = cultivation::find($id);
         $contact->delete();
 
         return redirect('/crop-data')->with('success', 'Contact deleted!');

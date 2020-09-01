@@ -30,6 +30,7 @@
 
   <title>Agriculture Information Management System | AIMS </title>
 </head>
+<body>
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -48,6 +49,9 @@
     <thead>
         <tr>
           <td>ID</td>
+          <td>Farmer ID</td>
+          <td>Season</td>
+          <td>Category</td>
           <td>Crop Name</td>
           <td>Variety</td>
           <td>Start Date</td>
@@ -55,7 +59,7 @@
           <td>Province</td>
           <td>District</td>
           <td>Region</td>
-          <td>Harvest Amount</td>
+          <td>Harvested Amount</td>
           <td>Cultivated Land</td>
           <td colspan = 2>Actions</td>
         </tr>
@@ -64,10 +68,11 @@
         @foreach($contacts as $contact)
         <tr>
             <td>{{$contact->id}}</td>
+            <td>{{$contact->farmer_id}}</td>           
             <td>{{$contact->season}}</td>
             <td>{{$contact->category_id}}</td>
-            <td>{{$contact->name}}</td>
-            <td>{{$contact->variety}}</td>
+            <td>{{$contact->crop_id}}</td>
+            <td>{{$contact->variety_id}}</td>
             <td>{{$contact->startDate}}</td>
             <td>{{$contact->endDate}}</td>
             <td>{{$contact->province_id}}</td>
