@@ -65,19 +65,39 @@
         </tr>
     </thead>
     <tbody>
+        
         @foreach($contacts as $contact)
+          @php
+            $category = App\CropCategory::where('id', $contact->category_id)->first();
+          @endphp
+           @php
+             $crop = App\Crop::where('id', $contact->crop_id)->first();
+          @endphp
+           @php
+             $variety = App\Variety::where('id', $contact->variety_id)->first();
+          @endphp
+           @php
+             $province = App\Province::where('id', $contact->province_id)->first();
+          @endphp
+           @php
+             $district = App\District::where('id', $contact->district_id)->first();
+          @endphp
+           @php
+             $region = App\Region::where('id', $contact->region_id)->first();
+          @endphp
         <tr>
+        <td>
             <td>{{$contact->id}}</td>
             <td>{{$contact->farmer_id}}</td>           
             <td>{{$contact->season}}</td>
-            <td>{{$contact->category_id}}</td>
-            <td>{{$contact->crop_id}}</td>
-            <td>{{$contact->variety_id}}</td>
+            <td>{{$category->name}}</td>
+            <td>{{$crop->name}}</td>
+            <td>{{$variety->name}}</td>
             <td>{{$contact->startDate}}</td>
             <td>{{$contact->endDate}}</td>
-            <td>{{$contact->province_id}}</td>
-            <td>{{$contact->district_id}}</td>
-            <td>{{$contact->region_id}}</td>
+            <td>{{$province->name}}</td>
+            <td>{{$district->name}}</td>
+            <td>{{$region->name}}</td>
             <td>{{$contact->harvestedAmount}}</td>
             <td>{{$contact->cultivatedLand}}</td>
             <td>
