@@ -56,6 +56,11 @@
                                 <label for="region">Region</label>
                                 <input type="text" class="form-control" id="region" value="{{ $region->name }}" readonly>
                             </div>
+
+                            <div class="form-group">
+                                <label for="season">Season</label>
+                                <input type="text" class="form-control" id="season" value="{{ $approval->season }}" readonly>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="form-group">
