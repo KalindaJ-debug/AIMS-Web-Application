@@ -106,13 +106,13 @@
         </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Start Date</label>
+            <label for="titleid" class="col-sm-3 col-form-label">Cultivation Start Date</label>
             <div class="col-sm-9">
                 <input name="startDate" type="date" class="form-control" id="startDate">
             </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">End Date</label>
+            <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Date</label>
             <div class="col-sm-9">
                 <input name="endDate" type="date" class="form-control" id="endDate">
             </div>
@@ -151,16 +151,16 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Harvest Amount</label>
+            <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Amount</label>
             <div class="col-sm-9">
                 <input name="harvestedAmount" type="text" class="form-control" id="harvestedAmount" placeholder="XXX (kg)">
             </div>
         </div>
         
         <div class="form-group row">
-            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(Hectares)</label>
+            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(acres)</label>
             <div class="col-sm-9">
-                <input name="cultivatedLand" type="text" class="form-control" id="releasedateid" placeholder="XXX (ha)">
+                <input name="cultivatedLand" type="text" class="form-control" id="releasedateid" placeholder="XXX (acres)">
             </div>
         </div>
         <hr>
@@ -191,19 +191,16 @@
 <!-- function to validate only decimal numbers are allowed in harvest amount field-->
 
 <!--date validation jquary function-->
-<script>
-    var dateToday = new Date();
-    var dates = $("#startDate, #endDate").datepicker({
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 3,
-    minDate: dateToday,
-    onSelect: function(selectedDate) {
-        var option = this.id == "startDate" ? "minDate" : "maxDate",
-            instance = $(this).data("datepicker"),
-            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-        dates.not(this).datepicker("option", option, date);
-      }
+    <script>
+    $(document).ready(function(){
+      $("#startDate").datePicker({
+        showAnim: 'drop',
+        numberOfMonth:1,
+        dateFormat:'dd-MM-yyyy',
+        onClose:function(selectedDate){
+          $('#endDate').datePicker("option","minDate",selectedDate);
+        }
+      });
     });
   </script>
 </html>
