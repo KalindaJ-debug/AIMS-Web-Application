@@ -44,7 +44,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Seasson(Yala/Maha)</label>
             <div class="col-sm-9">
-            <select class="form-control" name="seasson">
+            <select class="form-control" name="season">
                   <option>--Select--</option>
                   <option>Yala</option>
                   <option>Maha</option>
@@ -54,7 +54,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Category</label>
             <div class="col-sm-9">
-               <select class="form-control" name="">
+               <select class="form-control" name="category_id">
                   <option>--Select--</option>
                   <option>Coconut</option>
                   <option>Rise</option>
@@ -100,19 +100,19 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Start Date</label>
             <div class="col-sm-9">
-                <input name="sDate" type="date" class="form-control" id="sdate">
+                <input name="startDate" type="date" class="form-control" id="startDate">
             </div>
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">End Date</label>
             <div class="col-sm-9">
-                <input name="eDate" type="date" class="form-control" id="edate">
+                <input name="endDate" type="date" class="form-control" id="endDate">
             </div>
         </div>
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">Province</label>
             <div class="col-sm-9">
-            <select class="form-control" name="province">
+            <select class="form-control" name="province_id">
                   <option>--Select--</option>
                   <option>Western Province</option>
                   <option>Central Province</option>
@@ -130,7 +130,7 @@
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">District</label>
             <div class="col-sm-9">
-            <select class="form-control" name="district">
+            <select class="form-control" name="district_id">
                   <option>--Select--</option>
                   <option>Colombo</option>
                   <option>Gampaha</option>
@@ -142,7 +142,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Region</label>
             <div class="col-sm-9">
-               <select class="form-control" name="region">
+               <select class="form-control" name="region_id">
                   <option>--Select--</option>
                   <option>Attanagalla</option>
                   <option>Biyagama</option>
@@ -160,14 +160,14 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Harvest Amount</label>
             <div class="col-sm-9">
-                <input name="amount" type="text" class="form-control" id="amount" placeholder="XXX (kg)">
+                <input name="harvestedAmount" type="text" class="form-control" id="harvestedAmount" placeholder="XXX (kg)">
             </div>
         </div>
         
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(Hectares)</label>
             <div class="col-sm-9">
-                <input name="hect" type="text" class="form-control" id="releasedateid" placeholder="XXX (ha)">
+                <input name="cultivatedLand" type="text" class="form-control" id="releasedateid" placeholder="XXX (ha)">
             </div>
         </div>
 
