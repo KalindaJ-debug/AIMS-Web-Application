@@ -30,6 +30,7 @@
 
   <title>Agriculture Information Management System | AIMS </title>
 </head>
+<body>
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -48,6 +49,9 @@
     <thead>
         <tr>
           <td>ID</td>
+          <td>Farmer ID</td>
+          <td>Season</td>
+          <td>Category</td>
           <td>Crop Name</td>
           <td>Variety</td>
           <td>Start Date</td>
@@ -55,24 +59,47 @@
           <td>Province</td>
           <td>District</td>
           <td>Region</td>
-          <td>Harvest Amount</td>
+          <td>Harvested Amount</td>
           <td>Cultivated Land</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>
     <tbody>
+        
         @foreach($contacts as $contact)
+          @php
+            $category = App\CropCategory::where('id', $contact->category_id)->first();
+          @endphp
+           @php
+             $crop = App\Crop::where('id', $contact->crop_id)->first();
+          @endphp
+           @php
+             $variety = App\Variety::where('id', $contact->variety_id)->first();
+          @endphp
+           @php
+             $province = App\Province::where('id', $contact->province_id)->first();
+          @endphp
+           @php
+             $district = App\District::where('id', $contact->district_id)->first();
+          @endphp
+           @php
+             $region = App\Region::where('id', $contact->region_id)->first();
+          @endphp
         <tr>
+        <td>
             <td>{{$contact->id}}</td>
-            <td>{{$contact->name}}</td>
-            <td>{{$contact->variety}}</td>
-            <td>{{$contact->sDate}}</td>
-            <td>{{$contact->eDate}}</td>
-            <td>{{$contact->province}}</td>
-            <td>{{$contact->district}}</td>
-            <td>{{$contact->region}}</td>
-            <td>{{$contact->amount}}</td>
-            <td>{{$contact->hect}}</td>
+            <td>{{$contact->farmer_id}}</td>           
+            <td>{{$contact->season}}</td>
+            <td>{{$category->name}}</td>
+            <td>{{$crop->name}}</td>
+            <td>{{$variety->name}}</td>
+            <td>{{$contact->startDate}}</td>
+            <td>{{$contact->endDate}}</td>
+            <td>{{$province->name}}</td>
+            <td>{{$district->name}}</td>
+            <td>{{$region->name}}</td>
+            <td>{{$contact->harvestedAmount}}</td>
+            <td>{{$contact->cultivatedLand}}</td>
             <td>
                 <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
             </td>
