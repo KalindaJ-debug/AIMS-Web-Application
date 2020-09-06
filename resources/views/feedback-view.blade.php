@@ -71,6 +71,8 @@
       					</tr>
       				</thead>
       				<tbody>
+              @if(count($feedbackReg) > 0)
+                @foreach($feedbackReg as $fReg)
       					<tr>
       						<td>
       							<span class="custom-checkbox">
@@ -78,92 +80,29 @@
       								<label for="checkbox1"></label>
       							</span>
       						</td>
-      						<td>Thomas Hardy</td>
-      						<td>thomashardy@mail.com</td>
-      						<td>Request for new Password</td>
-      						<td class="font-italic">Available</td>
+                  <td>{{$fReg->user_name}}</td>
+                  <td>{{$fReg->user_email}}</td>
+                  <td>{{$fReg->subject}}</td>
+                  <td>{{$fReg->message}}</td>
+      						
       						<td>
       							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
       							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
       						</td>
       					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox2"></label>
-      							</span>
-      						</td>
-      						<td>Dominique Perrier</td>
-      						<td>dominiqueperrier@mail.com</td>
-      						<td>No Tomato sales shown</td>
-      						<td class="font-italic">Unavailable</td>
-                  <td>
-      							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox3"></label>
-      							</span>
-      						</td>
-      						<td>Maria Anders</td>
-      						<td>mariaanders@mail.com</td>
-      						<td>Request official documents</td>
-      						<td class="font-italic">Available</td>
-                  <td>
-      							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox4"></label>
-      							</span>
-      						</td>
-      						<td>Fran Wilson</td>
-      						<td>franwilson@mail.com</td>
-      						<td>Request for contact details</td>
-      						<td class="font-italic">Available</td>
-                  <td>
-      							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
-      					<tr>
-      						<td>
-      							<span class="custom-checkbox">
-      								<input type="checkbox" name="options[]" value="1">
-      								<label for="checkbox5"></label>
-      							</span>
-      						</td>
-      						<td>Martin Blank</td>
-      						<td>martinblank@mail.com</td>
-      						<td>Request to register</td>
-      						<td class="font-italic">Available</td>
-                  <td>
-      							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-      					</tr>
+                @endforeach
+                
+                
+                
+      			  @else
+                <p>No posts found</p>
+              @endif
+      					
       				</tbody>
       			</table>
       			<div class="clearfix">
       				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-      				<ul class="pagination">
-      					<li class="page-item disabled"><a href="#">Previous</a></li>
-      					<li class="page-item"><a href="#" class="page-link">1</a></li>
-      					<li class="page-item"><a href="#" class="page-link">2</a></li>
-      					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-      					<li class="page-item"><a href="#" class="page-link">4</a></li>
-      					<li class="page-item"><a href="#" class="page-link">5</a></li>
-      					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-      				</ul>
+      				
       			</div>
       		</div>
       	</div>
@@ -180,7 +119,8 @@
      <div id="viewFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
-          <form>
+          <form id="viewFeedbackForm" action="" method="POST">           
+            {{@csrf_field() }}
             <div class="modal-header">
               <h4 class="modal-title">Feedback Message</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -188,19 +128,19 @@
             <div class="modal-body">
               <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" disabled>
+                <input type="text" class="form-control" value="{{$fReg->user_name}}" disabled>
               </div>
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" disabled>
+                <input type="email" class="form-control" value="{{$fReg->user_email}}" disabled>
               </div>
               <div class="form-group">
                 <label>Subject</label>
-                <input type="text" class="form-control" disabled>
+                <input type="text" class="form-control" value="{{$fReg->subject}}" disabled>
               </div>
               <div class="form-group">
                 <label>Message</label>
-                <textarea class="form-control" style="height:200px;" disabled></textarea>
+                <textarea class="form-control" style="height:200px;" value="{{$fReg->message}}" disabled></textarea>
               </div>
             </div>
             <div class="modal-footer">
@@ -218,12 +158,15 @@
      <div id="deleteSelectedFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form>
+          
             <div class="modal-header">
               <h4 class="modal-title">Delete Administrative Assistance Request Records</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
+            <form action="feedbackregistered/{{$fReg->id}}" name="delete" method="post">
+            @method('delete')
+            {{ csrf_field() }}
               <img src="assets/img/delete.png" alt="delete" style="margin-left:350px;margin-top:20px;">
               <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete these administrative assistance request record(s)?</p>
               <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
@@ -242,7 +185,8 @@
      <div id="deleteFeedback" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <form>
+          <form method="POST" action="{{action('FeedbackRegisteredController@destroy_all')}}">
+            {{ csrf_field() }}
               <div class="modal-header">
                 <h4 class="modal-title">Delete All Administrative Assistance Request Records</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -301,3 +245,6 @@
      </script>
 
   </body>
+</html>
+
+
