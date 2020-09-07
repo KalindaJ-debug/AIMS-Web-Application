@@ -30,8 +30,7 @@ class CreateApprovalDataTable extends Migration
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
             $table->string('season');
-            $table->date('startDate');
-            $table->date('endDate');
+            $table->date('submitedDate');
             $table->integer('harvestedAmount');
             $table->double('cultivatedLand', 17, 10);
             $table->timestamps();

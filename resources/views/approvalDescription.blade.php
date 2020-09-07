@@ -78,15 +78,9 @@
                                 <input type="text" class="form-control" id="variety" value="{{ $variety->name }}" readonly>
                             </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Cultivation Start Date</label>
-                                    <input type="text" class="form-control" id="inputEmail4" value="{{ $approval->startDate }}" readonly>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Cultivation End Date</label>
-                                    <input type="text" class="form-control" id="inputPassword4" value="{{ $approval->endDate }}" readonly>
-                                </div>
+                            <div class="form-group">
+                                <label for="variety">Cultivation Submitted Date</label>
+                                <input type="text" class="form-control" id="variety" value="{{ $approval->submitedDate }}" readonly>
                             </div>
                                 
                             <div class="form-group">
