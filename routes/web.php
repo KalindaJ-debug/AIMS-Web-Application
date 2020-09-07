@@ -40,6 +40,23 @@ Route::get('/crop-data/{id}', 'DataController@show');
 Route::get('/crop-data/{id}/delete', 'DataController@destroy');
 Route::resource('crop-data', 'DataController');
 
+Route::get('/harvest-data', 'HarvestController@index');
+Route::get('/Entry-harvest-data', 'HarvestController@create');
+Route::get('/harvest-data/{id}', 'HarvestController@show');
+Route::resource('harvest-data', 'HarvestController');
+
+Route::get('/external-data', 'ExternalFactors@index');
+Route::get('/Entry-external-data', 'ExternalFactorsController@create');
+Route::get('/external-data/{id}', 'ExternalFactorsController@show');
+Route::resource('external-data', 'ExternalFactorsController');
+
+Route::post('/cropDetails', 'DataController@store')->name('cropDetails');
+
+Route::post('/harvestDetails', 'HarvestController@store')->name('harvestDetails');
+
+Route::post('/externalFactors', 'ExternalFactorsController@store')->name('externalFactors');
+
+
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
 

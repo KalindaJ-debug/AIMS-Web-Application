@@ -30,7 +30,6 @@
 
   <title>Agriculture Information Management System | AIMS </title>
 </head>
-<body>
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -41,33 +40,31 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">Cultivation Details</h1>    
+    <h1 class="display-3">Harvest Details</h1>    
     <div>
-    <a style="margin: 19px;" href="/Entry-crop-data" class="btn btn-primary">New Cultivation Details</a>
+    <a style="margin: 19px;" href="/Entry-harvest-data" class="btn btn-primary">Add Harvest Details</a>
     </div>  
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>ID</td>
+         <!-- <td>ID</td> -->
           <td>Farmer ID</td>
           <td>Season</td>
           <td>Category</td>
           <td>Crop Name</td>
           <td>Variety</td>
-          <td>Start Date</td>
-          <td>End Date</td>
+          <td>Harvest Date</td>
           <td>Province</td>
           <td>District</td>
           <td>Region</td>
-          <td>Harvested Amount</td>
-          <td>Cultivated Land</td>
+          <td>Harvested Amount (Kg)</td>
+          <td>Cultivated Land (Acres)</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>
     <tbody>
-        
+
         @foreach($contacts as $contact)
-         
           @php
             $category = App\CropCategory::where('id', $contact->category_id)->first();
           @endphp
@@ -87,13 +84,12 @@
              $region = App\Region::where('id', $contact->region_id)->first();
           @endphp
         <tr>
-            <td>{{$contact->id}}</td>
+            <!--<td>{{$contact->id}}</td>-->
             <td>{{$contact->farmer_id}}</td>           
             <td>{{$contact->season}}</td>
             <td>{{$category->name}}</td>
             <td>{{$crop->name}}</td>
             <td>{{$variety->name}}</td>
-            <td>{{$contact->startDate}}</td>
             <td>{{$contact->endDate}}</td>
             <td>{{$province->name}}</td>
             <td>{{$district->name}}</td>
@@ -111,7 +107,7 @@
                 </form>
             </td>
         </tr>
-        @endforeach
+        @endforeach 
     </tbody>
   </table>
 <div>
@@ -134,5 +130,14 @@
   </div>
   </div>
   </body>
+<!-- Animations -->
+<script type="text/javascript">
+
+ScrollReveal().reveal('.container', {
+  duration:2000,
+  origin:'bottom',
+  distance: '200px',
+  delay:100
+});
 
 </html>

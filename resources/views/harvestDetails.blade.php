@@ -34,6 +34,7 @@
   <title>Agriculture Information Management System | AIMS </title>
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all">
   
   <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
@@ -48,7 +49,7 @@
 <!-- nav bar ends -->
 
 <div class="container">
-<form method="post" name="form1" action="/cropDetails" enctype="multipart/form-data">
+<form method="post" action="/harvestDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
@@ -106,15 +107,9 @@
         </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Cultivation Start Date</label>
+            <label for="startDate" class="col-sm-3 col-form-label">Harvest Date</label>
             <div class="col-sm-9">
-                <input name="startDate" type="date" class="form-control" id="startDate">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Date</label>
-            <div class="col-sm-9">
-                <input name="endDate" type="date" class="form-control" id="endDate">
+                <input name="endDate" type="date" class="form-control" id="calendar123">
             </div>
         </div>
         <div class="form-group row">
@@ -151,7 +146,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Amount</label>
+            <label for="titleid" class="col-sm-3 col-form-label"> Harvest Amount</label>
             <div class="col-sm-9">
                 <input name="harvestedAmount" type="text" class="form-control" id="harvestedAmount" placeholder="XXX (kg)">
             </div>
@@ -179,9 +174,9 @@
 <!-- footer begins -->
 @include('layouts.footer')
 <!-- footer ends -->
-      </div>
-    </div>
-  </body>
+    
+</body>
+   
 <!-- function to enable submit button after confirmation checkbox -->
   <script>
     $("#confirmCheck").click(function() {
@@ -191,19 +186,22 @@
 <!-- function to validate only decimal numbers are allowed in harvest amount field-->
 
 <!--date validation jquary function-->
-    <script>
-    $(document).ready(function(){
-      $("#startDate").datePicker({
-        showAnim: 'drop',
-        numberOfMonth:1,
-        dateFormat:'dd-MM-yyyy',
-        onClose:function(selectedDate){
-          $('#endDate').datePicker("option","minDate",selectedDate);
-        }
-      });
-    });
-  </script>
-  <!-- Animations -->
+  <script>
+  var dateToday = new Date();
+  var dates = $("#startDate, #endDate").datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 3,
+    minDate: dateToday,
+    onSelect: function(selectedDate) {
+        var option = this.id == "startDate" ? "minDate" : "maxDate",
+            instance = $(this).data("datepicker"),
+            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+        dates.not(this).datepicker("option", option, date);
+    }
+});
+</script>
+<!-- Animations -->
 <script type="text/javascript">
 
 ScrollReveal().reveal('.container', {
@@ -214,5 +212,5 @@ ScrollReveal().reveal('.container', {
 });
 
 </script>
-  
 </html>
+ 

@@ -30,7 +30,6 @@ class CreateHarvestsTable extends Migration
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
             $table->string('season')->nullable();
-            $table->date('startDate');
             $table->date('endDate');
             $table->integer('harvestedAmount');
             $table->double('cultivatedLand', 17, 10);
