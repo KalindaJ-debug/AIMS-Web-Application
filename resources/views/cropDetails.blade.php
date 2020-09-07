@@ -12,6 +12,9 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <!--Font css Link-->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
@@ -29,7 +32,13 @@
   <script src="https://unpkg.com/scrollreveal"></script>
 
   <title>Agriculture Information Management System | AIMS </title>
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
 </head>
+<body> <!-- onload='document.form1.seasson.focus()'>-->
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -42,10 +51,21 @@
 <form method="post" name="form1" action="/cropDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
+            <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
+            <div class="col-sm-9">
+                <select name="farmer_id" type="text" class="form-control">
+                  <option selected value="none">--Select Name--</option>
+                   @foreach ($farmer as $farmers)
+                      <option value='{{ $farmers->id }}'>{{ $farmers->firstName }}</option>   
+                   @endforeach  
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Seasson(Yala/Maha)</label>
             <div class="col-sm-9">
             <select class="form-control" name="season">
-                  <option>--Select--</option>
+                  <option>--Select Season--</option>
                   <option>Yala</option>
                   <option>Maha</option>
                 </select>
@@ -54,48 +74,36 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Category</label>
             <div class="col-sm-9">
-               <select class="form-control" name="category_id">
-                  <option>--Select--</option>
-                  <option>Coconut</option>
-                  <option>Rise</option>
-                  <option>Tea</option>
-                  <option>Rubber</option>
-                  <option>Potato</option>
-                  <option>Grapes</option>
-                  <option>Cocoa</option>
-                  <option>Cardamom</option>
-                  
-                </select>
-                <!--<input name="" type="text" class="form-control" id="titleid">-->
+               <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
+                <select name="category_id" class="form-control">
+                  <option selected value="none">--Select Crop-Category--</option>
+                    @foreach ($CropCategory as $crop_categories)
+                      <option value='{{ $crop_categories->id }}'>{{ $crop_categories->name }}</option>   
+                    @endforeach                              
+                 </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
             <div class="col-sm-9">
-              <select class="form-control" name="name">
-                  <option>--Select--</option>
-                  <option>Red Rise</option>
-                  <option>White Rise</option>
-                   <option>Others</option>
-                </select>
-                <!--<input name="name" type="text" class="form-control" id="titleid" >-->
+            <select name="crop_id" class="form-control">
+              <option selected value="none">--Select Crop-Name--</option>
+             @foreach ($crop as $crops)
+                <option value='{{ $crops->id }}'>{{ $crops->name }}</option>
+             @endforeach 
+           </select>
             </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label"> Variety</label>
+            <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
             <div class="col-sm-9">
-               <select class="form-control" name="variety">
-                  <option>--Select--</option>
-                  <option>Suwandel</option>
-                  <option>Kalu heenati</option>
-                  <option>Maa-Wee</option>
-                  <option>Pachchaperumal</option>
-                  <option>Kaluruthuda</option>
-                  <option>Others</option>
-                  
-                </select>
-                <!--<input name="variety" type="text" class="form-control" id="titleid" placeholder="variety">-->
-            </div>
+            <select name="variety_id" class="form-control">
+              <option selected value="none">--Select Variety--</option>
+              @foreach ($variety as $varieties)
+                <option value='{{ $varieties->id }}'>{{ $varieties->name }}</option>
+             @endforeach 
+            </select>
+        </div>
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Start Date</label>
@@ -112,49 +120,34 @@
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">Province</label>
             <div class="col-sm-9">
-            <select class="form-control" name="province_id">
-                  <option>--Select--</option>
-                  <option>Western Province</option>
-                  <option>Central Province</option>
-                  <option>Eastern Province</option>
-                  <option>Northern Province</option>
-                  <option>Uva Province</option>
-                  <option>Sabaragamuwa Province</option>
-                  <option>Southern Province</option>
-                  <option>North Western Province</option>
-                  <option>North Central Province</option>
-
-                </select>
+            <select name="province_id" class="form-control">
+              <option selected value="none">--Select Province--</option>
+              @foreach ($province as $provinces)
+                  <option value='{{ $provinces->id }}'>{{ $provinces->name }}</option>
+              @endforeach
+            </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">District</label>
             <div class="col-sm-9">
-            <select class="form-control" name="district_id">
-                  <option>--Select--</option>
-                  <option>Colombo</option>
-                  <option>Gampaha</option>
-                  <option>Kaluthara</option>
-                  
-                </select>
+            <select name="district_id" class="form-control">
+              <option selected value="none">--Select District--</option>
+               @foreach ($district as $districts)
+                  <option value='{{ $districts->id }}'>{{ $districts->name }}</option>
+              @endforeach
+            </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Region</label>
             <div class="col-sm-9">
-               <select class="form-control" name="region_id">
-                  <option>--Select--</option>
-                  <option>Attanagalla</option>
-                  <option>Biyagama</option>
-                  <option>Divulapitiya</option>
-                  <option>Dompe</option>
-                  <option>Gampaha</option>
-                  <option>Ja-ela</option>
-                  <option>Katana</option>
-                  <option>Kelaniya</option>
-                  <option>Mahara</option>
-                </select>
-                <!--<input name="region" type="text" class="form-control" id="titleid">-->
+            <select name="region_id" class="form-control">
+              <option selected value="none">--Select Region--</option>
+               @foreach ($region as $regions)
+                  <option value='{{ $regions->id }}'>{{ $regions->name }}</option>
+              @endforeach
+            </select>
             </div>
         </div>
         <div class="form-group row">
@@ -170,32 +163,47 @@
                 <input name="cultivatedLand" type="text" class="form-control" id="releasedateid" placeholder="XXX (ha)">
             </div>
         </div>
-
-          <hr>
-             <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" id="confirmCheck">
-                      <label class="form-check-label" for="confirmCheck">. . .I confirm all of the above provided information is accurate and valid with no false/incorrect data. </label>
-                    </div>
-                    <!-- end of confirmation -->
-                    <div class="btn-submit">
-                      <button type="submit" name="submit" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit Details"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i>Submit Details</button> 
-                    </div>
-
-                  </form>
-              </form>
+        <hr>
+          <div class="form-group form-check">
+             <input type="checkbox" class="form-check-input" id="confirmCheck">
+             <label class="form-check-label" for="confirmCheck">. . .I confirm all of the above provided information is accurate and valid with no false/incorrect data. </label>
           </div>
-
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+                <button type="submit" name ='submit' class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit Details"> <i class="fa fa mr-9" aria-hidden="true"></i> Submit Details</button>
+            </div>
+        </div>
+       </form>
+    </div>
 
 <!-- footer begins -->
 @include('layouts.footer')
 <!-- footer ends -->
-  </div>
-  </div>
+      </div>
+    </div>
   </body>
-  <!-- function to enable submit button after confirmation checkbox -->
+<!-- function to enable submit button after confirmation checkbox -->
   <script>
     $("#confirmCheck").click(function() {
     $(".submitButton").attr("disabled", !this.checked);
     });
-    </script>
+  </script>
+<!-- function to validate only decimal numbers are allowed in harvest amount field-->
+
+<!--date validation jquary function-->
+<script>
+    var dateToday = new Date();
+    var dates = $("#startDate, #endDate").datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 3,
+    minDate: dateToday,
+    onSelect: function(selectedDate) {
+        var option = this.id == "startDate" ? "minDate" : "maxDate",
+            instance = $(this).data("datepicker"),
+            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+        dates.not(this).datepicker("option", option, date);
+      }
+    });
+  </script>
 </html>
