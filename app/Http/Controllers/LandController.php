@@ -19,6 +19,7 @@ class LandController extends Controller
     {
         // load land records view list
     //    
+    
         
     }
 
