@@ -2,121 +2,82 @@
 
 namespace App\Http\Controllers;
 
-use App\Harvest;
-use App\cultivation;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Validation\Validator;
+use App\harvestDetails;
+use App\harvests;
+use App\cultivation;
+use App\farmer;
+use App\Province;
+use App\CropCategory;
+use App\crop;
+use App\variety;
+use App\district;
+use App\region;
 
 class HarvestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($id)
+    public function index()
     {
-        $cultivation = cultivation::all();
-        return view('harvest.harvest',compact('cultivation'));
+        // $login = Login::all();
+        // return response()->json($login);
+        $contacts = harvests ::all();
+        //$province = Province::all();
+        return view('harvest.index', compact('contacts')); 
+        
     }
 
-    /**
-     * Get a validator for an incoming request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function create()
     {
-        return Validator::make($data, [
-            'harvestedLand' => ['required', 'double'],
-            'harvestedAmount' => ['required', 'double'],
-            'harvestedDate' => ['required', 'date'],
-        ]);
+        $province = Province::all();
+        $CropCategory = CropCategory::all();
+        $crop = crop::all();
+        $variety = variety::all();
+        $district = district::all();
+        $region = region::all();
+        $farmer = farmer::all();
+        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer  ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(array $data)
-    {
-        return cultivation::create([
-            'harvestedLand' => $data['harvestedLand'],
-            'harvestedAmount' => $data['harvestedAmount'],
-            'harvestedDate' => $data['harvestedDate'],
-            'cultivation_id' => $data['cultivation_id'],
-        ]); 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $this->validator($request->all())->validate();
-        $harvest = $this->create($request->all());
+       /* $request->validate([
+            'farmer_id' => 'required',
+            'category_id' => 'required',
+            'crop_id' => 'required',
+            'variety_id' => 'required',
+            'region_id' => 'required',
+            'district_id' => 'required',
+            'cultivatedLand' => 'required',
+            'startDate' => 'required',
+            'season' => 'required',
+            'province_id' => 'required',
+            'harvestedAmount' => 'required',
+            'endDate' => 'required',
+        ],[
+            'farmer_id.required'=>'farmer ID is required!',
+            'harvestedAmount.required'=>'harvested amount must be an interger value in Kg!',
+            'cultivatedLand.required'=>'cultivated amount must be an interger value in Ha!',
 
-        return redirect('home');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Harvest  $harvest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Harvest $harvest)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Harvest  $harvest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Harvest $harvest)
-    {
-        $harvest = Harvest::find($id);
-        return view('harvest.harvestedit',compact('harvest'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Harvest  $harvest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $harvest = Harvest::find($id);
-
-        $this->validator($request->all())->validate();
-
-        $harvest->harvestedDate = $request->get('harvestedDate');
-        $harvest->harvestedLand = $request->get('harvestedLand');
-        $harvest->harvestedAmount = $request->get('harvestedAmount');
+        ]);
+        */
+        //dd($request);
+        $game = new harvests;
+        $game->farmer_id = request('farmer_id');
+        $game->category_id = request('category_id');
+        $game->crop_id = request('crop_id');
+        $game->variety_id = request('variety_id');
+        $game->region_id = request('region_id');
+        $game->district_id = request('district_id');
+        $game->cultivatedLand = request('cultivatedLand');
+        //$game->startDate = request('startDate');
+        $game->season = request('season');
+        $game->province_id = request('province_id');
+        $game->harvestedAmount = request('harvestedAmount');
+        $game->endDate = request('endDate');
+        $game->save();
+        
+        return redirect()->action('HarvestController@index');
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Harvest  $harvest
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Harvest $harvest)
-    {
-        $harvest = Harvest::find($id);
-        $harvest->delete();
-
-        return redirect('home');
-    }
+    
 }
