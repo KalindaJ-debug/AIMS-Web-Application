@@ -62,6 +62,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/land-records-empty/{id}', function ($id) {
+    return view('land-records-empty'. $id);
+});
+
 Route::get('/land-record-update/{id}', function($id){ return view('land-record-update'); });
 
 Route::get('/land-registration', 'RegistrationController@show')->name('land-registration');
@@ -138,10 +142,6 @@ Route::post('feedback-registered', 'FeedbackController@storeRegistered')->middle
 
 Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
 
-
-
-
-//RAaaaaaaaaggggggggaaaaaaaaaaaavvvvvvvvvviiiiiiiiiiiiiiiii
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
