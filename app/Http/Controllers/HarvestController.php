@@ -16,7 +16,7 @@ class HarvestController extends Controller
      */
     public function index($id)
     {
-        $cultivation = cultivation::all();
+        $cultivation = cultivation::with('farmer')find($id);
         return view('harvest.harvest',compact('cultivation'));
     }
 
