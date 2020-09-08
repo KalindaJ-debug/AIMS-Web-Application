@@ -20,11 +20,11 @@
 <body class="white-bg-color">
 
     <!-- header begins -->
-    @include('layouts.header')
+    
     <!-- header ends -->
 
     <!-- nav bar begins -->
-    @include('layouts.navbar')
+    
 
     <!-- nav bar ends -->
     <div class="wrapper d-flex align-items-stretch ">
@@ -287,6 +287,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
 </body>
     <!-- footer begins -->
-    @include('layouts.footer')
+    
      <!-- footer ends -->
 </html>
