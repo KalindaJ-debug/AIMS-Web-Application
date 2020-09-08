@@ -48,7 +48,8 @@ class RegistrationController extends Controller
         if ($request->input('type') == "farmer")
         {            
             $request->validate([
-                'email' => 'required|unique:farmers,email|email:rfc,dns',
+                'email' => 'unique:farmers,email|email:rfc,dns',
+                'username' => 'required|unique:farmers,userName'
             ]);
 
             $farmer = new Farmer; 
@@ -60,14 +61,17 @@ class RegistrationController extends Controller
             $farmer->telephoneNo = $request->input('telephoneNo');
             $farmer->nic = $request->input('nic');
             $farmer->email = $request->input('email');
-                
+            $farmer->userName = $request->input('username');    
+
             $pubEmail = $request->input('email'); //public email
 
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $fileName = time() . '.' . $extension;
-            $farmer->nicImage = $fileName;
-        
+            if ($request->has('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $extension;
+                $farmer->nicImage = $fileName;
+            }
+            
             $saved = $farmer->save();
         
             if (!$saved)

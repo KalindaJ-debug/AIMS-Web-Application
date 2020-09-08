@@ -30,6 +30,7 @@
 
   <title>Agriculture Information Management System | AIMS </title>
 </head>
+<body>
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -50,58 +51,76 @@
     </div>
    
     <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
+            <div class="form-group">
+                <label  class="col-xs-6 col-sm-6 col-md-4">Farmer ID:</label>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->farmer_id }}</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
+            <div class="form-group">
+                <label  class="col-xs-6 col-sm-6 col-md-4">Season:</label>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->season }}</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
+            <div class="form-group">
+                <label  class="col-xs-6 col-sm-6 col-md-4">Crop Category:</label>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->category_id }}</p>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label  class="col-xs-6 col-sm-6 col-md-4">Crop Name:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->name }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->crop_id }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">Variety:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->variety }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->variety_id }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">Start Date:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->sDate }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->startDate}}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">End Date:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->eDate }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->endDate}}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">Province:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->province }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->province_id}}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">District:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->district }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->district_id }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">Region:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->region }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->region_id}}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">Harvest Amount:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->amount }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->harvestedAmount }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">Cultivated Land:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->hect }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->cultivatedLand }}</p>
             </div>
         </div>
     </div>
