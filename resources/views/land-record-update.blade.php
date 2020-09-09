@@ -45,17 +45,35 @@
           <div class="land-register">
             <br><br>
             <!-- title -->
-            <h1> Land Information </h1>
+          <h1> Land Information </h1>
             <!-- form -->
             <div class="land-form">
               <div class="card" style="width: 85rem;border-radius: 10px;">
                 <div class="card-body">
-                  <h5 class="card-title">Modify Land Registration Details here</h5>
+                  <h4 class="card-title">Modify Land Registration Details here</h4>
                   <br>
+                <h5>Land Record ID : {{ $id }}</h5> <br>
+
+                {{-- Display error messages --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <br>
+                @endif
+            {{-- End Error Message div  --}}
+            
+                <input type="hidden" name="land_id" value="{{ $id }}">
                   <!-- form begins here -->
-                <form id="form-land" class="landForm" enctype="multipart/form-data" action="{{ url('land-records/'. $id. '') }}" method="POST">
-                  {{ csrf_field() }}  
+                <form id="form-land" class="landForm" enctype="multipart/form-data" action="{{ route('land-records.update', $id) }}" method="post" >
                   @method('PUT')
+
+                  {{ csrf_field() }}  
+                <input type="hidden" name="id" value="{{$id}}"> 
                     <!-- enter land information -->
                     <p class="card-text">Enter land location details </p>
                     <div class="input-group" aria-describedby="address">
@@ -353,7 +371,6 @@
                     <div class="btn-submit">
                       <button type="submit" class="btn btn-primary submitButton" id="submitButton" disabled data-toggle="tooltip" data-placement="right" title="Submit & Register Land Information"> <i class="fa fa-arrow-circle-right mr-3" aria-hidden="true"></i> Submit</button> 
                     </div>
-                    {{-- {{{ Form::hidden('_method', 'PUT') }}} --}}
                   </form>
                   <!-- end of form -->
 

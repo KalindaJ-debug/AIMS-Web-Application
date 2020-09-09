@@ -17,30 +17,9 @@ class LandController extends Controller
      */
     public function index($iid)
     {
-        // $id = 31; //farmer id - static - not integrated to view farmer details view
-        $id = Land::find($iid);
-        //fetch data 
-        $farmer = Farmer::where('id', $id)->first(); //farmer name
-        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->paginate(5);
-        // $landRecords = $landRecords::with('provinces')->get();
-        $count = $landRecords->total(); //number of records
-
-        if($landRecords != null){
-            //return land records
-        return view('land-records', 
-            array(
-                'firstName' => $farmer->firstName, 
-                'lastName' => $farmer->lastName, 
-                'landRecords' => $landRecords, 
-                'count' => $count,
-                'farmerID' => $id
-            )
-        ); //view land records
-
-        } //end of if
-        else{
-            return view('home');
-        }
+        // load land records view list
+    //    
+    
         
     }
 
@@ -65,7 +44,8 @@ class LandController extends Controller
         //Delete all records
         $fid = $request->input('farmerid'); //fetch hidden field data
         DB::table('lands')->where('farmer_id', '=', $fid)->delete();
-        return redirect('home'); //display land records page
+        return redirect('land-records/'. $fid . '');
+        // return redirect('home'); //display land records page
     }
 
     /**
@@ -83,8 +63,8 @@ class LandController extends Controller
         $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->paginate(5);
         // $landRecords = $landRecords::with('provinces')->get();
         $count = $landRecords->total(); //number of records
-
-        if($landRecords != null){
+        // dd($count);
+        if($landRecords != null && $count > 0){
             //return land records
         return view('land-records', 
             array(
@@ -98,7 +78,7 @@ class LandController extends Controller
 
         } //end of if
         else{
-            return view('home');
+            return view('land-records-empty');
         }
        
     }
@@ -109,9 +89,11 @@ class LandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
+        // dd($request->input('landId'));
         //
+        $id = $request->input('landId');
         $land = Land::find($id); //capture farmer_id
         $provincesList = DB::table('provinces')->distinct()->get();
         $districtsList = DB::table('districts')->distinct()->get();
@@ -128,10 +110,28 @@ class LandController extends Controller
      */
     public function update(Request $request, $id)
     {
+       //Code to validate form input
+            $request->validate([
+                
+                'addressNumber' => ['required', 'between:1,10'],
+                'street' => ['nullable', 'max:50'],
+                'lane' => ['required', 'string' ,'max:100'],
+                'town' => ['nullable', 'max:50'],
+                'city' => ['required'],
+                'grama' => ['required'],
+                'district' => ['required'],
+                'province' => ['required'],
+                'postal' => ['required', 'numeric', 'digits:5'],
+                'planNo' => ['required', 'numeric', 'digits:8'],
+                'hectares' => ['required', 'numeric']
+
+            ]); //end of validations
+
         //update land record
         $land = Land::find($id);
 
-        //update fields
+        if($land != null){
+            //update fields
         //input fields - location
         $land->addressNo = $request->input('addressNumber');
         $land->streetName = $request->input('street');
@@ -156,8 +156,17 @@ class LandController extends Controller
         //land extent value in ha
         $land->landExtend = $request->input('hectares');
 
+        $fid = $land->farmer_id; //fetch farmer id
+
         $land->save();
-        return redirect('land-records'); 
+
+        return redirect('land-records/'. $fid . ''); //display farmer records - show
+        }
+        else {
+
+            return redirect('home'); //error
+        }
+        
     }
 
     /**
@@ -170,8 +179,9 @@ class LandController extends Controller
     {
         //Delete selected row
         $land = Land::find($id); 
-        $land->delete();
-        return redirect('land-records'); //display records
+        $farmerId = $land->farmer_id; //store farmer id
+        $land->delete(); //delete record
+        return redirect('land-records/'. $farmerId . ''); //display farmer records - show
 
     }
 }

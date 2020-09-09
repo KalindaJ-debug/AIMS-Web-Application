@@ -26,6 +26,24 @@
         </script>
         
         <div class="container" style="background-color:white;">
+            @error('email') 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong> Email already exists
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
+
+            @error('username') 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error</strong> Username already exists
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
+
             <h2 class="display-4">Farmer</h2>
             
             </br>
@@ -39,6 +57,7 @@
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Username</th>
                         <th scope="col">Telephone Number</th>
                         <th scope="col">NIC</th>
                         <th scope="col">Action</th>
@@ -51,11 +70,17 @@
                         <td>{{ $farmers->firstName }}</td>
                         <td>{{ $farmers->lastName }}</td>
                         <td>{{ $farmers->email }}</td>
+                        <td>{{ $farmers->userName }}</td>
                         <td>{{ $farmers->telephoneNo }}</td>
                         <td>{{ $farmers->nic }}</td>
                         <td>
+                            @if ($farmers->device)
+                                <button type="button" class="btn btn-dark" onclick='deviceEdit(@json($farmers->id), @json($farmers->device->id), @json($farmers->device->macAddress))'><i class="fas fa-mobile"></i> Edit Device</button>
+                            @else
+                                <button type="button" class="btn btn-dark" onclick='deviceAdd(@json($farmers->id))'><i class="fas fa-mobile"></i> Add Device</button>
+                            @endif
                             <button type="button" class="btn btn-primary" onclick='landFarmer(@json($farmers->id))'><i class="fas fa-landmark"></i> Land Details</button>
-                            <button type="button" class="btn btn-warning" onclick='editFarmer(@json($farmers->id), @json($farmers->firstName), @json($farmers->otherName), @json($farmers->lastName), @json($farmers->email), @json($farmers->telephoneNo), @json($farmers->nic))'><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-warning" onclick='editFarmer(@json($farmers->id), @json($farmers->firstName), @json($farmers->otherName), @json($farmers->lastName), @json($farmers->email), @json($farmers->telephoneNo), @json($farmers->nic), @json($farmers->userName))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteFarmer(@json($farmers->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
                     </tr>
@@ -83,8 +108,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">First and Last name</span>
                                     </div>
-                                    <input name="firstName" type="text" aria-label="First name" class="form-control" placeholder="First name" required>
-                                    <input name="lastName" type="text" aria-label="Last name" class="form-control" placeholder="Last name" required>
+                                    <input name="firstName" type="text" aria-label="First name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="First name" required>
+                                    <input name="lastName" type="text" aria-label="Last name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="Last name" required>
                                 </div>
 
                                 <div class="form-group">
@@ -96,6 +121,11 @@
                                     <label>Email address</label>
                                     <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
                                     <small id="emailHelp" class="form-text text-muted">Your email will be secure.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="otherName">Username</label>
+                                    <input name="username" type="text" class="form-control" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
                                 </div>
 
                                 <div class="form-group">
@@ -126,7 +156,7 @@
                                 <div class="jumbotron">
                                     <div class="form-group">
                                         <label for="image">NIC Image</label>
-                                        <input name="image" type="file" class="form-control-file" id="image" accept="image/*" required>
+                                        <input name="image" type="file" class="form-control-file" id="image" accept="image/*">
 
                                         <div class="image-preview" id="imagePreview">
                                             <img src="" alt="Image Preview" class="image-preview__image d-block w-100 img-fluid rounded">
@@ -219,24 +249,24 @@
 
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" id="editFarmerId" name="id">
-
+                                
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" type="text" id="editFarmerFirstName" name="firstName">
+                                    <input class="form-control" type="text" id="editFarmerFirstName" name="firstName" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
                                 </div>
 
                                 </br>
 
                                 <div class="form-group">
                                     <label>Other Name</label>
-                                    <input class="form-control" type="text" id="editFarmerOtherName" name="otherName">
+                                    <input class="form-control" type="text" id="editFarmerOtherName" name="otherName" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
                                 </div>
 
                                 </br>
 
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" type="text" id="editFarmerLastName" name="lastName">
+                                    <input class="form-control" type="text" id="editFarmerLastName" name="lastName" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
                                 </div>
 
                                 </br>
@@ -245,6 +275,13 @@
                                     <label>Email address</label>
                                     <input type="email" name="email" class="form-control" aria-describedby="emailHelp" id="editFarmerEmail">
                                     <small id="emailHelp" class="form-text text-muted">Your email will be secure.</small>
+                                </div>
+
+                                </br>
+
+                                <div class="form-group">
+                                    <label for="otherName">Username</label>
+                                    <input name="username" type="text" class="form-control" id="farmerUsername" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
                                 </div>
 
                                 </br>
@@ -309,6 +346,69 @@
 
         </div>
 
+        <!-- Device Modal -->
+
+        <div class="modal" tabindex="-1" role="dialog" id="deviceAdd">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Device Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('DeviceController@addFarmerManagement')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="farmerId" id="farmerDeviceId">
+
+                                <div class="form-group">
+                                    <label for="otherName">Mac Address</label>
+                                    <input name="address" type="text" class="form-control" placeholder="Mac Address">
+                                </div> 
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-primary">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="deviceEdit">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Device Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('DeviceController@editFarmerManagement')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="deviceId" id="deviceId">
+                                <input type="hidden" name="farmerId" id="farmerEditDeviceId">
+
+                                <div class="form-group">
+                                    <label for="otherName">Mac Address</label>
+                                    <input name="address" type="text" id="addressFarmer" class="form-control" placeholder="Mac Address">
+                                </div> 
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-primary">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @include('layouts.footer')
 
     </body>
@@ -328,7 +428,7 @@
             document.getElementById("farmerId").value = id;
         } 
 
-        function editFarmer(id, firstName, otherName, lastName, email, telephone, nic)
+        function editFarmer(id, firstName, otherName, lastName, email, telephone, nic, username)
         {
             $('#editFarmer').modal('show');
             document.getElementById("editFarmerId").value = id;
@@ -338,6 +438,7 @@
             document.getElementById("editFarmerEmail").value = email;
             document.getElementById("editFarmerTelephone").value = telephone;
             document.getElementById("editFarmerNIC").value = nic;
+            document.getElementById("farmerUsername").value = username;
         } 
 
         function landFarmer(id)
@@ -345,5 +446,19 @@
             $('#landFarmer').modal('show');
             document.getElementById("farmerIdLand").value = id;
         } 
+
+        function deviceAdd(farmerId)
+        {
+            $('#deviceAdd').modal('show');
+            document.getElementById("farmerDeviceId").value = farmerId;
+        }
+
+        function deviceEdit(farmerId, deviceID, macAddress)
+        {
+            $('#deviceEdit').modal('show');
+            document.getElementById("farmerEditDeviceId").value = farmerId;
+            document.getElementById("deviceId").value = deviceID;
+            document.getElementById("addressFarmer").value = macAddress;
+        }
     </script>
 </html>

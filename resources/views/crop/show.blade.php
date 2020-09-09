@@ -30,6 +30,7 @@
 
   <title>Agriculture Information Management System | AIMS </title>
 </head>
+<body>
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -50,6 +51,12 @@
     </div>
    
     <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
+            <div class="form-group">
+                <label  class="col-xs-6 col-sm-6 col-md-4">Farmer ID:</label>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->farmer_id }}</p>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label  class="col-xs-6 col-sm-6 col-md-4">Season:</label>
@@ -65,13 +72,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label  class="col-xs-6 col-sm-6 col-md-4">Crop Name:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->name }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->crop_id }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
                 <label class="col-xs-6 col-sm-6 col-md-4">Variety:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->variety }}</p>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->variety_id }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">

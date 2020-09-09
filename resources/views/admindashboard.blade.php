@@ -103,7 +103,7 @@
                             <div class="card-body">
                               <h5 class="card-title">Harvest Entry</h5>
                               <p class="card-text">Add new harvest information into the system</p>
-                            <a href="{{ url('dataentry') }}" class="btn btn-primary">Manage Harvests</a>
+                            <a href="{{ url('harvest-data') }}" class="btn btn-primary">Manage Harvests</a>
                             </div>
                       </div>
                     </div>
@@ -305,9 +305,9 @@
             <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
                   <img src="assets/img/farmer2.jpg" class="card-img" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Requests</h5>
+                    <h5 class="card-title">External Factors</h5>
                     <p class="card-text">Manage Requests</p>
-                  <a href="{{url('approval')}}" class="btn btn-primary">Manage Requests</a>
+                  <a href="{{url('external-data')}}" class="btn btn-primary">Manage Requests</a>
                   </div>
             </div>
           </div>
@@ -315,9 +315,9 @@
             <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height:400px">
                   <img src="assets/img/vegbg.jpg" class="card-img" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">All Island</h5>
-                    <p class="card-text">See descriptive map</p>
-                  <a href="{{url('map')}}" class="btn btn-primary">See More</a>
+                    <h5 class="card-title">Cultivation</h5>
+                    <p class="card-text">manage cultivation information</p>
+                  <a href="{{url('crop-data')}}" class="btn btn-primary">See More</a>
                   </div>
             </div>
           </div>

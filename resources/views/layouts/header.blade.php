@@ -20,7 +20,7 @@
         <div class="card mb-3" style="max-width:60%;background-color:#08260E;border:none;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="assets/img/DOA emblem.png" class="card-img" alt="headerLogo" style="width:120px;height:120px;margin-left:20px;margin-top:10px;margin-bottom:10px;">
+          <img src="{{ url('assets/img/DOA emblem.png') }}" class="card-img" alt="headerLogo" style="width:120px;height:120px;margin-left:20px;margin-top:10px;margin-bottom:10px;">
           </div>
           <div class="col-md-8">
             <div class="card-body text-center" style="padding:30px;color:white;">

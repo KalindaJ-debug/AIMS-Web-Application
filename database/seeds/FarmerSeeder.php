@@ -20,6 +20,8 @@ class FarmerSeeder extends Seeder
                 'firstName' => $faker->firstName,
                 'otherName' => $faker->firstNameMale,
                 'lastName' => $faker->lastName,
+                'userName' => $faker->firstName,
+                'email' => $faker->email,
                 'telephoneNo' => '773734324',
                 'nic' => $faker->streetName,
                 'nicImage' => $faker->image,

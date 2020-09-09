@@ -53,9 +53,9 @@
                 </div>
             @enderror
 
-            @error('nic') 
+            @error('username') 
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error</strong> Invalid NIC length
+                    <strong>Error</strong> Username already exists
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -100,6 +100,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="otherName">Username</label>
+                    <input name="username" type="text" class="form-control" id="username" pattern="[a-zA-Z]+" placeholder="Username" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
+                </div>
+
+                <div class="form-group">
                     <label for="password">Password</label>
                     <input name="password" type="password" class="form-control" id="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
                     <small id="emailHelp" class="form-text text-muted">Minimum eight characters, at least one letter and one number.</small>
@@ -124,27 +129,10 @@
                     </div>
                 </div>
 
-                <!-- <div class="jumbotron">
-                    <div class="form-group">
-                        <label for="image">NIC Image</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" id="image" accept="image/*" required>
-                                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                            </div>
-                        </div>
-
-                        <div class="image-preview" id="imagePreview">
-                            <img src="" alt="Image Preview" class="image-preview__image d-block w-100 img-fluid rounded">
-                            <span class="image-preview__default-text">Image Preview</span>
-                        </div>
-                    </div>
-                </div> -->
-
                 <div class="jumbotron">
                     <div class="form-group">
                         <label for="image">NIC Image</label>
-                        <input name="image" type="file" class="form-control-file" id="image" accept="image/*" required>
+                        <input name="image" type="file" class="form-control-file" id="image" accept="image/*">
 
                         <div class="image-preview" id="imagePreview">
                             <img src="" alt="Image Preview" class="image-preview__image d-block w-100 img-fluid rounded">

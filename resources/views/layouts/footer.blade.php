@@ -19,7 +19,7 @@
         <div class="col-lg-5 col-xs-12 about-company">
           <h2>AIMS</h2>
           <p class="pr-5 text-white-50">Agriculture Information Management System     Department of Agriculture, Kandy </p>
-          <img src="assets/img/Department of Agriculture.png" alt="logo" style="width:50px;height:50px;">
+        <img src="{{ url('assets/img/Department of Agriculture.png') }}" alt="logo" style="width:50px;height:50px;">
         </div>
 
         <div class="col-lg-3 col-xs-12 links">

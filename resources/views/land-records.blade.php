@@ -49,7 +49,13 @@
       						<h2>All Registered Land Records</b></h2>
       					</div>
       					<div class="col-sm-6">
-      						<a class="btn btn-success"><i class="fa fa-sort mr-3" aria-hidden="true"></i> <span>Sort</span></a>
+                  {{-- <a class="btn btn-success"><i class="fa fa-sort mr-3" aria-hidden="true"></i> <span>Sort</span></a> --}}
+                  @php
+                       $farmer_id = Request::segment(2); //fetch farmer ID
+                  @endphp
+                  <form action="{{ route('registration.show', $farmer_id) }}" method="get">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-plus mr-3" aria-hidden="true"></i> <span>Register</span></button>
+                  </form>
       						<a href="#deleteFeedback" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash mr-3" aria-hidden="true"></i> <span>Delete All Records</span></a>
       					</div>
       				</div>
@@ -58,12 +64,13 @@
       				<thead>
       					<tr>
       						<th>
-      							<span class="custom-checkbox">
+      							{{-- <span class="custom-checkbox">
       								<input type="checkbox" id="selectAll" class="selectAll">
       								<label for="selectAll"></label>
-      							</span>
+                    </span> --}}
+                    
       						</th>
-                      <th>No</th>
+                      <th>Land ID</th>
                       <th>Address No</th>  
                       <th>Lane</th>
                       <th>City</th>  
@@ -74,38 +81,46 @@
       					</tr>
       				</thead>
       				<tbody>
-               
+
                 @php
                     $i = 0;
                 @endphp
 
-                {{-- row begins --}}
-                @foreach ($landRecords as $item)
-              <form action="land-records/{{$item->id}}/edit" method="get" name="edit">
-                <input type="hidden" name="landId" value="{{$item->id}}">
-                  {{ csrf_field() }}
-                <tr>
-      						<td>
-      							<span class="custom-checkbox">
-                    <input type="checkbox" name="options[]" value="{{ $i++ }}">
-      								<label for="checkbox1"></label>
-      							</span>
-      						</td>
-                  <td>{{ $i }}</td>
-                  <td>{{ $item->addressNo }}</td>  
-      						<td>{{$item->laneName}}</td>
-                  <td>{{$item->city}}</td>
-                  <td>{{$item->districts->name}}</td>
-                  <td>{{$item->provinces->name}}</td>
-      						<td class="font-italic">{{$item->landExtend}}</td>
-      						<td>
-                  <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-      						</td>
-                </tr>
-                @endforeach
+                @if ($count <= 0)
+                  {{"$count Records Found"}}
+
+                @elseif($count > 0)
+                  {{ "$count Records Found" }}
+                  {{-- row begins --}}
+                  @foreach ($landRecords as $item)
+                  
+                  <form action="{{$item->id}}/edit" method="get" name="edit">
+                    <input type="hidden" name="landId" value="{{$item->id}}">
+                      {{ csrf_field() }}
+                      <tr>
+                        <td>
+                          {{-- <span class="custom-checkbox">
+                          <input type="checkbox" name="options[]" value="{{ $i++ }}">
+                            <label for="checkbox1"></label>
+                          </span> --}}
+                          
+                        </td>
+                        <td> {{ $item->id }} </td>
+                        <td>{{ $item->addressNo }}</td>  
+                        <td>{{$item->laneName}}</td>
+                        <td>{{$item->city}}</td>
+                        <td>{{$item->districts->name}}</td>
+                        <td>{{$item->provinces->name}}</td>
+                        <td class="font-italic">{{$item->landExtend}}</td>
+                        <td>
+                        <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
+                          <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                        </td>
+                      </tr>
+                  </form>
+                  @endforeach
                 {{-- row ends  --}}
-              </form>
+                @endif
 
       				</tbody>
       			</table>
@@ -113,13 +128,6 @@
             <div class="hint-text">Showing <b>{{ $count }}</b> out of <b> {{ $landRecords->total() }} </b> entries</div>
       				<ul class="pagination">
               <li class="page-item">{{ $landRecords->links() }}</li>
-      					{{-- <li class="page-item disabled"><a href="#">Previous</a></li>
-      					<li class="page-item"><a href="#" class="page-link">1</a></li>
-      					<li class="page-item"><a href="#" class="page-link">2</a></li>
-      					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-      					<li class="page-item"><a href="#" class="page-link">4</a></li>
-      					<li class="page-item"><a href="#" class="page-link">5</a></li>
-      					<li class="page-item"><a href="#" class="page-link">Next</a></li> --}}
       				</ul>
       			</div>
       		</div>
@@ -137,7 +145,7 @@
      <div id="deleteSelectedFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form action="land-records/{{$item->id}}" method="post" name="delete">
+          <form action="{{$item->id}}" method="post" name="delete">
             @method('delete')
             {{ csrf_field() }}
             <div class="modal-header">
@@ -145,7 +153,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-              <img src="assets/img/delete.png" alt="delete" style="margin-left:350px;margin-top:20px;">
+            <img src="{{ url('assets/img/delete.png') }}" alt="delete" style="margin-left:350px;margin-top:20px;">
               <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete these registered land record(s)?</p>
               <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
             </div>
@@ -163,7 +171,7 @@
      <div id="deleteFeedback" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <form action="land-records" method="POST" name="deleteAll">
+          <form action="{{ route('land-records.store') }}" method="POST" name="deleteAll">
               {{ csrf_field() }}
             <input type="hidden" name="farmerid" value="{{$farmerID}}">
               <div class="modal-header">
@@ -171,7 +179,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
               <div class="modal-body">
-                <img src="assets/img/quit.png" alt="delete" style="margin-left:350px;margin-top:20px;">
+              <img src="{{ url('assets/img/quit.png') }}" alt="delete" style="margin-left:350px;margin-top:20px;">
                 <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete all the registered land records?</p>
                 <p class="text-danger text-center font-weight-normal" style="font-size:17px;"> <i class="fa fa-exclamation-triangle mr-3" aria-hidden="true"></i>This action cannot be undone.</p>
               </div>
