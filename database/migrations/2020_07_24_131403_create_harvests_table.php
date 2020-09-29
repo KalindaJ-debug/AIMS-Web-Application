@@ -18,7 +18,7 @@ class CreateHarvestsTable extends Migration
             $table->unsignedBigInteger('cultivation_id');
             $table->foreign('cultivation_id')->references('id')->on('cultivations');
             $table->string('season')->nullable();
-            $table->date('harvestedDate');
+            $table->date('endDate');
             $table->integer('harvestedAmount');
             $table->double('harvestedLand', 17, 10);
             $table->timestamps();

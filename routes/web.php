@@ -40,6 +40,23 @@ Route::get('/crop-data/{id}', 'DataController@show');
 Route::get('/crop-data/{id}/delete', 'DataController@destroy');
 Route::resource('crop-data', 'DataController');
 
+Route::get('/harvest-data', 'HarvestController@index');
+Route::get('/Entry-harvest-data', 'HarvestController@create');
+Route::get('/harvest-data/{id}', 'HarvestController@show');
+Route::resource('harvest-data', 'HarvestController');
+
+Route::get('/external-data', 'ExternalFactors@index');
+Route::get('/Entry-external-data', 'ExternalFactorsController@create');
+Route::get('/external-data/{id}', 'ExternalFactorsController@show');
+Route::resource('external-data', 'ExternalFactorsController');
+
+Route::post('/cropDetails', 'DataController@store')->name('cropDetails');
+
+Route::post('/harvestDetails', 'HarvestController@store')->name('harvestDetails');
+
+Route::post('/externalFactors', 'ExternalFactorsController@store')->name('externalFactors');
+
+
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
 
@@ -60,6 +77,10 @@ Route::resource('land-records', 'LandController')->middleware('auth','roleCheck'
 
 Route::get('/home', function () {
     return view('home');
+});
+
+Route::get('/land-records-empty/{id}', function ($id) {
+    return view('land-records-empty'. $id);
 });
 
 Route::get('/land-record-update/{id}', function($id){ return view('land-record-update'); });
@@ -138,10 +159,6 @@ Route::post('feedback-registered', 'FeedbackController@storeRegistered')->middle
 
 Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
 
-
-
-
-//RAaaaaaaaaggggggggaaaaaaaaaaaavvvvvvvvvviiiiiiiiiiiiiiiii
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -157,7 +174,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Device Management 
 
 Route::get('device', 'DeviceController@index');
-Route::post('device-add', 'DeviceController@addDevice');
-Route::post('device-edit', 'DeviceController@editDevice');
-Route::get('device-delete/{$id}', 'DeviceController@deleteDevice');
-
+Route::post('device-user-add', 'DeviceController@addUserDevice');
+Route::post('device-user-edit', 'DeviceController@editUserDevice');
+Route::post('device-delete', 'DeviceController@deleteDevice');
+Route::post('device-farmer-add', 'DeviceController@addFarmerDevice');
+Route::post('device-farmer-edit', 'DeviceController@editFarmerDevice');
+Route::post('device-farmerManagement-add', 'DeviceController@addFarmerManagement');
+Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManagement');
+Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
+Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');

@@ -68,6 +68,7 @@ class ApprovalController extends Controller
             $harvest->season= $data->season;
             $harvest->startDate= $data->startDate;
             $harvest->endDate= $data->endDate;
+            $harvest->season= $data->season;
             $harvest->harvestedAmount= $data->harvestedAmount;
 
             $harvest->save();
