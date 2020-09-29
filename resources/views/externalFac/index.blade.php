@@ -27,7 +27,19 @@
   <!-- scrool reveal api-->
 
   <script src="https://unpkg.com/scrollreveal"></script>
+  <style>
 
+  .table{
+    font-family:sans-serif;
+    border-collapse: collapse;
+  }
+  
+  .table thead {
+    background: #0D6319;
+    color: #ffffff;
+
+  }
+  </style>
   <title>Agriculture Information Management System | AIMS </title>
 </head>
 <!-- header begins -->
@@ -76,6 +88,7 @@
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>
+                  <button class="btn btn-warning" type="submit">edit</button>
                 </form>
             </td>
         </tr>
