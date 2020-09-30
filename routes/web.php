@@ -183,3 +183,9 @@ Route::post('device-farmerManagement-add', 'DeviceController@addFarmerManagement
 Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManagement');
 Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
 Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');
+
+Route::get('/hello', function () {
+    $pdf = App::make('snappy.pdf.wrapper');
+    $pdf->loadHTML('<h1>Test</h1>');
+    return $pdf->inline();
+});
