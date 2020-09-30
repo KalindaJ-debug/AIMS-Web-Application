@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Land extends Model
 {
+    private int $i = 0;
+    
     protected $table = 'lands';
 
     protected $fillable = ['farmer_id','addressNo', 'streetName', 'laneName', 'town', 'city', 'gnd', 'province_id', 'district_id', 'postalCode', 'planningNumber', 'landRegistration', 'landExtend'];
