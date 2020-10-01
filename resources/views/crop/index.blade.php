@@ -56,6 +56,7 @@
     <h1 class="display-3">Cultivation Details</h1>    
     <div>
     <a style="margin: 19px;" href="/Entry-crop-data" class="btn btn-primary">New Cultivation Details</a>
+    <a style="margin: 19px;" href="" class="btn btn-warning">Genarate Pdf</a>
     </div>  
   <table class="table table-striped">
     <thead>
