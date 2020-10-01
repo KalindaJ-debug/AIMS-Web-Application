@@ -35,7 +35,7 @@ return [
     
     'pdf' => [
         'enabled' => true,
-        'binary'  => '"D:\Repositories\SD10_2020\vendor\h4cc\wkhtmltoimage-amd64\bin\wkhtmltoimage-amd64"',
+        'binary'  => '"D:\wkhtmltopdf\bin\wkhtmltopdf.exe"',
         'timeout' => false,
         'options' => [],
         'env'     => [],
@@ -43,7 +43,7 @@ return [
     
     'image' => [
         'enabled' => true,
-        'binary'  => '"D:\Repositories\SD10_2020\vendor\h4cc\wkhtmltoimage-amd64\bin\wkhtmltoimage-amd64"',
+        'binary'  => '"D:\wkhtmltopdf\bin\wkhtmltoimage.exe"',
         'timeout' => false,
         'options' => [],
         'env'     => [],
