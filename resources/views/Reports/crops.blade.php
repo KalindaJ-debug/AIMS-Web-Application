@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Farmers Information</title>
+    <title>Crops Information</title>
 
     <style>
         .table {
@@ -42,7 +42,7 @@
             <h1>AIMS Sri Lanka</h1>
             <h3>Agricultural Information Management System</h3>
             <p>The below pdf is generated for documentation purposes. The documents may contain sensitive data so, please handle with absolute discretion. </p>
-            <h3>Farmers List</h3>
+            <h3>Crops List</h3>
         </div>
     </header>
 

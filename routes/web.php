@@ -4,6 +4,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\Reports;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -185,8 +186,30 @@ Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManageme
 Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
 Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');
 
-Route::get('/hello', 'Reports\UsersReportController@getUsersPDF');
-Route::get('/send', 'Reports\UsersReportController@sendUserEmailPDF');
+Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
+Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
 Route::get('/farmerReport', 'Reports\FarmersReportController@getFarmersPDF');
 Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
+
+Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+
+Route::get('/userRep', function () {
+
+    $pdf = PDF::loadView('Reports.users');
+    
+});
+
+Route::get('/farmerRep', function () {
+
+    $pdf = PDF::loadView('Reports.farmers');
+
+});
+
+Route::get('/cropRep', function () {
+
+    $pdf = PDF::loadView('Reports.crops');
+    
+});
+
+
 

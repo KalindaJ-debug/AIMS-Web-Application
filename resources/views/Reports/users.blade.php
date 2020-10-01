@@ -56,10 +56,25 @@
             <th >ID</th>
             <th >First Name</th>
             <th >Last Name</th>
-            <th >Username</th>
-            <th >Email</th>
-            <th >Last Login</th>
-            <th >IP Address</th>
+            @if (in_array('username', $fields))
+                <th >Username</th>
+            @endif
+                  
+            @if (in_array('role', $fields))
+                <th >Role</th>
+            @endif
+
+            @if (in_array('email', $fields))
+                <th >Email</th>
+            @endif
+
+            @if (in_array('last', $fields))
+                <th >Last Login</th>
+            @endif
+                  
+            @if (in_array('last', $fields))
+                <th >IP Address</th>
+            @endif 
           </tr>
         </thead>
               
@@ -69,10 +84,26 @@
                   <th>{{$user->id}}</th>
                   <td>{{$user->name}}</td>
                   <td>{{$user->lastname}}</td>
-                  <td>{{$user->username}}</td>
-                  <td>{{$user->email}}</td>
-                  <td>{{$user->last_login_at}}</td>
-                  <td>{{$user->last_login_ip}}</td>
+                  @if (in_array('username', $fields))
+                    <td>{{$user->username}}</td>
+                  @endif
+                  
+                  @if (in_array('role', $fields))
+                    <td>{{$user->role}}</td>
+                  @endif
+
+                  @if (in_array('email', $fields))
+                    <td>{{$user->email}}</td>
+                  @endif
+
+                  @if (in_array('last', $fields))
+                    <td>{{$user->last_login_at}}</td>
+                  @endif
+                  
+                  @if (in_array('last', $fields))
+                    <td>{{$user->last_login_ip}}</td>
+                  @endif
+                  
 
               </tr>
             @endforeach

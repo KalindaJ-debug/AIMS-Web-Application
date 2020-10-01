@@ -275,7 +275,6 @@
                     </tbody>
                 </table>
             </div>
-
                         <div class="tab-pane fade" id="AI" role="tabpanel" aria-labelledby="profile-tab">
                             <table class="display table table-hover" id="AI_table">
                                 <thead>
@@ -345,18 +344,55 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">Export PDF</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            <form method="POST" action="{{ route('report.store') }}">
+              @csrf
+
+              <div class="form-group row">
+                <label for="page" class="col-md-4 col-form-label text-md-right">{{ __('Page Size') }}</label>
+
+                <div class="col-md-6">
+                    <select id="page" class="form-control" name="page" required>
+                        <option value="A4" selected>A4</option>
+                        <option value="A6">A6</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="orientation" class="col-md-4 col-form-label text-md-right">{{ __('Orientation') }}</label>
+
+                <div class="col-md-6">
+                    <select id="orientation" class="form-control" name="orientation" required>
+                        <option value="portrait" selected>Portrait</option>
+                        <option value="landscape">Landscape</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">{{ __('Included Fields') }}</label>
+
+                <div class="col-md-6">
+                    <input type="checkbox" name="fields[]" value="role" checked>Role<br>
+                    <input type="checkbox" name="fields[]" value="username" checked>Username<br>
+                    <input type="checkbox" name="fields[]" value="email" checked>Email<br>
+                    <input type="checkbox" name="fields[]" value="last" checked>Last Login<br>
+                    <input type="checkbox" name="fields[]" value="address" checked>IP Address<br>
+                </div>
+              </div>
+
+            <input type="text" name="email" id="email" value="{{ Auth::user()->email }}" hidden>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Download PDF</button>
           </div>
+        </form>
         </div>
       </div>
     </div>
