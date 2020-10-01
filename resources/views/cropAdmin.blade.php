@@ -123,6 +123,13 @@
                 </tbody>
             </table>
 
+            <button type="button" class="btn bg-dark text-white" onclick="location.href='{{url('cropsReport')}}';">
+                <i class="fas fa-file-pdf"></i> Download Report
+            </button>
+            <button type="button" class="btn btn-warning" onclick="location.href='{{url('sendCropsReport')}}';">
+                <i class="fas fa-file-pdf"></i> Email Report
+            </button>
+
             <!-- Edit Tables  -->
 
             <div class="modal" tabindex="-1" role="dialog" id="editCategory">

@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -56,8 +58,18 @@ class LoginController extends Controller
         if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
         {
             if(auth()->user()->role == 'Admin'){
+                $user = User::where('username',$input['username']);
+                $user->update([
+                'last_login_at' => Carbon::now()->toDateTimeString(),
+                'last_login_ip' => $request->getClientIp()
+            ]);
                 return redirect()->route('admindash');
             }else{
+                $user = User::where('username',$input['username']);
+            $user->update([
+                'last_login_at' => Carbon::now()->toDateTimeString(),
+                'last_login_ip' => $request->getClientIp()
+            ]);
                 return redirect()->route('home'); 
             }
         }else{
