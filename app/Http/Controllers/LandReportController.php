@@ -7,6 +7,8 @@ use DB;
 use PDF;
 use App\Farmer;
 use App\Land;
+use App\Province;
+use App\District;
 use Illuminate\Support\Facades\App;
 
 class LandReportController extends Controller
@@ -84,6 +86,8 @@ class LandReportController extends Controller
     public function exportLandRecordPDF($lid){
         $land = Land::find($lid);
         $farmer = Farmer::where('id', $land->farmer_id)->first();
+        $province = Province::where('id', $land->province_id)->first();
+        $district = District::where('id', $land->district_id)->first();
         
         //html stream for pdf
         $landHTMLStream = '
@@ -103,9 +107,100 @@ class LandReportController extends Controller
       </div>
 
       <br>
-      <h3 style="margin-left:250px;">Farmer Land Information</h3>
-      <p style="margin-left:50px;">Full Name: '.$farmer->firstName.'  '.$farmer->lastName.' </p>
-      <hr>
+      <h3 style="margin-left:250px;">Farmer Land Information</h3> <br>
+      <p style="margin-left:20px;">Full Name: <b>'.$farmer->firstName.'  '.$farmer->lastName.'</b> </p> <br>
+      <hr> 
+      <table style="border-collapse:collapse;width:100%;">
+       <tr>
+         <th style="padding:15px;text-align:left;background-color: #ffa;"> Land ID </th>
+         <td style="padding:15px;text-align:left;background-color: #ffa;"> : '.$land->id.' </td>
+         <td style="background-color: #ffa;"></td>
+         <td style="background-color: #ffa;"></td>
+       </tr>
+
+       <tr>
+         <th style="padding:15px;text-align:left;"> Address No </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->addressNo.' </td>
+         <th style="padding:15px;text-align:left;"> Street </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->streetName.' </td>
+       </tr>
+
+       <tr>
+         <th style="padding:15px;text-align:left;"> Lane </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->laneName.' </td>
+         <th style="padding:15px;text-align:left;"> Town </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->town.' </td>
+       </tr>
+
+       <tr>
+         <th style="padding:15px;text-align:left;"> City </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->city.' </td>
+         <th style="padding:15px;text-align:left;"> GND No </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->gnd.' </td>
+       </tr>
+
+       <tr>
+         <td style="height:20px;"></td>
+       </tr>
+
+       <tr>
+         <th style="padding:15px;text-align:left;"> District </th>
+         <td style="padding:15px;text-align:left;"> : '.$district->name.' </td>
+         <td></td>
+         <td></td>
+       </tr>
+
+       <tr>
+         <th style="padding:15px;text-align:left;"> Province </th>
+         <td style="padding:15px;text-align:left;"> : '.$province->name.' </td>
+         <td></td>
+         <td></td>
+       </tr>
+
+       <tr>
+         <td style="height:20px;"></td>
+       </tr>
+
+       <tr>
+         <th style="padding:15px;text-align:left;"> Postal Code </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->postalCode.' </td>
+         <td></td>
+         <td></td>
+       </tr>
+
+       <tr>
+         <th style="padding:15px;text-align:left;"> Planning Number </th>
+         <td style="padding:15px;text-align:left;"> : '.$land->planningNumber.' </td>
+         <td></td>
+         <td></td>
+       </tr>
+
+       <tr>
+         <td style="height:20px;"></td>
+         <td></td>
+         <th style="padding:15px;text-align:left;background-color: #ffa;"> Land Extent (ha) </th>
+         <td style="padding:15px;text-align:left;background-color: #ffa;"> : '.$land->landExtend.' </td>
+       </tr>
+
+       <tr>
+         <td style="height:50px;"></td>
+       </tr>
+
+       <tr>
+         <td style="padding:15px;text-align:left;"> Registered At </td>
+         <td style="padding:15px;text-align:left;"> : '.$land->created_at.' </td>
+         <td></td>
+         <td></td>
+       </tr>
+
+       <tr>
+         <td style="padding:15px;text-align:left;"> Updated On </td>
+         <td style="padding:15px;text-align:left;">: '.$land->updated_at.'</td>
+         <td></td>
+         <td></td>
+       </tr>
+
+     </table>
         ';
 
         //stream pdf
