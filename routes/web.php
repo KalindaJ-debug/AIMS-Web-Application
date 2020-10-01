@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\Reports;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -184,8 +185,4 @@ Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManageme
 Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
 Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');
 
-Route::get('/hello', function () {
-    $pdf = App::make('snappy.pdf.wrapper');
-    $pdf->loadHTML('<h1>Test</h1>');
-    return $pdf->inline();
-});
+Route::get('/hello', 'UserReportController@getPDF');
