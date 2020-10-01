@@ -46,7 +46,6 @@ class CropsReportController extends Controller
                 'mime' => 'application/pdf'
             ]);
         });
-
-        return view('home');
+        
     }
 }

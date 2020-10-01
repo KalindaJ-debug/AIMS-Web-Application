@@ -387,6 +387,10 @@
                 </div>
               </div>
 
+              <div>
+                <input type="checkbox" name="sendEmail" value="send">Would you like a copy of the document mailed to you ?<br>
+              </div>
+
             <input type="text" name="email" id="email" value="{{ Auth::user()->email }}" hidden>
           </div>
           <div class="modal-footer">

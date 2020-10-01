@@ -188,15 +188,17 @@ Route::post('device-userManagement-edit', 'DeviceController@editUserManagement')
 
 Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
 Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
-Route::get('/farmerReport', 'Reports\FarmersReportController@getFarmersPDF');
+Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
+Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
 Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
+Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
 
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
 
 Route::get('/userRep', function () {
 
     $pdf = PDF::loadView('Reports.users');
-    
+
 });
 
 Route::get('/farmerRep', function () {

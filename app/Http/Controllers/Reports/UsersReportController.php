@@ -27,35 +27,25 @@ class UsersReportCOntroller extends Controller
         if($request->get('page') == 'A6'){
             $pdf->setOption('page-size','a6');
         }
-        
+
         $pdf->setOptions([
             'footer-center' => '[page]',
             'footer-left' => '[date]',
             'footer-right' => 'AIMS Sri Lanka',
         ]);
+
+        if($request->get('sendEmail') == 'send'){
+            \Mail::send('email.report', [], function ($message) use($pdf,$request) {
+                $message->to($request->get('email'));
+                $message->subject('AIMS user list and activity');
+                $message->attachData($pdf->output(), 'usersList.pdf', [
+                    'mime' => 'application/pdf'
+                ]);
+            });
+        }
 
         return $pdf->download('UserDetails.pdf');
     }
 
-    public function sendUserEmailPDF(){
-        $users = User::all();
-
-        $pdf = PDF::loadView('Reports.users', compact('users'));
-        $pdf->setOptions([
-            'footer-center' => '[page]',
-            'footer-left' => '[date]',
-            'footer-right' => 'AIMS Sri Lanka',
-        ]);
-        
-        \Mail::send('email.report', [], function ($message) use($pdf) {
-            $message->to('krishricky4561@gmail.com');
-            $message->subject('AIMS user list and activity');
-            $message->attachData($pdf->output(), 'usersList.pdf', [
-                'mime' => 'application/pdf'
-            ]);
-        });
-
-        return view('home');
-    }
     
 }
