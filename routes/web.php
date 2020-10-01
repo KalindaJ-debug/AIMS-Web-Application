@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\Reports;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -184,8 +186,32 @@ Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManageme
 Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
 Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');
 
-Route::get('/hello', function () {
-    $pdf = App::make('snappy.pdf.wrapper');
-    $pdf->loadHTML('<h1>Test</h1>');
-    return $pdf->inline();
+Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
+Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
+Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
+Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
+Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
+Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
+
+Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+
+Route::get('/userRep', function () {
+
+    $pdf = PDF::loadView('Reports.users');
+
 });
+
+Route::get('/farmerRep', function () {
+
+    $pdf = PDF::loadView('Reports.farmers');
+
+});
+
+Route::get('/cropRep', function () {
+
+    $pdf = PDF::loadView('Reports.crops');
+    
+});
+
+
+
