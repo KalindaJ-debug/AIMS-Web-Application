@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use DB;
+use PDF;
 
 class LandReportController extends Controller
 {
