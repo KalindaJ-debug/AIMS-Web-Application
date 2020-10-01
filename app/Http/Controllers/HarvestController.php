@@ -76,7 +76,21 @@ class HarvestController extends Controller
         $game->endDate = request('endDate');
         $game->save();
         
-        return redirect()->action('HarvestController@index');
+
+       // $cultivation = $Cultivation::all();
+        // selet
+        // harvest checkdate
+        // if harvest more than other table redirect to factor view
+        //return redirect('/factro_url/'.$game->id);
+        // view save in hidden element
+        // <input type="hidden" name="harvest_id">
+        // when send to backed save harvest id in db
+        // ereason
+        // else
+        
+
+        return redirect('/Entry-external-data');
+        // return redirect()->action('HarvestController@index');
 
     }
     
