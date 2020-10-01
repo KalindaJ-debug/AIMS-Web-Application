@@ -9,10 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
-<<<<<<< HEAD
         "barryvdh/laravel-dompdf": "^0.8.7",
-=======
->>>>>>> 8e13d7a0abb001ca8f1c4a1536ae5221970cd1da
         "barryvdh/laravel-snappy": "^0.4.8",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.2",

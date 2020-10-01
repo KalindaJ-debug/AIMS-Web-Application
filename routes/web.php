@@ -200,19 +200,19 @@ Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('re
 
 Route::get('/userRep', function () {
 
-    // $pdf = PDF::loadView('Reports.users');
+    $pdf = PDF::loadView('Reports.users');
 
 });
 
 Route::get('/farmerRep', function () {
 
-    // $pdf = PDF::loadView('Reports.farmers');
+    $pdf = PDF::loadView('Reports.farmers');
 
 });
 
 Route::get('/cropRep', function () {
 
-    // $pdf = PDF::loadView('Reports.crops');
+    $pdf = PDF::loadView('Reports.crops');
     
 });
 
