@@ -148,14 +148,14 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label"> Harvest Amount</label>
             <div class="col-sm-5">
-                <input name="harvestedAmount" type="text" class="form-control" id="harvestedAmount" placeholder="XXX (kg)">
+                <input name="harvestedAmount" type="text" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
             </div>
         </div>
         
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(acres)</label>
             <div class="col-sm-5">
-                <input name="cultivatedLand" type="text" class="form-control" id="releasedateid" placeholder="XXX (acres)">
+                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (acres)">
             </div>
         </div>
         <hr>
@@ -184,7 +184,7 @@
     });
   </script>
 <!-- function to validate only decimal numbers are allowed in harvest amount field-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <!--date validation jquary function-->
   <script>
   var dateToday = new Date();
@@ -210,7 +210,21 @@ ScrollReveal().reveal('.container', {
   distance: '200px',
   delay:100
 });
+</script>
+<script type="text/javascript">
 
+ScrollReveal().reveal('.container', {
+  duration:2000,
+  origin:'bottom',
+  distance: '200px',
+  delay:100
+});
+</script>
+<script type="text/javascript">
+$(function() {
+  $('.amount').mask('######',{reverse : true});
+
+});
 </script>
 </html>
  
