@@ -30,6 +30,8 @@
         font-family: 'Raleway', sans-serif;
       }
     </style>
+    <!-- fonts -->
+    <script src="https://kit.fontawesome.com/22ef696e0b.js" crossorigin="anonymous"></script>
   </head>
   <body >
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -326,7 +328,34 @@
                       </tbody>
                     </table>
               </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn bg-dark text-white" data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-file-pdf"></i> Download Report
+              </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- modal to get pdf -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -348,6 +377,12 @@
           $('#FO_table').DataTable();
           $('#AI_table').DataTable();
       } );
+    </script>
+
+    <script>
+      $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
     </script>
 
     <script type="text/javascript">
