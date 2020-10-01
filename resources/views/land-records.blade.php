@@ -66,13 +66,13 @@
       			<table class="table table-striped table-hover">
       				<thead>
       					<tr>
-      						<th>
+      						{{-- <th> --}}
       							{{-- <span class="custom-checkbox">
       								<input type="checkbox" id="selectAll" class="selectAll">
       								<label for="selectAll"></label>
                     </span> --}}
                     
-      						</th>
+      						{{-- </th> --}}
                       <th>Land ID</th>
                       <th>Address No</th>  
                       <th>Lane</th>
@@ -80,7 +80,7 @@
                       <th>District</th>
                       <th>Province</th>
                       <th>Land Extent (ha)</th>
-                      <th>Actions</th>
+                      <th style="width: 150px;">Actions</th>
       					</tr>
       				</thead>
       				<tbody>
@@ -101,13 +101,13 @@
                     <input type="hidden" name="landId" value="{{$item->id}}">
                       {{ csrf_field() }}
                       <tr>
-                        <td>
+                        {{-- <td> --}}
                           {{-- <span class="custom-checkbox">
                           <input type="checkbox" name="options[]" value="{{ $i++ }}">
                             <label for="checkbox1"></label>
                           </span> --}}
-                          
-                        </td>
+                                                    
+                        {{-- </td> --}}
                         <td> {{ $item->id }} </td>
                         <td>{{ $item->addressNo }}</td>  
                         <td>{{$item->laneName}}</td>
@@ -118,6 +118,7 @@
                         <td>
                         <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
                           <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                        <a href="{{ url('exportLandPDF', $item->id) }}"><i class="fa fa-file" data-toggle="tooltip" title="Export"></i></a>
                         </td>
                       </tr>
                   </form>

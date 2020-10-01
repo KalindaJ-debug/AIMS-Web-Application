@@ -69,13 +69,24 @@ class LandReportController extends Controller
             ';
         } //end of foreach
 
-        $htmlStream .= '</table>';
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
 
         //stream pdf
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($htmlStream);
         return $pdf->stream();
 
+    }//end of method
+
+    //export to pdf - single land record
+    public function exportLandRecordPDF($lid){
+        $land = Land::find($lid);
+        dd($lid);
+
+        
     }//end of method
 
 } //end of land report controller class

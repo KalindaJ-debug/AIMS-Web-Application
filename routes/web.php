@@ -186,3 +186,4 @@ Route::post('device-userManagement-edit', 'DeviceController@editUserManagement')
 
 //Report generation - Land Module
 Route::get('exportAllLandRecordsPDF/{id}', 'LandReportController@exportAllLandRecordsPDF');
+Route::get('exportLandPDF/{id}','LandReportController@exportLandRecordPDF');
