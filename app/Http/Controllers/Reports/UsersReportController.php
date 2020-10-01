@@ -12,7 +12,8 @@ use App\Farmer;
 
 class UsersReportCOntroller extends Controller
 {
-    public function getUsersPDF(){
+    public function getUsersPDF(Request $request){
+        
         $users = User::all();
 
         $pdf = PDF::loadView('Reports.users', compact('users'));

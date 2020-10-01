@@ -188,4 +188,5 @@ Route::post('device-userManagement-edit', 'DeviceController@editUserManagement')
 Route::get('/hello', 'Reports\UsersReportController@getUsersPDF');
 Route::get('/send', 'Reports\UsersReportController@sendUserEmailPDF');
 Route::get('/farmerReport', 'Reports\FarmersReportController@getFarmersPDF');
+Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
 
