@@ -14,22 +14,23 @@ class LandReportController extends Controller
     
     //convert html to pdf method
     public function exportAllLandRecordsPDF($fid){
-        
+    
         //fetch farmer's land records
         $farmer = Farmer::where('id', $fid)->first(); //farmer name
-        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $fid);
+        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $fid)->paginate(20);
 
+        // dd($landRecords);
         //convert to html view for pdf
         $htmlStream = '
         <div class="col-6">
-        <div style="max-width:60%;background-color:#08260E;border:none;">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
         <div class="row no-gutters">
           <div class="col-md-4">
           </div>
           <div class="col-md-8">
             <div class="card-body text-center" style="padding:30px;color:white;">
-              <h5 class="card-title">Agriculture Information Management System | AIMS </h5>
-              <p class="card-text">Department of Agriculture.</p>
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
             </div>
           </div>
         </div>
@@ -37,9 +38,12 @@ class LandReportController extends Controller
       </div>
 
       <br>
-      <p style="margin-left:100px;">First Name: '.$farmer->firstName.'</p>
-      <p style="margin-left:100px;">Last Name: '.$farmer->lastName.'</p>
-
+      <h3 style="margin-left:250px;">Farmer Land Information</h3>
+      <p style="margin-left:50px;">Full Name: '.$farmer->firstName.'  '.$farmer->lastName.' </p>
+      <hr>
+        <br>
+        <p> ** All property details registered are listed below </p>
+        <br>
     <table width="100%" style="border-collapse: collapse; border: 0px;">
     <tr>
         <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
@@ -65,7 +69,7 @@ class LandReportController extends Controller
             ';
         } //end of foreach
 
-        $htmlStream = '</table>';
+        $htmlStream .= '</table>';
 
         //stream pdf
         $pdf = App::make('dompdf.wrapper');
