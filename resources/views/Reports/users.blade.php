@@ -8,41 +8,47 @@
 
     <style>
         #table {
-          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
         }
         
         #table td, #table th {
-          border: 1px solid #ddd;
-          padding: 8px;
+            border: 1px solid #ddd;
+            padding: 8px;
         }
         
-        #table tr:nth-child(even){background-color: #f2f2f2;}
-        
-        #table tr:hover {background-color: #ddd;}
         
         #table th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: left;
-          background-color: #4CAF50;
-          color: white;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
         }
-        </style>
+       
+       .note {
+           background-color: #4CAF50;
+           border: 2px dashed greenyellow;
+           padding: 20px;
+       }
+
+    </style>
 </head>
 <body>
     <!--The header for the  -->
     <header>
-        <div class="overlay">
-    <h1>Simply The Best</h1>
-    <h3>Reasons for Choosing US</h3>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam consequatur ab.</p>
-        <br>
-        <button>READ MORE</button>
-            </div>
+        <div class="note">
+            <h1>AIMS Sri Lanka</h1>
+            <h3>Agricultural Information Management System</h3>
+            <p>The below pdf is generated for documentation purposes. The documents may contain sensitive data so, please handle with absolute discretion. </p>
+        </div>
     </header>
 
+    <br>
+    <br>
+
+    
     <table id="table" >
         <thead>
           <tr>

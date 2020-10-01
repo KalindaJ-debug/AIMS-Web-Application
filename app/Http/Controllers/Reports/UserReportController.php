@@ -12,6 +12,11 @@ class UserReportController extends Controller
         $users = User::all();
 
         $pdf = PDF::loadView('Reports.users', compact('users'));
+        $pdf->setOptions([
+            'footer-center' => '[page]',
+            'footer-left' => '[date]',
+            'footer-right' => 'AIMS Sri Lanka',
+        ]);
         return $pdf->download('UserDetails.pdf');
     }
     
