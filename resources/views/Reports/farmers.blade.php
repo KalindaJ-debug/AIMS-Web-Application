@@ -51,32 +51,29 @@
 
     
     <table id="table" >
-        <thead>
-          <tr>
-            <th >ID</th>
-            <th >First Name</th>
-            <th >Last Name</th>
-            <th >Username</th>
-            <th >Email</th>
-            <th >Last Login</th>
-            <th >IP Address</th>
-          </tr>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Farmer ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Telephone Number</th>
+                <th scope="col">NIC</th>
+            </tr>
         </thead>
-              
         <tbody>
-            @foreach($users as $user)
-              <tr>
-                  <th>{{$user->id}}</th>
-                  <td>{{$user->name}}</td>
-                  <td>{{$user->lastname}}</td>
-                  <td>{{$user->username}}</td>
-                  <td>{{$user->email}}</td>
-                  <td>{{$user->last_login_at}}</td>
-                  <td>{{$user->last_login_ip}}</td>
-
-              </tr>
+            @foreach ($farmer as $farmers)
+            <tr>
+                <th scope="row">{{ $farmers->id }}</th>
+                <td>{{ $farmers->firstName }}</td>
+                <td>{{ $farmers->lastName }}</td>
+                <td>{{ $farmers->email }}</td>
+                <td>{{ $farmers->userName }}</td>
+                <td>{{ $farmers->telephoneNo }}</td>
+                <td>{{ $farmers->nic }}</td>
+            </tr>
             @endforeach
-        </tbody>
     </table>
     
 </body>

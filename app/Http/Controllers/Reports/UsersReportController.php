@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reports;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App;
 use PDF;
 use Mail;
 use App\User;
 use App\Farmer;
-use Illuminate\Http\Request;
 
-class UserReportController extends Controller
+class UsersReportCOntroller extends Controller
 {
     public function getUsersPDF(){
         $users = User::all();
@@ -32,7 +34,7 @@ class UserReportController extends Controller
             'footer-right' => 'AIMS Sri Lanka',
         ]);
         
-        Mail::send('email.report', [], function ($message) use($pdf) {
+        \Mail::send('email.report', [], function ($message) use($pdf) {
             $message->to('krishricky4561@gmail.com');
             $message->subject('AIMS user list and activity');
             $message->attachData($pdf->output(), 'usersList.pdf', [
@@ -42,18 +44,5 @@ class UserReportController extends Controller
 
         return view('home');
     }
-    
-    public function getFarmersPDF(){
-        $farmers = Farmer::all();
-
-        $pdf = PDF::loadView('Reports.farmers', compact('farmers'));
-        $pdf->setOptions([
-            'footer-center' => '[page]',
-            'footer-left' => '[date]',
-            'footer-right' => 'AIMS Sri Lanka',
-        ]);
-        return $pdf->download('FarmerDetails.pdf');
-    }
-    
     
 }

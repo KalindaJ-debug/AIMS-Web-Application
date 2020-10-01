@@ -185,5 +185,7 @@ Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManageme
 Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
 Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');
 
-Route::get('/hello', 'UserReportController@getUsersPDF');
-Route::get('/send', 'UserReportController@sendUserEmailPDF');
+Route::get('/hello', 'Reports\UsersReportController@getUsersPDF');
+Route::get('/send', 'Reports\UsersReportController@sendUserEmailPDF');
+Route::get('/farmerReport', 'Reports\FarmersReportController@getFarmersPDF');
+
