@@ -183,3 +183,6 @@ Route::post('device-farmerManagement-add', 'DeviceController@addFarmerManagement
 Route::post('device-farmerManagement-edit', 'DeviceController@editFarmerManagement');
 Route::post('device-userManagement-add', 'DeviceController@addUserManagement');
 Route::post('device-userManagement-edit', 'DeviceController@editUserManagement');
+
+//Report generation - Land Module
+Route::get('exportAllLandRecordsPDF/{id}', 'LandReportController@exportAllLandRecordsPDF');

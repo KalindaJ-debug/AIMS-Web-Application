@@ -57,7 +57,9 @@
                     <button type="submit" class="btn btn-success"><i class="fa fa-plus mr-3" aria-hidden="true"></i> <span>Register</span></button>
                   </form>
                   <a href="#deleteFeedback" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash mr-3" aria-hidden="true"></i> <span>Delete All Records</span></a>
-                  <button type="submit" class="btn btn-dark"><i class="fa fa-print mr-3" aria-hidden="true"></i> <span>Export to PDF</span></button>
+                  <form action="{{ url('exportAllLandRecordsPDF/', $farmer_id)}}" method="get">
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-print mr-3" aria-hidden="true"></i> <span>Export to PDF</span></button>
+                  </form>
       					</div>
       				</div>
       			</div>
