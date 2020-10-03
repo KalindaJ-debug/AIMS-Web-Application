@@ -175,7 +175,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /*
+        *------------Generate Data To PDF-----------
+        */
+        Barryvdh\DomPDF\serviceProvider::class,
     ],
 
     /*
@@ -229,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+       // 'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

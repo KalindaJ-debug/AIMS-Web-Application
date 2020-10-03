@@ -27,7 +27,19 @@
   <!-- scrool reveal api-->
 
   <script src="https://unpkg.com/scrollreveal"></script>
+  <style>
 
+  .table{
+    font-family:sans-serif;
+    border-collapse: collapse;
+  }
+  
+  .table thead {
+    background: #0D6319;
+    color: #ffffff;
+
+  }
+  </style>
   <title>Agriculture Information Management System | AIMS </title>
 </head>
 <body>
@@ -44,6 +56,7 @@
     <h1 class="display-3">Cultivation Details</h1>    
     <div>
     <a style="margin: 19px;" href="/Entry-crop-data" class="btn btn-primary">New Cultivation Details</a>
+    <a style="margin: 19px;" href="" class="btn btn-warning">Genarate Pdf</a>
     </div>  
   <table class="table table-striped">
     <thead>
@@ -54,13 +67,13 @@
           <td>Category</td>
           <td>Crop Name</td>
           <td>Variety</td>
-          <td>Start Date</td>
-          <td>End Date</td>
+          <td>Cultivation Start Date</td>
+          <td>Estimated Harvest Date</td>
           <td>Province</td>
           <td>District</td>
           <td>Region</td>
-          <td>Harvested Amount</td>
-          <td>Cultivated Land</td>
+          <td>Harvested Amount (kg)</td>
+          <td>Cultivated Land (acres)</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>

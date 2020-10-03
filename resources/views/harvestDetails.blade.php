@@ -53,7 +53,7 @@
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
                 <select name="farmer_id" type="text" class="form-control">
                   <option selected value="none">--Select Name--</option>
                    @foreach ($farmer as $farmers)
@@ -64,17 +64,17 @@
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Seasson(Yala/Maha)</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
             <select class="form-control" name="season">
-                  <option>--Select Season--</option>
-                  <option>Yala</option>
+                <!--<option>--Select Season--</option>-->
+                <!--  <option>Yala</option>-->
                   <option>Maha</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Category</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
                <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
                 <select name="category_id" class="form-control">
                   <option selected value="none">--Select Crop-Category--</option>
@@ -86,7 +86,7 @@
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
             <select name="crop_id" class="form-control">
               <option selected value="none">--Select Crop-Name--</option>
              @foreach ($crop as $crops)
@@ -97,7 +97,7 @@
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
             <select name="variety_id" class="form-control">
               <option selected value="none">--Select Variety--</option>
               @foreach ($variety as $varieties)
@@ -108,13 +108,13 @@
         </div>
         <div class="form-group row">
             <label for="startDate" class="col-sm-3 col-form-label">Harvest Date</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
                 <input name="endDate" type="date" class="form-control" id="calendar123">
             </div>
         </div>
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">Province</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
             <select name="province_id" class="form-control">
               <option selected value="none">--Select Province--</option>
               @foreach ($province as $provinces)
@@ -125,7 +125,7 @@
         </div>
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">District</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
             <select name="district_id" class="form-control">
               <option selected value="none">--Select District--</option>
                @foreach ($district as $districts)
@@ -136,7 +136,7 @@
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Region</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
             <select name="region_id" class="form-control">
               <option selected value="none">--Select Region--</option>
                @foreach ($region as $regions)
@@ -147,15 +147,15 @@
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label"> Harvest Amount</label>
-            <div class="col-sm-9">
-                <input name="harvestedAmount" type="text" class="form-control" id="harvestedAmount" placeholder="XXX (kg)">
+            <div class="col-sm-5">
+                <input name="harvestedAmount" type="text" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
             </div>
         </div>
         
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(acres)</label>
-            <div class="col-sm-9">
-                <input name="cultivatedLand" type="text" class="form-control" id="releasedateid" placeholder="XXX (acres)">
+            <div class="col-sm-5">
+                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (acres)">
             </div>
         </div>
         <hr>
@@ -184,7 +184,7 @@
     });
   </script>
 <!-- function to validate only decimal numbers are allowed in harvest amount field-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <!--date validation jquary function-->
   <script>
   var dateToday = new Date();
@@ -210,7 +210,21 @@ ScrollReveal().reveal('.container', {
   distance: '200px',
   delay:100
 });
+</script>
+<script type="text/javascript">
 
+ScrollReveal().reveal('.container', {
+  duration:2000,
+  origin:'bottom',
+  distance: '200px',
+  delay:100
+});
+</script>
+<script type="text/javascript">
+$(function() {
+  $('.amount').mask('######',{reverse : true});
+
+});
 </script>
 </html>
  

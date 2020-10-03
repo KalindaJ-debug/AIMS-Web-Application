@@ -42,6 +42,7 @@ class ExternalFactorsController extends Controller
         $game->reason = request('reason');
         $game->save();
         
-        return redirect()->action('ExternalFactorsController@index');
+        return redirect('/harvest-data');
+        //return redirect()->action('ExternalFactorsController@index');
     }
 }

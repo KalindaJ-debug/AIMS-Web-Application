@@ -54,7 +54,7 @@
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Harvest ID</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
                 <select name="harvest_id" type="text" class="form-control">
                   <option selected value="none">--Select ID--</option> 
                   @foreach ($harvest as $harvests)
@@ -65,7 +65,7 @@
         </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Reason</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
             <select name="reason" type="text" class="form-control">
            <option selected value="none">--Select Reason--</option>
                      @foreach ($external_factors as $external_factor)
@@ -76,7 +76,7 @@
           </div>
           <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Add a new External Factor</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
                 <input name="externalFac" type="text" class="form-control" id="releasedateid" placeholder="Reason">
             </div>
         </div>

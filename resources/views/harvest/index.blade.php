@@ -27,7 +27,19 @@
   <!-- scrool reveal api-->
 
   <script src="https://unpkg.com/scrollreveal"></script>
+  <style>
 
+  .table{
+    font-family:sans-serif;
+    border-collapse: collapse;
+  }
+  
+  .table thead {
+    background: #0D6319;
+    color: #ffffff;
+
+  }
+  </style>
   <title>Agriculture Information Management System | AIMS </title>
 </head>
 <!-- header begins -->
@@ -43,6 +55,7 @@
     <h1 class="display-3">Harvest Details</h1>    
     <div>
     <a style="margin: 19px;" href="/Entry-harvest-data" class="btn btn-primary">Add Harvest Details</a>
+    <a style="margin: 19px;" href="/getPDF" class="btn btn-warning">Export to Pdf</a>
     </div>  
   <table class="table table-striped">
     <thead>
