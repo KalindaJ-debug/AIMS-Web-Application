@@ -108,8 +108,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">First and Last name</span>
                                     </div>
-                                    <input name="firstName" type="text" aria-label="First name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="First name" required>
-                                    <input name="lastName" type="text" aria-label="Last name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="Last name" required>
+                                    <input name="firstName" type="text" aria-label="First name" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="First name" required>
+                                    <input name="lastName" type="text" aria-label="Last name" oninvalid="setCustomValidity('Please enter on alphabets only. ')" class="form-control" placeholder="Last name" required>
                                 </div>
 
                                 <div class="form-group">
@@ -125,7 +125,7 @@
 
                                 <div class="form-group">
                                     <label for="otherName">Username</label>
-                                    <input name="username" type="text" class="form-control" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
+                                    <input name="username" type="text" class="form-control" placeholder="Username" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
                                 </div>
 
                                 <div class="form-group">
@@ -252,21 +252,21 @@
                                 
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" type="text" id="editFarmerFirstName" name="firstName" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
+                                    <input class="form-control" type="text" id="editFarmerFirstName" name="firstName" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
                                 </div>
 
                                 </br>
 
                                 <div class="form-group">
                                     <label>Other Name</label>
-                                    <input class="form-control" type="text" id="editFarmerOtherName" name="otherName" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
+                                    <input class="form-control" type="text" id="editFarmerOtherName" name="otherName" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
                                 </div>
 
                                 </br>
 
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" type="text" id="editFarmerLastName" name="lastName" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
+                                    <input class="form-control" type="text" id="editFarmerLastName" name="lastName" oninvalid="setCustomValidity('Please enter on alphabets only. ')">
                                 </div>
 
                                 </br>
@@ -281,7 +281,7 @@
 
                                 <div class="form-group">
                                     <label for="otherName">Username</label>
-                                    <input name="username" type="text" class="form-control" id="farmerUsername" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
+                                    <input name="username" type="text" class="form-control" id="farmerUsername" placeholder="Username" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
                                 </div>
 
                                 </br>
