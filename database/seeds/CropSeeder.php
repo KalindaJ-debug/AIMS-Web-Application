@@ -13,6 +13,27 @@ class CropSeeder extends Seeder
     public function run()
     {
         DB::table('crop_categories')->insert([
+            [
+                'name' => 'Vegetables',
+            ],
+            [
+                'name' => 'Fruits',
+            ],
+            [
+                'name' => 'Leafy Vegetables',
+            ],
+            [
+                'name' => 'Roots and Tubes',
+            ],
+            [
+                'name' => 'Paddy',
+            ],
+            [
+                'name' => 'Other Field Crops',
+            ]
+        ]);
+
+        DB::table('crop_categories')->insert([
             'name' => 'Potato'
         ]);
 

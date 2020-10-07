@@ -16,7 +16,7 @@ class CreateHarvestsTable extends Migration
         Schema::create('harvests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cultivation_id');
-            $table->foreign('cultivation_id')->references('id')->on('cultivations');
+            $table->foreign('cultivation_id')->references('id')->on('cultivation');
             $table->string('season')->nullable();
             $table->date('endDate');
             $table->integer('harvestedAmount');
