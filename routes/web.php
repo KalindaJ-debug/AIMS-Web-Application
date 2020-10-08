@@ -5,7 +5,7 @@ use App\Http\Controllers\Reports;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use PDF;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
