@@ -88,6 +88,13 @@
                 </tbody>
             </table>
 
+            <button type="button" class="btn bg-dark text-white" onclick="location.href='{{url('farmersReport')}}';">
+                <i class="fas fa-file-pdf"></i> Download Report
+            </button>
+            <button type="button" class="btn btn-warning" onclick="location.href='{{url('sendFarmerReport')}}';">
+                <i class="fas fa-file-pdf"></i> Email Report
+            </button>
+
             <!-- Add Modal -->
 
             <div class="modal" tabindex="-1" role="dialog" id="addFarmer">
