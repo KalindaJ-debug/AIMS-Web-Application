@@ -100,6 +100,10 @@
                         @if($landTypeList != null)
 
                           @foreach($landTypeList as $item)
+
+                            @if($landType == $item->id)
+                              <option selected value="{{ $item->id}}"> {{ $item->name }} </option>
+                            @endif
                             <option value="{{ $item->id }}"> {{ $item->name }} </option>
                           @endforeach
                           
