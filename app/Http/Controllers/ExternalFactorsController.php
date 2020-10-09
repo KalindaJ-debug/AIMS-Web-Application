@@ -23,7 +23,11 @@ class ExternalFactorsController extends Controller
     {
         $harvest = harvest::all();
         $external_factors = external_factors::all();
-        return view('externalFactors', array('harvest' => $harvest, 'external_factors' => $external_factors ));
+        $a = Harvest::join('cultivation', 'cultivation.farmer_id', 'harvests.farmer_id')
+        ->whereRaw('cultivation.harvestedAmount < harvests.harvestedAmount')->select('harvests.id')->get();
+        return view('externalFactors', array('harvest' => $harvest, 'a' => $a, 'external_factors' => $external_factors ));
+
+        
     }
     public function store(Request $request)
     {

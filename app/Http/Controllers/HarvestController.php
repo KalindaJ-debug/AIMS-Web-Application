@@ -13,6 +13,7 @@ use App\crop;
 use App\variety;
 use App\district;
 use App\region;
+use App\external_factors;
 
 class HarvestController extends Controller
 {
@@ -35,7 +36,7 @@ class HarvestController extends Controller
         $district = district::all();
         $region = region::all();
         $farmer = farmer::all();
-        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer  ));
+        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, ));
     }
 
     public function store(Request $request)
@@ -76,8 +77,24 @@ class HarvestController extends Controller
         $game->endDate = request('endDate');
         $game->save();
         
+        $a = cultivation::whereRaw('cultivation.farmer_id='.request('farmer_id').' and cultivation.harvestedAmount > ' .request('harvestedAmount'))
+        ->get();
+        if(!empty($a->all()))
+        {
+            return redirect('/Entry-external-data');
+        }else
 
-       // $cultivation = $Cultivation::all();
+            return redirect('/harvest-data');
+        
+        
+        //$harvests = harvests::whereHas('harvestedAmount', function($q){
+        //    $q->where('harvestedAmount', 1);   
+       // })->plunk("id")->toArray();
+
+        
+       // if(harvestedAmount >= harvestedAmount){
+
+      //  }
         // selet
         // harvest checkdate
         // if harvest more than other table redirect to factor view
@@ -89,7 +106,7 @@ class HarvestController extends Controller
         // else
         
 
-        return redirect('/Entry-external-data');
+       
         // return redirect()->action('HarvestController@index');
 
     }

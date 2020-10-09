@@ -27,6 +27,11 @@ class DataController extends Controller
         return view('crop.index', compact('contacts'));
         
     }
+    public function list()
+    {
+        $contacts = cultivation::all();
+        return view('crop.list', compact('contacts'));
+    }
 /**
      * Show the form for creating a new resource.
      *
