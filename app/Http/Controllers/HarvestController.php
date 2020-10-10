@@ -85,28 +85,7 @@ class HarvestController extends Controller
         }else
 
             return redirect('/harvest-data');
-        
-        
-        //$harvests = harvests::whereHas('harvestedAmount', function($q){
-        //    $q->where('harvestedAmount', 1);   
-       // })->plunk("id")->toArray();
-
-        
-       // if(harvestedAmount >= harvestedAmount){
-
-      //  }
-        // selet
-        // harvest checkdate
-        // if harvest more than other table redirect to factor view
-        //return redirect('/factro_url/'.$game->id);
-        // view save in hidden element
-        // <input type="hidden" name="harvest_id">
-        // when send to backed save harvest id in db
-        // ereason
-        // else
-        
-
-       
+             
         // return redirect()->action('HarvestController@index');
 
     }

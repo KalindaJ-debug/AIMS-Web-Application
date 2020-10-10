@@ -87,9 +87,12 @@
            @php
              $region = App\Region::where('id', $contact->region_id)->first();
           @endphp
+          @php
+            $farmer = App\farmer::where('id', $contact->farmer_id)->first();
+          @endphp
         <tr>
             <td>{{$contact->id}}</td>
-            <td>{{$contact->firstName}}</td> 
+            <td>{{$farmer->firstName}} {{$farmer->lastName}}</td> 
             <td>{{$contact->land_id}}</td> 
             <td>{{$contact->land_address}}</td>      
             <td>{{$contact->cultivatedLand}}</td>

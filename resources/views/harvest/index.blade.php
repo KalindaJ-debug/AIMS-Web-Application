@@ -98,7 +98,7 @@
              $region = App\Region::where('id', $contact->region_id)->first();
           @endphp
           @php
-            $external_factors = App\external_factors::where('id', $contact->external_id)->first();
+            $external_factors = App\External_factors::where('id', $contact->id)->first();
           @endphp
         <tr>
             <!--<td>{{$contact->id}}</td>-->
@@ -113,7 +113,7 @@
             <td>{{$region->name}}</td>
             <td>{{$contact->harvestedAmount}}</td>
             <td>{{$contact->cultivatedLand}}</td>
-            <td></td>
+            <td>none</td>
             <td>
                 <button class="btn btn-warning" type="submit">Edit</button>
                 <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>

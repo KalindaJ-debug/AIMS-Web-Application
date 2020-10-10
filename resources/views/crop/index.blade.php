@@ -73,7 +73,7 @@
           <td>Province</td>
           <td>District</td>
           <td>Region</td>
-          <td>Harvested Amount (kg)</td>
+          <td>Estimate Harvest Amount (kg)</td>
           <td>Cultivated Land (acres)</td>
           <td colspan = 2>Actions</td>
         </tr>
@@ -100,9 +100,12 @@
            @php
              $region = App\Region::where('id', $contact->region_id)->first();
           @endphp
+          @php
+            $farmer = App\farmer::where('id', $contact->farmer_id)->first();
+          @endphp
         <tr>
             <td>{{$contact->id}}</td>
-            <td>{{$contact->farmer_id}}</td>           
+            <td>{{$farmer->firstName}} {{$farmer->lastName}}</td>          
             <td>{{$contact->season}}</td>
             <td>{{$category->name}}</td>
             <td>{{$crop->name}}</td>
