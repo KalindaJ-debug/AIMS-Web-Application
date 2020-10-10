@@ -9,6 +9,7 @@ use App\Farmer;
 use App\Land;
 use App\Province;
 use App\District;
+use App\LandType;
 use Illuminate\Support\Facades\App;
 
 class LandReportController extends Controller
@@ -19,7 +20,7 @@ class LandReportController extends Controller
     
         //fetch farmer's land records
         $farmer = Farmer::where('id', $fid)->first(); //farmer name
-        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $fid)->paginate(20);
+        $landRecords = Land::with('land_type','provinces', 'districts')->where('farmer_id', $fid)->paginate(20);
 
         //convert to html view for pdf
         $htmlStream = '
@@ -50,7 +51,7 @@ class LandReportController extends Controller
         <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
         <th style="border: 1px solid; padding:12px;" width="5%">Address No</th>
         <th style="border: 1px solid; padding:12px;" width="20%">Lane</th>
-        <th style="border: 1px solid; padding:12px;" width="20%">City</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Land Type</th>
         <th style="border: 1px solid; padding:12px;" width="15%">District</th>
         <th style="border: 1px solid; padding:12px;" width="15%">Province</th>
         <th style="border: 1px solid; padding:12px;" width="20%">Land Extent (ha)</th>
@@ -62,7 +63,7 @@ class LandReportController extends Controller
             <td style="border: 1px solid; padding:12px;">'.$land->id.'</td>
             <td style="border: 1px solid; padding:12px;">'.$land->addressNo.'</td>
             <td style="border: 1px solid; padding:12px;">'.$land->laneName.'</td>
-            <td style="border: 1px solid; padding:12px;">'.$land->city.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->land_type->name.'</td>
             <td style="border: 1px solid; padding:12px;">'.$land->districts->name.'</td>
             <td style="border: 1px solid; padding:12px;">'.$land->provinces->name.'</td>
             <td style="border: 1px solid; padding:12px;">'.$land->landExtend.'</td>
@@ -88,6 +89,7 @@ class LandReportController extends Controller
         $farmer = Farmer::where('id', $land->farmer_id)->first();
         $province = Province::where('id', $land->province_id)->first();
         $district = District::where('id', $land->district_id)->first();
+        $landType = LandType::where('id', $land->land_type_id)->first();
         
         //html stream for pdf
         $landHTMLStream = '
@@ -133,8 +135,8 @@ class LandReportController extends Controller
        </tr>
 
        <tr>
-         <th style="padding:15px;text-align:left;"> City </th>
-         <td style="padding:15px;text-align:left;"> : '.$land->city.' </td>
+         <th style="padding:15px;text-align:left;"> Land Type </th>
+         <td style="padding:15px;text-align:left;"> : '.$landType->name.' </td>
          <th style="padding:15px;text-align:left;"> GND No </th>
          <td style="padding:15px;text-align:left;"> : '.$land->gnd.' </td>
        </tr>
