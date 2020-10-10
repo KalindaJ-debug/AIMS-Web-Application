@@ -5,7 +5,7 @@ use App\Http\Controllers\Reports;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use PDF;
+//use PDF;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,7 +58,9 @@ Route::post('/harvestDetails', 'HarvestController@store')->name('harvestDetails'
 
 Route::post('/externalFactors', 'ExternalFactorsController@store')->name('externalFactors');
 
+Route::get('/getPDF', 'PDFcontroller@getPDF');
 
+Route::get('/Cultivation-list', 'DataController@list');
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
 
