@@ -195,6 +195,7 @@ Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
 Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
 Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
 Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
+Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandRecords'); //filtered land
 
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
 

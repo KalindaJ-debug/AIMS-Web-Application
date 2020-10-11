@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Farmer;
+use App\Land;
+use App\Province;
+use App\District;
+use App\LandType;
 use Illuminate\Support\Facades\Hash;
 
 class FarmerController extends Controller
@@ -16,7 +20,12 @@ class FarmerController extends Controller
     public function index()
     {
         $farmer = Farmer::all();
-        return view('farmerManagement', array('farmer' => $farmer));
+        $land = Land::all();
+        $province = Province::all();
+        $district = District::all();
+        $landType = LandType::all();
+
+        return view('farmerManagement', array('farmer' => $farmer, 'land' => $land, 'province' => $province, 'district' => $district, 'landType' => $landType));
     }
 
     /**

@@ -11,14 +11,14 @@ class District extends Model
         return $this->hasMany('App\Region');
     }
 
-    public function province()
+    public function provinces()
     {
         return $this->belongsTo('App\Province');
     }
 
     protected $table = 'districts';
 
-    public function land()
+    public function lands()
     {
         return $this->hasMany('App\Land','district_id', 'id');
     }

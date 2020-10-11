@@ -211,5 +211,423 @@ class LandReportController extends Controller
         return $pdf->stream();
 
     }//end of method
+    
+    //filtered reports
+    public function exportFilteredLandRecords(Request $request){
+
+      //validate form values
+      $request->validate(['landRadio' => 'required']);
+
+      if($request->input('landRadio') == "all"){
+        //all land records
+        if($request->input('landType') != null ){
+
+          //all records for one land type
+          $landTypeID = $request->input('landType');
+          $landType = LandType::find($landTypeID);
+          $landRecords = Land::with('provinces', 'districts')->where('land_type_id', $landTypeID)->distinct()->get();
+          
+          $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Land Information for '.$landType->name.'</h3>
+      <p style="margin-left:50px;">Land Type: '.$landType->name.'</p>
+      <hr>
+        <br>
+        <p> ** All property details registered under the above land type are listed below </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
+        <th style="border: 1px solid; padding:12px;" width="5%">Address No</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Lane</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Street</th>
+        <th style="border: 1px solid; padding:12px;" width="15%">District</th>
+        <th style="border: 1px solid; padding:12px;" width="15%">Province</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Land Extent (ha)</th>
+    </tr>
+        ';
+        foreach($landRecords as $land){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$land->id.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->addressNo.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->laneName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->streetName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->districts->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->provinces->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->landExtend.'</td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+        //stream to pdf format
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();
+
+        }
+        else{
+          //all records with any land type
+          $landRecords = Land::with('land_type','districts', 'provinces')->distinct()->get();
+          
+          $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Registered Land Information</h3>
+      <hr>
+        <br>
+        <p> ** All property details registered as land area are listed below </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
+        <th style="border: 1px solid; padding:12px;" width="5%">Address No</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Lane</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Land Type</th>
+        <th style="border: 1px solid; padding:12px;" width="15%">District</th>
+        <th style="border: 1px solid; padding:12px;" width="15%">Province</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Land Extent (ha)</th>
+    </tr>
+        ';
+        foreach($landRecords as $land){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$land->id.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->addressNo.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->laneName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->land_type->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->districts->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->provinces->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->landExtend.'</td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+        //stream pdf
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();
+
+        } //end else
+
+      } //end if
+      else{
+        //land records per location
+        if($request->input('district') != null){
+          //district selected
+          if($request->input('landType') != null){
+            //land type selected
+            $landTypeID = $request->input('landType');
+            $landType = LandType::find($landTypeID);
+            $districtID = $request->input('district');
+            $districtRecord = District::with('provinces')->where('id', $districtID)->first();
+            $provinceID = $districtRecord->province_id;
+            $provinceRecord = Province::find($provinceID);
+            $landRecords = Land::with('districts', 'provinces')->where(['land_type_id' => $landTypeID, 'district_id' => $districtID])->distinct()->get();
+            
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:150px;">District Land Information per Land Type </h3>
+      <p style="margin-left:50px;">District: '.$districtRecord->name.' District </p>
+      <p style="margin-left:50px;">Province: '.$provinceRecord->name.' Province </p>
+      <p style="margin-left:50px;">Land Type: '.$landType->name.' Land </p>
+      <hr>
+        <br>
+        <p> ** All property details registered for above district and land type are listed below </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
+        <th style="border: 1px solid; padding:12px;" width="5%">Address No</th>
+        <th style="border: 1px solid; padding:12px;" width="30%">Lane</th>
+        <th style="border: 1px solid; padding:12px;" width="30%">Street</th>
+        <th style="border: 1px solid; padding:12px;" width="30%">Land Extent (ha)</th>
+    </tr>
+        ';
+        foreach($landRecords as $land){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$land->id.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->addressNo.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->laneName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->streetName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->landExtend.'</td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+        //stream pdf
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();
+            
+          }
+          else{
+            //land type not selected
+            $districtID = $request->input('district');
+            $districtRecord = District::find($districtID);
+            $provinceID = $districtRecord->province_id;
+            $provinceRecord = Province::find($provinceID);
+            $landRecords = Land::with('land_type')->where(['district_id' => $districtID])->distinct()->get();
+            
+            //stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:150px;">District Land Information per Land Type </h3>
+      <p style="margin-left:50px;">District: '.$districtRecord->name.' District </p>
+      <p style="margin-left:50px;">Province: '.$provinceRecord->name.' Province </p>
+      <hr>
+        <br>
+        <p> ** All property details registered for above district and province are listed below </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
+        <th style="border: 1px solid; padding:12px;" width="5%">Address No</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Lane</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Street</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Land Type</th>
+        <th style="border: 1px solid; padding:12px;" width="30%">Land Extent (ha)</th>
+    </tr>
+        ';
+        foreach($landRecords as $land){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$land->id.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->addressNo.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->laneName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->streetName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->land_type->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->landExtend.'</td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+        //stream pdf
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();
+
+          }
+        }
+        else if($request->input('province') != null){
+          //province selected
+          if($request->input('landType') != null){
+            //land type selected
+            $landTypeID = $request->input('landType');
+            $landType = LandType::find($landTypeID);
+            $provinceID = $request->input('province');
+            $provinceRecord = Province::find($provinceID);
+            $landRecords = Land::with('districts')->where(['province_id' => $provinceID, 'land_type_id' => $landTypeID])->distinct()->get();
+            
+            //steam
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:150px;">Provincial Land Information per Land Type </h3>
+      <p style="margin-left:50px;">Province: '.$provinceRecord->name.' Province </p>
+      <p style="margin-left:50px;">Land Type: '.$landType->name.' Land </p>
+      <hr>
+        <br>
+        <p> ** All property details registered for above province and land type are listed below </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
+        <th style="border: 1px solid; padding:12px;" width="5%">Address No</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Lane</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Street</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">District</th>
+        <th style="border: 1px solid; padding:12px;" width="30%">Land Extent (ha)</th>
+    </tr>
+        ';
+        foreach($landRecords as $land){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$land->id.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->addressNo.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->laneName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->streetName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->districts->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->landExtend.'</td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+        //stream pdf
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();
+          }
+          else{
+            //land type not selected
+            $provinceID = $request->input('province');
+            $provinceRecord = Province::find($provinceID);
+            $landRecords = Land::with('land_type', 'districts')->where(['province_id' => $provinceID])->distinct()->get();
+            
+            //stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:150px;">Provincial Land Information </h3>
+      <p style="margin-left:50px;">Province: '.$provinceRecord->name.' Province </p>
+      <hr>
+        <br>
+        <p> ** All property details registered for above province are listed below </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="5%">Land ID</th>
+        <th style="border: 1px solid; padding:12px;" width="5%">Address No</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Lane</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Street</th>
+        <th style="border: 1px solid; padding:12px;" width="15%">Land Type</th>
+        <th style="border: 1px solid; padding:12px;" width="15%">District</th>
+        <th style="border: 1px solid; padding:12px;" width="20%">Land Extent (ha)</th>
+    </tr>
+        ';
+        foreach($landRecords as $land){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$land->id.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->addressNo.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->laneName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->streetName.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->land_type->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->districts->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->landExtend.'</td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+        //stream pdf
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();
+
+          }
+
+        } //end of province selected
+
+      } //end of main else
+
+    }//end of method
 
 } //end of land report controller class
