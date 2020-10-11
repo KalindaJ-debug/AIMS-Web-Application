@@ -110,7 +110,7 @@
             <div id="landReport" class="modal fade">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
-                    <form action="" method="get" name="land">
+                  <form action="{{ url('exportFilteredLandPDF') }}" method="get" name="landReport">
                       {{ csrf_field() }}
                       <div class="modal-header">
                         <h4 class="modal-title col-12 text-center"> Download Land Records </h4>
@@ -130,7 +130,7 @@
                         <div class="form-row">
                             <div class="col-4 text-center">
                                 <div class="custom-control custom-radio" style="margin-left:40px;">
-                                    <input onclick="document.getElementById('selectDistrict').disabled = false; document.getElementById('selectProvince').disabled=true;" type="radio" id="district" name="landRadio" class="custom-control-input">
+                                    <input onclick="document.getElementById('selectDistrict').disabled = false; document.getElementById('selectProvince').disabled=true;" type="radio" id="district" name="landRadio" class="custom-control-input" value="district">
                                     <label class="custom-control-label" for="district">District</label>
                                   </div>
                             </div>
@@ -138,17 +138,15 @@
                                 <select class="custom-select" id="selectDistrict" name="district" disabled>
                                     <option selected value="none">Select District...</option>
                                     
-                                    {{-- @if($landTypeList != null)
+                                    @if($district != null)
             
-                                      @foreach($landTypeList as $item)
-            
-                                        @if($landType == $item->id)
-                                          <option selected value="{{ $item->id}}"> {{ $item->name }} </option>
-                                        @endif
-                                        <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                      @foreach($district as $item)
+                                                  
+                                          <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                        
                                       @endforeach
                                       
-                                    @endif --}}
+                                    @endif
                                   </select>
                             </div>
                         </div>
@@ -157,7 +155,7 @@
                         <div class="form-row">
                             <div class="col-4 text-center">
                                 <div class="custom-control custom-radio" style="margin-left:50px;">
-                                    <input onclick="document.getElementById('selectDistrict').disabled=true;document.getElementById('selectProvince').disabled=false;" type="radio" id="province" name="landRadio" class="custom-control-input">
+                                    <input onclick="document.getElementById('selectDistrict').disabled=true;document.getElementById('selectProvince').disabled=false;" type="radio" id="province" name="landRadio" class="custom-control-input" value="province">
                                     <label class="custom-control-label" for="province">Province</label>
                                   </div>
                             </div>
@@ -165,17 +163,15 @@
                                 <select class="custom-select" id="selectProvince" name="province" disabled>
                                     <option selected value="none">Select Province...</option>
                                     
-                                    {{-- @if($landTypeList != null)
+                                    @if($province != null)
             
-                                      @foreach($landTypeList as $item)
-            
-                                        @if($landType == $item->id)
-                                          <option selected value="{{ $item->id}}"> {{ $item->name }} </option>
-                                        @endif
-                                        <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                      @foreach($province as $item)
+                                                  
+                                          <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                        
                                       @endforeach
                                       
-                                    @endif --}}
+                                    @endif
                                   </select>
                             </div>
                         </div>
@@ -184,7 +180,7 @@
                         <div class="form-row">
                             <div class="col-4 text-center">
                                 <div class="custom-control custom-radio" style="margin-left:5px;">
-                                    <input onclick="document.getElementById('selectDistrict').disabled=true;document.getElementById('selectProvince').disabled=true;" type="radio" id="all" name="landRadio" class="custom-control-input" checked>
+                                    <input onclick="document.getElementById('selectDistrict').disabled=true;document.getElementById('selectProvince').disabled=true;" type="radio" id="all" name="landRadio" class="custom-control-input" value="all">
                                     <label class="custom-control-label" for="all">All</label>
                                   </div>
                             </div>
@@ -205,17 +201,15 @@
                                 <select class="custom-select" id="selectLandType" name="landType" disabled>
                                     <option selected value="none">Select Land Type...</option>
                                     
-                                    {{-- @if($landTypeList != null)
+                                    @if($landType != null)
             
-                                      @foreach($landTypeList as $item)
-            
-                                        @if($landType == $item->id)
-                                          <option selected value="{{ $item->id}}"> {{ $item->name }} </option>
-                                        @endif
-                                        <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                      @foreach($landType as $item)
+                                                  
+                                          <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                        
                                       @endforeach
                                       
-                                    @endif --}}
+                                    @endif
                                   </select>
                             </div>
                         </div>
