@@ -72,7 +72,6 @@ Route::get('/Cultivation-list', 'DataController@list');
 
 //user controller
 Route::resource('adminuser', 'UserController')->middleware('auth','roleCheck','verified');
-Route::resource('approval', 'ApprovalController')->middleware('auth'); 
 Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');
 Route::resource('crop', 'CropController')->middleware('auth','roleCheck');
 Route::resource('farmer', 'FarmerController')->middleware('auth','roleCheck');
@@ -217,5 +216,8 @@ Route::get('/cropRep', function () {
     
 });
 
+//Approval Cultivation 
+
+Route::get('approval', 'ApprovalController@index');
 
 

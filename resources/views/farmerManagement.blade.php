@@ -132,7 +132,7 @@
 
                                 <div class="form-group">
                                     <label for="otherName">Username</label>
-                                    <input name="username" type="text" class="form-control" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
+                                    <input name="username" type="text" class="form-control" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" required>
                                 </div>
 
                                 <div class="form-group">

@@ -23,7 +23,7 @@ class FarmerSeeder extends Seeder
                 'userName' => $faker->firstName,
                 'email' => $faker->email,
                 'telephoneNo' => '773734324',
-                'nic' => $faker->streetName,
+                'nic' => '981610954V',
                 'nicImage' => $faker->image,
 	            'password' => bcrypt('secret'),
 	        ]);
