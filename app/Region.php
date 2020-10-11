@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Region extends Model
 {
-    public function district()
+    public function districts()
     {
         return $this->belongsTo('App\District');
     }
 
     protected $table = 'regions';
+
+    public function lands(){
+        return $this->hasMany('App\Land', 'region_id', 'id');
+    }
 }

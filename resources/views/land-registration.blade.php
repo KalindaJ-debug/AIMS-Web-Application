@@ -159,10 +159,10 @@
                     <!-- grama niladari division -->
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
-                        <label class="input-group-text" for="selectGN" style="width:200px;">Grama Niladhari Division</label>
+                        <label class="input-group-text" for="selectGN" style="width:200px;">Region</label>
                       </div>
-                      <select class="custom-select" id="selectGN" name="grama" required>
-                        <option selected value="none">Select Grama Niladhari Division...</option>
+                      <select class="custom-select" id="selectGN" name="region" required>
+                        <option selected value="none">Select Region...</option>
                         <option value="1">Attanagalla</option>
                         <option value="2">Avissawella</option>
                         <option value="3">Badulla</option>
