@@ -76,7 +76,7 @@
                       <th>Land ID</th>
                       <th>Address No</th>  
                       <th>Lane</th>
-                      <th>City</th>  
+                      <th>Land Type</th>  
                       <th>District</th>
                       <th>Province</th>
                       <th>Land Extent (ha)</th>
@@ -111,7 +111,7 @@
                         <td> {{ $item->id }} </td>
                         <td>{{ $item->addressNo }}</td>  
                         <td>{{$item->laneName}}</td>
-                        <td>{{$item->city}}</td>
+                        <td>{{$item->land_type->name}}</td>
                         <td>{{$item->districts->name}}</td>
                         <td>{{$item->provinces->name}}</td>
                         <td class="font-italic">{{$item->landExtend}}</td>

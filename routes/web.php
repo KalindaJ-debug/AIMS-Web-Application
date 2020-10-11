@@ -5,7 +5,6 @@ use App\Http\Controllers\Reports;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,7 +57,9 @@ Route::post('/harvestDetails', 'HarvestController@store')->name('harvestDetails'
 
 Route::post('/externalFactors', 'ExternalFactorsController@store')->name('externalFactors');
 
+Route::get('/getPDF', 'PDFcontroller@getPDF');
 
+Route::get('/Cultivation-list', 'DataController@list');
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
 
@@ -71,7 +72,6 @@ Route::post('/externalFactors', 'ExternalFactorsController@store')->name('extern
 
 //user controller
 Route::resource('adminuser', 'UserController')->middleware('auth','roleCheck','verified');
-Route::resource('approval', 'ApprovalController')->middleware('auth'); 
 Route::resource('registration', 'RegistrationController')->middleware('auth','roleCheck');
 Route::resource('crop', 'CropController')->middleware('auth','roleCheck');
 Route::resource('farmer', 'FarmerController')->middleware('auth','roleCheck');
@@ -216,5 +216,8 @@ Route::get('/cropRep', function () {
     
 });
 
+//Approval Cultivation 
+
+Route::get('approval', 'ApprovalController@index');
 
 

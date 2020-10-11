@@ -49,13 +49,14 @@
 <!-- nav bar ends -->
 
 <div class="container">
+<h3 class="display-5">Enter Harvest Details</h3>
 <form method="post" action="/harvestDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
             <div class="col-sm-5">
                 <select name="farmer_id" type="text" class="form-control">
-                  <option selected value="none">--Select Name--</option>
+            <!--      <option selected value="none">--Select Name--</option>-->
                    @foreach ($farmer as $farmers)
                       <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
                    @endforeach  
@@ -77,7 +78,7 @@
             <div class="col-sm-5">
                <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
                 <select name="category_id" class="form-control">
-                  <option selected value="none">--Select Crop-Category--</option>
+               <!--   <option selected value="none">--Select Crop-Category--</option>-->
                     @foreach ($CropCategory as $crop_categories)
                       <option value='{{ $crop_categories->id }}'>{{ $crop_categories->name }}</option>   
                     @endforeach                              
@@ -88,7 +89,7 @@
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
             <div class="col-sm-5">
             <select name="crop_id" class="form-control">
-              <option selected value="none">--Select Crop-Name--</option>
+      <!--   <option selected value="none">--Select Crop-Name--</option>-->
              @foreach ($crop as $crops)
                 <option value='{{ $crops->id }}'>{{ $crops->name }}</option>
              @endforeach 
@@ -99,7 +100,7 @@
             <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
             <div class="col-sm-5">
             <select name="variety_id" class="form-control">
-              <option selected value="none">--Select Variety--</option>
+        <!--      <option selected value="none">--Select Variety--</option> -->
               @foreach ($variety as $varieties)
                 <option value='{{ $varieties->id }}'>{{ $varieties->name }}</option>
              @endforeach 
@@ -116,7 +117,7 @@
             <label for="publisherid" class="col-sm-3 col-form-label">Province</label>
             <div class="col-sm-5">
             <select name="province_id" class="form-control">
-              <option selected value="none">--Select Province--</option>
+            <!--  <option selected value="none">--Select Province--</option> -->
               @foreach ($province as $provinces)
                   <option value='{{ $provinces->id }}'>{{ $provinces->name }}</option>
               @endforeach
@@ -127,7 +128,7 @@
             <label for="publisherid" class="col-sm-3 col-form-label">District</label>
             <div class="col-sm-5">
             <select name="district_id" class="form-control">
-              <option selected value="none">--Select District--</option>
+         <!--     <option selected value="none">--Select District--</option>-->
                @foreach ($district as $districts)
                   <option value='{{ $districts->id }}'>{{ $districts->name }}</option>
               @endforeach
@@ -138,7 +139,7 @@
             <label for="titleid" class="col-sm-3 col-form-label">Region</label>
             <div class="col-sm-5">
             <select name="region_id" class="form-control">
-              <option selected value="none">--Select Region--</option>
+           <!--   <option selected value="none">--Select Region--</option>-->
                @foreach ($region as $regions)
                   <option value='{{ $regions->id }}'>{{ $regions->name }}</option>
               @endforeach

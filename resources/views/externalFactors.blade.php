@@ -57,8 +57,8 @@
             <div class="col-sm-5">
                 <select name="harvest_id" type="text" class="form-control">
                   <option selected value="none">--Select ID--</option> 
-                  @foreach ($harvest as $harvests)
-                      <option value='{{ $harvests->id }}'>{{ $harvests->name }}</option>   
+                 @foreach ($a as $harvests)
+                      <option value='{{ $harvests->id }}'>{{ $harvests->id }}</option>   
                     @endforeach 
                 </select> 
             </div>
@@ -69,7 +69,7 @@
             <select name="reason" type="text" class="form-control">
            <option selected value="none">--Select Reason--</option>
                      @foreach ($external_factors as $external_factor)
-                      <option value='{{ $external_factor->id }}'>{{ $external_factor->name }}</option>   
+                      <option value='{{ $external_factor->id }}'>{{ $external_factor->reason }}</option>   
                     @endforeach 
                 </select>
           </div>
@@ -80,7 +80,9 @@
                 <input name="externalFac" type="text" class="form-control" id="releasedateid" placeholder="Reason">
             </div>
         </div>
-        <div class="form-group row">
+      <!--  <input type="radio" id="male" name="gender" value="male">
+            <label for="male">No External Factors</label><br>
+        <div class="form-group row">-->
             <div class="offset-sm-3 col-sm-9">
                 <button type="submit" name ='submit' class="btn btn-primary submitButton" id="submitButton"  data-placement="right" title="Submit Details"> <i class="fa fa mr-9" aria-hidden="true"></i> Submit </button>
             </div>
