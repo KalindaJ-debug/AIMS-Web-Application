@@ -215,7 +215,9 @@ class LandReportController extends Controller
     //filtered reports
     public function exportFilteredLandRecords(Request $request){
 
-      // dd($request->input('landRadio'));
+      //validate form values
+      $request->validate(['landRadio' => 'required']);
+
       if($request->input('landRadio') == "all"){
         //all land records
         if($request->input('landType') != null ){
@@ -224,7 +226,6 @@ class LandReportController extends Controller
           $landTypeID = $request->input('landType');
           $landType = LandType::find($landTypeID);
           $landRecords = Land::with('provinces', 'districts')->where('land_type_id', $landTypeID)->distinct()->get();
-          // dd($landRecords);
           
           $htmlStream = '
         <div class="col-6">

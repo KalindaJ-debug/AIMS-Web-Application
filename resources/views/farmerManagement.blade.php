@@ -94,6 +94,17 @@
                 </tbody>
             </table>
 
+            {{-- Display Error Message --}}
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <button type="button" class="btn bg-dark text-white" onclick="location.href='{{url('farmersReport')}}';">
                 <i class="fas fa-file-pdf"></i> Download Report
             </button>
