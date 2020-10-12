@@ -12,138 +12,47 @@ use App\ApprovalData;
 use App\CropCategory;
 use App\Crop;
 use App\Variety;
-use App\Harvest;
+use App\ApprovalHarvest;
+use App\ApprovalCultivation;
+use App\cultivation;
+use App\Land;
 
 class ApprovalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $approval = Approval::all();
-        return view('approval', array('approval' => $approval));
-    }
+        $approvalCultivation = ApprovalCultivation::select('id', 'land_id', 'season', 'startDate', 'endDate')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $cultivatedData = array();
+        foreach ($approvalCultivation as $cultivate) {
+            $land = Land::select('province_id', 'district_id', 'region_id')->where('id', $cultivate->land_id)->first();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $approval = Approval::where('id', $request->input('id'))->first();
-        
-        if ($request->input('status') == "approved")
-        {
-            $approval->status = 1;
-            $approval->other = null;
-            $approval->inaccurate = false;
+            $province = Province::select('name')->where('id', $land->province_id)->first();
+            $district = District::select('name')->where('id', $land->district_id)->first();
+            $region = Region::select('name')->where('id', $land->region_id)->first();
             
-            $data = ApprovalData::where('approval_id', $approval->id)->first();
-
-            $harvest = new Harvest;
-
-            $harvest->farmer_id = $approval->farmer_id;
-            $harvest->province_id = $approval->province_id;
-            $harvest->district_id = $approval->district_id;
-            $harvest->region_id = $data->region_id;
-            $harvest->category_id = $data->category_id;
-            $harvest->crop_id = $data->crop_id;
-            $harvest->variety_id = $data->variety_id;
-            $harvest->cultivatedLand = $data->cultivatedLand;
-            $harvest->season= $data->season;
-            $harvest->startDate= $data->startDate;
-            $harvest->endDate= $data->endDate;
-            $harvest->season= $data->season;
-            $harvest->harvestedAmount= $data->harvestedAmount;
-
-            $harvest->save();
+            $row = [$cultivate->id ,$cultivate->season];
+            array_push($row, $province->name, $district->name, $region->name, $cultivate->startDate, $cultivate->endDate);
+            array_push($cultivatedData, $row);
         }
-        else
-        {
-            $approval->status = 2;
-            if ($request->input('other') == null)
-            {
-                $approval->inaccurate = true;
-                $approval->other = null;
-            }
-            else
-            {
-                $approval->inaccurate = false;
-                $approval->other = $request->input('other');
-            }
+
+        $approvalHarvest = ApprovalHarvest::select('id', 'land_id', 'season', 'endDate')->get();
+
+        $harvestData = array();
+        foreach ($approvalHarvest as $harvest) {
+            $land = Land::select('province_id', 'district_id', 'region_id')->where('id', $harvest->land_id)->first();
+            $cultivation = cultivation::select('startDate', 'endDate')->where('id', $harvest->cultivation_id)->first();
+
+            $province = Province::select('name')->where('id', $land->province_id)->first();
+            $district = District::select('name')->where('id', $land->district_id)->first();
+            $region = Region::select('name')->where('id', $land->region_id)->first();
+            
+            $row = [$harvest->id ,$harvest->season];
+            array_push($row, $province->name, $district->name, $region->name, $harvest->endDate, $cultivation->startDate, $cultivation->endDate);
+            array_push($harvestData, $row);
         }
-        $approval->save();
-        return redirect()->action('ApprovalController@index');
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $data = ApprovalData::where('approval_id', $id)->first();
-        
-        $approval = Approval::where('id', $id)->first();
-        $farmer = Farmer::where('id', $approval->farmer_id)->first();
-
-        $category = CropCategory::where('id', $data->category_id)->first();
-        $crop = Crop::where('id', $data->crop_id)->first();
-        $variety = Variety::where('id', $data->variety_id)->first();
-        $province = Province::where('id', $data->province_id)->first();
-        $district = District::where('id', $data->district_id)->first();
-        $region = Region::where('id', $data->region_id)->first();
-        return view('approvalDescription', array('approval' => $data, 'farmer' => $farmer, 'province' => $province, 'district' => $district, 'region' => $region, 'category' => $category, 'crop' => $crop, 'variety' => $variety))->with('id', $id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        dd($cultivatedData);
+        return view('deviceAdmin', array('deviceUser' => $deviceUser, 'userAdd' => $user));
     }
 }
