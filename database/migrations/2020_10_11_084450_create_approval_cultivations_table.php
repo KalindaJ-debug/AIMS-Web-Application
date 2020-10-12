@@ -24,6 +24,7 @@ class CreateApprovalCultivationsTable extends Migration
             $table->date('endDate');
             $table->integer('harvestedAmount');
             $table->double('cultivatedLand', 17, 10);
+            $table->integer('status');
             $table->timestamps();
 
             $table->foreign('land_id')->references('id')->on('lands');

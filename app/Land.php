@@ -27,4 +27,15 @@ class Land extends Model
         return $this->belongsTo('App\District', 'district_id', 'id');
     }
 
+    public function regions(){
+        return $this->belongsTo('App\Region', 'region_id', 'id');
+    }
+
+    public function approvalHarvest(){
+        return $this->belongsTo('App\ApprovalHarvest');
+    }
+
+    public function approvalCultivation(){
+        return $this->belongsTo('App\ApprovalCultivation');
+    }
 }

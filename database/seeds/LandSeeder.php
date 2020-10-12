@@ -24,7 +24,8 @@ class LandSeeder extends Seeder
                 'province_id' => '1',
                 'district_id' => '1',
                 'region_id' => '1',
-                'landExtend' => $faker->randomDigit
+                'landExtend' => $faker->randomDigit,
+                'gnd' => '1'
             ]
         ]);
     }

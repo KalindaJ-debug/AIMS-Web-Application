@@ -219,5 +219,7 @@ Route::get('/cropRep', function () {
 //Approval Cultivation 
 
 Route::get('approval', 'ApprovalController@index');
+Route::get('harvestDescription/{id}', 'ApprovalController@harvestDescription');
+Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
 
