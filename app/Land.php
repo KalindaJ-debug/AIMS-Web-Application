@@ -8,7 +8,7 @@ class Land extends Model
 { 
     protected $table = 'lands';
 
-    protected $fillable = ['farmer_id','addressNo', 'streetName', 'laneName', 'town', 'land_type_id', 'gnd', 'province_id', 'district_id', 'postalCode', 'planningNumber', 'landRegistration', 'landExtend'];
+    protected $fillable = ['farmer_id','addressNo', 'streetName', 'laneName', 'town', 'land_type_id', 'region_id', 'province_id', 'district_id', 'postalCode', 'planningNumber', 'landRegistration', 'landExtend'];
 
     public function farmer()
     {
@@ -30,7 +30,7 @@ class Land extends Model
     public function regions(){
         return $this->belongsTo('App\Region', 'region_id', 'id');
     }
-
+    
     public function approvalHarvest(){
         return $this->belongsTo('App\ApprovalHarvest');
     }

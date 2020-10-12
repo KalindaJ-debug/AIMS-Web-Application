@@ -21,7 +21,7 @@ class CreateLandsTable extends Migration
             $table->string('laneName');
             $table->string('town');
             $table->unsignedBigInteger('land_type_id');
-            $table->string('gnd');
+            $table->unsignedBigInteger('region_id')->references('id')->on('regions');
             $table->unsignedBigInteger('province_id');
             $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('region_id');

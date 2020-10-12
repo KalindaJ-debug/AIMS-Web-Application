@@ -106,7 +106,7 @@ class RegistrationController extends Controller
                 'lane' => ['required', 'string' ,'max:100'],
                 'town' => ['nullable', 'max:50'],
                 'landType' => ['required'],
-                'grama' => ['required'],
+                'region' => ['required'],
                 'district' => ['required'],
                 'province' => ['required'],
                 'postal' => ['required', 'numeric', 'digits:5'],
@@ -132,7 +132,7 @@ class RegistrationController extends Controller
             $land->laneName = $request->input('lane');
             $land->town = $request->input('town');
             $land->land_type_id = $request->input('landType');
-            $land->gnd = $request->input('grama');
+            $land->region_id = $request->input('region');
             $land->province_id = $request->input('province');
             $land->district_id = $request->input('district');
             $land->postalCode = $request->input('postal');
