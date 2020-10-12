@@ -63,7 +63,7 @@ class HarvestController extends Controller
         */
         //dd($request);
         $game = new harvests;
-        $game->farmer_id = request('farmer_id');
+        $game->cultivation_id = request('cultivation_id');
         $game->category_id = request('category_id');
         $game->crop_id = request('crop_id');
         $game->variety_id = request('variety_id');
