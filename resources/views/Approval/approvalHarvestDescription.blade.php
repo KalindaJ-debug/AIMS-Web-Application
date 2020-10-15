@@ -272,7 +272,6 @@
         $("#approve").click(function()
         {
             $(this).data('clicked', true);
-            console.log("Test");
             
             var external = document.getElementById("external");
 

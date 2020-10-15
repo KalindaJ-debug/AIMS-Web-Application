@@ -78,11 +78,11 @@ class ApprovalController extends Controller
 
     public function harvestDescription($id) {
         $approvalHarvest = ApprovalHarvest::where('id', $id)->first();
-        // dd($id);
+        // dd($approvalHarvest->cultivation);
         return view('Approval.approvalHarvestDescription', array('harvest' => $approvalHarvest));
     }
 
     public function store(Request $request) {
-        
+
     }
 }

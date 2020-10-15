@@ -16,4 +16,21 @@ class cultivation extends Model
     {
         return $this->belongsTo('App\ApprovalHarvest');
     }
+
+    public function category()
+    {
+        return $this->hasOne('App\CropCategory', 'id');
+    }
+
+    public function crop()
+    {
+        return $this->hasOne('App\Crop', 'id');
+    }
+
+    public function variety()
+    {
+        return $this->hasOne('App\Variety', 'id');
+    }
+
+    
 }
