@@ -25,7 +25,6 @@ class LandSeeder extends Seeder
                 'district_id' => '1',
                 'region_id' => '1',
                 'landExtend' => $faker->randomDigit,
-                'gnd' => '1'
             ]
         ]);
     }

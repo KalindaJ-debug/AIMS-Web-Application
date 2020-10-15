@@ -20,8 +20,8 @@
                 <div class="col-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Farmer</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Cultivation</a>
-                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Submiited</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Cultivation Data</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Submited Data</a>
                     </div>
                 </div>
                 <div class="col-9">
@@ -60,22 +60,22 @@
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="form-group">
                                 <label for="category">Crop Category</label>
-                                <input type="text" class="form-control" id="category" value="{{ $harvest->category->name }}" readonly>
+                                <input type="text" class="form-control" id="category" value="{{ $harvest->cultivation->category->name }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="crop">Crop Name</label>
-                                <input type="text" class="form-control" id="crop" value="{{ $harvest->crop->name }}" readonly>
+                                <input type="text" class="form-control" id="crop" value="{{ $harvest->cultivation->crop->name }}" readonly>
                             </div>
                             
                             <div class="form-group">
                                 <label for="variety">Variety</label>
-                                <input type="text" class="form-control" id="variety" value="{{ $harvest->variety->name }}" readonly>
+                                <input type="text" class="form-control" id="variety" value="{{ $harvest->cultivation->variety->name }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="season">Season</label>
-                                <input type="text" class="form-control" id="season" value="{{ $harvest->season }}" readonly>
+                                <input type="text" class="form-control" id="season" value="{{ $harvest->cultivation->season }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -124,6 +124,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="season">Season</label>
+                                <input type="text" class="form-control" id="season" value="{{ $harvest->season }}" readonly>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="amount">Harvest Amount</label>
                                 <input type="text" class="form-control" id="amount" value="{{ $harvest->harvestedAmount }}" readonly>
                             </div>
@@ -131,6 +136,11 @@
                             <div class="form-group">
                                 <label for="land">Cultivated Land</label>
                                 <input type="text" class="form-control" id="land" value="{{ $harvest->cultivatedLand }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="amount">Harvest End Date</label>
+                                <input type="text" class="form-control" id="cultivateEnd" value="{{ $harvest->endDate }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -189,7 +199,7 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="post" action="{{action('ApprovalController@store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{action('ApprovalController@updateHarvest')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $harvest->id }}">
                         <input type="hidden" name="status" value="denied">
@@ -223,7 +233,7 @@
                     <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-check-circle"></i> Success</h5>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="{{action('ApprovalController@store')}}" enctype="multipart/form-data" id="farmerRegistration">
+                    <form method="post" action="{{action('ApprovalController@updateHarvest')}}" enctype="multipart/form-data" id="farmerRegistration">
                         {{ csrf_field() }}
 
                         <input type="hidden" name="id" value="{{ $harvest->id }}">

@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <title>Approval Description {{ $id }}</title>
+        <title>Approval Description {{ $cultivation->id }}</title>
     </head>
     <body>
         <div class="container">
@@ -20,8 +20,7 @@
                 <div class="col-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Farmer</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Crop</a>
-                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">External Factors</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Cultivation Details</a>
                     </div>
                 </div>
                 <div class="col-9">
@@ -29,68 +28,73 @@
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="form-group">
                                 <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" id="firstName" value="{{ $farmer->firstName }}" readonly>
+                                <input type="text" class="form-control" id="firstName" value="{{ $cultivation->land->farmer->firstName }}" readonly>
                             </div>
                                 
                             <div class="form-group">
                                 <label for="otherName">Other Name</label>
-                                <input type="text" class="form-control" id="otherName" value="{{ $farmer->otherName }}" readonly>
+                                <input type="text" class="form-control" id="otherName" value="{{ $cultivation->land->farmer->otherName }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" value="{{ $farmer->lastName }}" readonly>
+                                <input type="text" class="form-control" id="lastName" value="{{ $cultivation->land->farmer->lastName }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="province">Province</label>
-                                <input type="text" class="form-control" id="province" value="{{ $province->name }}" readonly>
+                                <input type="text" class="form-control" id="province" value="{{ $cultivation->land->provinces->name }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="">District</label>
-                                <input type="text" class="form-control" id="" value="{{ $district->name }}" readonly>
+                                <input type="text" class="form-control" id="" value="{{ $cultivation->land->districts->name }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="region">Region</label>
-                                <input type="text" class="form-control" id="region" value="{{ $region->name }}" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="season">Season</label>
-                                <input type="text" class="form-control" id="season" value="{{ $approval->season }}" readonly>
+                                <input type="text" class="form-control" id="region" value="{{ $cultivation->land->regions->name }}" readonly>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="form-group">
                                 <label for="category">Crop Category</label>
-                                <input type="text" class="form-control" id="category" value="{{ $category->name }}" readonly>
+                                <input type="text" class="form-control" id="category" value="{{ $cultivation->category->name }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="crop">Crop Name</label>
-                                <input type="text" class="form-control" id="crop" value="{{ $crop->name }}" readonly>
+                                <input type="text" class="form-control" id="crop" value="{{ $cultivation->crop->name }}" readonly>
                             </div>
                             
                             <div class="form-group">
                                 <label for="variety">Variety</label>
-                                <input type="text" class="form-control" id="variety" value="{{ $variety->name }}" readonly>
+                                <input type="text" class="form-control" id="variety" value="{{ $cultivation->variety->name }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="variety">Cultivation Submitted Date</label>
-                                <input type="text" class="form-control" id="variety" value="{{ $approval->submitedDate }}" readonly>
+                                <label for="season">Season</label>
+                                <input type="text" class="form-control" id="season" value="{{ $cultivation->season }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="variety">Cultivation Start Date</label>
+                                <input type="text" class="form-control" id="variety" value="{{ $cultivation->startDate }}" readonly>
                             </div>
                                 
                             <div class="form-group">
+                                <label for="variety">Cultivation End Date</label>
+                                <input type="text" class="form-control" id="variety" value="{{ $cultivation->endDate }}" readonly>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="amount">Harvest Amount</label>
-                                <input type="text" class="form-control" id="amount" value="{{ $approval->harvestedAmount }}" readonly>
+                                <input type="text" class="form-control" id="amount" value="{{ $cultivation->harvestedAmount }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="land">Cultivated Land</label>
-                                <input type="text" class="form-control" id="land" value="{{ $approval->cultivatedLand }}" readonly>
+                                <input type="text" class="form-control" id="land" value="{{ $cultivation->cultivatedLand }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -101,26 +105,6 @@
                                     </label>
                                 </div>
                             </div> 
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                            <div class="form-group">
-                                <label for="average">Average Rainfall</label>
-                                <input type="text" class="form-control" id="average" value="4.2" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="damage">Damaged Land</label>
-                                <input type="text" class="form-control" id="damage" value="24.2" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="external">
-                                    <label class="form-check-label" for="external">
-                                        Approve Data
-                                    </label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -188,9 +172,9 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="post" action="{{action('ApprovalController@store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{action('ApprovalController@updateCultivation')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <input type="hidden" name="id" value="{{ $id }}">
+                        <input type="hidden" name="id" value="{{ $cultivation->id }}">
                         <input type="hidden" name="status" value="denied">
                         <div class="modal-body">
                             <div class="form-group form-check">
@@ -222,10 +206,10 @@
                     <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-check-circle"></i> Success</h5>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="{{action('ApprovalController@store')}}" enctype="multipart/form-data" id="farmerRegistration">
+                    <form method="post" action="{{action('ApprovalController@updateCultivation')}}" enctype="multipart/form-data" id="farmerRegistration">
                         {{ csrf_field() }}
 
-                        <input type="hidden" name="id" value="{{ $id }}">
+                        <input type="hidden" name="id" value="{{ $cultivation->id }}">
                         <input type="hidden" name="status" value="approved">
 
                         <button type="submit" class="btn btn-outline-dark">Continue</button>
@@ -271,29 +255,16 @@
         $("#approve").click(function()
         {
             $(this).data('clicked', true);
-            console.log("Test");
             
             var data = document.getElementById("data");
-            var external = document.getElementById("external");
 
             if (data.checked == true)
             {
-                console.log("Test 1");
-                if (external.checked == true)
-                {
-                    console.log("Test 2");
-                    $('#successModal').modal('show');
-                }
-                else 
-                {
-                    //$('.alert').alert();
-                    $('#errorModal').modal('show');
-                }
+                $('#successModal').modal('show');
             }
             else
             {
-                //$('.alert').alert();
-                $('#errorModal').modal('show');
+                alert("Error! Click the Approve Data Checkbox");
             }
         });
 

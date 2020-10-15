@@ -75,8 +75,8 @@
             <label for="titleid" class="col-sm-3 col-form-label">Crop Category</label>
             <div class="col-sm-5">
                <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
-                <select name="category_id" class="form-control">
-                  <option selected value="none">--Select Crop-Category--</option>
+                <select name="category_id" class="form-control dynamic" data-dependent="crop_categories">
+                  <option selected value="none">--Select Crop Category--</option>
                     @foreach ($CropCategory as $crop_categories)
                       <option value='{{ $crop_categories->id }}'>{{ $crop_categories->name }}</option>   
                     @endforeach                              
@@ -86,7 +86,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
             <div class="col-sm-5">
-            <select name="crop_id" class="form-control">
+            <select name="crop_id" class="form-control" data-dependent="crops">
               <option selected value="none">--Select Crop-Name--</option>
              @foreach ($crop as $crops)
                 <option value='{{ $crops->id }}'>{{ $crops->name }}</option>
@@ -97,7 +97,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
             <div class="col-sm-5">
-            <select name="variety_id" class="form-control">
+            <select name="variety_id" class="form-control" data-dependent="varieties">
               <option selected value="none">--Select Variety--</option>
               @foreach ($variety as $varieties)
                 <option value='{{ $varieties->id }}'>{{ $varieties->name }}</option>
@@ -225,6 +225,29 @@ ScrollReveal().reveal('.container', {
 $(function() {
   $('.amount').mask('######',{reverse : true});
 
+});
+</script>
+<!-- ajax data view change -->
+<script>
+$(document).ready(function(){
+  $('.dynamic').change(function(){
+    if($(this).val() != '')
+    {
+      var select = $(this).attr("id");
+      var value = $(this).val();
+      var dependent = $(this).data('dependent');
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        
+        method:"POST",
+        data:{select:select, value:value, _token:_token, dependent:dependent},
+        success:function(result)
+        {
+          $('#'+dependent).html(result);
+        }
+      })
+    }
+  });
 });
 </script>
 </html>

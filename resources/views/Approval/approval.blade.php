@@ -76,12 +76,12 @@
                         <td>{{ $cultivations[8] }}</td>
                         <td>@if ($cultivations[9] == 0)
                             <p style='color:blue'>Pending</p>
-                        @elseif ($app->status == 1)
+                        @elseif ($cultivations[9] == 1)
                             <p style='color:green'>Accepted</p>
                         @else
                             <p style='color:red'>Declined</p>
                         @endif</td>
-                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/approval/{{ $cultivations[0] }}">View</a></td>
+                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/cultivationDescription/{{ $cultivations[0] }}">View</a></td>
                         <!-- <td><button type="button" class="btn btn-dark">Land Details</button></td> -->  
                     </tr> 
                 @endforeach        
@@ -121,7 +121,7 @@
                         <td>{{ $harvests[9] }}</td>
                         <td>@if ($harvests[10] == 0)
                             <p style='color:blue'>Pending</p>
-                        @elseif ($app->status == 1)
+                        @elseif ($harvests[10] == 1)
                             <p style='color:green'>Accepted</p>
                         @else
                             <p style='color:red'>Declined</p>
