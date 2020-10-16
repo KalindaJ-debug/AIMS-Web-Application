@@ -24,8 +24,8 @@ class CreateExternalApprovalsTable extends Migration
             $table->string('other')->nullable();
             $table->timestamps();
 
-            $table->foreign('approval_harvest_id')->references('id')->on('approval_harvests');
-            $table->foreign('approval_cultivation_id')->references('id')->on('approval_cultivations');
+            // $table->foreign('approval_harvest_id')->references('id')->on('approval_harvests');
+            // $table->foreign('approval_cultivation_id')->references('id')->on('approval_cultivations');
         });
     }
 
