@@ -15,33 +15,18 @@
         <title>Approval</title>
     </head>
     <body>
+        @include('layouts.header')
+        @include('layouts.navbar')
         <script type="text/JavaScript">
             $(document).ready( function () {
                 $('#harvestTable').DataTable();
                 $('#cultivationTable').DataTable();
             });
         </script>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            
-                
-                <button type="button" class="btn btn-outline-warning" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-language"></i> Language</button>
-                <button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
-            </div>
-        </nav>
         
         <div class="container" style="background-color:white;">
 
-            <h2 class="display-4">Approval Harvest</h2>
+            <h2 class="display-3">Cultivation Approvals</h2>
             
             </br>
 
@@ -88,6 +73,8 @@
                 </tbody>
             </table>
             
+            <h2 class="display-3">Harvest Approvals</h2>
+
             <table id="cultivationTable" class="display table">
                 <thead class="thead-dark">
                     <tr>
@@ -132,22 +119,8 @@
                 @endforeach        
                 </tbody>
             </table>
-
-            <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                    <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
-                </a>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        AIMS (Agriculture Information Management System)                   
-                    </ul>
-                    
-                    <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="far fa-question-circle"></i> About Us</button>
-                    <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-phone-volume"></i> Contact Us</button>
-                </div>
-            </nav>
         </div>
+        @include('layouts.footer')
     </body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

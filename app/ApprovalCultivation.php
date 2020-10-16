@@ -27,4 +27,9 @@ class ApprovalCultivation extends Model
     {
         return $this->hasOne('App\Variety', 'id');
     }
+
+    public function externalApproval()
+    {
+        return $this->hasOne('App\ExternalApproval', 'id', 'external_id');
+    }
 }

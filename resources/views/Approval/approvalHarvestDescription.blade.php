@@ -12,7 +12,11 @@
         <title>Approval Description {{ $harvest->id }}</title>
     </head>
     <body>
+        @include('layouts.header')
+        @include('layouts.navbar')
         <div class="container">
+            </br>
+            
             <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-arrow-left"> Back</i></button>
             
             </br></br>
@@ -175,21 +179,6 @@
             </br>
         </div>
 
-        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo.png') }}" width="87.5" height="50" alt="" loading="lazy">
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    AIMS (Agriculture Information Management System)                   
-                </ul>
-                
-                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="far fa-question-circle"></i> About Us</button>
-                <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval/1';"><i class="fas fa-phone-volume"></i> Contact Us</button>
-            </div>
-        </nav>
-
         <div class="modal fade" id="declineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -204,9 +193,21 @@
                         <input type="hidden" name="id" value="{{ $harvest->id }}">
                         <input type="hidden" name="status" value="denied">
                         <div class="modal-body">
-                            <div class="form-group form-check">
+                        <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="accuracy" name="accuracy" onclick="clearOther()">
                                 <label class="form-check-label" for="other">Inaccurate Data</label>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="redundant" name="redundant" onclick="clearOther()">
+                                <label class="form-check-label" for="other">Redundant Data</label>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="decimal" name="decimal" onclick="clearOther()">
+                                <label class="form-check-label" for="other">Decimal Error</label>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="landError" name="landError" onclick="clearOther()">
+                                <label class="form-check-label" for="other">Land Details</label>
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="otherCheck" name="otherCheck" onclick="otherCheckBox()">
@@ -259,7 +260,10 @@
                 if (otherCheck.checked == true)
                 {
                     document.getElementById('other').readOnly = false;
-                    document.getElementById("accuracy").checked = false;
+                    document.getElementById('accuracy').checked = false;
+                    document.getElementById('redundant').checked = false;
+                    document.getElementById('decimal').checked = false;
+                    document.getElementById('landError').checked = false;
                 }
                 else
                 {
@@ -274,6 +278,7 @@
                 document.getElementById("otherCheck").checked = false;
             }
         </script>
+        @include('layouts.footer')
     </body>
 </html>
 

@@ -25,12 +25,14 @@ class CreateApprovalCultivationsTable extends Migration
             $table->integer('harvestedAmount');
             $table->double('cultivatedLand', 17, 10);
             $table->integer('status');
+            $table->unsignedBigInteger('external_id');
             $table->timestamps();
 
             $table->foreign('land_id')->references('id')->on('lands');
             $table->foreign('category_id')->references('id')->on('crop_categories');
             $table->foreign('crop_id')->references('id')->on('crops');
             $table->foreign('variety_id')->references('id')->on('varieties');
+            $table->foreign('external_id')->references('id')->on('external_approvals');
         });
     }
 

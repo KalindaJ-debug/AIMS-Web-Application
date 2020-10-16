@@ -17,6 +17,7 @@ use App\ApprovalCultivation;
 use App\cultivation;
 use App\Land;
 use App\Harvest;
+use App\ExternalApproval;
 
 class ApprovalController extends Controller
 {
@@ -111,12 +112,40 @@ class ApprovalController extends Controller
 
         } else {
             $approvalHarvest->status = 2;
+
+            $external = new ExternalApproval;
+            $external->approval_harvest_id = $request->input('id');
+            
+            if ($request->input('otherCheck') == "on") {
+                
+                $external->other = $request->input('other');
+            
+            } else {
+                
+                if ($request->input('redundant') == "on") {
+                    $external->redundant = true;
+                } 
+                if ($request->input('accuracy') == "on") {
+                    $external->inaccurate = true;
+                }
+                if ($request->input('decimal') == "on") {
+                    $external->decimal = true;
+                }
+                if ($request->input('landError') == "on") {
+                    $external->land = true;
+                }
+
+            }
+            
+            $external->save();
         }
         $approvalHarvest->save();
         return redirect()->action('ApprovalController@index');
     }
 
     public function updateCultivation(Request $request) {
+        dd($request->request);
+       
         $approvalCultivation = ApprovalCultivation::where('id', $request->input('id'))->first();
         if ($request->input('status') == "approved") {
             $approvalCultivation->status = 1;
@@ -140,7 +169,34 @@ class ApprovalController extends Controller
 
         } else {
             $approvalCultivation->status = 2;
+
+            $external = new ExternalApproval;
+            $external->approval_cultivation_id = $request->input('id');
+            
+            if ($request->input('otherCheck') == "on") {
+                
+                $external->other = $request->input('other');
+            
+            } else {
+                
+                if ($request->input('redundant') == "on") {
+                    $external->redundant = true;
+                } 
+                if ($request->input('accuracy') == "on") {
+                    $external->inaccurate = true;
+                }
+                if ($request->input('decimal') == "on") {
+                    $external->decimal = true;
+                }
+                if ($request->input('landError') == "on") {
+                    $external->land = true;
+                }
+
+            }
+            
+            $external->save();
         }
+
         $approvalCultivation->save();
         return redirect()->action('ApprovalController@index');
     }
