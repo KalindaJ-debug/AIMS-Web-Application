@@ -11,7 +11,7 @@ class ApprovalCultivationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cultivation')->insert([
+        DB::table('approval_cultivations')->insert([
             [ 
                 'land_id' => '1',
                 'category_id' => '1',
