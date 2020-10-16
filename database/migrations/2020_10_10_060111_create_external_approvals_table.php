@@ -15,8 +15,6 @@ class CreateExternalApprovalsTable extends Migration
     {
         Schema::create('external_approvals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('approval_harvest_id')->nullable();
-            $table->unsignedBigInteger('approval_cultivation_id')->nullable();
             $table->boolean('redundant')->nullable();
             $table->boolean('inaccurate')->nullable();
             $table->boolean('decimal')->nullable();
