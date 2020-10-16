@@ -25,7 +25,7 @@ class CreateApprovalHarvestsTable extends Migration
             $table->integer('harvestedAmount');
             $table->double('cultivatedLand', 17, 10);
             $table->integer('status');
-            $table->unsignedBigInteger('external_id');
+            $table->unsignedBigInteger('external_id')->nullable();
             $table->timestamps();
 
             $table->foreign('cultivation_id')->references('id')->on('cultivation');

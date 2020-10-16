@@ -144,7 +144,7 @@ class ApprovalController extends Controller
     }
 
     public function updateCultivation(Request $request) {
-        dd($request->request);
+        //dd($request->request);
        
         $approvalCultivation = ApprovalCultivation::where('id', $request->input('id'))->first();
         if ($request->input('status') == "approved") {
