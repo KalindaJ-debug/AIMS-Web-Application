@@ -101,15 +101,6 @@
                                 <label for="land">Cultivated Land</label>
                                 <input type="text" class="form-control" id="land" value="{{ $harvest->cultivation->cultivatedLand }}" readonly>
                             </div>
-
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="data">
-                                    <label class="form-check-label" for="data">
-                                        Approve Data
-                                    </label>
-                                </div>
-                            </div> 
                         </div>
                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                             <div class="form-group">
