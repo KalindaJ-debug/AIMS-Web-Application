@@ -30,7 +30,7 @@
           <a class="nav-link" href="#">Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Main Crops</a>
+        <a class="nav-link" href="{{ url('cropInformation') }}">Main Crops</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Paddy</a>
