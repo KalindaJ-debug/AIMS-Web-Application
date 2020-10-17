@@ -148,3 +148,11 @@ Route::get('/land-update', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Device Management 
+
+Route::get('device', 'DeviceController@index');
+Route::post('device-add', 'DeviceController@addDevice');
+Route::post('device-edit', 'DeviceController@editDevice');
+Route::get('device-delete/{$id}', 'DeviceController@deleteDevice');
+
