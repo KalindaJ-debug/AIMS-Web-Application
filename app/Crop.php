@@ -15,4 +15,8 @@ class Crop extends Model
     {
         return $this->hasMany('App\Variety');
     }
+
+    public function approvalHarvest(){
+        return $this->belongsTo('App\ApprovalHarvest', 'crop_id', 'id');
+    }
 }

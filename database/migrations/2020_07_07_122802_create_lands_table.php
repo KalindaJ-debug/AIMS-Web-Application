@@ -33,7 +33,6 @@ class CreateLandsTable extends Migration
             $table->foreign('land_type_id')->references('id')->on('land_type');
             $table->foreign('province_id')->references('id')->on('provinces');
             $table->foreign('district_id')->references('id')->on('districts');
-            
         });
     }
 
