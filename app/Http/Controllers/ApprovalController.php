@@ -12,138 +12,192 @@ use App\ApprovalData;
 use App\CropCategory;
 use App\Crop;
 use App\Variety;
+use App\ApprovalHarvest;
+use App\ApprovalCultivation;
+use App\cultivation;
+use App\Land;
 use App\Harvest;
+use App\ExternalApproval;
 
 class ApprovalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $approval = Approval::all();
-        return view('approval', array('approval' => $approval));
-    }
+        $approvalCultivation = ApprovalCultivation::select('id', 'land_id', 'season', 'startDate', 'endDate', 'status')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $approval = Approval::where('id', $request->input('id'))->first();
-        
-        if ($request->input('status') == "approved")
-        {
-            $approval->status = 1;
-            $approval->other = null;
-            $approval->inaccurate = false;
+        $cultivatedData = array();
+        foreach ($approvalCultivation as $cultivate) {
+            $row = [
+                $cultivate->id, 
+                $cultivate->land->farmer->firstName, 
+                $cultivate->land->farmer->lastName, 
+                $cultivate->season
+            ];
             
-            $data = ApprovalData::where('approval_id', $approval->id)->first();
+            array_push(
+                $row, 
+                $cultivate->land->provinces->name, 
+                $cultivate->land->districts->name, 
+                $cultivate->land->regions->name, 
+                $cultivate->startDate, 
+                $cultivate->endDate, 
+                $cultivate->status
+            );
+            
+            array_push($cultivatedData, $row);
+        }
 
+        $approvalHarvest = ApprovalHarvest::select('id', 'land_id', 'cultivation_id', 'season', 'endDate', 'status')->get();
+        //dd($approvalHarvest[0]->approvalHarvest);
+
+        $harvestData = array();
+        foreach ($approvalHarvest as $harvest) {
+            //dd($harvest->crop);
+            $row = [
+                $harvest->id, 
+                $harvest->land->farmer->firstName, 
+                $harvest->land->farmer->lastName, 
+                $harvest->season
+            ];
+            
+            array_push(
+                $row, 
+                $harvest->land->provinces->name, 
+                $harvest->land->districts->name, 
+                $harvest->land->regions->name, 
+                $harvest->endDate, 
+                $harvest->cultivation->startDate, 
+                $harvest->cultivation->endDate, 
+                $harvest->status);
+            
+            array_push($harvestData, $row);
+        }
+
+        //dd($cultivatedData);
+        return view('Approval.approval', array('cultivation' => $cultivatedData, 'harvest' => $harvestData));
+    }
+
+
+    public function harvestDescription($id) {
+        $approvalHarvest = ApprovalHarvest::where('id', $id)->first();
+        return view('Approval.approvalHarvestDescription', array('harvest' => $approvalHarvest));
+    }
+
+    public function cultivationDescription($id) {
+        $approvalCultivation = ApprovalCultivation::where('id', $id)->first();
+        return view('Approval.approvalCultivationDescription', array('cultivation' => $approvalCultivation));
+    }
+
+    public function updateHarvest(Request $request) {
+        $approvalHarvest = ApprovalHarvest::where('id', $request->input('id'))->first();
+        if ($request->input('status') == "approved") {
+            $approvalHarvest->status = 1;
+            
             $harvest = new Harvest;
 
-            $harvest->farmer_id = $approval->farmer_id;
-            $harvest->province_id = $approval->province_id;
-            $harvest->district_id = $approval->district_id;
-            $harvest->region_id = $data->region_id;
-            $harvest->category_id = $data->category_id;
-            $harvest->crop_id = $data->crop_id;
-            $harvest->variety_id = $data->variety_id;
-            $harvest->cultivatedLand = $data->cultivatedLand;
-            $harvest->season= $data->season;
-            $harvest->startDate= $data->startDate;
-            $harvest->endDate= $data->endDate;
-            $harvest->season= $data->season;
-            $harvest->harvestedAmount= $data->harvestedAmount;
+            $harvest->cultivation_id = $approvalHarvest->cultivation_id;
+            $harvest->land_id = $approvalHarvest->land_id;
+            $harvest->category_id = $approvalHarvest->category_id;
+            $harvest->crop_id = $approvalHarvest->crop_id;
+            $harvest->variety_id = $approvalHarvest->variety_id;
+            $harvest->province_id = $approvalHarvest->province_id;
+            $harvest->district_id = $approvalHarvest->district_id;
+            $harvest->region_id = $approvalHarvest->region_id;
+            $harvest->season = $approvalHarvest->season;
+            $harvest->endDate = $approvalHarvest->endDate;
+            $harvest->harvestedAmount = $approvalHarvest->harvestedAmount;
+            $harvest->cultivatedLand = $approvalHarvest->cultivatedLand;
 
             $harvest->save();
-        }
-        else
-        {
-            $approval->status = 2;
-            if ($request->input('other') == null)
-            {
-                $approval->inaccurate = true;
-                $approval->other = null;
+
+        } else {
+            $approvalHarvest->status = 2;
+
+            $external = new ExternalApproval;
+            $external->approval_harvest_id = $request->input('id');
+            
+            if ($request->input('otherCheck') == "on") {
+                
+                $external->other = $request->input('other');
+            
+            } else {
+                
+                if ($request->input('redundant') == "on") {
+                    $external->redundant = true;
+                } 
+                if ($request->input('accuracy') == "on") {
+                    $external->inaccurate = true;
+                }
+                if ($request->input('decimal') == "on") {
+                    $external->decimal = true;
+                }
+                if ($request->input('landError') == "on") {
+                    $external->land = true;
+                }
+
             }
-            else
-            {
-                $approval->inaccurate = false;
-                $approval->other = $request->input('other');
-            }
+            
+            $external->save();
         }
-        $approval->save();
+        $approvalHarvest->save();
         return redirect()->action('ApprovalController@index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $data = ApprovalData::where('approval_id', $id)->first();
-        
-        $approval = Approval::where('id', $id)->first();
-        $farmer = Farmer::where('id', $approval->farmer_id)->first();
+    public function updateCultivation(Request $request) {
+        //dd($request->request);
+       
+        $approvalCultivation = ApprovalCultivation::where('id', $request->input('id'))->first();
+        if ($request->input('status') == "approved") {
+            $approvalCultivation->status = 1;
 
-        $category = CropCategory::where('id', $data->category_id)->first();
-        $crop = Crop::where('id', $data->crop_id)->first();
-        $variety = Variety::where('id', $data->variety_id)->first();
-        $province = Province::where('id', $data->province_id)->first();
-        $district = District::where('id', $data->district_id)->first();
-        $region = Region::where('id', $data->region_id)->first();
-        return view('approvalDescription', array('approval' => $data, 'farmer' => $farmer, 'province' => $province, 'district' => $district, 'region' => $region, 'category' => $category, 'crop' => $crop, 'variety' => $variety))->with('id', $id);
-    }
+            $cultivation = new cultivation;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            $cultivation->land_id = $approvalCultivation->land_id;
+            $cultivation->category_id = $approvalCultivation->category_id;
+            $cultivation->crop_id = $approvalCultivation->crop_id;
+            $cultivation->variety_id = $approvalCultivation->variety_id;
+            $cultivation->province_id = $approvalCultivation->province_id;
+            $cultivation->district_id = $approvalCultivation->district_id;
+            $cultivation->region_id = $approvalCultivation->region_id;
+            $cultivation->season = $approvalCultivation->season;
+            $cultivation->startDate = $approvalCultivation->startDate;
+            $cultivation->endDate = $approvalCultivation->endDate;
+            $cultivation->harvestedAmount = $approvalCultivation->harvestedAmount;
+            $cultivation->cultivatedLand = $approvalCultivation->cultivatedLand;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+            $cultivation->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        } else {
+            $approvalCultivation->status = 2;
+
+            $external = new ExternalApproval;
+            $external->approval_cultivation_id = $request->input('id');
+            
+            if ($request->input('otherCheck') == "on") {
+                
+                $external->other = $request->input('other');
+            
+            } else {
+                
+                if ($request->input('redundant') == "on") {
+                    $external->redundant = true;
+                } 
+                if ($request->input('accuracy') == "on") {
+                    $external->inaccurate = true;
+                }
+                if ($request->input('decimal') == "on") {
+                    $external->decimal = true;
+                }
+                if ($request->input('landError') == "on") {
+                    $external->land = true;
+                }
+
+            }
+            
+            $external->save();
+        }
+
+        $approvalCultivation->save();
+        return redirect()->action('ApprovalController@index');
     }
 }

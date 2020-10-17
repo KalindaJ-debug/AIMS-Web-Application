@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApprovalDataTable extends Migration
+class CreateHarvestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateApprovalDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('approval_data', function (Blueprint $table) {
+        Schema::create('harvests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('approval_id');
-            $table->foreign('approval_id')->references('id')->on('approvals');
+            $table->unsignedBigInteger('cultivation_id');
+            $table->foreign('cultivation_id')->references('id')->on('cultivation');
+            $table->unsignedBigInteger('land_id');
+            $table->foreign('land_id')->references('id')->on('lands');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('crop_categories');
             $table->unsignedBigInteger('crop_id');
@@ -29,18 +31,14 @@ class CreateApprovalDataTable extends Migration
             $table->foreign('district_id')->references('id')->on('districts');
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
-            $table->string('season');
-            $table->date('submitedDate');
+            $table->string('season')->nullable();
+            $table->date('endDate');
             $table->integer('harvestedAmount');
             $table->double('cultivatedLand', 17, 10);
             $table->timestamps();
         });
-
-        // Artisan::call('db:seed', [
-        //     '--class' => ApprovalDataSeeder::class
-        // ]);
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -48,6 +46,6 @@ class CreateApprovalDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('approval_data');
+        Schema::dropIfExists('harvests');
     }
 }

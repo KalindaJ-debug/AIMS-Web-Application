@@ -13,7 +13,7 @@ class Province extends Model
 
     protected $table = 'provinces';
 
-    public function land()
+    public function lands()
     {
         return $this->hasMany('App\Land','province_id', 'id');
     }

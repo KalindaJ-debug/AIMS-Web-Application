@@ -8,11 +8,15 @@ class Land extends Model
 { 
     protected $table = 'lands';
 
-    protected $fillable = ['farmer_id','addressNo', 'streetName', 'laneName', 'town', 'city', 'gnd', 'province_id', 'district_id', 'postalCode', 'planningNumber', 'landRegistration', 'landExtend'];
+    protected $fillable = ['farmer_id','addressNo', 'streetName', 'laneName', 'town', 'land_type_id', 'region_id', 'province_id', 'district_id', 'postalCode', 'planningNumber', 'landRegistration', 'landExtend'];
 
     public function farmer()
     {
         return $this->belongsTo('App\Farmer');
+    }
+
+    public function land_type(){
+        return $this->belongsTo('App\LandType', 'land_type_id', 'id');
     }
 
     public function provinces(){
@@ -21,5 +25,17 @@ class Land extends Model
 
     public function districts(){
         return $this->belongsTo('App\District', 'district_id', 'id');
+    }
+
+    public function regions(){
+        return $this->belongsTo('App\Region', 'region_id', 'id');
+    }
+    
+    public function approvalHarvest(){
+        return $this->belongsTo('App\ApprovalHarvest');
+    }
+
+    public function approvalCultivation(){
+        return $this->belongsTo('App\ApprovalCultivation');
     }
 }

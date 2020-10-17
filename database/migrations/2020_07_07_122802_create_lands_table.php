@@ -20,8 +20,8 @@ class CreateLandsTable extends Migration
             $table->string('streetName');
             $table->string('laneName');
             $table->string('town');
-            $table->string('city');
-            $table->string('gnd');
+            $table->unsignedBigInteger('land_type_id');
+            $table->unsignedBigInteger('region_id')->references('id')->on('regions');
             $table->unsignedBigInteger('province_id');
             $table->unsignedBigInteger('district_id');
             $table->integer('postalCode')->nullable();
@@ -30,6 +30,7 @@ class CreateLandsTable extends Migration
             $table->bigInteger('landExtend');
             $table->timestamps();
             $table->foreign('farmer_id')->references('id')->on('farmers');
+            $table->foreign('land_type_id')->references('id')->on('land_type');
             $table->foreign('province_id')->references('id')->on('provinces');
             $table->foreign('district_id')->references('id')->on('districts');
         });

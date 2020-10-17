@@ -10,4 +10,8 @@ class Variety extends Model
     {
         return $this->belongsTo('App\Crop');
     }
+
+    public function approvalHarvest(){
+        return $this->belongsTo('App\ApprovalHarvest');
+    }
 }

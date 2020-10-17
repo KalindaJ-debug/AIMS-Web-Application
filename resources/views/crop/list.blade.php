@@ -42,6 +42,7 @@
   </style>
   <title>Agriculture Information Management System | AIMS </title>
 </head>
+<body>
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -52,33 +53,22 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">Harvest Details</h1>    
-    <div>
-    <a style="margin: 19px;" href="/Entry-harvest-data" class="btn btn-primary">Add Harvest Details</a>
-    <a style="margin: 19px;" href="/getPDF" class="btn btn-warning">Export to Pdf</a>
-    </div>  
+    <h1 class="display-3">Cultivation Details List</h1>      
   <table class="table table-striped">
     <thead>
         <tr>
-         <!-- <td>ID</td> -->
-          <td>Farmer ID</td>
-          <td>Season</td>
-          <td>Category</td>
-          <td>Crop Name</td>
-          <td>Variety</td>
-          <td>Harvest Date</td>
-          <td>Province</td>
-          <td>District</td>
-          <td>Region</td>
-          <td>Harvested Amount (Kg)</td>
-          <td>Cultivated Land (Acres)</td>
-          <td>External Factor</td>
+          <td>ID</td>
+          <td>Farmer Name</td>
+          <td>Land Area</td>
+          <td>Land Address</td>
+          <td>Cultivated Land (acres)</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>
     <tbody>
-
+        
         @foreach($contacts as $contact)
+         
           @php
             $category = App\CropCategory::where('id', $contact->category_id)->first();
           @endphp
@@ -98,27 +88,19 @@
              $region = App\Region::where('id', $contact->region_id)->first();
           @endphp
           @php
-            $external_factors = App\External_factors::where('id', $contact->id)->first();
+            $farmer = App\farmer::where('id', $contact->farmer_id)->first();
           @endphp
         <tr>
-            <!--<td>{{$contact->id}}</td>-->
-            <td>{{$contact->farmer_id}}</td>           
-            <td>{{$contact->season}}</td>
-            <td>{{$category->name}}</td>
-            <td>{{$crop->name}}</td>
-            <td>{{$variety->name}}</td>
-            <td>{{$contact->endDate}}</td>
-            <td>{{$province->name}}</td>
-            <td>{{$district->name}}</td>
-            <td>{{$region->name}}</td>
-            <td>{{$contact->harvestedAmount}}</td>
+            <td>{{$contact->id}}</td>
+            <td>{{$farmer->firstName}} {{$farmer->lastName}}</td> 
+            <td>{{$contact->land_id}}</td> 
+            <td>{{$contact->land_address}}</td>      
             <td>{{$contact->cultivatedLand}}</td>
-            <td>none</td>
             <td>
-                <button class="btn btn-warning" type="submit">Edit</button>
+                <a href="/Entry-harvest-data" class="btn btn-warning">Add Harvest Details</a>
                 <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
-            </td>
-            <td>
+            
+            
                 <form action="{{ route('crop-data.destroy', $contact->id)}}" method="post">
                   @csrf
                   @method('DELETE')
@@ -126,7 +108,7 @@
                 </form>
             </td>
         </tr>
-        @endforeach 
+        @endforeach
     </tbody>
   </table>
 <div>
@@ -149,14 +131,5 @@
   </div>
   </div>
   </body>
-<!-- Animations -->
-<script type="text/javascript">
-
-ScrollReveal().reveal('.container', {
-  duration:2000,
-  origin:'bottom',
-  distance: '200px',
-  delay:100
-});
 
 </html>

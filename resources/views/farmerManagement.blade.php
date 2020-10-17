@@ -5,6 +5,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        {{-- CSS --}}
+        <link rel="stylesheet" type="text/css" href="{{ url('assets/css/home.css') }}">
+
+        <!-- Font CSS -->
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -14,7 +20,7 @@
         
         <title>Crop</title>
     </head>
-    <body>
+    <body style="font-family: 'Raleway', sans-serif; background-color: white;">
 
         @include('layouts.header')
         @include('layouts.navbar')
@@ -88,12 +94,146 @@
                 </tbody>
             </table>
 
+            {{-- Display Error Message --}}
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <button type="button" class="btn bg-dark text-white" onclick="location.href='{{url('farmersReport')}}';">
                 <i class="fas fa-file-pdf"></i> Download Report
             </button>
             <button type="button" class="btn btn-warning" onclick="location.href='{{url('sendFarmerReport')}}';">
                 <i class="fas fa-file-pdf"></i> Email Report
             </button>
+
+            {{-- Land Records Report - 20205283 --}}
+            <button type="button" class="btn bg-dark text-white" data-toggle="modal" data-target="#landReport">
+                <i class="fas fa-file-pdf"></i> Download Land Report 
+              </button>
+
+            {{-- Land Record Report Modal  --}}
+            <div id="landReport" class="modal fade">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                  <form action="{{ url('exportFilteredLandPDF') }}" method="get" name="landReport">
+                      {{ csrf_field() }}
+                      <div class="modal-header">
+                        <h4 class="modal-title col-12 text-center"> Download Land Records </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="form-row">
+                              <div class="col-2">
+                                <img src="{{ url('assets/img/pdf.png') }}" alt="delete" style="margin-left:100px;margin-top:10px;margin-bottom:10px;">
+                              </div>
+                              <div class="col-6">
+                                <p class="font-weight-bold" style="font-size:20px;margin-top:25px;margin-left:120px;">Export Land Records with ...</p>
+                              </div>
+                          </div>
+                        <hr>
+                        {{-- District row --}}
+                        <div class="form-row">
+                            <div class="col-4 text-center">
+                                <div class="custom-control custom-radio" style="margin-left:40px;">
+                                    <input onclick="document.getElementById('selectDistrict').disabled = false; document.getElementById('selectProvince').disabled=true;" type="radio" id="district" name="landRadio" class="custom-control-input" value="district">
+                                    <label class="custom-control-label" for="district">District</label>
+                                  </div>
+                            </div>
+                            <div class="col-7">
+                                <select class="custom-select" id="selectDistrict" name="district" disabled>
+                                    <option selected value="none">Select District...</option>
+                                    
+                                    @if($district != null)
+            
+                                      @foreach($district as $item)
+                                                  
+                                          <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                        
+                                      @endforeach
+                                      
+                                    @endif
+                                  </select>
+                            </div>
+                        </div>
+                        <br>
+                        {{-- Province Row --}}
+                        <div class="form-row">
+                            <div class="col-4 text-center">
+                                <div class="custom-control custom-radio" style="margin-left:50px;">
+                                    <input onclick="document.getElementById('selectDistrict').disabled=true;document.getElementById('selectProvince').disabled=false;" type="radio" id="province" name="landRadio" class="custom-control-input" value="province">
+                                    <label class="custom-control-label" for="province">Province</label>
+                                  </div>
+                            </div>
+                            <div class="col-7">
+                                <select class="custom-select" id="selectProvince" name="province" disabled>
+                                    <option selected value="none">Select Province...</option>
+                                    
+                                    @if($province != null)
+            
+                                      @foreach($province as $item)
+                                                  
+                                          <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                        
+                                      @endforeach
+                                      
+                                    @endif
+                                  </select>
+                            </div>
+                        </div>
+                        <br>
+                        {{-- All Row --}}
+                        <div class="form-row">
+                            <div class="col-4 text-center">
+                                <div class="custom-control custom-radio" style="margin-left:5px;">
+                                    <input onclick="document.getElementById('selectDistrict').disabled=true;document.getElementById('selectProvince').disabled=true;" type="radio" id="all" name="landRadio" class="custom-control-input" value="all">
+                                    <label class="custom-control-label" for="all">All</label>
+                                  </div>
+                            </div>
+                            <div class="col-7">
+                                <p class="text-dark font-weight-light font-italic" style="font-size:17px;"> All registered land records will be selected.</p>
+                            </div>
+                        </div>
+                        <hr>
+                        {{-- Land Type Row --}}
+                        <div class="form-row">
+                            <div class="col-4 text-center">
+                                <div class="custom-control custom-checkbox" style="margin-left:50px;">
+                                    <input type="checkbox" class="custom-control-input" id="landType">
+                                    <label class="custom-control-label" for="landType">Land Type</label>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <select class="custom-select" id="selectLandType" name="landType" disabled>
+                                    <option selected value="none">Select Land Type...</option>
+                                    
+                                    @if($landType != null)
+            
+                                      @foreach($landType as $item)
+                                                  
+                                          <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                        
+                                      @endforeach
+                                      
+                                    @endif
+                                  </select>
+                            </div>
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <button type="submit" class="btn btn-dark" value="Delete"> <i class="fas fa-file-pdf mr-2"></i> Download </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
 
             <!-- Add Modal -->
 
@@ -132,7 +272,7 @@
 
                                 <div class="form-group">
                                     <label for="otherName">Username</label>
-                                    <input name="username" type="text" class="form-control" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" maxlength="12" required>
+                                    <input name="username" type="text" class="form-control" placeholder="Username" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter on alphabets only and enter only 12 characters. ')" required>
                                 </div>
 
                                 <div class="form-group">
@@ -467,5 +607,11 @@
             document.getElementById("deviceId").value = deviceID;
             document.getElementById("addressFarmer").value = macAddress;
         }
+    </script>
+
+    <script>
+        $('#landType').click(function(){
+            $('#selectLandType').attr('disabled', !this.checked);
+        });
     </script>
 </html>

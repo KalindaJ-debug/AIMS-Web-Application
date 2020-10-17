@@ -13,6 +13,7 @@ use App\crop;
 use App\variety;
 use App\district;
 use App\region;
+use App\external_factors;
 
 class HarvestController extends Controller
 {
@@ -35,7 +36,7 @@ class HarvestController extends Controller
         $district = district::all();
         $region = region::all();
         $farmer = farmer::all();
-        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer  ));
+        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, ));
     }
 
     public function store(Request $request)
@@ -62,7 +63,7 @@ class HarvestController extends Controller
         */
         //dd($request);
         $game = new harvests;
-        $game->farmer_id = request('farmer_id');
+        $game->cultivation_id = request('cultivation_id');
         $game->category_id = request('category_id');
         $game->crop_id = request('crop_id');
         $game->variety_id = request('variety_id');
@@ -76,20 +77,15 @@ class HarvestController extends Controller
         $game->endDate = request('endDate');
         $game->save();
         
+        $a = cultivation::whereRaw('cultivation.farmer_id='.request('farmer_id').' and cultivation.harvestedAmount > ' .request('harvestedAmount'))
+        ->get();
+        if(!empty($a->all()))
+        {
+            return redirect('/Entry-external-data');
+        }else
 
-       // $cultivation = $Cultivation::all();
-        // selet
-        // harvest checkdate
-        // if harvest more than other table redirect to factor view
-        //return redirect('/factro_url/'.$game->id);
-        // view save in hidden element
-        // <input type="hidden" name="harvest_id">
-        // when send to backed save harvest id in db
-        // ereason
-        // else
-        
-
-        return redirect('/Entry-external-data');
+            return redirect('/harvest-data');
+             
         // return redirect()->action('HarvestController@index');
 
     }

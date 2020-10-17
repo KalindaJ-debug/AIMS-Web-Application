@@ -102,16 +102,21 @@
                     <small id="address" class="form-text text-muted">Enter location details according to the availability of each section of the original land location address</small>
                     <br>
 
-                    <!-- city -->
+                    <!-- land type -->
                     <div class="input-group mb-3" style="width:1250px;">
                       <div class="input-group-prepend">
-                        <label class="input-group-text" for="selectCity" style="width:90px;">City</label>
+                        <label class="input-group-text" for="selectLandType" style="width:90px;">Land Type</label>
                       </div>
-                      <select class="custom-select" id="selectCity" name="city" required>
-                        <option selected value="none">Select City...</option>
-                        <option value="Jaffna">Jaffna</option>
-                        <option value="Boralesgamuwa">Boralesgamuwa</option>
-                        <option value="Kollonnawa">Kollonnawa</option>
+                      <select class="custom-select" id="selectLandType" name="landType" required>
+                        <option selected value="none">Select Land Type...</option>
+                        
+                        @if($landTypeList != null)
+
+                          @foreach($landTypeList as $item)
+                            <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                          @endforeach
+                          
+                        @endif
                       </select>
 
                       <!-- district -->
@@ -154,10 +159,10 @@
                     <!-- grama niladari division -->
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
-                        <label class="input-group-text" for="selectGN" style="width:200px;">Grama Niladhari Division</label>
+                        <label class="input-group-text" for="selectGN" style="width:200px;">Region</label>
                       </div>
-                      <select class="custom-select" id="selectGN" name="grama" required>
-                        <option selected value="none">Select Grama Niladhari Division...</option>
+                      <select class="custom-select" id="selectGN" name="region" required>
+                        <option selected value="none">Select Region...</option>
                         <option value="1">Attanagalla</option>
                         <option value="2">Avissawella</option>
                         <option value="3">Badulla</option>
