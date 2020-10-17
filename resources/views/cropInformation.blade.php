@@ -142,7 +142,7 @@
                 <div class="col-6 col-md-4"> 
                     <h3 class="text-center">Sri Lanka</h3> <br>
                     <div>
-                        <img src="{{ url('assets/img/sri_lanka_map.png') }}" alt="map" style="margin-left:100px;width:400px;height:700px;">
+                        <img src="{{ url('assets/img/sri_map.png') }}" alt="map" style="margin-left:100px;width:400px;height:700px;">
                     </div>
                 </div>
                 {{-- map section ends  --}}
@@ -157,7 +157,7 @@
 
      {{-- vegatble modal  --}}
      <div id="vegetableModal" class="modal fade">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
           <div class="modal-content">
               <div class="modal-header">
                 <h4 class="modal-title" style="margin-left:50px;">Vegetable List</h4>
@@ -173,19 +173,29 @@
                     </div>
                   </div>
                   <hr>
+                  <div class="row">
+                    <div class="col-6 text-center">
+                        <h5>Crop Name</h5>
+                    </div>
+                    <div class="col-6 text-center">
+                        <h5>Crop Variety</h5>
+                    </div>
+                  </div>
+                  <hr>
                   {{-- crop list  --}}
                   @php
                       $varietiesList; 
                   @endphp
                   <div class="row">
+                    @foreach ($vegetableList as $item)
                     <div class="col-6">
                       <div class="list-group list-group-flush" id="list-tab" role="tablist">
-                          @foreach ($vegetableList as $item)
+                          
                           @php
                               $varietiesList = $item->varieties;
                           @endphp
-                            <a class="list-group-item list-group-item-action text-center" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{ $item->name }}</a>      
-                          @endforeach
+                            <a class="list-group-item list-group-item-action text-center list-group-item-warning" id="list-home-list vegetable" onclick="loadCropVariety($item->varieties)" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{ $item->name }}</a>      
+                          
                       </div>
                     </div>
                     <div class="col-6">
@@ -193,13 +203,16 @@
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <ul class="list-group list-group-flush">
                                 @foreach ($varietiesList as $item)
-                                    <li class="list-group-item list-group-item-success">{{$item->name}}</li>     
+                                    <div>
+                                    <li class="list-group-item border-bottom-0 list-group-item-success">{{$item->name}}</li>     
+                                    </div>
                                 @endforeach
                                    
                             </ul>
                         </div>
                       </div>
                     </div>
+                    @endforeach
                   </div>
                   
               </div>
@@ -227,6 +240,13 @@
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+     {{-- Load Crop Varieties  --}}
+     <script type="text/javascript">
+        function loadCropVariety(){
+            
+        }
+     </script>
 
   </body>
 
