@@ -174,17 +174,30 @@
                   </div>
                   <hr>
                   {{-- crop list  --}}
+                  @php
+                      $varietiesList; 
+                  @endphp
                   <div class="row">
                     <div class="col-6">
                       <div class="list-group list-group-flush" id="list-tab" role="tablist">
                           @foreach ($vegetableList as $item)
-                      <a class="list-group-item list-group-item-action text-center" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{ $item->name }}</a>      
+                          @php
+                              $varietiesList = $item->varieties;
+                          @endphp
+                            <a class="list-group-item list-group-item-action text-center" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{ $item->name }}</a>      
                           @endforeach
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">..ahda.</div>
+                        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                            <ul class="list-group list-group-flush">
+                                @foreach ($varietiesList as $item)
+                                    <li class="list-group-item list-group-item-success">{{$item->name}}</li>     
+                                @endforeach
+                                   
+                            </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
