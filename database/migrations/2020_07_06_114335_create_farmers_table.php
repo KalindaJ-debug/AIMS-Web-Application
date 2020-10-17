@@ -18,7 +18,8 @@ class CreateFarmersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('otherName')->nullable();
-            $table->string('userName')->unique();
+            $table->string('email')->nullable();
+            $table->string('userName')->nullable();
             $table->string('password');
             $table->bigInteger('telephoneNo');
             $table->string('nic');

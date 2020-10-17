@@ -54,6 +54,11 @@
                         <td>{{ $farmers->telephoneNo }}</td>
                         <td>{{ $farmers->nic }}</td>
                         <td>
+                            @if ($farmers->device)
+                                <button type="button" class="btn btn-dark" onclick='deviceEdit(@json($farmers->id), @json($farmers->device->id), @json($farmers->device->macAddress))'><i class="fas fa-mobile"></i> Edit Device</button>
+                            @else
+                                <button type="button" class="btn btn-dark" onclick='deviceAdd(@json($farmers->id))'><i class="fas fa-mobile"></i> Add Device</button>
+                            @endif
                             <button type="button" class="btn btn-primary" onclick='landFarmer(@json($farmers->id))'><i class="fas fa-landmark"></i> Land Details</button>
                             <button type="button" class="btn btn-warning" onclick='editFarmer(@json($farmers->id), @json($farmers->firstName), @json($farmers->otherName), @json($farmers->lastName), @json($farmers->email), @json($farmers->telephoneNo), @json($farmers->nic))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteFarmer(@json($farmers->id))'><i class="fas fa-trash"></i> Delete</button>
@@ -309,6 +314,69 @@
 
         </div>
 
+        <!-- Device Modal -->
+
+        <div class="modal" tabindex="-1" role="dialog" id="deviceAdd">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Device Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('DeviceController@addFarmerManagement')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="farmerId" id="farmerDeviceId">
+
+                                <div class="form-group">
+                                    <label for="otherName">Mac Address</label>
+                                    <input name="address" type="text" class="form-control" placeholder="Mac Address">
+                                </div> 
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-primary">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="deviceEdit">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Device Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{action('DeviceController@editFarmerManagement')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="deviceId" id="deviceId">
+                                <input type="hidden" name="farmerId" id="farmerEditDeviceId">
+
+                                <div class="form-group">
+                                    <label for="otherName">Mac Address</label>
+                                    <input name="address" type="text" id="addressFarmer" class="form-control" placeholder="Mac Address">
+                                </div> 
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-primary">Continue</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @include('layouts.footer')
 
     </body>
@@ -345,5 +413,19 @@
             $('#landFarmer').modal('show');
             document.getElementById("farmerIdLand").value = id;
         } 
+
+        function deviceAdd(farmerId)
+        {
+            $('#deviceAdd').modal('show');
+            document.getElementById("farmerDeviceId").value = farmerId;
+        }
+
+        function deviceEdit(farmerId, deviceID, macAddress)
+        {
+            $('#deviceEdit').modal('show');
+            document.getElementById("farmerEditDeviceId").value = farmerId;
+            document.getElementById("deviceId").value = deviceID;
+            document.getElementById("addressFarmer").value = macAddress;
+        }
     </script>
 </html>
