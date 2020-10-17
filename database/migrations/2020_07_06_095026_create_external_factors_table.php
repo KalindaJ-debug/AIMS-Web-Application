@@ -16,7 +16,7 @@ class CreateExternalFactorsTable extends Migration
         Schema::create('external_factors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('harvest_id');
-            $table->foreign('harvest_id')->references('id')->on('harvests');
+           // $table->foreign('harvest_id')->references('id')->on('harvests');
             $table->string('reason'); 
             $table->timestamps();
         });

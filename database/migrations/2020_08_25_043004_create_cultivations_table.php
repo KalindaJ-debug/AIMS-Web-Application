@@ -15,8 +15,8 @@ class CreateCultivationsTable extends Migration
     {
         Schema::create('cultivation', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('farmer_id');
-            $table->foreign('farmer_id')->references('id')->on('farmers');
+            $table->unsignedBigInteger('land_id');
+            $table->foreign('land_id')->references('id')->on('lands');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('crop_categories');
             $table->unsignedBigInteger('crop_id');
