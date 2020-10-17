@@ -17,7 +17,7 @@ class DeviceController extends Controller
         //dd($deviceFarmer[0]->farmer);
         $user = User::select('id', 'name', 'lastname')->get();
         $farmer = Farmer::select('id', 'firstName', 'lastName')->get();
-        return view('deviceAdmin', array('deviceUser' => $deviceUser, 'userAdd' => $user, 'userEdit' => $user, 'deviceFarmer' => $deviceFarmer, 'farmerAdd' => $farmer, 'farmerEdit' => $farmer));
+        return view('Device.deviceAdmin', array('deviceUser' => $deviceUser, 'userAdd' => $user, 'userEdit' => $user, 'deviceFarmer' => $deviceFarmer, 'farmerAdd' => $farmer, 'farmerEdit' => $farmer));
     }
 
     public function addUserDevice(Request $request)
