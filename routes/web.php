@@ -229,7 +229,5 @@ Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
 //Data Visualization - Crop Variety
-Route::get('crop_variety_dv', function () {
-    return view('crop_variety_dv');
-});
 
+Route::get('crop_variety_dv', 'DVCropVarietyController@index');

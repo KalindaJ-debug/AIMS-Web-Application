@@ -45,20 +45,26 @@
                             <div class="card-body ">
                               <p class="text-center lead" style="font-family:'Trebuchet MS';">
                               Select a crop variety from the list below to view the cultivation extent and the harvest extent per district</p>
+                                
+                              <!-- Dropdown for crop variety list --> 
                                 <div class="dropdown text-center">
-                                    <button class="btn btn-success dropdown-toggle" type="button" id="Dropdown" 
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="vegDropdownFn()">
+                                  <button class="btn btn-success dropdown-toggle" type="button" id="Dropdown" 
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="vegDropdownFn()">
                                       Select a crop variety
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="myDropdown" id="myDropdown" >
-                                      <i class="fas fa-search" aria-hidden="true"></i>
-                                      <input type="text" placeholder="Search" id="myInput" onkeyup="filterFunction()">            
-                                      <a class="dropdown-item" href="#" onclick="VegChartGeneration('Brinjal');return false;">Brinjal</a>
-                                      <a class="dropdown-item" href="#">Carrot</a>
-                                      <a class="dropdown-item" href="#">Leeks</a>
-                                      <a class="dropdown-item" href="#">Snake gourd</a>
-                                      </div>
-                                    
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="myDropdown" id="myDropdown" >
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                    <input type="text" placeholder="Search" id="myInput" onkeyup="filterFunction()">
+                                      
+                                        @foreach ($cropvariety as $varieties)
+                                          <a class="dropdown-item" href="#">{{ $varieties->name }}</a>
+                                        @endforeach                                    
+                                                                                      
+                                      <!-- <a class="dropdown-item" href="#" onclick="VegChartGeneration('Brinjal');return false;">Brinjal</a> -->
+                                      
+                                  </div>                               
+                                      
+                                    <!-- Print and Export buttons -->                                    
 
                                     <button class="btn btn-outline-success" type="button" id="print" data-toggle="modal" data-target="#printModal">
                                         Print
