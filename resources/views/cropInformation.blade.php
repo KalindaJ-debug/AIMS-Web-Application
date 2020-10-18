@@ -72,7 +72,7 @@
                                     <img src="{{ url('assets/img/fruits.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">FRUITS</p>
-                                      <a href="#" class="btn btn-success"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
+                                      <a data-toggle="modal" data-target="#fruitsModal" class="btn btn-success" style="color:whitesmoke;"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
                                     </div>
                                   </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <img src="{{ url('assets/img/leafy.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">LEAFY VEGETABLES</p>
-                                      <a href="#" class="btn btn-success"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
+                                      <a data-toggle="modal" data-target="#leafyModal" class="btn btn-success" style="color:whitesmoke;"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
                                     </div>
                                   </div>
                             </div>
@@ -97,7 +97,7 @@
                                     <img src="{{ url('assets/img/roots.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">ROOTS & TUBERS</p>
-                                      <a href="#" class="btn btn-success"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
+                                      <a data-toggle="modal" data-target="#rootsModal" class="btn btn-success" style="color:whitesmoke;"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
                                     </div>
                                   </div>
                             </div>
@@ -108,7 +108,7 @@
                                     <img src="{{ url('assets/img/paddy_main.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">PADDY</p>
-                                      <a href="#" class="btn btn-success"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
+                                      <a data-toggle="modal" data-target="#paddyModal" class="btn btn-success" style="color:whitesmoke;"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
                                     </div>
                                   </div>
                             </div>
@@ -119,7 +119,7 @@
                                     <img src="{{ url('assets/img/ofc.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">OTHER FIELD CROPS</p>
-                                      <a href="#" class="btn btn-success"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
+                                      <a data-toggle="modal" data-target="#ofcModal" class="btn btn-success" style="color:whitesmoke;"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</a>
                                     </div>
                                   </div>
                             </div>
@@ -155,7 +155,7 @@
 
      {{-- card modals begin  --}}
 
-     {{-- vegatble modal  --}}
+     {{-- vegatable modal  --}}
      <div id="vegetableModal" class="modal fade">
         <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
           <div class="modal-content">
@@ -186,35 +186,29 @@
                   @php
                       $varietiesList; 
                   @endphp
+
+                  @foreach ($vegetableList as $item)
                   <div class="row">
-                    @foreach ($vegetableList as $item)
+                    
                     <div class="col-6">
-                      <div class="list-group list-group-flush" id="list-tab" role="tablist">
-                          
-                          @php
-                              $varietiesList = $item->varieties;
-                          @endphp
-                            <a class="list-group-item list-group-item-action text-center list-group-item-warning" id="list-home-list vegetable" onclick="loadCropVariety($item->varieties)" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{ $item->name }}</a>      
-                          
+                      <div class="list-group list-group-flush">  
+                        <a class="list-group-item text-center list-group-item-warning" id="list-home-list vegetable">{{ $item->name }}</a>      
+                        <hr>
                       </div>
                     </div>
+
                     <div class="col-6">
-                      <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                            <ul class="list-group list-group-flush">
-                                @foreach ($varietiesList as $item)
-                                    <div>
-                                    <li class="list-group-item border-bottom-0 list-group-item-success">{{$item->name}}</li>     
-                                    </div>
-                                @endforeach
-                                   
-                            </ul>
-                        </div>
-                      </div>
+                      <select class="custom-select">
+                        <option> View Crop Varieties...</option>
+                        @foreach ($item->varieties as $item)
+                          <option> {{$item->name}}</option>
+                        @endforeach
+                      </select>
                     </div>
-                    @endforeach
+                
                   </div>
-                  
+                  @endforeach
+
               </div>
               <div class="modal-footer">
                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
@@ -225,10 +219,320 @@
       </div>
 
      {{-- fruits modal  --}}
+     <div id="fruitsModal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" style="margin-left:50px;">Fruit List</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-2">
+                      <img src="{{ url('assets/img/fruits.png') }}" alt="delete" style="margin-left:100px;margin-top:20px;width:80px;height:80px;">
+                  </div>
+                  <div class="col-10">
+                      <p class="text-center font-weight-bold" style="font-size:20px;margin-top:30px;">The available fruit crops in Sri Lanka are listed below.</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-6 text-center">
+                      <h5>Crop Name</h5>
+                  </div>
+                  <div class="col-6 text-center">
+                      <h5>Crop Variety</h5>
+                  </div>
+                </div>
+                <hr>
+                {{-- crop list  --}}
+                @php
+                    $varietiesList; 
+                @endphp
+
+                @foreach ($fruitList as $item)
+                <div class="row">
+                  
+                  <div class="col-6">
+                    <div class="list-group list-group-flush">  
+                      <a class="list-group-item text-center list-group-item-warning" id="list-home-list vegetable">{{ $item->name }}</a>      
+                      <hr>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <select class="custom-select">
+                      <option> View Crop Varieties...</option>
+                      @foreach ($item->varieties as $item)
+                        <option> {{$item->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+              
+                </div>
+                @endforeach
+
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
      {{-- roots modal  --}}
+     <div id="rootsModal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" style="margin-left:50px;">Roots & Tubers List</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-2">
+                      <img src="{{ url('assets/img/roots.png') }}" alt="delete" style="margin-left:100px;margin-top:20px;width:80px;height:80px;">
+                  </div>
+                  <div class="col-10">
+                      <p class="text-center font-weight-bold" style="font-size:20px;margin-top:30px;">The available roots and tubers crops in Sri Lanka are listed below.</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-6 text-center">
+                      <h5>Crop Name</h5>
+                  </div>
+                  <div class="col-6 text-center">
+                      <h5>Crop Variety</h5>
+                  </div>
+                </div>
+                <hr>
+                {{-- crop list  --}}
+                @php
+                    $varietiesList; 
+                @endphp
+
+                @foreach ($rootList as $item)
+                <div class="row">
+                  
+                  <div class="col-6">
+                    <div class="list-group list-group-flush">  
+                      <a class="list-group-item text-center list-group-item-warning" id="list-home-list vegetable">{{ $item->name }}</a>      
+                      <hr>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <select class="custom-select">
+                      <option> View Crop Varieties...</option>
+                      @foreach ($item->varieties as $item)
+                        <option> {{$item->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+              
+                </div>
+                @endforeach
+
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
      {{-- leafy vegatble modal  --}}
+     <div id="leafyModal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" style="margin-left:50px;">Leafy Vegetable List</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-2">
+                      <img src="{{ url('assets/img/leafy.png') }}" alt="delete" style="margin-left:100px;margin-top:20px;width:80px;height:80px;">
+                  </div>
+                  <div class="col-10">
+                      <p class="text-center font-weight-bold" style="font-size:20px;margin-top:30px;">The available leafy vegetable crops in Sri Lanka are listed below.</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-6 text-center">
+                      <h5>Crop Name</h5>
+                  </div>
+                  <div class="col-6 text-center">
+                      <h5>Crop Variety</h5>
+                  </div>
+                </div>
+                <hr>
+                {{-- crop list  --}}
+                @php
+                    $varietiesList; 
+                @endphp
+
+                @foreach ($leafyList as $item)
+                <div class="row">
+                  
+                  <div class="col-6">
+                    <div class="list-group list-group-flush">  
+                      <a class="list-group-item text-center list-group-item-warning" id="list-home-list vegetable">{{ $item->name }}</a>      
+                      <hr>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <select class="custom-select">
+                      <option> View Crop Varieties...</option>
+                      @foreach ($item->varieties as $item)
+                        <option> {{$item->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+              
+                </div>
+                @endforeach
+
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
      {{-- paddy modal  --}}
+     <div id="paddyModal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" style="margin-left:50px;">Paddy List</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-2">
+                      <img src="{{ url('assets/img/paddy_main.png') }}" alt="delete" style="margin-left:100px;margin-top:20px;width:80px;height:80px;">
+                  </div>
+                  <div class="col-10">
+                      <p class="text-center font-weight-bold" style="font-size:20px;margin-top:30px;">The available paddy crops in Sri Lanka are listed below.</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-6 text-center">
+                      <h5>Crop Name</h5>
+                  </div>
+                  <div class="col-6 text-center">
+                      <h5>Crop Variety</h5>
+                  </div>
+                </div>
+                <hr>
+                {{-- crop list  --}}
+                @php
+                    $varietiesList; 
+                @endphp
+
+                @foreach ($paddyList as $item)
+                <div class="row">
+                  
+                  <div class="col-6">
+                    <div class="list-group list-group-flush">  
+                      <a class="list-group-item text-center list-group-item-warning" id="list-home-list vegetable">{{ $item->name }}</a>      
+                      <hr>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <select class="custom-select">
+                      <option> View Crop Varieties...</option>
+                      @foreach ($item->varieties as $item)
+                        <option> {{$item->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+              
+                </div>
+                @endforeach
+
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
      {{-- ofc modal  --}}
+     <div id="ofcModal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" style="margin-left:50px;">Other Field Crops' List</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-2">
+                      <img src="{{ url('assets/img/ofc.png') }}" alt="delete" style="margin-left:100px;margin-top:20px;width:80px;height:80px;">
+                  </div>
+                  <div class="col-10">
+                      <p class="text-center font-weight-bold" style="font-size:20px;margin-top:30px;">The available other field crops in Sri Lanka are listed below.</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-6 text-center">
+                      <h5>Crop Name</h5>
+                  </div>
+                  <div class="col-6 text-center">
+                      <h5>Crop Variety</h5>
+                  </div>
+                </div>
+                <hr>
+                {{-- crop list  --}}
+                @php
+                    $varietiesList; 
+                @endphp
+
+                @foreach ($ofcList as $item)
+                <div class="row">
+                  
+                  <div class="col-6">
+                    <div class="list-group list-group-flush">  
+                      <a class="list-group-item text-center list-group-item-warning" id="list-home-list vegetable">{{ $item->name }}</a>      
+                      <hr>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <select class="custom-select">
+                      <option> View Crop Varieties...</option>
+                      @foreach ($item->varieties as $item)
+                        <option> {{$item->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+              
+                </div>
+                @endforeach
+
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
 
      {{-- card modals end  --}}
 
