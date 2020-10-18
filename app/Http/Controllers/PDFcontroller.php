@@ -11,6 +11,6 @@ class PDFcontroller extends Controller
     public function getPDF(){
         $harvests = harvests::all();
         $pdf=PDF::loadView('PDF.harvest', ['harvests'=> $harvests ]);
-        return $pdf->stream('harvests.index.pdf');
+        return $pdf->stream('harvest.index.pdf');
     }
 }

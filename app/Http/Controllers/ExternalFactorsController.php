@@ -47,7 +47,7 @@ class ExternalFactorsController extends Controller
         $game->save();
         
         $c = harvest::find(request('harvest_id'));
-        $c->external_id = $game->id;
+        $c->external_id = $game->reason;
         $c->save();
         return redirect('/harvest-data');
         //return redirect()->action('ExternalFactorsController@index');
