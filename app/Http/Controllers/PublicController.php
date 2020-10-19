@@ -26,4 +26,8 @@ class PublicController extends Controller
 
     }//end of function
 
+    public function mainCrops(){
+        return view('publicMainCrops');
+    }//end of function
+
 } //end of public controller class

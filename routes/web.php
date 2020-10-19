@@ -226,5 +226,6 @@ Route::post('harvest-status', 'ApprovalController@updateHarvest');
 Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
-//All Crop Information
+//All Crop Information - Public
 Route::get('cropInformation', 'PublicController@allMainCrops');
+Route::get('publicMainCrops', 'PublicController@mainCrops');

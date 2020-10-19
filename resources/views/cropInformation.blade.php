@@ -52,12 +52,12 @@
                           Crop Categories in Sri Lanka 
                         </div>
                         <div class="card-body">
-                          <h4 class="card-title">Select Crop Category</h4>
+                          <h4 class="card-title cardbox">Select Crop Category</h4>
                           {{-- category cards begin --}}
                           <div class="row">
                             <div class="col-sm">
                                 {{-- card 1 - vegetables --}}
-                                <div class="card border-white">
+                                <div class="card border-white vege">
                                     <img src="{{ url('assets/img/vegetables.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">VEGETABLES</p>
@@ -68,7 +68,7 @@
 
                             <div class="col-sm">
                                 {{-- card 2 - fruits --}}
-                                <div class="card border-white">
+                                <div class="card border-white fruitcard">
                                     <img src="{{ url('assets/img/fruits.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">FRUITS</p>
@@ -79,7 +79,7 @@
 
                             <div class="col-sm">
                                 {{-- card 3 - leafy vegetables  --}}
-                                <div class="card border-white">
+                                <div class="card border-white leafycard">
                                     <img src="{{ url('assets/img/leafy.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">LEAFY VEGETABLES</p>
@@ -93,7 +93,7 @@
                           <div class="row">
                             <div class="col-sm">
                                 {{-- card 4 - roots and tubers --}}
-                                <div class="card border-white">
+                                <div class="card border-white rootcard">
                                     <img src="{{ url('assets/img/roots.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">ROOTS & TUBERS</p>
@@ -104,7 +104,7 @@
 
                             <div class="col-sm">
                                 {{-- card 5 - paddy --}}
-                                <div class="card border-white">
+                                <div class="card border-white paddycard">
                                     <img src="{{ url('assets/img/paddy_main.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">PADDY</p>
@@ -115,7 +115,7 @@
 
                             <div class="col-sm">
                                 {{-- card 6- ofc  --}}
-                                <div class="card border-white">
+                                <div class="card border-white ofccard">
                                     <img src="{{ url('assets/img/ofc.png') }}" class="card-img-top" alt="vegetables" style="width:80px;height:80px;margin-left:70px;margin-top:30px;">
                                     <div class="card-body">
                                       <p class="card-title font-weight-bold">OTHER FIELD CROPS</p>
@@ -141,7 +141,7 @@
                 {{-- map section begins --}}
                 <div class="col-6 col-md-4"> 
                     <h3 class="text-center">Sri Lanka</h3> <br>
-                    <div>
+                    <div class="map">
                         <img src="{{ url('assets/img/sri_map.png') }}" alt="map" style="margin-left:100px;width:400px;height:700px;">
                     </div>
                 </div>
@@ -547,9 +547,62 @@
 
      {{-- Load Crop Varieties  --}}
      <script type="text/javascript">
-        function loadCropVariety(){
-            
-        }
+        ScrollReveal().reveal('.cardbox', {
+         duration:1000,
+         origin:'bottom',
+         distance: '200px',
+         delay:100
+       });
+
+       ScrollReveal().reveal('.map', {
+         duration:2000,
+         origin:'right',
+         distance: '200px',
+         delay:100
+       });
+
+       ScrollReveal().reveal('.vege', {
+         duration:2000,
+         origin:'right',
+         distance: '200px',
+         delay:200
+       });
+
+       ScrollReveal().reveal('.fruitcard', {
+         duration:2000,
+         origin:'right',
+         distance: '200px',
+         delay:300
+       });
+
+       ScrollReveal().reveal('.leafycard', {
+         duration:2000,
+         origin:'right',
+         distance: '200px',
+         delay:400
+       });
+
+       ScrollReveal().reveal('.rootcard', {
+         duration:2000,
+         origin:'left',
+         distance: '200px',
+         delay:200
+       });
+
+       ScrollReveal().reveal('.paddycard', {
+         duration:2000,
+         origin:'left',
+         distance: '200px',
+         delay:300
+       });
+
+       ScrollReveal().reveal('.ofccard', {
+         duration:2000,
+         origin:'left',
+         distance: '200px',
+         delay:400
+       });
+
      </script>
 
   </body>
