@@ -15,7 +15,7 @@ class CreateApprovalHarvestsTable extends Migration
     {
         Schema::create('approval_harvests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cultivate_id');
+            $table->unsignedBigInteger('cultivation_id');
             $table->unsignedBigInteger('land_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('crop_id');
