@@ -56,9 +56,9 @@
             <label for="titleid" class="col-sm-3 col-form-label">Harvest ID</label>
             <div class="col-sm-5">
                 <select name="harvest_id" type="text" class="form-control">
-                  <option selected value="none">--Select ID--</option> 
-                 @foreach ($a as $harvests)
-                      <option value='{{ $harvests->id }}'>{{ $harvests->id }}</option>   
+               <!--   <option selected value="none">--Select ID--</option> -->
+                 @foreach ($harvest as $harvests)
+                      <option value='{{ $harvests->id }}' @if( $harvests->id == $harvests->id) selected @endif >{{ $harvests->id }}</option>   
                     @endforeach 
                 </select> 
             </div>
@@ -68,8 +68,8 @@
             <div class="col-sm-5">
             <select name="reason" type="text" class="form-control">
            <option selected value="none">--Select Reason--</option>
-                     @foreach ($external_factors as $external_factor)
-                      <option value='{{ $external_factor->id }}'>{{ $external_factor->reason }}</option>   
+                     @foreach ($external_factors as $external_factors)
+                      <option value='{{ $external_factors->id }}'>{{ $external_factors->reason }}</option>   
                     @endforeach 
                 </select>
           </div>

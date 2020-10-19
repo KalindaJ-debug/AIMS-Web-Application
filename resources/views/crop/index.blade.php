@@ -103,9 +103,15 @@
           @php
             $farmer = App\farmer::where('id', $contact->farmer_id)->first();
           @endphp
+          @php
+            $land = App\land::where('id', $contact->land_id)->first();
+          @endphp
         <tr>
             <td>{{$contact->id}}</td>
-            <td>{{$farmer->firstName}} {{$farmer->lastName}}</td>          
+            @if($farmer!==null)
+            <td>{{$farmer->firstName}} {{$farmer->lastName}}</td>  
+            @endif
+            <td>{{$land->farmer->firstName}} {{$land->farmer->lastName}}</td>  
             <td>{{$contact->season}}</td>
             <td>{{$category->name}}</td>
             <td>{{$crop->name}}</td>
