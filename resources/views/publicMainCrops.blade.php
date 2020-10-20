@@ -844,9 +844,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Tomato</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($tomato[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($tomato[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($tomato[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($tomato[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($tomato[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($tomato[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Selection";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{ $comment }} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                                  $progress = 0;
+                                  if($tomato[2] == "Excellent Demand"){
+                                    $progress = 100;
+                                  }
+
+                                  if($tomato[2] == "Best Price"){
+                                    $progress = 80;
+                                  }
+
+                                  if($tomato[2] == "Good Price"){
+                                    $progress = 60;
+                                  }
+
+                                  if($tomato[2] == "General Price"){
+                                    $progress = 40;
+                                  }
+
+                                  if($tomato[2] == "Poor Price"){
+                                    $progress = 20;
+                                  }
+
+                                  if($tomato[2] == "Price Loss"){
+                                    $progress = 10;
+                                  }
+
+                              @endphp
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100"> {{$progress}}% </div>
                               </div>
                             </div>
                           </div>
@@ -860,15 +913,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
-                                        <th>: 145</th>
+                                        <th>: {{ $tomato[0] }} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                        <th>: {{ $tomato[1] }}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{ $tomato[2] }} </th>
                                         </tr>
                                     </tbody>
                                 </table>

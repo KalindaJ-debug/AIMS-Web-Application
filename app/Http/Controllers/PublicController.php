@@ -48,7 +48,9 @@ class PublicController extends Controller
         
         $tomato_satisfaction_rate = $this->satisfactionRate($tomato_harvest_rate);
 
-        $tomato_summary = array('cultivation' => $tomato_total, 'rate' => $tomato_harvest_rate, 'satisfaction' => $tomato_satisfaction_rate);
+        // $tomato_summary = array('cultivation' => $tomato_total, 'rate' => $tomato_harvest_rate, 'satisfaction' => $tomato_satisfaction_rate);
+        $tomato_summary = array();
+        array_push($tomato_summary, $tomato_total, $tomato_harvest_rate, $tomato_satisfaction_rate);
         // dd($tomato_summary);
         //tomato ends
 
@@ -58,23 +60,23 @@ class PublicController extends Controller
     }//end of function
 
     public function satisfactionRate($rate){
-        if($rate <= 0.0){
+        if($rate <= 0.0){ //100
             return "Excellent Demand";
         }
         else if($rate > 0.0 && $rate <= 20.0){
-            return "Best Price";
+            return "Best Price"; //80
         }
         else if($rate > 20.0 && $rate <= 50.0){
-            return "Good Price";
+            return "Good Price"; //60
         }
         else if($rate > 50.0 && $rate <= 70.0){
-            return "General Price";
+            return "General Price"; //40
         }
         else if($rate > 70.0 && $rate <= 90.0){
-            return "Poor Price";
+            return "Poor Price"; //20
         }
         else{
-            return "Price Loss";
+            return "Price Loss"; //10
         }
     }//end of function
 
