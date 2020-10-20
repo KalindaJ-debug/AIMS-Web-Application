@@ -79,10 +79,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Beans</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($beans[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($beans[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($beans[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($beans[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($beans[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($beans[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Selection";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                              </div>
+                              @php
+                              $progress = 0;
+                              if($beans[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($beans[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($beans[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($beans[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($beans[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($beans[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100"> {{$progress}}% </div>                                              </div>
                             </div>
                           </div>
                         </div>
@@ -94,16 +146,16 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
+                                            <th>: {{ $beans[0] }} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                        <th>: {{ $beans[1] }}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{ $beans[2] }} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -130,9 +182,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Beetroot</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($beetroot[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($beetroot[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($beetroot[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($beetroot[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($beetroot[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($beetroot[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Selection";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($beetroot[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($beetroot[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($beetroot[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($beetroot[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($beetroot[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($beetroot[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -145,16 +250,16 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
+                                            <th>: {{ $beetroot[0] }} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                        <th>: {{ $beetroot[1] }}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$beetroot[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -175,15 +280,68 @@
                         {{-- row starts --}}
                         <div class="row no-gutters">
                           <div class="col-md-4">
+                            @php
+                                  $comment = "";
+                                  if($bittergourd[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($bittergourd[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($bittergourd[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($bittergourd[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($bittergourd[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($bittergourd[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
                             <img src="{{ url('assets/img/bittergourd.png') }}" class="card-img" alt="Bittergourd" style="width:180px;height:180px;margin-top:30px;margin-left:80px;">
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Bitter Gourd</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($bittergourd[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($bittergourd[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($bittergourd[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($bittergourd[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($bittergourd[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($bittergourd[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -196,16 +354,16 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
+                                            <th>: {{$bittergourd[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$bittergourd[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$bittergourd[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -247,7 +405,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -298,7 +456,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -349,7 +507,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -400,7 +558,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -451,7 +609,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -502,7 +660,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -553,7 +711,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -604,7 +762,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -655,7 +813,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -706,7 +864,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -757,7 +915,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
@@ -808,7 +966,7 @@
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
                                             <th>: 145.5 </th>
                                         </tr>
                                         <tr>
