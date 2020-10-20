@@ -384,15 +384,68 @@
                         {{-- row starts --}}
                         <div class="row no-gutters">
                           <div class="col-md-4">
+                            @php
+                                  $comment = "";
+                                  if($brinjal[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($brinjal[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($brinjal[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($brinjal[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($brinjal[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($brinjal[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
                             <img src="{{ url('assets/img/brinjal.png') }}" class="card-img" alt="Brinjol" style="margin-top:10px;">
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Brinjal</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($brinjal[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($brinjal[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($brinjal[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($brinjal[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($brinjal[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($brinjal[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -406,15 +459,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{ $brinjal[0] }} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{ $brinjal[1] }}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{ $brinjal[2] }} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -435,15 +488,68 @@
                         {{-- row starts --}}
                         <div class="row no-gutters">
                           <div class="col-md-4">
+                            @php
+                                  $comment = "";
+                                  if($cabbage[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($cabbage[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($cabbage[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($cabbage[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($cabbage[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($cabbage[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
                             <img src="{{ url('assets/img/cabbage.png') }}" class="card-img" alt="Cabbage" style="width:180px;height:180px;margin-left:80px;margin-top:20px;">
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Cabbage</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($cabbage[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($cabbage[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($cabbage[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($cabbage[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($cabbage[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($cabbage[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -457,15 +563,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$cabbage[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$cabbage[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$cabbage[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -492,9 +598,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Capsicum</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($capsicum[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($capsicum[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($capsicum[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($capsicum[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($capsicum[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($capsicum[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($capsicum[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($capsicum[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($capsicum[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($capsicum[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($capsicum[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($capsicum[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">{{ $progress }}%</div>
                               </div>
                             </div>
                           </div>
@@ -508,15 +667,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{ $capsicum[0] }} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{ $capsicum[1] }}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{ $capsicum[2] }} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -543,9 +702,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Carrot</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($carrot[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($carrot[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($carrot[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($carrot[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($carrot[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($carrot[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($carrot[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($carrot[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($carrot[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($carrot[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($carrot[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($carrot[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -559,15 +771,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$carrot[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$carrot[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$carrot[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -594,9 +806,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Cucumber</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($cucumber[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($cucumber[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($cucumber[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($cucumber[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($cucumber[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($cucumber[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($cucumber[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($cucumber[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($cucumber[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($cucumber[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($cucumber[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($cucumber[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -610,15 +875,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$cucumber[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$cucumber[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$cucumber[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -645,9 +910,63 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Leeks</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($leeks[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($leeks[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($leeks[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($leeks[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($leeks[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($leeks[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($leeks[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($leeks[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($leeks[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($leeks[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($leeks[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($leeks[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -661,15 +980,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$leeks[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                        <th>: {{$leeks[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$leeks[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -696,9 +1015,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Long Beans</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($long_beans[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($long_beans[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($long_beans[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($long_beans[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($long_beans[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($long_beans[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($long_beans[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($long_beans[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($long_beans[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($long_beans[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($long_beans[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($long_beans[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -712,15 +1084,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$long_beans[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$long_beans[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$long_beans[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -747,9 +1119,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Luffa</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($luffa[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($luffa[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($luffa[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($luffa[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($luffa[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($luffa[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($luffa[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($luffa[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($luffa[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($luffa[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($luffa[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($luffa[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -763,15 +1188,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$luffa[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$luffa[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$luffa[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -798,9 +1223,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Okra | Ladies Fingers</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($okra[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($okra[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($okra[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($okra[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($okra[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($okra[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($okra[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($okra[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($okra[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($okra[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($okra[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($okra[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -814,15 +1292,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$okra[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$okra[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$okra[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -849,9 +1327,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Pumpkin</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($pumpkin[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($pumpkin[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($pumpkin[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($pumpkin[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($pumpkin[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($pumpkin[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{ $comment }} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($pumpkin[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($pumpkin[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($pumpkin[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($pumpkin[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($pumpkin[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($pumpkin[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -865,15 +1396,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$pumpkin[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                        <th>: {{$pumpkin[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$pumpkin[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -899,10 +1430,63 @@
                           <div class="col-md-8">
                             <div class="card-body">
                                 <br>
-                              <h5 class="card-title font-weight-bold">Raddish</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              <h5 class="card-title font-weight-bold">Radish</h5> <hr>
+                              @php
+                                  $comment = "";
+                                  if($radish[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($radish[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($radish[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($radish[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($radish[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($radish[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($radish[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($radish[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($radish[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($radish[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($radish[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($radish[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -916,15 +1500,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;"> Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$radish[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                            <th>: {{$radish[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{$radish[2]}} </th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -951,9 +1535,62 @@
                             <div class="card-body">
                                 <br>
                               <h5 class="card-title font-weight-bold">Snake Gourd</h5> <hr>
-                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> Good Selection </div> </p>
+                              @php
+                                  $comment = "";
+                                  if($snakegourd[2] == "Excellent Demand"){
+                                    $comment = "Excellent Selection";
+                                  }
+
+                                  if($snakegourd[2] == "Best Price"){
+                                    $comment = "Better Selection";
+                                  }
+
+                                  if($snakegourd[2] == "Good Price"){
+                                    $comment = "Good Selection";
+                                  }
+
+                                  if($snakegourd[2] == "General Price"){
+                                    $comment = "Average Selection";
+                                  }
+
+                                  if($snakegourd[2] == "Poor Price"){
+                                    $comment = "Poor Selection";
+                                  }
+
+                                  if($snakegourd[2] == "Price Loss"){
+                                    $comment = "Warning: Do Not Select";
+                                  }
+                              @endphp
+                            <p class="card-text"><img class="mr-3" src="{{ url('assets/img/rating.png') }}" alt="rating" style="width:30px;height:30px;"> Predicted Price Satisfaction : <div class="font-weight-bold text-muted font-italic"> {{$comment}} </div> </p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                              @php
+                              $progress = 0;
+                              if($snakegourd[2] == "Excellent Demand"){
+                                $progress = 100;
+                              }
+
+                              if($snakegourd[2] == "Best Price"){
+                                $progress = 80;
+                              }
+
+                              if($snakegourd[2] == "Good Price"){
+                                $progress = 60;
+                              }
+
+                              if($snakegourd[2] == "General Price"){
+                                $progress = 40;
+                              }
+
+                              if($snakegourd[2] == "Poor Price"){
+                                $progress = 20;
+                              }
+
+                              if($snakegourd[2] == "Price Loss"){
+                                $progress = 10;
+                              }
+
+                          @endphp
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                               </div>
                             </div>
                           </div>
@@ -967,15 +1604,15 @@
                                     <tbody>
                                         <tr>
                                             <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th>: {{$snakegourd[0]}} </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
-                                            <th>: 20% </th>
+                                        <th>: {{$snakegourd[1]}}% </th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Recommendation to Cultivate Crop</th>
-                                            <th>: Good Selection </th>
+                                            <th>: {{ $snakegourd[2] }} </th>
                                         </tr>
                                     </tbody>
                                 </table>

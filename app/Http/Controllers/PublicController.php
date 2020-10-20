@@ -98,19 +98,281 @@ class PublicController extends Controller
         array_push($bittergourd_summary, $bittergourd_total, $bittergourd_harvest_rate, $bittergourd_satisfaction_rate);
         
         //brinjal
+        $brinjal = DB::table('crops')->where('name', 'Brinjal')->distinct()->first();
+        $brinjal_records = DB::table('cultivation')->where('crop_id', $brinjal->id )->get();
+        $brinjal_total = 0.0;
+        
+        foreach($brinjal_records as $item){
+            $brinjal_cultivated = $item->cultivatedLand;
+            $brinjal_total = $brinjal_total + $brinjal_cultivated;
+        }
 
+        $brinjal_est_harvest = 0.0;
+        foreach($brinjal_records as $item){
+            $brinjal_harvest = $item->harvestedAmount;
+            $brinjal_est_harvest = $brinjal_harvest + $brinjal_est_harvest;
+        }
+        $brinjal_harvest_rate = ($brinjal_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $brinjal_harvest_rate = number_format((double)$brinjal_harvest_rate, 2, '.', '');
+        
+        $brinjal_satisfaction_rate = $this->satisfactionRate($brinjal_harvest_rate);
+
+        $brinjal_summary = array();
+        array_push($brinjal_summary, $brinjal_total, $brinjal_harvest_rate, $brinjal_satisfaction_rate);
+        
         //cabbage
-        //capsicum
-        //carrot
-        //cucumber
-        //leeks
-        //long beans
-        //luffa
-        //okra
-        //pumpkin
-        //radish
-        //snakegourd 
+        $cabbage = DB::table('crops')->where('name', 'Cabbage')->distinct()->first();
+        $cabbage_records = DB::table('cultivation')->where('crop_id', $cabbage->id )->get();
+        $cabbage_total = 0.0;
+        
+        foreach($cabbage_records as $item){
+            $cabbage_cultivated = $item->cultivatedLand;
+            $cabbage_total = $cabbage_total + $cabbage_cultivated;
+        }
 
+        $cabbage_est_harvest = 0.0;
+        foreach($cabbage_records as $item){
+            $cabbage_harvest = $item->harvestedAmount;
+            $cabbage_est_harvest = $cabbage_harvest + $cabbage_est_harvest;
+        }
+        $cabbage_harvest_rate = ($cabbage_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $cabbage_harvest_rate = number_format((double)$cabbage_harvest_rate, 2, '.', '');
+        
+        $cabbage_satisfaction_rate = $this->satisfactionRate($cabbage_harvest_rate);
+
+        $cabbage_summary = array();
+        array_push($cabbage_summary, $cabbage_total, $cabbage_harvest_rate, $cabbage_satisfaction_rate);
+        
+        //capsicum
+        $capsicum = DB::table('crops')->where('name', 'Capsicum')->distinct()->first();
+        $capsicum_records = DB::table('cultivation')->where('crop_id', $capsicum->id )->get();
+        $capsicum_total = 0.0;
+        
+        foreach($capsicum_records as $item){
+            $capsicum_cultivated = $item->cultivatedLand;
+            $capsicum_total = $capsicum_total + $capsicum_cultivated;
+        }
+
+        $capsicum_est_harvest = 0.0;
+        foreach($capsicum_records as $item){
+            $capsicum_harvest = $item->harvestedAmount;
+            $capsicum_est_harvest = $capsicum_harvest + $capsicum_est_harvest;
+        }
+        $capsicum_harvest_rate = ($capsicum_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $capsicum_harvest_rate = number_format((double)$capsicum_harvest_rate, 2, '.', '');
+        
+        $capsicum_satisfaction_rate = $this->satisfactionRate($capsicum_harvest_rate);
+
+        $capsicum_summary = array();
+        array_push($capsicum_summary, $capsicum_total, $capsicum_harvest_rate, $capsicum_satisfaction_rate);
+    
+        //carrot
+        $carrot = DB::table('crops')->where('name', 'Carrot')->distinct()->first();
+        $carrot_records = DB::table('cultivation')->where('crop_id', $carrot->id )->get();
+        $carrot_total = 0.0;
+        
+        foreach($carrot_records as $item){
+            $carrot_cultivated = $item->cultivatedLand;
+            $carrot_total = $carrot_total + $carrot_cultivated;
+        }
+
+        $carrot_est_harvest = 0.0;
+        foreach($carrot_records as $item){
+            $carrot_harvest = $item->harvestedAmount;
+            $carrot_est_harvest = $carrot_harvest + $carrot_est_harvest;
+        }
+        $carrot_harvest_rate = ($carrot_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $carrot_harvest_rate = number_format((double)$carrot_harvest_rate, 2, '.', '');
+        
+        $carrot_satisfaction_rate = $this->satisfactionRate($carrot_harvest_rate);
+
+        $carrot_summary = array();
+        array_push($carrot_summary, $carrot_total, $carrot_harvest_rate, $carrot_satisfaction_rate);
+        
+        //cucumber
+        $cucumber = DB::table('crops')->where('name', 'Cucumber')->distinct()->first();
+        $cucumber_records = DB::table('cultivation')->where('crop_id', $cucumber->id )->get();
+        $cucumber_total = 0.0;
+        
+        foreach($cucumber_records as $item){
+            $cucumber_cultivated = $item->cultivatedLand;
+            $cucumber_total = $cucumber_total + $cucumber_cultivated;
+        }
+
+        $cucumber_est_harvest = 0.0;
+        foreach($cucumber_records as $item){
+            $cucumber_harvest = $item->harvestedAmount;
+            $cucumber_est_harvest = $cucumber_harvest + $cucumber_est_harvest;
+        }
+        $cucumber_harvest_rate = ($cucumber_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $cucumber_harvest_rate = number_format((double)$cucumber_harvest_rate, 2, '.', '');
+        
+        $cucumber_satisfaction_rate = $this->satisfactionRate($cucumber_harvest_rate);
+
+        $cucumber_summary = array();
+        array_push($cucumber_summary, $cucumber_total, $cucumber_harvest_rate, $cucumber_satisfaction_rate);
+        
+        //leeks
+        $leeks = DB::table('crops')->where('name', 'Leeks')->distinct()->first();
+        $leeks_records = DB::table('cultivation')->where('crop_id', $leeks->id )->get();
+        $leeks_total = 0.0;
+        
+        foreach($leeks_records as $item){
+            $leeks_cultivated = $item->cultivatedLand;
+            $leeks_total = $leeks_total + $leeks_cultivated;
+        }
+
+        $leeks_est_harvest = 0.0;
+        foreach($leeks_records as $item){
+            $leeks_harvest = $item->harvestedAmount;
+            $leeks_est_harvest = $leeks_harvest + $leeks_est_harvest;
+        }
+        $leeks_harvest_rate = ($leeks_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $leeks_harvest_rate = number_format((double)$leeks_harvest_rate, 2, '.', '');
+        
+        $leeks_satisfaction_rate = $this->satisfactionRate($leeks_harvest_rate);
+
+        $leeks_summary = array();
+        array_push($leeks_summary, $leeks_total, $leeks_harvest_rate, $leeks_satisfaction_rate);
+    
+        //long_beans
+        $long_beans = DB::table('crops')->where('name', 'Long Beans')->distinct()->first();
+        $long_beans_records = DB::table('cultivation')->where('crop_id', $long_beans->id )->get();
+        $long_beans_total = 0.0;
+        
+        foreach($long_beans_records as $item){
+            $long_beans_cultivated = $item->cultivatedLand;
+            $long_beans_total = $long_beans_total + $long_beans_cultivated;
+        }
+
+        $long_beans_est_harvest = 0.0;
+        foreach($long_beans_records as $item){
+            $long_beans_harvest = $item->harvestedAmount;
+            $long_beans_est_harvest = $long_beans_harvest + $long_beans_est_harvest;
+        }
+        $long_beans_harvest_rate = ($long_beans_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $long_beans_harvest_rate = number_format((double)$long_beans_harvest_rate, 2, '.', '');
+        
+        $long_beans_satisfaction_rate = $this->satisfactionRate($long_beans_harvest_rate);
+
+        $long_beans_summary = array();
+        array_push($long_beans_summary, $long_beans_total, $long_beans_harvest_rate, $long_beans_satisfaction_rate);
+        
+        //luffa
+        $luffa = DB::table('crops')->where('name', 'Luffa')->distinct()->first();
+        $luffa_records = DB::table('cultivation')->where('crop_id', $luffa->id )->get();
+        $luffa_total = 0.0;
+        
+        foreach($luffa_records as $item){
+            $luffa_cultivated = $item->cultivatedLand;
+            $luffa_total = $luffa_total + $luffa_cultivated;
+        }
+
+        $luffa_est_harvest = 0.0;
+        foreach($luffa_records as $item){
+            $luffa_harvest = $item->harvestedAmount;
+            $luffa_est_harvest = $luffa_harvest + $luffa_est_harvest;
+        }
+        $luffa_harvest_rate = ($luffa_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $luffa_harvest_rate = number_format((double)$luffa_harvest_rate, 2, '.', '');
+        
+        $luffa_satisfaction_rate = $this->satisfactionRate($luffa_harvest_rate);
+
+        $luffa_summary = array();
+        array_push($luffa_summary, $luffa_total, $luffa_harvest_rate, $luffa_satisfaction_rate);
+        
+        //okra
+        $okra = DB::table('crops')->where('name', 'Okra')->distinct()->first();
+        $okra_records = DB::table('cultivation')->where('crop_id', $okra->id )->get();
+        $okra_total = 0.0;
+        
+        foreach($okra_records as $item){
+            $okra_cultivated = $item->cultivatedLand;
+            $okra_total = $okra_total + $okra_cultivated;
+        }
+
+        $okra_est_harvest = 0.0;
+        foreach($okra_records as $item){
+            $okra_harvest = $item->harvestedAmount;
+            $okra_est_harvest = $okra_harvest + $okra_est_harvest;
+        }
+        $okra_harvest_rate = ($okra_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $okra_harvest_rate = number_format((double)$okra_harvest_rate, 2, '.', '');
+        
+        $okra_satisfaction_rate = $this->satisfactionRate($okra_harvest_rate);
+
+        $okra_summary = array();
+        array_push($okra_summary, $okra_total, $okra_harvest_rate, $okra_satisfaction_rate);
+        
+        //pumpkin
+        $pumpkin = DB::table('crops')->where('name', 'Pumpkin')->distinct()->first();
+        $pumpkin_records = DB::table('cultivation')->where('crop_id', $pumpkin->id )->get();
+        $pumpkin_total = 0.0;
+        
+        foreach($pumpkin_records as $item){
+            $pumpkin_cultivated = $item->cultivatedLand;
+            $pumpkin_total = $pumpkin_total + $pumpkin_cultivated;
+        }
+
+        $pumpkin_est_harvest = 0.0;
+        foreach($pumpkin_records as $item){
+            $pumpkin_harvest = $item->harvestedAmount;
+            $pumpkin_est_harvest = $pumpkin_harvest + $pumpkin_est_harvest;
+        }
+        $pumpkin_harvest_rate = ($pumpkin_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $pumpkin_harvest_rate = number_format((double)$pumpkin_harvest_rate, 2, '.', '');
+        
+        $pumpkin_satisfaction_rate = $this->satisfactionRate($pumpkin_harvest_rate);
+
+        $pumpkin_summary = array();
+        array_push($pumpkin_summary, $pumpkin_total, $pumpkin_harvest_rate, $pumpkin_satisfaction_rate);
+        
+        //radish
+        $radish = DB::table('crops')->where('name', 'Radish')->distinct()->first();
+        $radish_records = DB::table('cultivation')->where('crop_id', $radish->id )->get();
+        $radish_total = 0.0;
+        
+        foreach($radish_records as $item){
+            $radish_cultivated = $item->cultivatedLand;
+            $radish_total = $radish_total + $radish_cultivated;
+        }
+
+        $radish_est_harvest = 0.0;
+        foreach($radish_records as $item){
+            $radish_harvest = $item->harvestedAmount;
+            $radish_est_harvest = $radish_harvest + $radish_est_harvest;
+        }
+        $radish_harvest_rate = ($radish_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $radish_harvest_rate = number_format((double)$radish_harvest_rate, 2, '.', '');
+        
+        $radish_satisfaction_rate = $this->satisfactionRate($radish_harvest_rate);
+
+        $radish_summary = array();
+        array_push($radish_summary, $radish_total, $radish_harvest_rate, $radish_satisfaction_rate);
+        
+        //snakegourd 
+        $snakegourd = DB::table('crops')->where('name', 'Snake Gourd')->distinct()->first();
+        $snakegourd_records = DB::table('cultivation')->where('crop_id', $snakegourd->id )->get();
+        $snakegourd_total = 0.0;
+        
+        foreach($snakegourd_records as $item){
+            $snakegourd_cultivated = $item->cultivatedLand;
+            $snakegourd_total = $snakegourd_total + $snakegourd_cultivated;
+        }
+
+        $snakegourd_est_harvest = 0.0;
+        foreach($snakegourd_records as $item){
+            $snakegourd_harvest = $item->harvestedAmount;
+            $snakegourd_est_harvest = $snakegourd_harvest + $snakegourd_est_harvest;
+        }
+        $snakegourd_harvest_rate = ($snakegourd_est_harvest/33882.0) * 100; //according to 2002 estimation - change at will
+        $snakegourd_harvest_rate = number_format((double)$snakegourd_harvest_rate, 2, '.', '');
+        
+        $snakegourd_satisfaction_rate = $this->satisfactionRate($snakegourd_harvest_rate);
+
+        $snakegourd_summary = array();
+        array_push($snakegourd_summary, $snakegourd_total, $snakegourd_harvest_rate, $snakegourd_satisfaction_rate);
+        
         //tomato
         $tomato = DB::table('crops')->where('name', 'Tomato')->distinct()->first();
         $tomato_records = DB::table('cultivation')->where('crop_id', $tomato->id )->get();
@@ -140,7 +402,19 @@ class PublicController extends Controller
             'tomato' => $tomato_summary, 
             'beans' => $beans_summary, 
             'beetroot' => $beetroot_summary,
-            'bittergourd' => $bittergourd_summary
+            'bittergourd' => $bittergourd_summary,
+            'brinjal' => $brinjal_summary,
+            'cabbage' => $cabbage_summary,
+            'capsicum' => $capsicum_summary,
+            'carrot' => $carrot_summary,
+            'cucumber' => $cucumber_summary,
+            'leeks' => $leeks_summary,
+            'long_beans' => $long_beans_summary,
+            'luffa' => $luffa_summary,
+            'okra' => $okra_summary,
+            'pumpkin' => $pumpkin_summary,
+            'radish' => $radish_summary,
+            'snakegourd' => $snakegourd_summary
         ));
 
     }//end of function
