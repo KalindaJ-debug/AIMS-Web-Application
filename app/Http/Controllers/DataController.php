@@ -63,7 +63,7 @@ class DataController extends Controller
         $variety = variety::all();
         $district = district::all();
         $region = region::all();
-        $farmer = farmer::all();
+        $farmer = Farmer::all();
         return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer));
     }
 
