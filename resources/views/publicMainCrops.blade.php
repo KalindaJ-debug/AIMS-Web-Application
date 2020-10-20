@@ -57,7 +57,7 @@
                 <a onclick="scrollUp()" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-luffa" role="tab" aria-controls="settings">Luffa</a>
                 <a onclick="scrollUp()" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-okra" role="tab" aria-controls="settings">Okra</a>
                 <a onclick="scrollUp()" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-pumpkin" role="tab" aria-controls="settings">Pumpkin</a>
-                <a onclick="scrollUp()" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-raddish" role="tab" aria-controls="settings">Raddish</a>
+                <a onclick="scrollUp()" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-raddish" role="tab" aria-controls="settings">Radish</a>
                 <a onclick="scrollUp()" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-snakegourd" role="tab" aria-controls="settings">Snake Gourd</a>
                 <a onclick="scrollUp()" class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-tomato" role="tab" aria-controls="settings">Tomato</a>
 
@@ -162,8 +162,14 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                <form action="{{ url('exportMainCropsReport', "Beans") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                <input type="hidden" name="cultivation" value="{{ $beans[0] }}">
+                                <input type="hidden" name="rate" value="{{ $beans[1] }}">
+                                <input type="hidden" name="comment" value="{{ $beans[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>
+                                  </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -266,8 +272,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Beetroot") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $beetroot[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $beetroot[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $beetroot[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -370,8 +381,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Bitter Gourd") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $bittergourd[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $bittergourd[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $bittergourd[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -474,8 +490,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Brinjal") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $brinjal[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $brinjal[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $brinjal[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -578,8 +599,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Cabbage") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $cabbage[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $cabbage[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $cabbage[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -682,8 +708,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Capsicum") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $capsicum[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $capsicum[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $capsicum[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -786,8 +817,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Carrot") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $carrot[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $carrot[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $carrot[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -890,8 +926,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Cucumber") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $cucumber[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $cucumber[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $cucumber[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -995,8 +1036,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Leeks") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $leeks[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $leeks[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $leeks[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -1099,8 +1145,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Long Beans") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $long_beans[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $long_beans[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $long_beans[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -1203,8 +1254,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Luffa") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $luffa[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $luffa[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $luffa[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -1307,8 +1363,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Okra") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $okra[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $okra[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $okra[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -1411,8 +1472,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Pumpkin") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $pumpkin[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $pumpkin[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $pumpkin[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -1515,8 +1581,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Radish") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $radish[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $radish[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $radish[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -1619,8 +1690,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Snake Gourd") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $snakegourd[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $snakegourd[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $snakegourd[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}
@@ -1723,8 +1799,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div style="margin-top:50px;margin-left:50px;margin-right:50px;">
-                                    <button type="button" class="btn btn-dark btn-block"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
-                                </div>
+                                  <form action="{{ url('exportMainCropsReport', "Tomato") }}" name="export" method="GET">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="cultivation" value="{{ $tomato[0] }}">
+                                    <input type="hidden" name="rate" value="{{ $tomato[1] }}">
+                                    <input type="hidden" name="comment" value="{{ $tomato[2] }}">
+                                    <button type="submit" class="btn btn-dark btn-block" name="export"> <i class="fa fa-print mr-3" aria-hidden="true"></i>Export</button>
+                                  </form>                                </div>
                             </div>
                         </div>
                         {{-- row ends  --}}

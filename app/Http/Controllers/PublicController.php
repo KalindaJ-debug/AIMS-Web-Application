@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Crop;
 use Illuminate\Support\Facades\DB;
+use PDF;
+use Illuminate\Support\Facades\App;
 
 class PublicController extends Controller
 {
@@ -439,5 +441,86 @@ class PublicController extends Controller
             return "Price Loss"; //10
         }
     }//end of function
+
+    //report generation method
+    public function exportReport($crop, Request $request){
+        
+        //fetch crop record
+        $crop_record = Crop::with('varieties')->where('name', $crop)->distinct()->first();
+        $crop_cultivation = $request->input('cultivation');
+        $crop_rate = $request->input('rate');
+        $crop_comment = $request->input('comment');
+        
+        //html stream
+        $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;"> Main Crop Information </h3>
+      <p style="margin-left:50px;">Crop Name: '.$crop_record->name.' </p>
+      <p style="margin-left:50px;">Crop Varieties : ';
+      
+      foreach($crop_record->varieties as $item){
+        $htmlStream .='
+            <ul style="margin-left:150px;">
+                <li>'.$item->name.'</li>
+            </ul> 
+        ';
+      } //end of foreach
+
+      $htmlStream .= ' </p>
+      <hr>
+        <br>
+        <p> Summarized Data for '.$crop.' are stated below. </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    
+    <tr>
+    <th style="padding:15px;text-align:left;background-color: #ffa;"> Cultivated Land Extent in Hectares (ha) : </th>
+    <td style="padding:15px;text-align:left;background-color: #ffa;"> : '.$crop_cultivation.' ha </td>
+    <td style="background-color: #ffa;"></td>
+    <td style="background-color: #ffa;"></td>
+    </tr>
+
+    <tr>
+    <th style="padding:15px;text-align:left;background-color: #ffa;"> Satisfaction Rate of the Estimated Harvest : </th>
+    <td style="padding:15px;text-align:left;background-color: #ffa;"> : '.$crop_rate.' % </td>
+    <td style="background-color: #ffa;"></td>
+    <td style="background-color: #ffa;"></td>
+    </tr>
+
+    <tr>
+    <th style="padding:15px;text-align:left;background-color: #ffa;"> Recommendation for Crop Cultivation : </th>
+    <td style="padding:15px;text-align:left;background-color: #ffa;"> : '.$crop_comment.' </td>
+    <td style="background-color: #ffa;"></td>
+    <td style="background-color: #ffa;"></td>
+    </tr>
+
+        ';
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+        //streeam pdf
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();
+
+    }//end of method
 
 } //end of public controller class
