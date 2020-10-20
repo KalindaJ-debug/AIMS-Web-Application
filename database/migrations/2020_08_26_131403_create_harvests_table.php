@@ -19,6 +19,8 @@ class CreateHarvestsTable extends Migration
             $table->foreign('cultivation_id')->references('id')->on('cultivation');
             $table->unsignedBigInteger('land_id');
             $table->foreign('land_id')->references('id')->on('lands');
+            $table->unsignedBigInteger('external_id')->nullable();
+            $table->foreign('external_id')->references('id')->on('external_factors');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('crop_categories');
             $table->unsignedBigInteger('crop_id');

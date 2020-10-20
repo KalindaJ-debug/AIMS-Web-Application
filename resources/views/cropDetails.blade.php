@@ -34,7 +34,7 @@
   <title>Agriculture Information Management System | AIMS </title>
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
 </head>
@@ -53,12 +53,14 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
             <div class="col-sm-5">
-                <select name="farmer_id" type="text" class="form-control">
+                <select name="farmer_id" id="farmer_id" class="form-control">
                   <option selected value="none">--Select Name--</option>
                    @foreach ($farmer as $farmers)
                       <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
                    @endforeach  
                 </select>
+                <input type="hidden" id="land_id" name="land_id">
+               
             </div>
         </div>
         <div class="form-group row">
@@ -230,24 +232,26 @@ $(function() {
 <!-- ajax data view change -->
 <script>
 $(document).ready(function(){
-  $('.dynamic').change(function(){
+  $('#farmer_id').change(function(){
     if($(this).val() != '')
     {
-      var select = $(this).attr("id");
-      var value = $(this).val();
-      var dependent = $(this).data('dependent');
+      var farmer_id = $(this).val();
+      
       var _token = $('input[name="_token"]').val();
       $.ajax({
-        
-        method:"POST",
-        data:{select:select, value:value, _token:_token, dependent:dependent},
+        url:'/farmer_id',
+        method:"GET",
+        data:{farmer_id:farmer_id, _token:_token},
         success:function(result)
         {
-          $('#'+dependent).html(result);
+          console.log(result); 
+          $('#land_id').val(result['id']);
         }
       })
     }
+    
   });
 });
 </script>
+
 </html>
