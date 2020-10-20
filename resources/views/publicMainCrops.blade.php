@@ -852,15 +852,15 @@
                           </div>
                         </div>
                         {{-- row ends  --}}
-
+                        
                         {{-- row starts --}}
                         <div class="row">
                             <div class="col-md-8">
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
-                                            <th scope="col" style="width:365px;">Bi-weekly Cultivated Extent in Hectares (ha)</th>
-                                            <th>: 145.5 </th>
+                                            <th scope="col" style="width:365px;">Cultivated Extent in Hectares (ha)</th>
+                                        <th>: 145</th>
                                         </tr>
                                         <tr>
                                             <th scope="col" style="width:365px;">Satisfaction Rate of Harvest Estimation</th>
