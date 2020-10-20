@@ -18,7 +18,7 @@
     
     
 
-    <title>Data Summary | AIMS</title>
+    <title>Crop Variety Summary | AIMS</title>
 </head>
 <body class="white-bg-color" >
     <!-- header begins -->
@@ -29,10 +29,8 @@
     @include('layouts.navbar')
 
     <!-- nav bar ends -->
-    <div class="container-fluid wrapper d-flex align-items-stretch ">
-    <!-- Sidebar begins -->
-    @include('layouts.dataSummaryNav') 
-    <!-- Sidebar ends -->
+    <div class="wrapper d-flex">
+        
 
         <div class="main-panel container-fluid">
             <div class="content">
@@ -41,32 +39,32 @@
                         <div class="card ">
                             <div class="card-header text-white bg-success">
                                 <h4 class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-                                     VEGETABLE SUMMARY</h4>
+                                     CROP VARIETY SUMMARY</h4>
                             </div>                           
                             
                             <div class="card-body ">
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button" id="Dropdown" 
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="vegDropdownFn()">
-                                      Select a vegetable
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="myDropdown" id="myDropdown" >
-                                      <i class="fas fa-search" aria-hidden="true"></i>
-                                      <input type="text" placeholder="Search" id="myInput" onkeyup="filterFunction()">            
-                                      <a class="dropdown-item" href="#" onclick="VegChartGeneration('Brinjal');return false;">Brinjal</a>
-                                      <a class="dropdown-item" href="#">Carrot</a>
-                                      <a class="dropdown-item" href="#">Leeks</a>
-                                      <a class="dropdown-item" href="#">Snake gourd</a>
-                                      <a class="dropdown-item" href="#">Bitter gourd</a>
-                                      <a class="dropdown-item" href="#">Ash plaintain</a>
-                                      <a class="dropdown-item" href="#">Cucumber</a>
-                                      <a class="dropdown-item" href="#">Beetroot</a>
-                                      <a class="dropdown-item" href="#">Cabbage</a>
-                                      <a class="dropdown-item" href="#">Raddish</a>
-                                      <a class="dropdown-item" href="#">Spinach</a>
-                                      <a class="dropdown-item" href="#">Beans</a>
-                                      <a class="dropdown-item" href="#">Drumstick</a>
-                                    </div>
+                              <p class="text-center lead" style="font-family:'Trebuchet MS';">
+                              Select a crop variety from the list below to view the cultivation extent and the harvest extent per district</p>
+                                
+                              <!-- Dropdown for crop variety list --> 
+                                <div class="dropdown text-center">
+                                  <button class="btn btn-success dropdown-toggle" type="button" id="Dropdown" 
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="vegDropdownFn()">
+                                      Select a crop variety
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="myDropdown" id="myDropdown" >
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                    <input type="text" placeholder="Search" id="myInput" onkeyup="filterFunction()">
+                                      
+                                        @foreach ($cropvariety as $varieties)
+                                          <a class="dropdown-item" href="#">{{ $varieties->name }}</a>
+                                        @endforeach                                    
+                                                                                      
+                                      <!-- <a class="dropdown-item" href="#" onclick="VegChartGeneration('Brinjal');return false;">Brinjal</a> -->
+                                      
+                                  </div>                               
+                                      
+                                    <!-- Print and Export buttons -->                                    
 
                                     <button class="btn btn-outline-success" type="button" id="print" data-toggle="modal" data-target="#printModal">
                                         Print
@@ -88,16 +86,19 @@
                                             <span aria-hidden="true">&times;</span>
                                           </button>
                                         </div>
+
                                         <div class="modal-body">
                                           <p>Getting things ready to print</p>
-                                      </div>
+                                        </div>
+
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                                        
                                       </div>
+
                                       </div>
                                     </div>
                                 </div>
+                                <!--End of Print Modal -->
 
                                 <!-- Export Modal-->
                                 <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -135,15 +136,16 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
+                                </div>
+                                <!-- End of Export Modal-->
 
 
 
 
-
-                                <div class="container">  
-                                    <img id="vegBg" class="vegBgImage rounded mx-auto shadow p-3 mb-5 bg-white rounded " src="{{ ('assets/img/vegbg.jpg') }}">
-                                    <canvas id="myVegChart"></canvas>                                 
+                                <div class="container text-center">  
+                                  <!-- <img id="image1" class="vegBgImage rounded mx-auto shadow p-3 mb-5 bg-white rounded " src="{{ ('assets/img/image1.jpg') }}"> -->
+                                    <canvas id="cropVarietyCultExtent"></canvas> 
+                                    <canvas id="cropVarietyHarvExtent"></canvas>                                 
                                 </div>      
                                 
                                                         
@@ -160,6 +162,6 @@
 </body>
 <!-- footer begins -->
 @include('layouts.footer')
-     <!-- footer ends -->
+<!-- footer ends -->
 
 </html>

@@ -88,12 +88,12 @@
     <div class="row">
 
         <!--Grid column-->
-        <div class="col-md-10 mb-md-0 mb-5 ml-5">
-            <form id="contact-form" name="contact-form" action="{{action('FeedbackController@storeRegistered')}}" method="post" enctype="multipart/form-data">
+        <div class="col-md-10 mb-md-0 mb-5 ml-5" id="feedback-form-ID">
+            <form id="contact-form" name="contact-form" action="{{action('FeedbackRegisteredController@store')}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
               @include('inc.messages')
 
-                <input type="hidden" name="userID" value="{{ $userID ?? ''}}">
+                <input type="hidden" name="userID" value="{{ Auth::user()->id}}">
                 <!--Grid row-->
                 <div class="row">
 
@@ -101,7 +101,7 @@
                     <div class="col-md-6">
 
                             <label for="name" class="">Your Name</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" value="{{ $name ?? ''}}" readonly required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" value="{{ Auth::user()->name}}" readonly required>
 
                     </div>
                     <!--Grid column-->
@@ -116,7 +116,7 @@
                             <small id="emailHelp" class="form-text text-muted"> <i class="fa fa-user-secret mr-2" aria-hidden="true"></i>This data is protected under confidentiality.</small>
                           </div>
 
-                            <input type="text" id="email" name="email" class="form-control" placeholder="name@email.com" value="{{ $email ?? '' }}" required readonly>
+                            <input type="text" id="email" name="email" class="form-control" placeholder="name@email.com" value="{{ Auth::user()->email}}" required readonly>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -133,47 +133,49 @@
                             <!-- list group -->
                             <div class="row">
                               <div class="col-4">
-                                <div class="list-group" id="myList" role="tablist">
-                                  <a class="list-group-item list-group-item-action active" id="list-dataApproval-list" data-toggle="list" href="#dataApproval" role="tab" aria-controls="dataApproval">Data Approval Failure</a>
-                                  <a class="list-group-item list-group-item-action" id="list-dataEntry-list" data-toggle="list" href="#dataEntry" role="tab" aria-controls="dataEntry">Data Entry Failure</a>
-                                  <a class="list-group-item list-group-item-action" id="list-login-list" data-toggle="list" href="#login" role="tab" aria-controls="login">Login Credentials</a>
-                                  <a class="list-group-item list-group-item-action" id="list-dataReports-list" data-toggle="list" href="#dataReports" role="tab" aria-controls="dataReports">Data Reports</a>
+                                <div class="list-group" id="myList" role="tablist" name="listName">
+                                  <a class="list-group-item list-group-item-action active" name="listName" id="list-dataApproval-list" data-toggle="list" href="#dataApproval" role="tab" aria-controls="dataApproval" value="Data Approval Failure">Data Approval Failure</a>
+                                  <a class="list-group-item list-group-item-action" name="listName" id="list-dataEntry-list" data-toggle="list" href="#dataEntry" role="tab" aria-controls="dataEntry" value="Data Entry Failure">Data Entry Failure</a>
+                                  <a class="list-group-item list-group-item-action" name="listName" id="list-login-list" data-toggle="list" href="#login" role="tab" aria-controls="login" value="Login Credentials">Login Credentials</a>
+                                  <a class="list-group-item list-group-item-action" name="listName" id="list-dataReports-list" data-toggle="list" href="#dataReports" role="tab" aria-controls="dataReports" value="Data Reports">Data Reports</a>
                                 </div>
                               </div>
+                              
 
                               <!-- list ends -->
+            
 
                               <!-- list content begins -->
                               <div class="col-8">
                                 <div class="tab-content">
                                   <!-- data approval options -->
-                                  <div class="tab-pane fade show active" id="dataApproval" role="tabpanel" aria-labelledby="list-dataApproval-list">
+                                  <div class="tab-pane fade show active" name="dataApproval" id="dataApproval" role="tabpanel" aria-labelledby="list-dataApproval-list">
                                     <div class="row">
                                       <!-- first set of options -->
                                       <div class="col-6">
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataApproval1" id="da1" value="Re-assess recently processed data entry" checked>
+                                          <input class="form-check-input" type="radio" name="subjectR" id="da1" value="Re-assess recently processed data entry" checked>
                                           <label class="form-check-label ml-3" for="da1">
                                             Re-assess recently processed data entry
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataApproval2" id="da2" value="Error message when approving data entry">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="da2" value="Error message when approving data entry">
                                           <label class="form-check-label ml-3" for="da2">
                                             Error message when approving data entry
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataApproval3" id="da3" value="Error message when rejecting data entry">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="da3" value="Error message when rejecting data entry">
                                           <label class="form-check-label ml-3" for="da3">
                                             Error message when rejecting data entry
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataApproval4" id="da4" value="Does not process data entry approval">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="da4" value="Does not process data entry approval">
                                           <label class="form-check-label ml-3" for="da4">
                                             Does not process data entry approval
                                           </label>
@@ -183,21 +185,21 @@
                                       <!-- second set of options -->
                                       <div class="col-6">
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataApproval5" id="da5" value="Does not process data entry rejection">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="da5" value="Does not process data entry rejection">
                                           <label class="form-check-label ml-3" for="da5">
                                             Does not process data entry rejection
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataApproval6" id="da6" value="Cannot enter feedback comments with data entry">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="da6" value="Cannot enter feedback comments with data entry">
                                           <label class="form-check-label ml-3" for="da6">
                                             Cannot enter feedback comments with data entry
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataApproval7" id="da7" value="Cannot save processed data entry">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="da7" value="Cannot save processed data entry">
                                           <label class="form-check-label ml-3" for="da7">
                                             Cannot save processed data entry
                                           </label>
@@ -205,15 +207,6 @@
                                         <br>
 
                                       </div>
-                                    </div>
-
-                                    <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                          <input name="dataApprovalOther" type="radio" aria-label="Radio button for following text input">
-                                        </div>
-                                      </div>
-                                      <input type="text" class="form-control" name="dataApprovalOtherText" aria-label="Text input with radio button" value="" placeholder="Other">
                                     </div>
 
                                   </div>
@@ -224,7 +217,7 @@
                                       <div class="col-6">
                                         <!-- first set of options -->
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataEntry1" id="de1" value="Permission denied to modify/enter data">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="de1" value="Permission denied to modify/enter data">
                                           <label class="form-check-label ml-3" for="de1">
                                             Permission denied to modify/enter data.
                                           </label>
@@ -232,7 +225,7 @@
                                         <br>
 
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataEntry2" id="de3" value="Error removing data.">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="de3" value="Error removing data.">
                                           <label class="form-check-label ml-3" for="de3">
                                             Error removing data.
                                           </label>
@@ -243,7 +236,7 @@
                                       <div class="col-6">
                                         <!-- second set of options -->
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="dataEntry3" id="de2" value="Error processing data entry">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="de2" value="Error processing data entry">
                                           <label class="form-check-label ml-3" for="de2">
                                             Error processing data entry.
                                           </label>
@@ -251,15 +244,7 @@
                                         <br>
 
                                       </div>
-                                      <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <div class="input-group-text">
-                                            <input name="dataEntryOther" type="radio" aria-label="Radio button for following text input">
-                                          </div>
-                                        </div>
-                                        <input type="text" class="form-control" name="dataEntryOtherText" aria-label="Text input with radio button" value="" placeholder="Other">
-                                      </div>
-
+                                      
                                     </div>
 
                                   </div>
@@ -270,14 +255,14 @@
                                       <div class="col-6">
                                         <!-- first set of options -->
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="login1" id="lc1" value="Change/Reset Password">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="lc1" value="Change/Reset Password">
                                           <label class="form-check-label ml-3" for="lc1">
                                             Change/Reset Password.
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="login2" id="lc3" value="Remove Profile">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="lc3" value="Remove Profile">
                                           <label class="form-check-label ml-3" for="lc3">
                                             Remove Profile.
                                           </label>
@@ -287,14 +272,14 @@
                                       <div class="col-6">
                                         <!-- second set of options -->
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="login3" id="lc2" value="Change/Reset Device Authentication">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="lc2" value="Change/Reset Device Authentication">
                                           <label class="form-check-label ml-3" for="lc2">
                                             Change/Reset Device Authentication.
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="login4" id="lc4" value="Change/Modify User Profile Details">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="lc4" value="Change/Modify User Profile Details">
                                           <label class="form-check-label ml-3" for="lc4">
                                             Change/Modify User Profile Details.
                                           </label>
@@ -302,15 +287,7 @@
                                         <br>
                                       </div>
                                     </div>
-                                    <!-- other option -->
-                                    <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                          <input name="loginOther" type="radio" aria-label="Radio button for following text input">
-                                        </div>
-                                      </div>
-                                      <input type="text" class="form-control" name="loginOtherText" aria-label="Text input with radio button" value="" placeholder="Other">
-                                    </div>
+                                    
 
                                   </div>
 
@@ -320,14 +297,14 @@
                                       <div class="col-6">
                                         <!-- first set of options -->
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="report1" id="dr1" value="Error interacting/processing the charts/graphs">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="dr1" value="Error interacting/processing the charts/graphs">
                                           <label class="form-check-label ml-3" for="dr1">
                                             Error interacting/processing the charts/graphs.
                                           </label>
                                         </div>
                                         <br>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="report2" id="dr3" value="Error exporting/printing reports.">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="dr3" value="Error exporting/printing reports.">
                                           <label class="form-check-label ml-3" for="dr3">
                                             Error exporting/printing reports.
                                           </label>
@@ -337,22 +314,14 @@
                                       <div class="col-6">
                                         <!-- second set of options -->
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="report3" id="dr2" value="Error processing reports.">
+                                          <input class="form-check-input" type="radio" name="subjectR" id="dr2" value="Error processing reports.">
                                           <label class="form-check-label ml-3" for="dr2">
                                             Error processing reports.
                                           </label>
                                         </div>
                                         <br>
                                       </div>
-                                      <!-- other option -->
-                                      <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <div class="input-group-text">
-                                            <input name="reportOther" type="radio" aria-label="Radio button for following text input">
-                                          </div>
-                                        </div>
-                                        <input type="text" class="form-control" name="reportOtherText" aria-label="Text input with radio button" value="" placeholder="Other">
-                                      </div>
+                                      
                                     </div>
                                   </div>
                                   <!-- end of data report options -->
@@ -383,6 +352,7 @@
                         <div class="md-form">
                           <div class="row">
                             <div class="col-7">
+                            <br>
                               <label for="message">Please describe your issues below.</label>
                             </div>
                             <div class="col-5">
@@ -403,6 +373,7 @@
             </div>
 
         </div>
+        
         <!--Grid column-->
 
     </div>
