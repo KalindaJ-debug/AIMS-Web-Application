@@ -120,7 +120,7 @@
                         <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
                           <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                         <a href="{{ url('exportLandPDF', $item->id) }}"><i class="fa fa-file" data-toggle="tooltip" title="Export"></i></a>
-                        <a href="#landChart" class="chart" data-toggle="modal" style="color:#7A378B	;"><i class="fa fa-pie-chart" aria-hidden="true" data-toggle="tooltip" title="Chart"></i></a>
+                        <a onclick="generateLandChart()" href="#landChart" class="chart" data-toggle="modal" style="color:#7A378B	;"><i class="fa fa-pie-chart" aria-hidden="true" data-toggle="tooltip" title="Chart"></i></a>
                         </td>
                       </tr>
                   </form>
@@ -166,7 +166,10 @@
               </div>
               <hr>
               {{-- generate chart  --}}
-              
+              <div class="container chart-wrapper">
+                <canvas id="landSummaryChart"></canvas>
+            </div>
+            {{-- end chart  --}}
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -238,7 +241,57 @@
      <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
-     <!-- <script src="js/checkbox.js"></script> -->
+     
+     {{-- chart js link  --}}
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+     {{-- script for pie chart  --}}
+     <script>
+      function generateLandChart(){
+        let ctx = document.getElementById('landSummaryChart').getContext('2d');
+        let labels = ['Cultivated Land', 'Harvested Land', 'Uncultivated Land'];
+        let colorHex =['#81c14b', '#ecba82', '#204e4a'];
+
+        let landSummaryChart = new Chart(ctx, {
+          type: 'pie',
+          data:{
+            datasets:[{
+              data:[30, 10, 60], //sum 100
+              backgroundColor: colorHex
+            }],
+            labels: labels
+          },
+          options:{
+            responsive: true,
+            legend:{
+              position: 'bottom'
+            },
+            plugins:{
+              datalabels:{
+                color: '#fff', 
+                anchor: 'end',
+                align: 'start',
+                offset: -10,
+                borderWidth: 2,
+                borderColor: '#fff',
+                borderRadius: 25,
+                backgroundColor: (context) =>{
+                  return context.dataset.backgroundColor;
+                },
+                font: {
+                  weight: 'bold',
+                  size: '12'
+                },
+                formatter:(value) => {
+                  return value + '%';
+                }
+              }
+            }
+          }
+        }); //end of chart
+      }
+
+    </script>
 
      <script type="text/javascript">
      // Checkbox scripting
