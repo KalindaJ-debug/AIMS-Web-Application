@@ -7,18 +7,62 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <!-- Data Table -->
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+        <script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-        
-        <title>Approval</title>
+
+        <script type="text/JavaScript">
+        $(document).ready( function () {
+            $('#cultivationTable').DataTable();
+        } );
+        </script>
+
+        <title>Crop Visualisation</title>
     </head>
     <body>
         @include('layouts.header')
         @include('layouts.navbar')
 
+        <div class="container">
+            <h2>Crop District Analysis</h2>
+            
+            <table class="table" id="cultivationTable">
+                <thead>
+                    <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Crop</th>
+                    <th scope="col">Cultivation</th>
+                    <th scope="col">Harvest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($crops as $crop)
+                    <tr>
+                        <th scope="row">{{$crop->id}}</th>
+                        <td>{{$crop->name}}</td>
+                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/cropCultivationSelect/{{$crop->id}}">Report</a></td>
+                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/cropHarvestSelect/{{$crop->id}}">Report</a></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
         
+        </div>
+
+        <script>
+		
+	    </script>
 
         @include('layouts.footer')
     </body>

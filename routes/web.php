@@ -228,4 +228,8 @@ Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
 // Crop Visualization
 
-Route::get('cropVisualization', 'ApprovalController@index');
+Route::get('cropVisualization', 'CropVisualizationController@index');
+Route::get('cropHarvestSelect/{id}', 'CropVisualizationController@cropHarvestSelect');
+Route::post('harestVisulisationDetailsUpdate', 'CropVisualizationController@updateHarvest');
+Route::get('cropCultivationSelect/{id}', 'CropVisualizationController@cropCultivationSelect');
+Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController@updateCultivation');

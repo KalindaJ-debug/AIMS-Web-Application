@@ -38,4 +38,8 @@ class Land extends Model
     public function approvalCultivation(){
         return $this->belongsTo('App\ApprovalCultivation');
     }
+
+    public function harvests(){
+        return $this->belongsTo('App\harvests');
+    }
 }
