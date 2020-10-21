@@ -11,6 +11,7 @@
 
     <!-- Font CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -80,7 +81,7 @@
                       <th>District</th>
                       <th>Province</th>
                       <th>Land Extent (ha)</th>
-                      <th style="width: 150px;">Actions</th>
+                      <th style="width: 170px;">Actions</th>
       					</tr>
       				</thead>
       				<tbody>
@@ -119,6 +120,7 @@
                         <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
                           <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                         <a href="{{ url('exportLandPDF', $item->id) }}"><i class="fa fa-file" data-toggle="tooltip" title="Export"></i></a>
+                        <a href="#landChart" class="chart" data-toggle="modal" style="color:#7A378B	;"><i class="fa fa-pie-chart" aria-hidden="true" data-toggle="tooltip" title="Chart"></i></a>
                         </td>
                       </tr>
                   </form>
@@ -144,6 +146,35 @@
      </div>
 
      <!-- Modals -->
+
+     {{-- Generate Pie Chart Modal  --}}
+     <div id="landChart" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" style="margin-left:250px;">View Land Summary</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-1">
+                  <img src="{{ url('assets/img/piechart.png') }}" alt="pie-chart" style="margin-left:10px;width:80px;height:80px;">
+                </div>
+                <div class="col-11">
+                  <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">View selected land summary of crop cultivation and harvest.</p>
+                </div>
+              </div>
+              <hr>
+              {{-- generate chart  --}}
+              
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+              {{-- <button type="submit" class="btn btn-dark" value="Delete">Export</button> --}}
+            </div>
+        </div>
+      </div>
+    </div>
 
      <!-- Delete Selected Modal begins -->
      <div id="deleteSelectedFeedback" class="modal fade">
