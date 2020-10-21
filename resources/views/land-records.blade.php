@@ -102,11 +102,57 @@
                     <input type="hidden" name="landId" value="{{$item->id}}">
                       {{ csrf_field() }}
                       <tr>
-                        {{-- <td> --}}
-                          {{-- <span class="custom-checkbox">
-                          <input type="checkbox" name="options[]" value="{{ $i++ }}">
-                            <label for="checkbox1"></label>
-                          </span> --}}
+                        {{-- data visualization calculations --}}
+                        @php
+                            $totalCultivatedLand = 0.0;
+                            $uncultivatedLand = 0.0;
+                            $harvestedLand = 0.0;
+
+                            //assign values
+                            //null values
+                            if($harvestRecords == null || isset($harvestRecords)){
+                              $harvestedLand = 0.0;
+                            }                           
+                            
+                            if($cultivationRecords == null || isset($cultivationRecords)){
+                              $totalCultivatedLand = 0.0;
+                            }
+                            //cultivation
+                            foreach($cultivationRecords as $record){
+                              if($record->land_id == $item->id){
+                                $totalCultivatedLand = $totalCultivatedLand + $record->cultivatedLand;
+                              }
+                            }//end of foreach
+
+                            //harvest
+                            foreach($harvestRecords as $record){
+                              if($record->land_id == $item->id){
+                                $harvestedLand = $harvestedLand + $record->cultivatedLand;
+                              }
+                            }//end of foreach
+                            
+                            $uncultivatedLand = ($item->landExtend - $totalCultivatedLand);
+
+                            //percentage values
+                            if($totalCultivatedLand > 0.0){
+                              $totalCultivatedLand = ($totalCultivatedLand / $item->landExtend) * 100.0;
+                            }
+                            
+                            if($harvestedLand > 0.0){
+                              $harvestedLand = ($harvestedLand / $item->landExtend) * 100.0;
+                            }
+
+                            if($uncultivatedLand > 0.0){
+                              $uncultivatedLand = ($uncultivatedLand / $item->landExtend) * 100.0;
+                            }
+                            
+                            //two decimal places values
+                            $totalCultivatedLand = floatval(number_format((float)$totalCultivatedLand, 2, '.', ''));
+                            $harvestedLand = floatval(number_format((float)$harvestedLand, 2, '.', ''));
+                            $uncultivatedLand = floatval(number_format((float)$uncultivatedLand, 2, '.', ''));
+
+                        @endphp
+                        {{-- end calculations  --}}
                                                     
                         {{-- </td> --}}
                         <td> {{ $item->id }} </td>
@@ -120,7 +166,7 @@
                         <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
                           <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                         <a href="{{ url('exportLandPDF', $item->id) }}"><i class="fa fa-file" data-toggle="tooltip" title="Export"></i></a>
-                        <a onclick="generateLandChart()" href="#landChart" class="chart" data-toggle="modal" style="color:#7A378B	;"><i class="fa fa-pie-chart" aria-hidden="true" data-toggle="tooltip" title="Chart"></i></a>
+                        <a onclick="generateLandChart({{$totalCultivatedLand}}, {{$harvestedLand}}, {{$uncultivatedLand}})" href="#landChart" class="chart" data-toggle="modal" style="color:#7A378B	;"><i class="fa fa-pie-chart" aria-hidden="true" data-toggle="tooltip" title="Chart"></i></a>
                         </td>
                       </tr>
                   </form>
@@ -247,7 +293,7 @@
       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
      {{-- script for pie chart  --}}
      <script>
-      function generateLandChart(){
+      function generateLandChart(totalCultivatedLand, harvestedLand, uncultivatedLand){
         let ctx = document.getElementById('landSummaryChart').getContext('2d');
         let labels = ['Cultivated Land', 'Harvested Land', 'Uncultivated Land'];
         let colorHex =['#81c14b', '#ecba82', '#204e4a'];
@@ -256,7 +302,7 @@
           type: 'pie',
           data:{
             datasets:[{
-              data:[30, 10, 60], //sum 100
+              data:[totalCultivatedLand, harvestedLand, uncultivatedLand], //sum 100
               backgroundColor: colorHex
             }],
             labels: labels
