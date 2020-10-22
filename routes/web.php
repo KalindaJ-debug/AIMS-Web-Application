@@ -40,9 +40,10 @@ Route::get('/Entry-crop-data', 'DataController@create');
 Route::get('/crop-data/{id}', 'DataController@show');
 Route::get('/crop-data/{id}/delete', 'DataController@destroy');
 Route::resource('crop-data', 'DataController');
+Route::get('/farmer_id', 'DataController@farmerid');
 
 Route::get('/harvest-data', 'HarvestController@index');
-Route::get('/Entry-harvest-data', 'HarvestController@create');
+Route::get('/Entry-harvest-data/{id}', 'HarvestController@create');
 Route::get('/harvest-data/{id}', 'HarvestController@show');
 Route::resource('harvest-data', 'HarvestController');
 
@@ -228,6 +229,10 @@ Route::post('harvest-status', 'ApprovalController@updateHarvest');
 Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
+//All Crop Information - Public
+Route::get('cropInformation', 'PublicController@allMainCrops');
+Route::get('publicMainCrops', 'PublicController@mainCrops');
+Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
 //Data Visualization - Crop Variety
 
 Route::get('crop_variety_dv', 'DVCropVarietyController@index');

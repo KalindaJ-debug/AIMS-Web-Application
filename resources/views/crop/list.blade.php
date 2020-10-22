@@ -53,7 +53,7 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">Cultivation Details List</h1>      
+    <h1 class="display-3">Cultivation List</h1>      
   <table class="table table-striped">
     <thead>
         <tr>
@@ -61,6 +61,7 @@
           <td>Farmer Name</td>
           <td>Land Area</td>
           <td>Land Address</td>
+          <td>Estimated Harvest Amount(Kg)</td>
           <td>Cultivated Land (acres)</td>
           <td colspan = 2>Actions</td>
         </tr>
@@ -90,14 +91,21 @@
           @php
             $farmer = App\farmer::where('id', $contact->farmer_id)->first();
           @endphp
+          @php
+            $land = App\land::where('id', $contact->land_id)->first();
+          @endphp
         <tr>
             <td>{{$contact->id}}</td>
+            @if($farmer!==null)
             <td>{{$farmer->firstName}} {{$farmer->lastName}}</td> 
-            <td>{{$contact->land_id}}</td> 
-            <td>{{$contact->land_address}}</td>      
+            @endif
+            <td>{{$land->farmer->firstName}} {{$land->farmer->lastName}}</td>
+            <td>{{$land->town}}</td> 
+            <td>{{$land->addressNo}}</td> 
+            <td>{{$contact->harvestedAmount}}     
             <td>{{$contact->cultivatedLand}}</td>
             <td>
-                <a href="/Entry-harvest-data" class="btn btn-warning">Add Harvest Details</a>
+                <a href="/Entry-harvest-data/{{$contact->id}}" class="btn btn-warning">Add Harvest Details</a>
                 <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
             
             

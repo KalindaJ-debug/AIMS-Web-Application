@@ -30,9 +30,9 @@ class cultivation extends Model
         return $this->hasOne('App\Variety', 'id');
     }
 
-    public function land()
-    {
-        return $this->hasOne('App\Land', 'id', 'land_id');
+    public function lands(){
+        return $this->belongsTo('App\Land');
     }
+
     protected $fillable = ['cultivation_id', 'category_id', 'variety_id', 'region_id', 'district_id', 'cultivatedLand', 'startDate','season', 'province_id', 'endDate', 'harvestedAmount', 'farmer_id', 'crop_id'];
 }
