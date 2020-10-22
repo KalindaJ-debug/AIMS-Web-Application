@@ -71,7 +71,7 @@
           <td>District</td>
           <td>Region</td>
           <td>Harvested Amount (Kg)</td>
-          <td>Cultivated Land (Acres)</td>
+          <td>Cultivated Land (ha)</td>
           <td>External Factor</td>
           <td colspan = 2>Actions</td>
         </tr>

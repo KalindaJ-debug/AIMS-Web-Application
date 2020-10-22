@@ -156,9 +156,21 @@
         </div>
         
         <div class="form-group row">
-            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(acres)</label>
+            <label for="releasedateid" class="col-sm-3 col-form-label">Harvested Land(ha)</label>
             <div class="col-sm-5">
-                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (acres)">
+                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="releasedateid" class="col-sm-3 col-form-label">External Factor</label>
+            <div class="col-sm-5">
+            <select name="external_id" class="form-control">
+            <option selected value="none">--Select External Factor--</option>
+                <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
+                @foreach ($external_factors as $external_factors)
+                  <option value='{{ $external_factors->id }}'>{{ $external_factors->reason }}</option>
+              @endforeach
+            </select>
             </div>
         </div>
         <hr>

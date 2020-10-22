@@ -61,6 +61,10 @@ Route::post('/externalFactors', 'ExternalFactorsController@store')->name('extern
 Route::get('/getPDF', 'PDFcontroller@getPDF');
 
 Route::get('/Cultivation-list', 'DataController@list');
+
+Route::get('/DvCropCat', 'DVCropCategoryController@loadpage');
+//Route::post('/', 'dvcropcat\DVCropCategoryController@showGraph')-name(graph.load);
+Route::get('/DvExternalFac', 'DvExternalFacController@index');
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
 
