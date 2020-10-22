@@ -12,20 +12,21 @@ use App\Farmer;
 
 class UsersReportController extends Controller
 {
-    public function getUsersPDF(Request $request){
+    public function getUsersPDF(Request $request)
+    {
 
         $fields = $request->get('fields');
-        
+
         $users = User::all();
 
-        $pdf = PDF::loadView('Reports.users', compact('users','fields'));
+        $pdf = PDF::loadView('Reports.users', compact('users', 'fields'));
 
-        if($request->get('orientation') == 'landscape'){
-            $pdf->setOption('orientation','landscape');
+        if ($request->get('orientation') == 'landscape') {
+            $pdf->setOption('orientation', 'landscape');
         }
 
-        if($request->get('page') == 'A6'){
-            $pdf->setOption('page-size','a6');
+        if ($request->get('page') == 'A6') {
+            $pdf->setOption('page-size', 'a6');
         }
 
         $pdf->setOptions([
@@ -34,8 +35,8 @@ class UsersReportController extends Controller
             'footer-right' => 'AIMS Sri Lanka',
         ]);
 
-        if($request->get('sendEmail') == 'send'){
-            \Mail::send('email.report', [], function ($message) use($pdf,$request) {
+        if ($request->get('sendEmail') == 'send') {
+            \Mail::send('email.report', [], function ($message) use ($pdf, $request) {
                 $message->to($request->get('email'));
                 $message->subject('AIMS user list and activity');
                 $message->attachData($pdf->output(), 'usersList.pdf', [
@@ -46,6 +47,4 @@ class UsersReportController extends Controller
 
         return $pdf->download('UserDetails.pdf');
     }
-
-    
 }
