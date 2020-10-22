@@ -111,6 +111,21 @@
         </tbody>
     </table>
 
+    <h3>Data List for Each category , crop and variety</h3>
+    @foreach ($crop_categories as $cat)
+        <h2>{{ $cat->name }}</h2>
+        <p>The sum of the harvested land for the specific district is {{$cat->sum}}</p>        
+    @endforeach
+
+    @foreach ($crop_list as $clist)
+        <h2>{{ $clist->name }}</h2>
+        <p>The sum of the harvested land for the specific district is {{$clist->sum}}</p>
+    @endforeach
+        <
+    @foreach ($crop_varieties as $cvariety)
+        <h2>{{ $cvariety->name }}</h2>
+        <p>The sum of the harvested land for the specific district is {{$cvariety->sum}}</p>
+    @endforeach
     
 </body>
 </html>

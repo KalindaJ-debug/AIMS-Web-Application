@@ -196,11 +196,16 @@ Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
 Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
 Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
 Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
-Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
-Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
 Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandRecords'); //filtered land
 
+//pathway for form data
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+Route::post('/cropsReport', 'Reports\CropsReportController@getCropsPDF')->name('reportcrop.store');
+Route::post('/loadGraph','Graphs\CropCategoryController@showGraph')->name('graph.load');
+Route::post('/graphLoad','Graphs\CropCategoryController@generateHarvestAndCultivation')->name('graphdata.load');
+Route::post('/graphLoadVariety','Graphs\CropCategoryController@generateHarvestAndCultivationVariety')->name('graphdataVariety.load');
+Route::post('/graphLoadcrop','Graphs\CropCategoryController@generateHarvestAndCultivationCrop')->name('graphdataCrop.load');
+
 
 Route::get('/userRep', function () {
 
@@ -236,3 +241,12 @@ Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
 //Data Visualization - Crop Variety
 
 Route::get('crop_variety_dv', 'DVCropVarietyController@index');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-district' , 'Graphs\CropCategoryController@loadHarvestAndCultivation');
+Route::get('/crop-cat-district-variety' , 'Graphs\CropCategoryController@loadHarvestAndCultivationVariety');
+Route::get('/crop-cat-district-crop' , 'Graphs\CropCategoryController@loadHarvestAndCultivationcrop');
+

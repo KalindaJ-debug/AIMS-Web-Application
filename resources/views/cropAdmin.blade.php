@@ -123,11 +123,8 @@
                 </tbody>
             </table>
 
-            <button type="button" class="btn bg-dark text-white" onclick="location.href='{{url('cropsReport')}}';">
+            <button type="button" class="btn bg-dark text-white" data-toggle="modal" data-target="#exampleModal">
                 <i class="fas fa-file-pdf"></i> Download Report
-            </button>
-            <button type="button" class="btn btn-warning" onclick="location.href='{{url('sendCropsReport')}}';">
-                <i class="fas fa-file-pdf"></i> Email Report
             </button>
 
             <!-- Edit Tables  -->
@@ -399,6 +396,76 @@
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- modal to get pdf -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Export PDF</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <form method="POST" action="{{ route('reportcrop.store') }}">
+                        @csrf
+        
+                        <div class="form-group row">
+                        <label for="page" class="col-md-4 col-form-label text-md-right">{{ __('Page Size') }}</label>
+        
+                        <div class="col-md-6">
+                            <select id="page" class="form-control" name="page" required>
+                                <option value="A4" selected>A4</option>
+                                <option value="A6">A6</option>
+                            </select>
+                        </div>
+                        </div>
+        
+                        <div class="form-group row">
+                        <label for="orientation" class="col-md-4 col-form-label text-md-right">{{ __('Orientation') }}</label>
+        
+                        <div class="col-md-6">
+                            <select id="orientation" class="form-control" name="orientation" required>
+                                <option value="portrait" selected>Portrait</option>
+                                <option value="landscape">Landscape</option>
+                            </select>
+                        </div>
+                        </div>
+        
+                        <div class="form-group row">
+                        <label for="checkbox" class="col-md-4 col-form-label text-md-right">{{ __('Filter Report') }}</label>
+        
+                        <div class="col-md-8 checkbox">
+                            <input type="checkbox" name="fields" value="District">District<br>
+                            <select class="custom-select" id="selectDistrict" name="district_select">
+        
+                                @if($district != null)
+                                
+                                @foreach ($district as $item)
+                                    <option value="{{$item->id}}"> {{$item->name}}</option>
+                                @endforeach
+
+                                @endif
+
+                            </select><br>
+
+                        </div>
+                        </div>
+        
+                        <div>
+                        <input type="checkbox" name="sendEmail" value="send">Would you like a copy of the document mailed to you ?<br>
+                        </div>
+        
+                    <input type="text" name="email" id="email" value="{{ Auth::user()->email }}" hidden>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Download PDF</button>
+                    </div>
+                </form>
+                </div>
                 </div>
             </div>
 
