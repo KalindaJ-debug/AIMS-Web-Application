@@ -74,7 +74,7 @@
           <td>District</td>
           <td>Region</td>
           <td>Estimate Harvest Amount (kg)</td>
-          <td>Cultivated Land (acres)</td>
+          <td>Cultivated Land (ha)</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>

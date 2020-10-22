@@ -161,11 +161,15 @@
                 <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
             </div>
         </div>
+        <hr/>
+        <input type ="checkbox" id="chkddl" onlick="Enableddl(this)"/>
+        Accept the Checkbox, if there any External Factor to reduced Harvest
+        <hr/>
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">External Factor</label>
             <div class="col-sm-5">
-            <select name="external_id" class="form-control">
-            <option selected value="none">--Select External Factor--</option>
+            <select name="external_id" id ="DDL" disabled="disabled" class="form-control">
+            <option selected value="none" >--Select External Factor--</option>
                 <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
                 @foreach ($external_factors as $external_factors)
                   <option value='{{ $external_factors->id }}'>{{ $external_factors->reason }}</option>
@@ -240,6 +244,16 @@ $(function() {
   $('.amount').mask('######',{reverse : true});
 
 });
+</script>
+<!--js function for enable external factor etnry-->
+<script>
+    function Enableddl(chkddl){
+      var ddl = document.getElementById("DDL");
+      ddl.disabled=chkddl.checked ? false : true;
+      if(!ddl.disabled){
+        ddl.focus();
+      }
+    }
 </script>
 </html>
  
