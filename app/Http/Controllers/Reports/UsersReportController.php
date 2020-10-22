@@ -10,7 +10,7 @@ use Mail;
 use App\User;
 use App\Farmer;
 
-class UsersReportCOntroller extends Controller
+class UsersReportController extends Controller
 {
     public function getUsersPDF(Request $request){
 
