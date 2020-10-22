@@ -110,13 +110,13 @@ Route::get('/feedback-management', function(){
     return view('feedback-management');
 });
 
-Route::post('adminFeedback', 'FeedbackController@adminAdd');
+//Route::post('adminFeedback', 'FeedbackController@adminAdd');
 
-Route::get('adminFeedbackPage', 'FeedbackController@index');
+//Route::get('adminFeedbackPage', 'FeedbackController@index');
 
-Route::get('/feedback-view-public', function () {
-    return view('feedback-view-public');
-});
+// Route::get('/feedback-view-public', function () {
+//     return view('feedback-view-public');
+// });
 
 Route::get('/feedback-view', function () {
     return view('feedback-view');
@@ -148,19 +148,21 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::resource('feedback','FeedbackController');
-Route::get('feedback-view-public', 'FeedbackController@indexPublic');
-Route::get('feedback', 'FeedbackController@createPublic');
-Route::post('feedback', 'FeedbackController@storePublic');
+// Feedback - Public
+Route::resource('feedbackpublic', 'FeedbackPublicController');
+Route::get('feedback-view-public', 'FeedbackPublicController@index')->middleware('auth');
+Route::post('feedback-view-public', 'FeedbackPublicController@destroy_all')->middleware('auth');
+Route::get('feedback-view-public-sort', 'FeedbackPublicController@sort')->middleware('auth');
 
-Route::get('feedback-view', 'FeedbackController@indexRegistered')->middleware('auth');
-Route::get('feedback-registered', 'FeedbackController@createRegistered')->middleware('auth');
-Route::post('feedback-registered', 'FeedbackController@storeRegistered')->middleware('auth');
+// Feedback - Registered Users
+Route::resource('feedbackregistered', 'FeedbackRegisteredController')->middleware('auth');
+Route::get('feedback-view', 'FeedbackRegisteredController@index')->middleware('auth');
+Route::post('feedback-view', 'FeedbackRegisteredController@destroy_all')->middleware('auth');
+Route::get('feedback-view-sort', 'FeedbackRegisteredController@sort')->middleware('auth');
 
-//Route::get('feedback-view-public', 'FeedbackController@show');
-//Route::post('feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
-
-Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
+Route::get('noFeedback', function () {
+    return view('noFeedback');
+});
 
 Auth::routes();
 
@@ -227,4 +229,6 @@ Route::post('harvest-status', 'ApprovalController@updateHarvest');
 Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
+//Data Visualization - Crop Variety
 
+Route::get('crop_variety_dv', 'DVCropVarietyController@index');
