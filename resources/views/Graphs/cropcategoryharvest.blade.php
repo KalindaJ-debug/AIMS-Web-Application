@@ -42,10 +42,43 @@
                             <div class="card-header text-white bg-success">
                                 <h4 class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
                                      Crop Categories</h4>
-                            </div>                           
-                            
+                            </div>    
+                            <br>  
+                            <form method="POST" action="{{ route('graph.load') }}">
+                                @csrf
+                                <div class="row" >
+                                    <div class="input-group-prepend col-md-1 ml-5">
+                                        <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>
+                                    </div>
+                                    <select class="custom-select col-md-3" id="selectDistrict" name="district" required>
+        
+                                        @if($district != null)
+                                        
+                                        @foreach ($district as $item)
+                                            <option value="{{$item->id}}"> {{$item->name}}</option>
+                                        @endforeach
+        
+                                        @endif
+        
+                                    </select>    
+                                    
+                                    <!-- Season -->
+                                    <div class="input-group-prepend col-md-1">
+                                        <label class="input-group-text" for="selectSeason" style="width:90px;">Season</label>
+                                    </div>
+                                    <select class="custom-select col-md-3" id="selectSeason" name="season" required>
+                                        <option value="Yala"> Yala </option>
+                                        <option value="Maha"> Maha </option>
+                                    </select>  
+
+                                    <button type="submit" class="btn btn-primary">Generate Graph</button>
+                                </div>
+                            </form>
+
                             <div class="card-body ">
-                                
+                                <div class="container">
+                                    <canvas id="cropCategoryChart"></canvas>
+                                </div>
                                                         
                             </div> 
                         </div>
@@ -63,3 +96,22 @@
      <!-- footer ends -->
 
 </html>
+
+<script>
+    var category = {!! json_encode($categoryAmount)!!};
+    console.log(category);
+    var densityData = {
+    label: 'Land Harvested in the specified time',
+    data: category,
+    };
+
+    console.log(densityData);
+
+    var barChart = new Chart(cropCategoryChart, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($cropCategory) !!},
+            datasets: [densityData]
+        }
+    });
+</script>

@@ -200,7 +200,10 @@ Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
 Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
 Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandRecords'); //filtered land
 
+//pathway for form data
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+Route::post('/loadGraph','Graphs\CropCategoryController@showGraph')->name('graph.load');
+
 
 Route::get('/userRep', function () {
 
@@ -232,3 +235,7 @@ Route::post('harestDetailsUpdate', 'ApprovalController@store');
 //Data Visualization - Crop Variety
 
 Route::get('crop_variety_dv', 'DVCropVarietyController@index');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
+
