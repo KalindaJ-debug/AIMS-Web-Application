@@ -203,6 +203,7 @@ Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandReco
 //pathway for form data
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
 Route::post('/loadGraph','Graphs\CropCategoryController@showGraph')->name('graph.load');
+Route::post('/graphLoad','Graphs\CropCategoryController@generateHarvestAndCultivation')->name('graphdata.load');
 
 
 Route::get('/userRep', function () {
@@ -238,4 +239,7 @@ Route::get('crop_variety_dv', 'DVCropVarietyController@index');
 
 //Data Visualization - Crop Category
 Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-district' , 'Graphs\CropCategoryController@loadHarvestAndCultivation');
 

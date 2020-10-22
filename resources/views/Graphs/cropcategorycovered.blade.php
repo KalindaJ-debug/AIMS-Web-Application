@@ -44,17 +44,17 @@
                                      Crop Categories</h4>
                             </div>    
                             <br>  
-                            <form method="POST" action="{{ route('graph.load') }}">
+                            <form method="POST" action="{{ route('graphdata.load') }}">
                                 @csrf
                                 <div class="row" >
                                     <div class="input-group-prepend col-md-1 ml-5">
-                                        <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>
+                                        <label class="input-group-text" for="selectDistrict" style="width:90px;">Crop Category</label>
                                     </div>
-                                    <select class="custom-select col-md-3" id="selectDistrict" name="district" required>
+                                    <select class="custom-select col-md-3" id="selectDistrict" name="crop_category" required>
         
-                                        @if($district != null)
+                                        @if($crop_cat != null)
                                         
-                                        @foreach ($district as $item)
+                                        @foreach ($crop_cat as $item)
                                             <option value="{{$item->id}}"> {{$item->name}}</option>
                                         @endforeach
         
@@ -98,44 +98,24 @@
 </html>
 
 <script>
-    var category = {!! json_encode($categoryAmount)!!};
-    console.log(category);
-    var densityData = {
-        label: 'Land Harvested in the specified time',
-        data: category,
-        backgroundColor: [
-            'rgba(0, 99, 132, 0.6)',
-            'rgba(30, 99, 132, 0.6)',
-            'rgba(60, 99, 132, 0.6)',
-            'rgba(90, 99, 132, 0.6)',
-            'rgba(120, 99, 132, 0.6)',
-            'rgba(150, 99, 132, 0.6)',
-            'rgba(180, 99, 132, 0.6)',
-            'rgba(210, 99, 132, 0.6)',
-            'rgba(240, 99, 132, 0.6)'
-        ],
-        borderColor: [
-            'rgba(0, 99, 132, 1)',
-            'rgba(30, 99, 132, 1)',
-            'rgba(60, 99, 132, 1)',
-            'rgba(90, 99, 132, 1)',
-            'rgba(120, 99, 132, 1)',
-            'rgba(150, 99, 132, 1)',
-            'rgba(180, 99, 132, 1)',
-            'rgba(210, 99, 132, 1)',
-            'rgba(240, 99, 132, 1)'
-        ],
-        borderWidth: 2,
-        hoverBorderWidth: 0
-    };
-
-    console.log(densityData);
+    var  harvestSum = {!! json_encode($harvestSum)!!};
+    var  cultivationSum = {!! json_encode($cultivationSum)!!};
+    console.log(harvestSum);
+    console.log(cultivationSum);
 
     var barChart = new Chart(cropCategoryChart, {
         type: 'bar',
         data: {
-            labels: {!! json_encode($cropCategory) !!},
-            datasets: [densityData]
+            labels: {!! json_encode($district) !!},
+            datasets: [{
+            label: 'Cultivation',
+            backgroundColor: "rgba(220,220,220,0.5)",
+            data: cultivationSum
+        }, {
+            label: 'Harvest',
+            backgroundColor: "rgba(151,187,205,0.5)",
+            data: harvestSum
+        }]
         },
         
         options: {
