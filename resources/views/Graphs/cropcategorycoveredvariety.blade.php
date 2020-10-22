@@ -41,20 +41,20 @@
                         <div class="card ">
                             <div class="card-header text-white bg-success">
                                 <h4 class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-                                     Crop Categories</h4>
+                                     Crop Varieties</h4>
                             </div>    
                             <br>  
-                            <form method="POST" action="{{ route('graph.load') }}">
+                            <form method="POST" action="{{ route('graphdataCrop.load') }}">
                                 @csrf
                                 <div class="row" >
-                                    <div class="input-group-prepend col-md-1 ml-5">
-                                        <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>
+                                    <div class="input-group-prepend col-md-2 ml-5">
+                                        <label class="input-group-text" for="selectDistrict" style="width:120px;">Crop Variety</label>
                                     </div>
-                                    <select class="custom-select col-md-3" id="selectDistrict" name="district" required>
+                                    <select class="custom-select col-md-3" id="selectDistrict" name="crop_category" required>
         
-                                        @if($district != null)
+                                        @if($crop_cat != null)
                                         
-                                        @foreach ($district as $item)
+                                        @foreach ($crop_cat as $item)
                                             <option value="{{$item->id}}"> {{$item->name}}</option>
                                         @endforeach
         
@@ -87,8 +87,8 @@
             </div>
         </div>    
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
     
 </body>
 <!-- footer begins -->
@@ -97,45 +97,26 @@
 
 </html>
 
-<script>
-    var category = {!! json_encode($categoryAmount)!!};
-    console.log(category);
-    var densityData = {
-        label: 'Land Harvested in the specified time',
-        data: category,
-        backgroundColor: [
-            'rgba(0, 99, 132, 0.6)',
-            'rgba(30, 99, 132, 0.6)',
-            'rgba(60, 99, 132, 0.6)',
-            'rgba(90, 99, 132, 0.6)',
-            'rgba(120, 99, 132, 0.6)',
-            'rgba(150, 99, 132, 0.6)',
-            'rgba(180, 99, 132, 0.6)',
-            'rgba(210, 99, 132, 0.6)',
-            'rgba(240, 99, 132, 0.6)'
-        ],
-        borderColor: [
-            'rgba(0, 99, 132, 1)',
-            'rgba(30, 99, 132, 1)',
-            'rgba(60, 99, 132, 1)',
-            'rgba(90, 99, 132, 1)',
-            'rgba(120, 99, 132, 1)',
-            'rgba(150, 99, 132, 1)',
-            'rgba(180, 99, 132, 1)',
-            'rgba(210, 99, 132, 1)',
-            'rgba(240, 99, 132, 1)'
-        ],
-        borderWidth: 2,
-        hoverBorderWidth: 0
-    };
 
-    console.log(densityData);
+<script>
+    var  harvestSum = {!! json_encode($harvestSum)!!};
+    var  cultivationSum = {!! json_encode($cultivationSum)!!};
+    console.log(harvestSum);
+    console.log(cultivationSum);
 
     var barChart = new Chart(cropCategoryChart, {
         type: 'bar',
         data: {
-            labels: {!! json_encode($cropCategory) !!},
-            datasets: [densityData]
+            labels: {!! json_encode($district) !!},
+            datasets: [{
+            label: 'Cultivation',
+            backgroundColor: "rgba(220,220,220,0.5)",
+            data: cultivationSum
+        }, {
+            label: 'Harvest',
+            backgroundColor: "rgba(151,187,205,0.5)",
+            data: harvestSum
+        }]
         },
         
         options: {

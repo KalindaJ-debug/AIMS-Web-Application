@@ -47,8 +47,8 @@
                             <form method="POST" action="{{ route('graphdata.load') }}">
                                 @csrf
                                 <div class="row" >
-                                    <div class="input-group-prepend col-md-1 ml-5">
-                                        <label class="input-group-text" for="selectDistrict" style="width:90px;">Crop Category</label>
+                                    <div class="input-group-prepend col-md-2 ml-5">
+                                        <label class="input-group-text" for="selectDistrict" style="width:120px;">Crop Category</label>
                                     </div>
                                     <select class="custom-select col-md-3" id="selectDistrict" name="crop_category" required>
         
@@ -96,6 +96,7 @@
      <!-- footer ends -->
 
 </html>
+
 
 <script>
     var  harvestSum = {!! json_encode($harvestSum)!!};
