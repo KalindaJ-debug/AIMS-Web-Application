@@ -140,7 +140,7 @@ class CropCategoryController extends Controller
 
             $string = "Data for the Maha Season for Vegetables";
 
-            return view('Graphs.cropcategorycovered', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
+            return view('Graphs.cropcategorycoveredvariety', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
 
     }
 
@@ -169,7 +169,7 @@ class CropCategoryController extends Controller
 
             $string = "Data for the ".$request->season." Season for ".$categoryName[0];
 
-            return view('Graphs.cropcategorycovered', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
+            return view('Graphs.cropcategorycoveredvariety', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
 
     }
 
@@ -194,7 +194,7 @@ class CropCategoryController extends Controller
 
             $string = "Data for the Maha Season for Brinjol";
 
-            return view('Graphs.cropcategorycovered', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
+            return view('Graphs.cropcategorycoveredcrop', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
 
     }
 
@@ -223,7 +223,7 @@ class CropCategoryController extends Controller
 
             $string = "Data for the ".$request->season." Season for ".$categoryName[0];
 
-            return view('Graphs.cropcategorycovered', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
+            return view('Graphs.cropcategorycoveredcrop', array('crop_cat' => $crop_cat,'district' => $district, 'harvestSum' => $harvestSum, 'cultivationSum' => $cultivationSum,'string' => $string));
 
     }
 }

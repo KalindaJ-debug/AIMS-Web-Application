@@ -196,12 +196,11 @@ Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
 Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
 Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
 Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
-Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
-Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
 Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandRecords'); //filtered land
 
 //pathway for form data
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+Route::post('/cropsReport', 'Reports\CropsReportController@getCropsPDF')->name('reportcrop.store');
 Route::post('/loadGraph','Graphs\CropCategoryController@showGraph')->name('graph.load');
 Route::post('/graphLoad','Graphs\CropCategoryController@generateHarvestAndCultivation')->name('graphdata.load');
 Route::post('/graphLoadVariety','Graphs\CropCategoryController@generateHarvestAndCultivationVariety')->name('graphdataVariety.load');

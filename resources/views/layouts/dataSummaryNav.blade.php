@@ -62,8 +62,3 @@
         </ul>
 </div>
 
-<script>
-    function myFunction() {
-      document.getElementById("dropdown-menu").style.zIndex = "-1";
-    }
-</script>
