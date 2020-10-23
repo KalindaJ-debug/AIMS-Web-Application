@@ -232,4 +232,5 @@ Route::get('cropVisualization', 'CropVisualizationController@index');
 Route::get('cropHarvestSelect/{id}', 'CropVisualizationController@cropHarvestSelect');
 Route::post('harestVisulisationDetailsUpdate', 'CropVisualizationController@updateHarvest');
 Route::get('cropCultivationSelect/{id}', 'CropVisualizationController@cropCultivationSelect');
+Route::get('harvesrPdfConvert/{id}', 'CropVisualizationController@harvesrPdfConvert');
 Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController@updateCultivation');

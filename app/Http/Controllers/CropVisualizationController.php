@@ -17,6 +17,8 @@ use App\cultivation;
 use App\Land;
 use App\Harvest;
 
+use PDF;
+
 class CropVisualizationController extends Controller
 {
     public function index() {
@@ -111,7 +113,7 @@ class CropVisualizationController extends Controller
                 array_push($harvestArray, $harvestData);
             }
         }
-
+    
         return view(
             'cropVisualization.harvest', array(
             'crops' => $crop, 
@@ -221,4 +223,45 @@ class CropVisualizationController extends Controller
             'cropId' => $cropId
         ));
     }
+
+    public function harvesrPdfConvert($id) {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->cropPdfHarvest($id));
+        $pdf->stream();
+        dd($pdf);
+    } 
+
+    public function cropPdfHarvest($id) {
+
+        $output = '
+            <h2>Per Crop Harvest District Analysis</h2>
+                
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">District</th>
+                        <th scope="col">Cultivated Land</th>
+                    </tr>
+                </thead>
+                <tbody>
+        ';
+        $harvests = Harvest::where('crop_id', $id)->get();
+        foreach ($harvests as $harvest) {
+            $land = Land::where('id', $harvest->land_id)->first();
+            
+            $output .= '
+                <tr>
+                    <th scope="row">'.$harvest->id.'</th>
+                    <td>'.$land->districts->name.'</td>
+                    <td>'.$harvest->cultivatedLand.'</td>
+                </tr>
+            ';
+
+            $output .= '
+                </tbody>
+            </table>
+            ';
+        }
+    }  
 }

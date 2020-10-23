@@ -97,6 +97,10 @@
                         <div class="col-sm">
                             <button type="submit" class="btn btn-outline-dark">Genarate</button>
                         </div>
+                        <div class="col-sm">
+                            <a class="btn btn-outline-primary" href="http://127.0.0.1:8000/harvesrPdfConvert/{{$crop->id}}">Report Generation</a>
+                        </div>
+                        
                     </div>
                 </div>
  
