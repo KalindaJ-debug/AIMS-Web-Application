@@ -38,13 +38,13 @@
 @include('layouts.navbar')
 <!-- nav bar ends -->
 <div class="container">
-    <h1>data visualization</h1>
+    <h1>District Summary Cultivation Data for Crop Category</h1>
     <div class="input-group-prepend">
     <form method="POST" action="{{ route('graph.load') }}">
                                @csrf
                                 <div class="row" >
-                                    <div class="input-group-prepend col-md-1 ml-5">
-                                        <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>
+                                    <div class="input-group-prepend col-md-3 ml-5">
+                                       <!-- <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>-->
                                     </div>
                                     <select class="custom-select col-md-3" id="selectDistrict" name="district" required>
         
@@ -57,7 +57,8 @@
                                         @endif
         
                                     </select>    
-     </form>                               
+     </form>  
+     </div>                             
     <!--</div>
          <select class="col-sm-3 custom-select" id="selectDistrict" name="district" required>
             <option selected value="none">Select District...</option>
@@ -66,7 +67,7 @@
             <option>North-Western</option>
          </select>-->
     <div class ="card-body">
-    <canvas id="bar-chart" width="500" height="200"></canvas>
+        <canvas id="cropCategoryChart" width="500" height="200"></canvas>
     </div>
 </div>
 <!-- footer begins -->
@@ -102,7 +103,7 @@
     var category = {!! json_encode($categoryAmount)!!};
     console.log(category);
     var densityData = {
-    label: 'Land Harvested in the specified time',
+    label: 'Land cultivated in the specified time',
     data: category,
     };
 
