@@ -11,6 +11,7 @@
 
     <!-- Font CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -80,7 +81,7 @@
                       <th>District</th>
                       <th>Province</th>
                       <th>Land Extent (ha)</th>
-                      <th style="width: 150px;">Actions</th>
+                      <th style="width: 170px;">Actions</th>
       					</tr>
       				</thead>
       				<tbody>
@@ -101,11 +102,57 @@
                     <input type="hidden" name="landId" value="{{$item->id}}">
                       {{ csrf_field() }}
                       <tr>
-                        {{-- <td> --}}
-                          {{-- <span class="custom-checkbox">
-                          <input type="checkbox" name="options[]" value="{{ $i++ }}">
-                            <label for="checkbox1"></label>
-                          </span> --}}
+                        {{-- data visualization calculations --}}
+                        @php
+                            $totalCultivatedLand = 0.0;
+                            $uncultivatedLand = 0.0;
+                            $harvestedLand = 0.0;
+
+                            //assign values
+                            //null values
+                            if($harvestRecords == null || isset($harvestRecords)){
+                              $harvestedLand = 0.0;
+                            }                           
+                            
+                            if($cultivationRecords == null || isset($cultivationRecords)){
+                              $totalCultivatedLand = 0.0;
+                            }
+                            //cultivation
+                            foreach($cultivationRecords as $record){
+                              if($record->land_id == $item->id){
+                                $totalCultivatedLand = $totalCultivatedLand + $record->cultivatedLand;
+                              }
+                            }//end of foreach
+
+                            //harvest
+                            foreach($harvestRecords as $record){
+                              if($record->land_id == $item->id){
+                                $harvestedLand = $harvestedLand + $record->cultivatedLand;
+                              }
+                            }//end of foreach
+                            
+                            $uncultivatedLand = ($item->landExtend - $totalCultivatedLand);
+
+                            //percentage values
+                            if($totalCultivatedLand > 0.0){
+                              $totalCultivatedLand = ($totalCultivatedLand / $item->landExtend) * 100.0;
+                            }
+                            
+                            if($harvestedLand > 0.0){
+                              $harvestedLand = ($harvestedLand / $item->landExtend) * 100.0;
+                            }
+
+                            if($uncultivatedLand > 0.0){
+                              $uncultivatedLand = ($uncultivatedLand / $item->landExtend) * 100.0;
+                            }
+                            
+                            //two decimal places values
+                            $totalCultivatedLand = floatval(number_format((float)$totalCultivatedLand, 2, '.', ''));
+                            $harvestedLand = floatval(number_format((float)$harvestedLand, 2, '.', ''));
+                            $uncultivatedLand = floatval(number_format((float)$uncultivatedLand, 2, '.', ''));
+
+                        @endphp
+                        {{-- end calculations  --}}
                                                     
                         {{-- </td> --}}
                         <td> {{ $item->id }} </td>
@@ -119,6 +166,7 @@
                         <a> <button type="submit" style="border: none;background:transparent;width:35px;"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i> </button> </a>
                           <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                         <a href="{{ url('exportLandPDF', $item->id) }}"><i class="fa fa-file" data-toggle="tooltip" title="Export"></i></a>
+                        <a onclick="generateLandChart({{$totalCultivatedLand}}, {{$harvestedLand}}, {{$uncultivatedLand}})" href="#landChart" class="chart" data-toggle="modal" style="color:#7A378B	;"><i class="fa fa-pie-chart" aria-hidden="true" data-toggle="tooltip" title="Chart"></i></a>
                         </td>
                       </tr>
                   </form>
@@ -144,6 +192,38 @@
      </div>
 
      <!-- Modals -->
+
+     {{-- Generate Pie Chart Modal  --}}
+     <div id="landChart" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" style="margin-left:250px;">View Land Summary</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-1">
+                  <img src="{{ url('assets/img/piechart.png') }}" alt="pie-chart" style="margin-left:10px;width:80px;height:80px;">
+                </div>
+                <div class="col-11">
+                  <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">View selected land summary of crop cultivation and harvest.</p>
+                </div>
+              </div>
+              <hr>
+              {{-- generate chart  --}}
+              <div class="container chart-wrapper">
+                <canvas id="landSummaryChart"></canvas>
+            </div>
+            {{-- end chart  --}}
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+              {{-- <button type="submit" class="btn btn-dark" value="Delete">Export</button> --}}
+            </div>
+        </div>
+      </div>
+    </div>
 
      <!-- Delete Selected Modal begins -->
      <div id="deleteSelectedFeedback" class="modal fade">
@@ -207,7 +287,57 @@
      <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
-     <!-- <script src="js/checkbox.js"></script> -->
+     
+     {{-- chart js link  --}}
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+     {{-- script for pie chart  --}}
+     <script>
+      function generateLandChart(totalCultivatedLand, harvestedLand, uncultivatedLand){
+        let ctx = document.getElementById('landSummaryChart').getContext('2d');
+        let labels = ['Cultivated Land', 'Harvested Land', 'Uncultivated Land'];
+        let colorHex =['#81c14b', '#ecba82', '#204e4a'];
+
+        let landSummaryChart = new Chart(ctx, {
+          type: 'pie',
+          data:{
+            datasets:[{
+              data:[totalCultivatedLand, harvestedLand, uncultivatedLand], //sum 100
+              backgroundColor: colorHex
+            }],
+            labels: labels
+          },
+          options:{
+            responsive: true,
+            legend:{
+              position: 'bottom'
+            },
+            plugins:{
+              datalabels:{
+                color: '#fff', 
+                anchor: 'end',
+                align: 'start',
+                offset: -10,
+                borderWidth: 2,
+                borderColor: '#fff',
+                borderRadius: 25,
+                backgroundColor: (context) =>{
+                  return context.dataset.backgroundColor;
+                },
+                font: {
+                  weight: 'bold',
+                  size: '12'
+                },
+                formatter:(value) => {
+                  return value + '%';
+                }
+              }
+            }
+          }
+        }); //end of chart
+      }
+
+    </script>
 
      <script type="text/javascript">
      // Checkbox scripting

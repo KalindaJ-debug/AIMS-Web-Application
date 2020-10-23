@@ -19,4 +19,8 @@ class Crop extends Model
     public function approvalHarvest(){
         return $this->belongsTo('App\ApprovalHarvest', 'crop_id', 'id');
     }
+
+    public function cultivation(){
+        return $this->belongsToMany('App\cultivation');
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\cultivation;
 use App\Farmer;
+use App\harvests;
 use App\Land;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -60,10 +62,11 @@ class LandController extends Controller
         $lid = Land::find($id);
         //fetch data 
         $farmer = Farmer::where('id', $id)->first(); //farmer name
-        $landRecords = Land::with('land_type','provinces', 'districts')->where('farmer_id', $id)->paginate(5);
-        // $landRecords = $landRecords::with('provinces')->get();
+        $landRecords = Land::with('cultivation','harvests','land_type','provinces', 'districts')->where('farmer_id', $id)->paginate(5);
+        $cultivationRecords = cultivation::with('lands')->distinct()->get();
+        $harvestRecords = harvests::with('lands')->distinct()->get();
         $count = $landRecords->total(); //number of records
-        // dd($count);
+
         if($landRecords != null && $count > 0){
             //return land records
         return view('land-records', 
@@ -72,7 +75,9 @@ class LandController extends Controller
                 'lastName' => $farmer->lastName, 
                 'landRecords' => $landRecords, 
                 'count' => $count,
-                'farmerID' => $id
+                'farmerID' => $id,
+                'cultivationRecords' => $cultivationRecords,
+                'harvestRecords' => $harvestRecords
             )
         ); //view land records
 

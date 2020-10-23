@@ -38,4 +38,13 @@ class Land extends Model
     public function approvalCultivation(){
         return $this->belongsTo('App\ApprovalCultivation');
     }
+
+    public function harvests(){
+        return $this->hasMany('App\harvests', 'land_id', 'id');
+    }
+
+    public function cultivation(){
+        return $this->hasMany('App\cultivation', 'land_id', 'id');
+    }
+
 }
