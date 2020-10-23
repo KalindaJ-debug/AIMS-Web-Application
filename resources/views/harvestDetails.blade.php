@@ -56,11 +56,13 @@
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
             <div class="col-sm-5">
                 <select name="farmer_id" type="text" class="form-control">
-            <!--      <option selected value="none">--Select Name--</option>-->
+            <!-- <option selected value="none">--Select Name--</option>-->
                    @foreach ($farmer as $farmers)
-                      <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
+                      <option value='{{ $farmers->id }}' @if( $farmers->id == $land->farmer_id) selected @endif >{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
                    @endforeach  
                 </select>
+                <input type="hidden" id="land_id" name="land_id" value="{{$cultivation->land_id}}">
+                <input type="hidden" id="cultivation_id" name="cultivation_id" value="{{$cultivation->id}}">
             </div>
         </div>
         <div class="form-group row">

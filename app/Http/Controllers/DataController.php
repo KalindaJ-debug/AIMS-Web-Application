@@ -15,6 +15,7 @@ use App\crop;
 use App\variety;
 use App\district;
 use App\region;
+use App\land;
 use DB;
 
 class DataController extends Controller
@@ -31,7 +32,15 @@ class DataController extends Controller
     public function list()
     {
         $contacts = cultivation::all();
+        $land = land::all();
+        $farmer = farmer::all();
         return view('crop.list', compact('contacts'));
+    }
+
+    public function farmerid()
+    {
+        $land = land::where('farmer_id', request('farmer_id'))->first();
+        return $land;
     }
 
     function fetch(Request $request)
@@ -64,7 +73,8 @@ class DataController extends Controller
         $district = district::all();
         $region = region::all();
         $farmer = farmer::all();
-        return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer));
+        $land = land::all();
+        return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'land' => $land));
     }
 
     /**
@@ -95,7 +105,7 @@ class DataController extends Controller
         ]);
 
         $game = new cultivation;
-        $game->farmer_id = request('farmer_id');
+        $game->land_id = request('land_id');
         $game->category_id = request('category_id');
         $game->crop_id = request('crop_id');
         $game->variety_id = request('variety_id');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExternalFactorsTable extends Migration
+class CreateHarvestsLandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateExternalFactorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('external_factors', function (Blueprint $table) {
+        Schema::create('harvests_lands', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('harvest_id');
             $table->foreign('harvest_id')->references('id')->on('harvests');
-            $table->string('reason'); 
+            $table->unsignedBigInteger('land_id');
+            $table->foreign('land_id')->references('id')->on('lands');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateExternalFactorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('external_factors');
+        Schema::dropIfExists('harvests_lands');
     }
 }

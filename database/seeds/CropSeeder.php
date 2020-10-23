@@ -42,7 +42,7 @@ class CropSeeder extends Seeder
 
         DB::table('crops')->insert([
             [
-                'name' => 'Brinjol',
+                'name' => 'Brinjal',
                 'type_id' => $cropCategory->id
             ],
             [
@@ -55,6 +55,38 @@ class CropSeeder extends Seeder
             ],
             [
                 'name' => 'Snake Gourd',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Bitter Gourd',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Cucumber',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Leeks',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Long Beans',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Luffa',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Okra',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Pumpkin',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Radish',
                 'type_id' => $cropCategory->id
             ]
         ]);
@@ -93,6 +125,14 @@ class CropSeeder extends Seeder
             [
                 'name' => 'Turmeric',
                 'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Beetroot',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Carrot',
+                'type_id' => $cropCategory->id
             ]
         ]);
 
@@ -106,6 +146,10 @@ class CropSeeder extends Seeder
             ],
             [
                 'name' => 'Green Gram',
+                'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Beans',
                 'type_id' => $cropCategory->id
             ]
         ]);
@@ -121,13 +165,17 @@ class CropSeeder extends Seeder
             [
                 'name' => 'Lettuce',
                 'type_id' => $cropCategory->id
+            ],
+            [
+                'name' => 'Cabbage',
+                'type_id' => $cropCategory->id
             ]
         ]);
 
         //seed crop varieties
 
         //brinjol
-        $crop = App\Crop::where('name', 'Brinjol')->first();
+        $crop = App\Crop::where('name', 'Brinjal')->first();
 
         DB::table('varieties')->insert([
             [
@@ -182,6 +230,110 @@ class CropSeeder extends Seeder
             ],
             [
                 'name' => 'M1-Short',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //bittergourd
+        $crop = App\Crop::where('name', 'Bitter Gourd')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Thinnavali-white',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'M1-43',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //cucumber
+        $crop = App\Crop::where('name', 'Cucumber')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'LY58',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //leeks
+        $crop = App\Crop::where('name', 'Leeks')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Large Long Summer',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //long beans
+        $crop = App\Crop::where('name', 'Long Beans')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Pod Beans',
+                'crop_id' => $crop->id
+            ]
+        ]);
+                
+        //luffa
+        $crop = App\Crop::where('name', 'Luffa')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'LA33',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'Asiri',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //okra
+        $crop = App\Crop::where('name', 'Okra')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'MI-5',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'MI-7',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'Haritha',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //pumpkin
+        $crop = App\Crop::where('name', 'Pumpkin')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Local Pumpkin',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //radish
+        $crop = App\Crop::where('name', 'Radish')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Japan Ball',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'Table Rabu',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'Beeralu rabu',
                 'crop_id' => $crop->id
             ]
         ]);
@@ -256,6 +408,20 @@ class CropSeeder extends Seeder
             ]
         ]);
 
+        //beans
+        $crop = App\Crop::where('name', 'Beans')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Bush Beans',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'Pole Beans',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
         //spinach
         $crop = App\Crop::where('name', 'Spinach')->first();
 
@@ -288,6 +454,29 @@ class CropSeeder extends Seeder
             ]
         ]);
 
+        //cabbage
+         //lettuce
+         $crop = App\Crop::where('name', 'Cabbage')->first();
+
+         DB::table('varieties')->insert([
+             [
+                 'name' => 'Green Coronet',
+                 'crop_id' => $crop->id
+             ],
+             [
+                 'name' => 'Exotic-F1',
+                 'crop_id' => $crop->id
+             ],
+             [
+                 'name' => 'Hercules',
+                 'crop_id' => $crop->id
+             ],
+             [
+                 'name' => 'Gloria-F1',
+                 'crop_id' => $crop->id
+             ]
+         ]);
+ 
         //potato
         $crop = App\Crop::where('name', 'Potato')->first();
 
@@ -346,6 +535,34 @@ class CropSeeder extends Seeder
             ],
             [
                 'name' => 'Madurasi Majal',
+                'crop_id' => $crop->id
+            ]
+        ]);
+
+        //beetroot
+        $crop = App\Crop::where('name', 'Beetroot')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Crimson Globe',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'Detroit Dark Red',
+                'crop_id' => $crop->id
+            ]
+        ]);
+        
+        //carrot
+        $crop = App\Crop::where('name', 'Carrot')->first();
+
+        DB::table('varieties')->insert([
+            [
+                'name' => 'Cape Market',
+                'crop_id' => $crop->id
+            ],
+            [
+                'name' => 'Nantes Half-Long',
                 'crop_id' => $crop->id
             ]
         ]);

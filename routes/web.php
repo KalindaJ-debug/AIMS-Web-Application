@@ -40,9 +40,10 @@ Route::get('/Entry-crop-data', 'DataController@create');
 Route::get('/crop-data/{id}', 'DataController@show');
 Route::get('/crop-data/{id}/delete', 'DataController@destroy');
 Route::resource('crop-data', 'DataController');
+Route::get('/farmer_id', 'DataController@farmerid');
 
 Route::get('/harvest-data', 'HarvestController@index');
-Route::get('/Entry-harvest-data', 'HarvestController@create');
+Route::get('/Entry-harvest-data/{id}', 'HarvestController@create');
 Route::get('/harvest-data/{id}', 'HarvestController@show');
 Route::resource('harvest-data', 'HarvestController');
 
@@ -195,11 +196,16 @@ Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
 Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
 Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
 Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
-Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
-Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
 Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandRecords'); //filtered land
 
+//pathway for form data
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+Route::post('/cropsReport', 'Reports\CropsReportController@getCropsPDF')->name('reportcrop.store');
+Route::post('/loadGraph','Graphs\CropCategoryController@showGraph')->name('graph.load');
+Route::post('/graphLoad','Graphs\CropCategoryController@generateHarvestAndCultivation')->name('graphdata.load');
+Route::post('/graphLoadVariety','Graphs\CropCategoryController@generateHarvestAndCultivationVariety')->name('graphdataVariety.load');
+Route::post('/graphLoadcrop','Graphs\CropCategoryController@generateHarvestAndCultivationCrop')->name('graphdataCrop.load');
+
 
 Route::get('/userRep', function () {
 
@@ -228,6 +234,10 @@ Route::post('harvest-status', 'ApprovalController@updateHarvest');
 Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
+//All Crop Information - Public
+Route::get('cropInformation', 'PublicController@allMainCrops');
+Route::get('publicMainCrops', 'PublicController@mainCrops');
+Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
 //Data Visualization - Crop Variety
 
 Route::post('crop_variety_dv', 'DVCropVarietyController@generateChart');

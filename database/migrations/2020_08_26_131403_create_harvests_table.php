@@ -19,6 +19,8 @@ class CreateHarvestsTable extends Migration
             $table->foreign('cultivation_id')->references('id')->on('cultivation');
             $table->unsignedBigInteger('land_id');
             $table->foreign('land_id')->references('id')->on('lands');
+            $table->unsignedBigInteger('external_id')->nullable();
+            $table->foreign('external_id')->references('id')->on('external_factors');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('crop_categories');
             $table->unsignedBigInteger('crop_id');
@@ -32,7 +34,7 @@ class CreateHarvestsTable extends Migration
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
             $table->string('season')->nullable();
-            $table->date('endDate');
+            $table->date('endDate')->nullable();
             $table->integer('harvestedAmount');
             $table->double('cultivatedLand', 17, 10);
             $table->timestamps();

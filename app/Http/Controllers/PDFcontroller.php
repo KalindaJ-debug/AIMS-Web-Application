@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PDF;
-use App\Harvest;
+use App\harvests;
 
 class PDFcontroller extends Controller
 {
     public function getPDF(){
-        $harvests = Harvest::all();
+        $harvests = harvests::all();
         $pdf=PDF::loadView('PDF.harvest', ['harvests'=> $harvests ]);
         return $pdf->stream('harvest.index.pdf');
     }
