@@ -27,7 +27,7 @@
                 <a class="nav-link" href="/">Crop Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/crop_variety_dv">Crop Variety Summary</a>
+                <a class="nav-link" href="/crop_variety_chart">Crop Variety Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
                 <a class="nav-link" href="/">District Summary</a>
