@@ -229,7 +229,7 @@ Route::get('/cropRep', function () {
     
 });
 
-//Approval Cultivation 
+// Approval Cultivation 
 
 Route::get('approval', 'ApprovalController@index');
 Route::get('harvestDescription/{id}', 'ApprovalController@harvestDescription');
@@ -238,6 +238,7 @@ Route::post('harvest-status', 'ApprovalController@updateHarvest');
 Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
+<<<<<<< HEAD
 //All Crop Information - Public
 Route::get('cropInformation', 'PublicController@allMainCrops');
 Route::get('publicMainCrops', 'PublicController@mainCrops');
@@ -253,4 +254,13 @@ Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
 Route::get('/crop-cat-district' , 'Graphs\CropCategoryController@loadHarvestAndCultivation');
 Route::get('/crop-cat-district-variety' , 'Graphs\CropCategoryController@loadHarvestAndCultivationVariety');
 Route::get('/crop-cat-district-crop' , 'Graphs\CropCategoryController@loadHarvestAndCultivationcrop');
+=======
+// Crop Visualization
+>>>>>>> feature/crop_data_visualization
 
+Route::get('cropVisualization', 'CropVisualizationController@index');
+Route::get('cropHarvestSelect/{id}', 'CropVisualizationController@cropHarvestSelect');
+Route::post('harestVisulisationDetailsUpdate', 'CropVisualizationController@updateHarvest');
+Route::get('cropCultivationSelect/{id}', 'CropVisualizationController@cropCultivationSelect');
+Route::get('harvesrPdfConvert/{id}', 'CropVisualizationController@harvesrPdfConvert');
+Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController@updateCultivation');

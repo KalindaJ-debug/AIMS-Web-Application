@@ -7,26 +7,27 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         
-        <title>Farmer Management</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+        
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <script type="text/JavaScript">
+        $(document).ready( function () {
+            $('#categoryTable').DataTable();
+            $('#cropTable').DataTable();
+            $('#varietyTable').DataTable();
+        } );
+        </script>
+        <title>Crop Management</title>
     </head>
     <body>
 
         @include('layouts.header')
         @include('layouts.navbar')
-    <!-- style="background-color:#2E933C;" -->
-        <script>
-            $(document).ready( function () {
-                $('#varietyTable').DataTable();
-                $('#cropTable').DataTable();
-                $('#categoryTable').DataTable();
-            });
-        </script>
-        
+    <!-- style="background-color:#2E933C;" -->   
         <div class="container" style="background-color:white;">
 
             <h2 class="display-4">Crop Category</h2>
@@ -140,7 +141,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Category">
                                 <input type="hidden" id="editCategoryId" name="id">
@@ -169,7 +170,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Crop">
                                 <input type="hidden" id="editCropId" name="id">
@@ -198,7 +199,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Variety">
                                 <input type="hidden" id="editVarietyId" name="id">
@@ -231,7 +232,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="update">
                                 <input type="hidden" name="category" value="Crop">
                                 <input type="hidden" id="updateCategoryId" name="id">
@@ -266,7 +267,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="update">
                                 <input type="hidden" name="category" value="Variety">
                                 <input type="hidden" id="updateCropId" name="id">
@@ -303,7 +304,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="add">
                                 <input type="hidden" name="category" value="Category">
 
@@ -333,7 +334,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="add">
                                 <input type="hidden" name="category" value="Crop">
 
@@ -372,7 +373,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="add">
                                 <input type="hidden" name="category" value="Variety">
 
@@ -482,7 +483,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="delete">
                                 <input type="hidden" name="category" id="deleteCategoryId">
                                 <input type="hidden" name="id" id="cropId">
@@ -499,7 +500,7 @@
             </div>
 
         </div>
-
+        
         @include('layouts.footer')
     </body>
     <!-- Optional JavaScript -->

@@ -10,14 +10,41 @@ class harvests extends Model
 
     protected $table = 'harvests';
 
-<<<<<<< HEAD
+
     protected $fillable = ['category_id', 'variety_id', 'region_id', 'district_id', 'cultivatedLand', 'startDate','season', 'province_id', 'endDate', 'harvestedAmount', 'farmer_id', 'crop_id', 'external_id'];
-=======
-    protected $fillable = ['category_id', 'variety_id', 'region_id', 'district_id', 'cultivatedLand', 'startDate','season', 'province_id', 'endDate', 'harvestedAmount', 'farmer_id', 'crop_id'];
+
+
+
     
     //relationships
     public function lands(){
         return $this->belongsTo('App\Land');
     }
->>>>>>> 92a143a8e42cb5aee16df711a665ee0dc25b65c0
+
+
+    public function cultivation()
+    {
+        return $this->hasOne('App\cultivation', 'id', 'cultivation_id');
+    }
+
+    public function land()
+    {
+        return $this->hasOne('App\Land', 'id', 'land_id');
+    }
+
+    public function category()
+    {
+        return $this->hasOne('App\CropCategory', 'id');
+    }
+
+    public function crop()
+    {
+        return $this->hasOne('App\Crop', 'id');
+    }
+
+    public function variety()
+    {
+        return $this->hasOne('App\Variety', 'id');
+    }
+
 }
