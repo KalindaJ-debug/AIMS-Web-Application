@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2042755f67cf0e4cc2aa511581efb428",
+    "content-hash": "56d5a12d52836276444004787440eaa3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,6 +57,49 @@
                 "stack"
             ],
             "time": "2019-12-24T22:41:47+00:00"
+        },
+        {
+            "name": "balping/json-raw-encoder",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/balping/json-raw-encoder.git",
+                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/balping%2Fjson-raw-encoder/repository/archive.zip?sha=e2b0ab888342b0716f1f0628e2fa13b345c5f276",
+                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Balping\\JsonRaw\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Balázs Dura-Kovács"
+                }
+            ],
+            "description": "Encode arrays to json with raw JS objects (eg. callbacks) in them",
+            "keywords": [
+                "callback",
+                "encode",
+                "json"
+            ],
+            "time": "2020-06-06T16:24:31+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",
@@ -310,11 +353,11 @@
             ],
             "authors": [
                 {
-                    "name": "Èrik C. Forés",
+                    "name": "Èrik Campobadal Forés",
                     "email": "soc@erik.cat"
                 }
             ],
-            "description": "The missing charting library on laravel, powered by Chartisan",
+            "description": "The laravel charting package",
             "funding": [
                 {
                     "url": "https://github.com/ConsoleTVs",
@@ -325,7 +368,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-09-10T15:52:22+00:00"
+            "time": "2020-09-10T14:20:26+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -458,7 +501,6 @@
         },
         {
             "name": "doctrine/dbal",
-<<<<<<< HEAD
             "version": "2.10.4",
             "source": {
                 "type": "git",
@@ -469,18 +511,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/dbal/zipball/47433196b6390d14409a33885ee42b6208160643",
                 "reference": "47433196b6390d14409a33885ee42b6208160643",
-=======
-            "version": "2.11.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/dbal.git",
-                "reference": "fb5d5f2f26babf8dce217b1eb88300c22bb703a4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fb5d5f2f26babf8dce217b1eb88300c22bb703a4",
-                "reference": "fb5d5f2f26babf8dce217b1eb88300c22bb703a4",
->>>>>>> feature/crop_data_visualization
                 "shasum": ""
             },
             "require": {
@@ -493,11 +523,7 @@
                 "doctrine/coding-standard": "^8.1",
                 "jetbrains/phpstorm-stubs": "^2019.1",
                 "phpstan/phpstan": "^0.12.40",
-<<<<<<< HEAD
                 "phpunit/phpunit": "^8.5.5",
-=======
-                "phpunit/phpunit": "^9.4",
->>>>>>> feature/crop_data_visualization
                 "psalm/plugin-phpunit": "^0.10.0",
                 "symfony/console": "^2.0.5|^3.0|^4.0|^5.0",
                 "vimeo/psalm": "^3.17.2"
@@ -579,11 +605,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
             "time": "2020-09-12T21:20:41+00:00"
-=======
-            "time": "2020-10-20T14:36:48+00:00"
->>>>>>> feature/crop_data_visualization
         },
         {
             "name": "doctrine/event-manager",
@@ -2103,7 +2125,6 @@
         },
         {
             "name": "nesbot/carbon",
-<<<<<<< HEAD
             "version": "2.40.1",
             "source": {
                 "type": "git",
@@ -2114,18 +2135,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d9a76d8b7eb0f97cf3a82529393245212f40ba3b",
                 "reference": "d9a76d8b7eb0f97cf3a82529393245212f40ba3b",
-=======
-            "version": "2.41.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "e148788eeae9b9b7b87996520358b86faad37b52"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e148788eeae9b9b7b87996520358b86faad37b52",
-                "reference": "e148788eeae9b9b7b87996520358b86faad37b52",
->>>>>>> feature/crop_data_visualization
                 "shasum": ""
             },
             "require": {
@@ -2201,11 +2210,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
             "time": "2020-09-23T08:17:37+00:00"
-=======
-            "time": "2020-10-12T20:36:09+00:00"
->>>>>>> feature/crop_data_visualization
         },
         {
             "name": "nikic/php-parser",
@@ -5788,7 +5793,6 @@
         },
         {
             "name": "filp/whoops",
-<<<<<<< HEAD
             "version": "2.8.0",
             "source": {
                 "type": "git",
@@ -5799,18 +5803,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/filp/whoops/zipball/fa50d9db1c0c2fae99cf988d27023effda5524a3",
                 "reference": "fa50d9db1c0c2fae99cf988d27023effda5524a3",
-=======
-            "version": "2.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filp/whoops.git",
-                "reference": "2ec31f3adc54c71a59c5e3c2143d7a0e2f8899f8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/2ec31f3adc54c71a59c5e3c2143d7a0e2f8899f8",
-                "reference": "2ec31f3adc54c71a59c5e3c2143d7a0e2f8899f8",
->>>>>>> feature/crop_data_visualization
                 "shasum": ""
             },
             "require": {
@@ -5858,11 +5850,7 @@
                 "throwable",
                 "whoops"
             ],
-<<<<<<< HEAD
             "time": "2020-10-17T09:00:00+00:00"
-=======
-            "time": "2020-10-20T12:00:00+00:00"
->>>>>>> feature/crop_data_visualization
         },
         {
             "name": "fzaninotto/faker",

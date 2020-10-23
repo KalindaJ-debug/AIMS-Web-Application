@@ -39,7 +39,7 @@
                 <a class="nav-link" href="/">Crop Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/crop_variety_dv">Crop Variety Summary</a>
+                <a class="nav-link" href="/crop_variety_chart">Crop Variety Summary</a>
             </li>
             <li class="nav-item dropdown" style="margin-bottom: 20px;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
