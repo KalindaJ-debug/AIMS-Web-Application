@@ -46,5 +46,4 @@ class Land extends Model
     public function cultivation(){
         return $this->hasMany('App\cultivation', 'land_id', 'id');
     }
-
 }
