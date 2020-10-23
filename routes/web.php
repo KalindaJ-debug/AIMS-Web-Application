@@ -244,3 +244,11 @@ Route::post('crop_variety_dv', 'DVCropVarietyController@generateChart');
 Route::get('crop_variety_chart', 'DVCropVarietyController@index');
 
 
+//Data Visualization - Crop Category
+Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-district' , 'Graphs\CropCategoryController@loadHarvestAndCultivation');
+Route::get('/crop-cat-district-variety' , 'Graphs\CropCategoryController@loadHarvestAndCultivationVariety');
+Route::get('/crop-cat-district-crop' , 'Graphs\CropCategoryController@loadHarvestAndCultivationcrop');
+
