@@ -35,7 +35,7 @@
 
     </style>
 </head>
-<body>
+<body onload="init()">
     <!--The header for the  -->
     <header>
         <div class="note">
@@ -110,6 +110,7 @@
             @endforeach
         </tbody>
     </table>
+
     
 </body>
 </html>

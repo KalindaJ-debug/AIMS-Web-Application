@@ -61,6 +61,10 @@ Route::post('/externalFactors', 'ExternalFactorsController@store')->name('extern
 Route::get('/getPDF', 'PDFcontroller@getPDF');
 
 Route::get('/Cultivation-list', 'DataController@list');
+
+Route::get('/DvCropCat', 'DVCropCategoryController@loadpage');
+Route::post('/DvCropCat', 'dvcropcat\DVCropCategoryController@showGraph')->name('graph.load');
+Route::get('/DvExternalFac', 'DvExternalFacController@index');
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
 
@@ -110,13 +114,13 @@ Route::get('/feedback-management', function(){
     return view('feedback-management');
 });
 
-Route::post('adminFeedback', 'FeedbackController@adminAdd');
+//Route::post('adminFeedback', 'FeedbackController@adminAdd');
 
-Route::get('adminFeedbackPage', 'FeedbackController@index');
+//Route::get('adminFeedbackPage', 'FeedbackController@index');
 
-Route::get('/feedback-view-public', function () {
-    return view('feedback-view-public');
-});
+// Route::get('/feedback-view-public', function () {
+//     return view('feedback-view-public');
+// });
 
 Route::get('/feedback-view', function () {
     return view('feedback-view');
@@ -148,19 +152,21 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::resource('feedback','FeedbackController');
-Route::get('feedback-view-public', 'FeedbackController@indexPublic');
-Route::get('feedback', 'FeedbackController@createPublic');
-Route::post('feedback', 'FeedbackController@storePublic');
+// Feedback - Public
+Route::resource('feedbackpublic', 'FeedbackPublicController');
+Route::get('feedback-view-public', 'FeedbackPublicController@index')->middleware('auth');
+Route::post('feedback-view-public', 'FeedbackPublicController@destroy_all')->middleware('auth');
+Route::get('feedback-view-public-sort', 'FeedbackPublicController@sort')->middleware('auth');
 
-Route::get('feedback-view', 'FeedbackController@indexRegistered')->middleware('auth');
-Route::get('feedback-registered', 'FeedbackController@createRegistered')->middleware('auth');
-Route::post('feedback-registered', 'FeedbackController@storeRegistered')->middleware('auth');
+// Feedback - Registered Users
+Route::resource('feedbackregistered', 'FeedbackRegisteredController')->middleware('auth');
+Route::get('feedback-view', 'FeedbackRegisteredController@index')->middleware('auth');
+Route::post('feedback-view', 'FeedbackRegisteredController@destroy_all')->middleware('auth');
+Route::get('feedback-view-sort', 'FeedbackRegisteredController@sort')->middleware('auth');
 
-//Route::get('feedback-view-public', 'FeedbackController@show');
-//Route::post('feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
-
-Route::delete('/feedback-view-public', 'FeedbackController@destroyPublic', function($id){});
+Route::get('noFeedback', function () {
+    return view('noFeedback');
+});
 
 Auth::routes();
 
@@ -194,11 +200,16 @@ Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
 Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
 Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
 Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
-Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
-Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
 Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandRecords'); //filtered land
 
+//pathway for form data
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+Route::post('/cropsReport', 'Reports\CropsReportController@getCropsPDF')->name('reportcrop.store');
+Route::post('/loadGraph','Graphs\CropCategoryController@showGraph')->name('graph.load');
+Route::post('/graphLoad','Graphs\CropCategoryController@generateHarvestAndCultivation')->name('graphdata.load');
+Route::post('/graphLoadVariety','Graphs\CropCategoryController@generateHarvestAndCultivationVariety')->name('graphdataVariety.load');
+Route::post('/graphLoadcrop','Graphs\CropCategoryController@generateHarvestAndCultivationCrop')->name('graphdataCrop.load');
+
 
 Route::get('/userRep', function () {
 
@@ -218,7 +229,7 @@ Route::get('/cropRep', function () {
     
 });
 
-//Approval Cultivation 
+// Approval Cultivation 
 
 Route::get('approval', 'ApprovalController@index');
 Route::get('harvestDescription/{id}', 'ApprovalController@harvestDescription');
@@ -227,4 +238,29 @@ Route::post('harvest-status', 'ApprovalController@updateHarvest');
 Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
+<<<<<<< HEAD
+//All Crop Information - Public
+Route::get('cropInformation', 'PublicController@allMainCrops');
+Route::get('publicMainCrops', 'PublicController@mainCrops');
+Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
+//Data Visualization - Crop Variety
 
+Route::get('crop_variety_dv', 'DVCropVarietyController@index');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-district' , 'Graphs\CropCategoryController@loadHarvestAndCultivation');
+Route::get('/crop-cat-district-variety' , 'Graphs\CropCategoryController@loadHarvestAndCultivationVariety');
+Route::get('/crop-cat-district-crop' , 'Graphs\CropCategoryController@loadHarvestAndCultivationcrop');
+=======
+// Crop Visualization
+>>>>>>> feature/crop_data_visualization
+
+Route::get('cropVisualization', 'CropVisualizationController@index');
+Route::get('cropHarvestSelect/{id}', 'CropVisualizationController@cropHarvestSelect');
+Route::post('harestVisulisationDetailsUpdate', 'CropVisualizationController@updateHarvest');
+Route::get('cropCultivationSelect/{id}', 'CropVisualizationController@cropCultivationSelect');
+Route::get('harvesrPdfConvert/{id}', 'CropVisualizationController@harvesrPdfConvert');
+Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController@updateCultivation');

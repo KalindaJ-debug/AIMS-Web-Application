@@ -48,8 +48,8 @@
         <div class="carousel-item active" id="first">
           <img src="assets/img/2.png" class="d-block w-100" alt="firstSlide" style="width:100%;height:540px;">
           <div class="carousel-caption d-none d-md-block">
-            <h5>Paddy</h5>
-            <p>Explore paddy field statistics</p>
+            <h5>Crop Details</h5>
+            <p>Explore all Crops and Crop Varieties.</p>
           </div>
         </div>
         <div class="carousel-item" id="second">
@@ -93,7 +93,7 @@
               <p class="card-text">View all main crops' details regarding cultivated percentage, estimated price and more.</p>
               <p class="card-text"><small class="text-muted">Last updated 30 mins ago</small></p>
               <div class="btn-container text-center" style="width:300px;height:30px;padding:50px;margin-left:200px;">
-                <a href="https://www.google.com/" style="text-decoration:none;"> <button type="button" class="btn btn-success btn-lg btn-block" style="background-color:#10391C;" data-toggle="tooltip" data-placement="top" title="Go To Main Crops Page"> Main Crops</button> </a>
+                <a href="{{ url('publicMainCrops') }}" style="text-decoration:none;"> <button type="button" class="btn btn-success btn-lg btn-block" style="background-color:#10391C;" data-toggle="tooltip" data-placement="top" title="Go To Main Crops Page"> Main Crops</button> </a>
               </div>
             </div>
           </div>
@@ -105,11 +105,11 @@
        <div class="row no-gutters">
          <div class="col-md-6">
            <div class="card-body text-right paddyIn">
-             <h5 class="card-title">Paddy</h5>
-             <p class="card-text">View all paddy fields' details regarding production and demand.</p>
+             <h5 class="card-title">Crop Details</h5>
+             <p class="card-text">View all crop information of Sri Lanka and crop varieties farmed in Sri Lanka.</p>
              <p class="card-text"><small class="text-muted">Last updated 30 mins ago</small></p>
              <div class="btn-container text-center" style="width:300px;height:30px;padding:50px;margin-left:200px;">
-               <a href="https://www.google.com/" style="text-decoration:none;"> <button type="button" class="btn btn-success btn-lg btn-block" style="background-color:#10391C;" data-toggle="tooltip" data-placement="top" title="Go To Paddy Statistics Page"> Paddy </button> </a>
+               <a href="{{ url('cropInformation') }}" style="text-decoration:none;"> <button type="button" class="btn btn-success btn-lg btn-block" style="background-color:#10391C;" data-toggle="tooltip" data-placement="top" title="Go To Paddy Statistics Page"> Crop Details </button> </a>
              </div>
            </div>
          </div>
