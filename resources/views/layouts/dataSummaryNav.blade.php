@@ -22,6 +22,8 @@
             </div>
 
             
+            <li class="nav-item" style="margin-bottom: 20px;">
+                <a class="nav-link"  href="/DvCropCat">Crop Category Summary</a>
             <li class="nav-item dropdown" style="margin-bottom: 20px;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="myFunction()">
                     Crop Category Summary
@@ -53,7 +55,7 @@
                   </div>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/">External Factors Summary</a>
+                <a class="nav-link" href="/DvExternalFac">External Factors Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
                 <a class="nav-link" href="/">Land Summary</a>

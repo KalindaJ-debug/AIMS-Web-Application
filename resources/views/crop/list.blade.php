@@ -62,7 +62,7 @@
           <td>Land Area</td>
           <td>Land Address</td>
           <td>Estimated Harvest Amount(Kg)</td>
-          <td>Cultivated Land (acres)</td>
+          <td>Cultivated Land (ha)</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>
