@@ -21,7 +21,7 @@
 
             
             <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link"  href="/">Crop Category Summary</a>
+                <a class="nav-link"  href="/DvCropCat">Crop Category Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
                 <a class="nav-link" href="/">Crop Summary</a>
@@ -33,7 +33,7 @@
                 <a class="nav-link" href="/">District Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/">External Factors Summary</a>
+                <a class="nav-link" href="/DvExternalFac">External Factors Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
                 <a class="nav-link" href="/">Land Summary</a>
