@@ -231,6 +231,7 @@ Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
 //All Crop Information - Public
 Route::get('cropInformation', 'PublicController@allMainCrops');
+Route::get('exportCropList', 'PublicController@exportCropList');
 Route::get('publicMainCrops', 'PublicController@mainCrops');
 Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
 //Data Visualization - Crop Variety
