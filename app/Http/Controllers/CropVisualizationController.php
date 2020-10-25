@@ -18,6 +18,7 @@ use App\Land;
 use App\Harvest;
 
 use PDF;
+use Illuminate\Support\Facades\App;
 
 class CropVisualizationController extends Controller
 {
@@ -224,44 +225,123 @@ class CropVisualizationController extends Controller
         ));
     }
 
-    public function harvesrPdfConvert($id) {
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($this->cropPdfHarvest($id));
-        $pdf->stream();
-        dd($pdf);
+    public function harvestPdfConvert($id) {
+        $harvestArray = array();
+        $harvestData = array();
+        $harvest = Harvest::where('crop_id', $id)->get();
+        foreach ($harvest as $harvest) {
+            $land = Land::where('id', $harvest->land_id)->first();
+            array_push($harvestData, $harvest->id);
+            array_push($harvestData, $land->districts->name);
+            array_push($harvestData, $harvest->cultivatedLand);
+            array_push($harvestArray, $harvestData);
+        }
+
+        $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">Crop Harvest Data</h3>
+      <hr>
+        <br>
+        <p> ** Harvest per District Information </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="20%">Harvest ID</th>
+        <th style="border: 1px solid; padding:12px;" width="40%">District</th> 
+        <th style="border: 1px solid; padding:12px;" width="40%">Land Extent (ha)</th>
+    </tr>
+        ';
+        foreach($harvestArray as $harvest){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$harvest[0].'</td>
+            <td style="border: 1px solid; padding:12px;">'.$harvest[1].'</td>
+            <td style="border: 1px solid; padding:12px;">'.$harvest[2].'</td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();  
     } 
 
-    public function cropPdfHarvest($id) {
+    public function cultivationPdfConvert($id) {
+        $cultivationArray = array();
+        $cultivationData = array();
+            $cultivation = cultivation::where('crop_id', $id)->get();
+            foreach ($cultivation as $cultivation) {
+                $land = Land::where('id', $cultivation->land_id)->first();
+                array_push($cultivationData, $cultivation->id);
+                array_push($cultivationData, $land->districts->name);
+                array_push($cultivationData, $cultivation->cultivatedLand);
+                array_push($cultivationArray, $cultivationData);
+            }
 
-        $output = '
-            <h2>Per Crop Harvest District Analysis</h2>
-                
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">District</th>
-                        <th scope="col">Cultivated Land</th>
-                    </tr>
-                </thead>
-                <tbody>
+        $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">Crop Cultivation Data</h3>
+      <hr>
+        <br>
+        <p> ** Cultivation per District Information </p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="20%">Cultivation ID</th>
+        <th style="border: 1px solid; padding:12px;" width="40%">District</th> 
+        <th style="border: 1px solid; padding:12px;" width="40%">Land Extent (ha)</th>
+    </tr>
         ';
-        $harvests = Harvest::where('crop_id', $id)->get();
-        foreach ($harvests as $harvest) {
-            $land = Land::where('id', $harvest->land_id)->first();
-            
-            $output .= '
-                <tr>
-                    <th scope="row">'.$harvest->id.'</th>
-                    <td>'.$land->districts->name.'</td>
-                    <td>'.$harvest->cultivatedLand.'</td>
-                </tr>
+        foreach($cultivationArray as $cultivation){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;">'.$cultivation[0].'</td>
+            <td style="border: 1px solid; padding:12px;">'.$cultivation[1].'</td>
+            <td style="border: 1px solid; padding:12px;">'.$cultivation[2].'</td>
+           </tr>
             ';
+        } //end of foreach
 
-            $output .= '
-                </tbody>
-            </table>
-            ';
-        }
-    }  
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($htmlStream);
+        return $pdf->stream();  
+    } 
 }

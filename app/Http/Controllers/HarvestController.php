@@ -39,8 +39,10 @@ class HarvestController extends Controller
         $region = region::all();
         $farmer = farmer::all();
         $cultivation = cultivation::where("id", $id)->first();
+
         $land = land::where("id", $cultivation->land_id)->first();
         $external_factors = external_factors::all();
+        // dd($cultivation);
         return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'cultivation' => $cultivation, 'land' => $land, 'external_factors' => $external_factors));
     }
 
@@ -81,7 +83,7 @@ class HarvestController extends Controller
         $game->province_id = request('province_id');
         $game->harvestedAmount = request('harvestedAmount');
         $game->endDate = request('endDate');
-        $game->external_id = request('reason');
+        $game->external_id = request('external_id');
         $game->save();
         
        /* $a = cultivation::whereRaw('cultivation.land_id='.request('land_id').' and cultivation.harvestedAmount > ' .request('harvestedAmount'))

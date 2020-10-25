@@ -41,7 +41,7 @@
     <form method="POST" action="{{ route('graph.load') }}">
                                @csrf
                                 <div class="row" >
-                                    <div class="input-group-prepend col-md-3 ml-5">
+                                    <div class="input-group-prepend col-sm-3 ml-5">
                                        <!-- <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>-->
                                     </div>
                                     <select class="custom-select col-md-8" id="selectDistrict" name="district" required>
