@@ -36,6 +36,22 @@ class DataController extends Controller
         $farmer = farmer::all();
         return view('crop.list', compact('contacts'));
     }
+    public function farmerLand(){
+        $land = land::where('farmer_id', request('farmer_id'))->get();
+        return $land;
+    }
+
+
+    public function farmerAddress(Request $request){
+        $land =land::where('addressNo', request('landId'))->get();
+        // dd($land);
+
+        // $land =land::select('province_id','id')->where('id' , $request->id)
+        // ->take(100)->get();
+        return $land;
+
+        
+    }
 
     public function farmerid()
     {
@@ -74,6 +90,7 @@ class DataController extends Controller
         $region = region::all();
         $farmer = farmer::all();
         $land = land::all();
+       // dd($land[0]->provinces);
         return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'land' => $land));
     }
 

@@ -41,11 +41,15 @@ Route::get('/crop-data/{id}', 'DataController@show');
 Route::get('/crop-data/{id}/delete', 'DataController@destroy');
 Route::resource('crop-data', 'DataController');
 Route::get('/farmer_id', 'DataController@farmerid');
+Route::get('/farmer_land', 'DataController@farmerLand');
+// Route::get('/farmer_land2', 'DataController@farmerLand2');
+Route::get('/farmer_address', 'DataController@farmerAddress');
 
 Route::get('/harvest-data', 'HarvestController@index');
 Route::get('/Entry-harvest-data/{id}', 'HarvestController@create');
 Route::get('/harvest-data/{id}', 'HarvestController@show');
 Route::resource('harvest-data', 'HarvestController');
+
 
 Route::get('/external-data', 'ExternalFactors@index');
 Route::get('/Entry-external-data', 'ExternalFactorsController@create');

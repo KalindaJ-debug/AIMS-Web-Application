@@ -43,10 +43,10 @@
     <form method="POST" action="{{ route('graph.load') }}">
                                @csrf
                                 <div class="row" >
-                                    <div class="input-group-prepend col-md-3 ml-5">
+                                    <div class="input-group-prepend col-sm-3 ml-5">
                                        <!-- <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>-->
                                     </div>
-                                    <select class="custom-select col-md-3" id="selectDistrict" name="district" required>
+                                    <select class="col-sm-3 col-form-label " id="selectDistrict" name="district" required> 
         
                                         @if($district != null)
                                         
@@ -56,7 +56,11 @@
         
                                         @endif
         
-                                    </select>    
+                                    </select>   
+                                    
+                                   <!-- <button type="submit" class="btn btn-primary">Generate Graph</button>-->
+                                </div>
+                           
      </form>  
      </div>                             
     <!--</div>

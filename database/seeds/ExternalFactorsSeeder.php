@@ -11,7 +11,7 @@ class ExternalFactorsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('districts')->insert([
+        DB::table('external_factors')->insert([
             [ 
                 'reason' => 'Rainfall'
             ],

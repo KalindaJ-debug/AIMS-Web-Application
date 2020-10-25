@@ -10,11 +10,7 @@ class harvests extends Model
 
     protected $table = 'harvests';
 
-
-    protected $fillable = ['category_id', 'variety_id', 'region_id', 'district_id', 'cultivatedLand', 'startDate','season', 'province_id', 'endDate', 'harvestedAmount', 'farmer_id', 'crop_id', 'external_id'];
-
-
-
+    protected $fillable = ['category_id', 'variety_id', 'region_id', 'district_id', 'cultivatedLand', 'startDate','season', 'province_id', 'endDate', 'harvestedAmount', 'farmer_id', 'crop_id'];
     
     //relationships
     public function lands(){
