@@ -15,8 +15,6 @@ class ApprovalHarvestSeeder extends Seeder
             [ 
                 'cultivation_id' => '1',
                 'land_id' => '1',
-                'category_id' => '1',
-                'crop_id' => '3',
                 'variety_id' => '4',
                 'season' => 'Maha',
                 'endDate' => '2020-12-08',

@@ -173,12 +173,6 @@
             }
             
             $(document).ready( function () {
-                // $('#provinceId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;
-                // $('#districtId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;
-                // $('#regionId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;   
                 $('#cropId option[value={{$cropId}}]').prop('selected', 'selected').change();
             });
 
