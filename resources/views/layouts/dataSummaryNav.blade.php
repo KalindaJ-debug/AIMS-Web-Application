@@ -22,8 +22,8 @@
             </div>
 
             
-            <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link"  href="/DvCropCat">Crop Category Summary</a>
+            {{-- <li class="nav-item" style="margin-bottom: 20px;">
+                <a class="nav-link"  href="/DvCropCat">Crop Category Summary</a> --}}
             <li class="nav-item dropdown" style="margin-bottom: 20px;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="myFunction()">
                     Crop Category Summary
@@ -32,11 +32,11 @@
                   position: fixed;
                   z-index: 2147483647">
                     <a class="dropdown-item" href="{{url('crop-cat-harvest')}}">Harvest Extent</a>
-                    <a class="dropdown-item" href="#">Cultivation Extent</a>
+                    <a class="dropdown-item" href="/DvCropCat">Cultivation Extent</a>
                   </div>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/">Crop Summary</a>
+                <a class="nav-link" href="{{ url('cropVisualization') }}">Crop Summary</a>
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
                 <a class="nav-link" href="/crop_variety_chart">Crop Variety Summary</a>
@@ -56,9 +56,6 @@
             </li>
             <li class="nav-item" style="margin-bottom: 20px;">
                 <a class="nav-link" href="/DvExternalFac">External Factors Summary</a>
-            </li>
-            <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/">Land Summary</a>
             </li>
 
         </ul>
