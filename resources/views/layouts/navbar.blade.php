@@ -21,11 +21,11 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ url('home') }}"> Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" href="#">About Us</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="{{url('feedback')}}">Contact Us</a>
         </li>
@@ -35,9 +35,9 @@
         <li class="nav-item">
         <a class="nav-link" href="{{ url('publicMainCrops') }}">Main Crops</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" href="#">Feedback</a>
-        </li>
+        </li> --}}
         @guest
           @else
             @if (Auth::user()->role == 'Admin')
