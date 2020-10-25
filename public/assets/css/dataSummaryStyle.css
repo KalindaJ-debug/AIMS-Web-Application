@@ -54,6 +54,15 @@
     
   }
 
+.sample-gif{
+        margin-top: 20px;
+        height: auto;
+        width: 700px;
+        border-width: 0.1rem;
+        border-color: #e7ebef;
+        display: block;
+}
+
 .harvestBgImage{
     height: 500px;
     width: 365px;

@@ -61,6 +61,10 @@ Route::post('/externalFactors', 'ExternalFactorsController@store')->name('extern
 Route::get('/getPDF', 'PDFcontroller@getPDF');
 
 Route::get('/Cultivation-list', 'DataController@list');
+
+Route::get('/DvCropCat', 'DVCropCategoryController@loadpage');
+Route::post('/DvCropCat', 'dvcropcat\DVCropCategoryController@showGraph')->name('graph.load');
+Route::get('/DvExternalFac', 'DvExternalFacController@index');
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
 
@@ -196,11 +200,16 @@ Route::get('/userReport', 'Reports\UsersReportController@getUsersPDF');
 Route::get('/sendUserEmail', 'Reports\UsersReportController@sendUserEmailPDF');
 Route::get('/farmersReport', 'Reports\FarmersReportController@getFarmersPDF');
 Route::get('/sendFarmersReport', 'Reports\FarmersReportController@sendFarmerEmailPDF');
-Route::get('/cropsReport', 'Reports\CropsReportController@getCropsPDF');
-Route::get('/sendCropsReport', 'Reports\CropsReportController@sendCropsEmailPDF');
 Route::get('exportFilteredLandPDF', 'LandReportController@exportFilteredLandRecords'); //filtered land
 
+//pathway for form data
 Route::post('/userReport','Reports\UsersReportController@getUsersPDF')->name('report.store');
+Route::post('/cropsReport', 'Reports\CropsReportController@getCropsPDF')->name('reportcrop.store');
+Route::post('/loadGraph','Graphs\CropCategoryController@showGraph')->name('graph.load');
+Route::post('/graphLoad','Graphs\CropCategoryController@generateHarvestAndCultivation')->name('graphdata.load');
+Route::post('/graphLoadVariety','Graphs\CropCategoryController@generateHarvestAndCultivationVariety')->name('graphdataVariety.load');
+Route::post('/graphLoadcrop','Graphs\CropCategoryController@generateHarvestAndCultivationCrop')->name('graphdataCrop.load');
+
 
 Route::get('/userRep', function () {
 
@@ -220,7 +229,7 @@ Route::get('/cropRep', function () {
     
 });
 
-//Approval Cultivation 
+// Approval Cultivation 
 
 Route::get('approval', 'ApprovalController@index');
 Route::get('harvestDescription/{id}', 'ApprovalController@harvestDescription');
@@ -229,6 +238,7 @@ Route::post('harvest-status', 'ApprovalController@updateHarvest');
 Route::post('cultivation-status', 'ApprovalController@updateCultivation');
 Route::post('harestDetailsUpdate', 'ApprovalController@store');
 
+<<<<<<< HEAD
 //All Crop Information - Public
 Route::get('cropInformation', 'PublicController@allMainCrops');
 Route::get('exportCropList', 'PublicController@exportCropList');
@@ -236,4 +246,24 @@ Route::get('publicMainCrops', 'PublicController@mainCrops');
 Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
 //Data Visualization - Crop Variety
 
-Route::get('crop_variety_dv', 'DVCropVarietyController@index');
+Route::post('crop_variety_dv', 'DVCropVarietyController@generateChart');
+Route::get('crop_variety_chart', 'DVCropVarietyController@index');
+
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
+
+//Data Visualization - Crop Category
+Route::get('/crop-cat-district' , 'Graphs\CropCategoryController@loadHarvestAndCultivation');
+Route::get('/crop-cat-district-variety' , 'Graphs\CropCategoryController@loadHarvestAndCultivationVariety');
+Route::get('/crop-cat-district-crop' , 'Graphs\CropCategoryController@loadHarvestAndCultivationcrop');
+=======
+// Crop Visualization
+>>>>>>> feature/crop_data_visualization
+
+Route::get('cropVisualization', 'CropVisualizationController@index');
+Route::get('cropHarvestSelect/{id}', 'CropVisualizationController@cropHarvestSelect');
+Route::post('harestVisulisationDetailsUpdate', 'CropVisualizationController@updateHarvest');
+Route::get('cropCultivationSelect/{id}', 'CropVisualizationController@cropCultivationSelect');
+Route::get('harvesrPdfConvert/{id}', 'CropVisualizationController@harvesrPdfConvert');
+Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController@updateCultivation');

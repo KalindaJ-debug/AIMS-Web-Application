@@ -7,26 +7,27 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         
-        <title>Farmer Management</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+        
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <script type="text/JavaScript">
+        $(document).ready( function () {
+            $('#categoryTable').DataTable();
+            $('#cropTable').DataTable();
+            $('#varietyTable').DataTable();
+        } );
+        </script>
+        <title>Crop Management</title>
     </head>
     <body>
 
         @include('layouts.header')
         @include('layouts.navbar')
-    <!-- style="background-color:#2E933C;" -->
-        <script>
-            $(document).ready( function () {
-                $('#varietyTable').DataTable();
-                $('#cropTable').DataTable();
-                $('#categoryTable').DataTable();
-            });
-        </script>
-        
+    <!-- style="background-color:#2E933C;" -->   
         <div class="container" style="background-color:white;">
 
             <h2 class="display-4">Crop Category</h2>
@@ -123,11 +124,8 @@
                 </tbody>
             </table>
 
-            <button type="button" class="btn bg-dark text-white" onclick="location.href='{{url('cropsReport')}}';">
+            <button type="button" class="btn bg-dark text-white" data-toggle="modal" data-target="#exampleModal">
                 <i class="fas fa-file-pdf"></i> Download Report
-            </button>
-            <button type="button" class="btn btn-warning" onclick="location.href='{{url('sendCropsReport')}}';">
-                <i class="fas fa-file-pdf"></i> Email Report
             </button>
 
             <!-- Edit Tables  -->
@@ -143,7 +141,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Category">
                                 <input type="hidden" id="editCategoryId" name="id">
@@ -172,7 +170,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Crop">
                                 <input type="hidden" id="editCropId" name="id">
@@ -201,7 +199,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="edit">
                                 <input type="hidden" name="category" value="Variety">
                                 <input type="hidden" id="editVarietyId" name="id">
@@ -234,7 +232,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="update">
                                 <input type="hidden" name="category" value="Crop">
                                 <input type="hidden" id="updateCategoryId" name="id">
@@ -269,7 +267,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="update">
                                 <input type="hidden" name="category" value="Variety">
                                 <input type="hidden" id="updateCropId" name="id">
@@ -306,7 +304,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="add">
                                 <input type="hidden" name="category" value="Category">
 
@@ -336,7 +334,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="add">
                                 <input type="hidden" name="category" value="Crop">
 
@@ -375,7 +373,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="add">
                                 <input type="hidden" name="category" value="Variety">
 
@@ -402,6 +400,76 @@
                 </div>
             </div>
 
+            <!-- modal to get pdf -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Export PDF</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <form method="POST" action="{{ route('reportcrop.store') }}">
+                        @csrf
+        
+                        <div class="form-group row">
+                        <label for="page" class="col-md-4 col-form-label text-md-right">{{ __('Page Size') }}</label>
+        
+                        <div class="col-md-6">
+                            <select id="page" class="form-control" name="page" required>
+                                <option value="A4" selected>A4</option>
+                                <option value="A6">A6</option>
+                            </select>
+                        </div>
+                        </div>
+        
+                        <div class="form-group row">
+                        <label for="orientation" class="col-md-4 col-form-label text-md-right">{{ __('Orientation') }}</label>
+        
+                        <div class="col-md-6">
+                            <select id="orientation" class="form-control" name="orientation" required>
+                                <option value="portrait" selected>Portrait</option>
+                                <option value="landscape">Landscape</option>
+                            </select>
+                        </div>
+                        </div>
+        
+                        <div class="form-group row">
+                        <label for="checkbox" class="col-md-4 col-form-label text-md-right">{{ __('Filter Report') }}</label>
+        
+                        <div class="col-md-8 checkbox">
+                            <input type="checkbox" name="fields" value="District">District<br>
+                            <select class="custom-select" id="selectDistrict" name="district_select">
+        
+                                @if($district != null)
+                                
+                                @foreach ($district as $item)
+                                    <option value="{{$item->id}}"> {{$item->name}}</option>
+                                @endforeach
+
+                                @endif
+
+                            </select><br>
+
+                        </div>
+                        </div>
+        
+                        <div>
+                        <input type="checkbox" name="sendEmail" value="send">Would you like a copy of the document mailed to you ?<br>
+                        </div>
+        
+                    <input type="text" name="email" id="email" value="{{ Auth::user()->email }}" hidden>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Download PDF</button>
+                    </div>
+                </form>
+                </div>
+                </div>
+            </div>
+
             <!-- Delete Dependancy -->
 
             <div class="modal" tabindex="-1" role="dialog" id="deleteData">
@@ -415,7 +483,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" action="{{action('CropController@store')}}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="hidden" name="function" value="delete">
                                 <input type="hidden" name="category" id="deleteCategoryId">
                                 <input type="hidden" name="id" id="cropId">
@@ -432,7 +500,7 @@
             </div>
 
         </div>
-
+        
         @include('layouts.footer')
     </body>
     <!-- Optional JavaScript -->

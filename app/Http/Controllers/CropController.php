@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CropCategory;
 use App\Crop;
+use App\District;
 use App\Variety;
 
 class CropController extends Controller
@@ -19,8 +20,9 @@ class CropController extends Controller
         $variety = Variety::all();
         $crop = Crop::all();
         $category = CropCategory::all();
+        $district = District::all();
         //dd($variety);
-        return view('cropAdmin', array('varieties' => $variety, 'crop' => $crop, 'category' => $category, 'categoryList' => $category, 'cropList' => $crop, 'categoryAddList' => $category, 'cropAddList' => $crop));
+        return view('cropAdmin', array('district' => $district,'varieties' => $variety, 'crop' => $crop, 'category' => $category, 'categoryList' => $category, 'cropList' => $crop, 'categoryAddList' => $category, 'cropAddList' => $crop));
     }
 
     /**

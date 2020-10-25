@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="assets/css/dataSummaryStyle.css">
     <script src="assets/js/dataSummaryScript.js"></script>
 
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
     
     
 
@@ -29,8 +31,10 @@
     @include('layouts.navbar')
 
     <!-- nav bar ends -->
-    <div class="wrapper d-flex">
-        
+    <div class="container-fluid wrapper d-flex align-items-stretch">
+        <!-- Sidebar begins -->
+        @include('layouts.dataSummaryNav') 
+        <!-- Sidebar ends -->
 
         <div class="main-panel container-fluid">
             <div class="content">
@@ -42,113 +46,32 @@
                                      CROP VARIETY SUMMARY</h4>
                             </div>                           
                             
-                            <div class="card-body ">
-                              <p class="text-center lead" style="font-family:'Trebuchet MS';">
-                              Select a crop variety from the list below to view the cultivation extent and the harvest extent per district</p>
+                            <div class="card-body ">                                
+                            <div class="container">
+                                <a href="{{ url('/crop_variety_chart')}}"	class="btn btn-success"><i class="fa fa-caret-left mr-2" style="color:white;" aria-hidden="true"></i>Return</a>
+                            </div> 
+                                <div class="container text-center"> 
+                                {!! $cultivationChart->container() !!}
+                                </div>
+                                <hr>
+                                <div class="container text-center">
+                              
+                                {!! $harvestChart->container() !!}
                                 
-                              <!-- Dropdown for crop variety list --> 
-                                <div class="dropdown text-center">
-                                  <button class="btn btn-success dropdown-toggle" type="button" id="Dropdown" 
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="vegDropdownFn()">
-                                      Select a crop variety
-                                  </button>
-                                  <div class="dropdown-menu" aria-labelledby="myDropdown" id="myDropdown" >
-                                    <i class="fas fa-search" aria-hidden="true"></i>
-                                    <input type="text" placeholder="Search" id="myInput" onkeyup="filterFunction()">
-                                      
-                                        @foreach ($cropvariety as $varieties)
-                                          <a class="dropdown-item" href="#">{{ $varieties->name }}</a>
-                                        @endforeach                                    
-                                                                                      
-                                      <!-- <a class="dropdown-item" href="#" onclick="VegChartGeneration('Brinjal');return false;">Brinjal</a> -->
-                                      
-                                  </div>                               
-                                      
-                                    <!-- Print and Export buttons -->                                    
-
-                                    <button class="btn btn-outline-success" type="button" id="print" data-toggle="modal" data-target="#printModal">
-                                        Print
-                                    </button>
-                                    <button class="btn btn-outline-success" type="button" id="export" data-toggle="modal" data-target="#exportModal">
-                                        Export
-                                    </button>
-
-                                </div>
-
-
-                                <!-- Print Modal-->
-                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header bg-light">
-                                          <h5 class="modal-title" id="exampleModalLongTitle">Print Report</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-
-                                        <div class="modal-body">
-                                          <p>Getting things ready to print</p>
-                                        </div>
-
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                                      </div>
-
-                                      </div>
-                                    </div>
-                                </div>
-                                <!--End of Print Modal -->
-
-                                <!-- Export Modal-->
-                                <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header bg-light">
-                                          <h5 class="modal-title" id="exampleModalLongTitle">Export As</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                          <form>
-                                            <div class="form-group">
-                                              <label for="file-name" class="col-form-label">File name:</label>
-                                              <input type="text" class="form-control" id="file-name">
-                                            </div>
-                                            <div class="form-group">
-                                              <select class="custom-select" id="inputGroupSelect01">
-                                                <option selected>Choose file type</option>
-                                                <option value="1">PDF</option>
-                                                <option value="2">EXCEL</option>
-                                                <option value="3">IMAGE</option>
-                                              </select>
-                                              
-                                            </div>
-                                          </form>
-
-                                          
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-secondary">Export</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <!-- End of Export Modal-->
-
-
-
-
-                                <div class="container text-center">  
-                                  <!-- <img id="image1" class="vegBgImage rounded mx-auto shadow p-3 mb-5 bg-white rounded " src="{{ ('assets/img/image1.jpg') }}"> -->
-                                    <canvas id="cropVarietyCultExtent"></canvas> 
-                                    <canvas id="cropVarietyHarvExtent"></canvas>                                 
-                                </div>      
+                                  
+                                </div>   
                                 
-                                                        
+
+                                </div>
+
+
+                               
+                              
+                                
+                                <br>
+                                <hr>
+                                <br>                                                     
+                                         
                             </div> 
                         </div>
                     </div>
@@ -159,7 +82,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
     
+    <!--Chart js links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js" integrity="sha512-zO8oeHCxetPn1Hd9PdDleg5Tw1bAaP0YmNvPY8CwcRyUk7d7/+nyElmFrB6f7vg4f7Fv4sui1mcep8RIEShczg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js" integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css" integrity="sha512-C7hOmCgGzihKXzyPU/z4nv97W0d9bv4ALuuEbSf6hm93myico9qa0hv4dODThvCsqQUmKmLcJmlpRmCaApr83g==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
 </body>
+
+{!! $cultivationChart->script() !!}
+{!! $harvestChart->script() !!}
 <!-- footer begins -->
 @include('layouts.footer')
 <!-- footer ends -->

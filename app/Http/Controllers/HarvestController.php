@@ -40,8 +40,8 @@ class HarvestController extends Controller
         $farmer = farmer::all();
         $cultivation = cultivation::where("id", $id)->first();
         $land = land::where("id", $cultivation->land_id)->first();
-       // $external_factors = external_factors::all();
-        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'cultivation' => $cultivation, 'land' => $land ));
+        $external_factors = external_factors::all();
+        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'cultivation' => $cultivation, 'land' => $land, 'external_factors' => $external_factors));
     }
 
     public function store(Request $request)
@@ -81,16 +81,17 @@ class HarvestController extends Controller
         $game->province_id = request('province_id');
         $game->harvestedAmount = request('harvestedAmount');
         $game->endDate = request('endDate');
+        $game->external_id = request('reason');
         $game->save();
         
-        $a = cultivation::whereRaw('cultivation.land_id='.request('land_id').' and cultivation.harvestedAmount > ' .request('harvestedAmount'))
+       /* $a = cultivation::whereRaw('cultivation.land_id='.request('land_id').' and cultivation.harvestedAmount > ' .request('harvestedAmount'))
         ->get();
         if(!empty($a->all()))
         {
             return redirect('/Entry-external-data');
             
-        }else
-            
+        }else 
+        */   
             return redirect('/harvest-data');
             
        

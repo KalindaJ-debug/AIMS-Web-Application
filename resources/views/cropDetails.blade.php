@@ -153,6 +153,18 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="titleid" class="col-sm-3 col-form-label">land Address</label>
+            <div class="col-sm-5">
+            <select name="land_id" class="form-control">
+            <option selected value="none">--Select Address--</option>
+                <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
+                @foreach ($land as $lands)
+                  <option value='{{ $lands->id }}'>{{ $lands->addressNo }}</option>
+              @endforeach
+            </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Amount</label>
             <div class="col-sm-5">
                 <input name="harvestedAmount" type="text" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
@@ -160,9 +172,9 @@
         </div>
         
         <div class="form-group row">
-            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(acres)</label>
+            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(ha)</label>
             <div class="col-sm-5">
-                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (acres)">
+                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
             </div>
         </div>
         <hr>
@@ -213,6 +225,12 @@
       });
     });
   </script>-->
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+        <script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"></script>
   <!-- Animations -->
 <script type="text/javascript">
 
