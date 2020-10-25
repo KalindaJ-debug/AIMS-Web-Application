@@ -35,9 +35,7 @@
     <!-- header begins -->
       @include('layouts.header')
     <!-- header ends -->
-
-    @include('layouts.navbar')
-    {{-- <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="#">AIMS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -78,9 +76,8 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
-    </nav> --}}
+    </nav>
     <!-- end of nav bar -->
-
     <div class="wrapper">
       <div class="parallax" style="height: 18vh; width: 100%">
         <div class="parallax-window" data-parallax="scroll" data-image-src="assets/img/rice.jpg"></div>
