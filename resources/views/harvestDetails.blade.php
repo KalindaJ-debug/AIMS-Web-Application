@@ -124,7 +124,7 @@
             <select name="province_id" class="form-control">
             <!--  <option selected value="none">--Select Province--</option> -->
               @foreach ($province as $provinces)
-                  <option value='{{ $provinces->id }}'>{{ $provinces->name }}</option>
+                  <option value='{{ $provinces->id }}' @if( $provinces->id == $cultivation->province_id) selected @endif >{{ $provinces->name }}</option>
               @endforeach
             </select>
             </div>
