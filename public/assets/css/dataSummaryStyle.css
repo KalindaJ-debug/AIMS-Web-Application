@@ -18,16 +18,17 @@
     
 }
 
-.nav-link{
+/* .navv-link{
     color: black;
     font-size: 15px;
+    padding: 10px 10px;
     
 }
 
-.nav-link:hover{
+.navv-link:hover{
     color:white;
     background-color:darkgreen;
-}
+} */
 
 .wrapper{
     margin-top: 10px;
@@ -38,7 +39,7 @@
     margin-left: 0rem;
 }
 
-.active{
+.activee{
     background-color: darkgreen;
     color: white;
 }
@@ -52,6 +53,15 @@
     display: block;
     
   }
+
+.sample-gif{
+        margin-top: 20px;
+        height: auto;
+        width: 700px;
+        border-width: 0.1rem;
+        border-color: #e7ebef;
+        display: block;
+}
 
 .harvestBgImage{
     height: 500px;

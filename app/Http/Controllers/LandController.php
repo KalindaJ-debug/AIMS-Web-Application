@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\cultivation;
 use App\Farmer;
+use App\harvests;
 use App\Land;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -60,10 +62,11 @@ class LandController extends Controller
         $lid = Land::find($id);
         //fetch data 
         $farmer = Farmer::where('id', $id)->first(); //farmer name
-        $landRecords = Land::with('provinces', 'districts')->where('farmer_id', $id)->paginate(5);
-        // $landRecords = $landRecords::with('provinces')->get();
+        $landRecords = Land::with('cultivation','harvests','land_type','provinces', 'districts')->where('farmer_id', $id)->paginate(5);
+        $cultivationRecords = cultivation::with('lands')->distinct()->get();
+        $harvestRecords = harvests::with('lands')->distinct()->get();
         $count = $landRecords->total(); //number of records
-        // dd($count);
+
         if($landRecords != null && $count > 0){
             //return land records
         return view('land-records', 
@@ -72,7 +75,9 @@ class LandController extends Controller
                 'lastName' => $farmer->lastName, 
                 'landRecords' => $landRecords, 
                 'count' => $count,
-                'farmerID' => $id
+                'farmerID' => $id,
+                'cultivationRecords' => $cultivationRecords,
+                'harvestRecords' => $harvestRecords
             )
         ); //view land records
 
@@ -97,8 +102,9 @@ class LandController extends Controller
         $land = Land::find($id); //capture farmer_id
         $provincesList = DB::table('provinces')->distinct()->get();
         $districtsList = DB::table('districts')->distinct()->get();
+        $landTypeList = DB::table('land_type')->distinct()->get();
 
-        return view('land-record-update', ['id' => $land->id, 'address' => $land->addressNo, 'street' => $land->streetName, 'lane' => $land->laneName, 'town' => $land->town, 'city' => $land->city, 'gnd' => $land->gnd, 'province' => $land->province_id, 'district' => $land->district_id, 'postalCode' => $land->postalCode, 'planningNumber' => $land->planningNumber, 'landExtend' => $land->landExtend, 'provincesList' => $provincesList, 'districtsList' => $districtsList]);
+        return view('land-record-update', ['id' => $land->id, 'address' => $land->addressNo, 'street' => $land->streetName, 'lane' => $land->laneName, 'town' => $land->town, 'landType' => $land->land_type_id, 'gnd' => $land->gnd, 'province' => $land->province_id, 'district' => $land->district_id, 'postalCode' => $land->postalCode, 'planningNumber' => $land->planningNumber, 'landExtend' => $land->landExtend, 'provincesList' => $provincesList, 'districtsList' => $districtsList, 'landTypeList' => $landTypeList]);
     }
 
     /**
@@ -117,8 +123,8 @@ class LandController extends Controller
                 'street' => ['nullable', 'max:50'],
                 'lane' => ['required', 'string' ,'max:100'],
                 'town' => ['nullable', 'max:50'],
-                'city' => ['required'],
-                'grama' => ['required'],
+                'landType' => ['required'],
+                'region' => ['required'],
                 'district' => ['required'],
                 'province' => ['required'],
                 'postal' => ['required', 'numeric', 'digits:5'],
@@ -137,8 +143,8 @@ class LandController extends Controller
         $land->streetName = $request->input('street');
         $land->laneName = $request->input('lane');
         $land->town = $request->input('town');
-        $land->city = $request->input('city');
-        $land->gnd = $request->input('grama');
+        $land->land_type_id = $request->input('landType');
+        $land->region_id = $request->input('region');
         $land->province_id = $request->input('province');
         $land->district_id = $request->input('district');
         $land->postalCode = $request->input('postal');

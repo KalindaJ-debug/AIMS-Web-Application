@@ -13,6 +13,8 @@ use App\crop;
 use App\variety;
 use App\district;
 use App\region;
+use App\land;
+use App\external_factors;
 
 class HarvestController extends Controller
 {
@@ -20,13 +22,14 @@ class HarvestController extends Controller
     {
         // $login = Login::all();
         // return response()->json($login);
-        $contacts = harvests ::all();
+        $contacts = harvests ::leftJoin("external_factors", "external_factors.id", "harvests.external_id")->select("harvests.*", "external_factors.reason")->get();
         //$province = Province::all();
+        //dd($contacts);
         return view('harvest.index', compact('contacts')); 
         
     }
 
-    public function create()
+    public function create($id)
     {
         $province = Province::all();
         $CropCategory = CropCategory::all();
@@ -35,7 +38,10 @@ class HarvestController extends Controller
         $district = district::all();
         $region = region::all();
         $farmer = farmer::all();
-        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer  ));
+        $cultivation = cultivation::where("id", $id)->first();
+        $land = land::where("id", $cultivation->land_id)->first();
+        $external_factors = external_factors::all();
+        return view('harvestDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'cultivation' => $cultivation, 'land' => $land, 'external_factors' => $external_factors));
     }
 
     public function store(Request $request)
@@ -62,7 +68,8 @@ class HarvestController extends Controller
         */
         //dd($request);
         $game = new harvests;
-        $game->farmer_id = request('farmer_id');
+        $game->cultivation_id = request('cultivation_id');
+        $game->land_id = request('land_id');
         $game->category_id = request('category_id');
         $game->crop_id = request('crop_id');
         $game->variety_id = request('variety_id');
@@ -74,24 +81,22 @@ class HarvestController extends Controller
         $game->province_id = request('province_id');
         $game->harvestedAmount = request('harvestedAmount');
         $game->endDate = request('endDate');
+        $game->external_id = request('reason');
         $game->save();
         
-
-       // $cultivation = $Cultivation::all();
-        // selet
-        // harvest checkdate
-        // if harvest more than other table redirect to factor view
-        //return redirect('/factro_url/'.$game->id);
-        // view save in hidden element
-        // <input type="hidden" name="harvest_id">
-        // when send to backed save harvest id in db
-        // ereason
-        // else
-        
-
-        return redirect('/Entry-external-data');
+       /* $a = cultivation::whereRaw('cultivation.land_id='.request('land_id').' and cultivation.harvestedAmount > ' .request('harvestedAmount'))
+        ->get();
+        if(!empty($a->all()))
+        {
+            return redirect('/Entry-external-data');
+            
+        }else 
+        */   
+            return redirect('/harvest-data');
+            
+       
         // return redirect()->action('HarvestController@index');
-
+        
     }
     
 }

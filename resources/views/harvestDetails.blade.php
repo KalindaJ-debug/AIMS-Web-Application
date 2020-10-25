@@ -49,17 +49,20 @@
 <!-- nav bar ends -->
 
 <div class="container">
+<h3 class="display-5">Enter Harvest Details</h3>
 <form method="post" action="/harvestDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
             <div class="col-sm-5">
                 <select name="farmer_id" type="text" class="form-control">
-                  <option selected value="none">--Select Name--</option>
+            <!-- <option selected value="none">--Select Name--</option>-->
                    @foreach ($farmer as $farmers)
-                      <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
+                      <option value='{{ $farmers->id }}' @if( $farmers->id == $land->farmer_id) selected @endif >{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
                    @endforeach  
                 </select>
+                <input type="hidden" id="land_id" name="land_id" value="{{$cultivation->land_id}}">
+                <input type="hidden" id="cultivation_id" name="cultivation_id" value="{{$cultivation->id}}">
             </div>
         </div>
         <div class="form-group row">
@@ -77,7 +80,7 @@
             <div class="col-sm-5">
                <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
                 <select name="category_id" class="form-control">
-                  <option selected value="none">--Select Crop-Category--</option>
+               <!--   <option selected value="none">--Select Crop-Category--</option>-->
                     @foreach ($CropCategory as $crop_categories)
                       <option value='{{ $crop_categories->id }}'>{{ $crop_categories->name }}</option>   
                     @endforeach                              
@@ -88,7 +91,7 @@
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
             <div class="col-sm-5">
             <select name="crop_id" class="form-control">
-              <option selected value="none">--Select Crop-Name--</option>
+      <!--   <option selected value="none">--Select Crop-Name--</option>-->
              @foreach ($crop as $crops)
                 <option value='{{ $crops->id }}'>{{ $crops->name }}</option>
              @endforeach 
@@ -99,7 +102,7 @@
             <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
             <div class="col-sm-5">
             <select name="variety_id" class="form-control">
-              <option selected value="none">--Select Variety--</option>
+        <!--      <option selected value="none">--Select Variety--</option> -->
               @foreach ($variety as $varieties)
                 <option value='{{ $varieties->id }}'>{{ $varieties->name }}</option>
              @endforeach 
@@ -116,7 +119,7 @@
             <label for="publisherid" class="col-sm-3 col-form-label">Province</label>
             <div class="col-sm-5">
             <select name="province_id" class="form-control">
-              <option selected value="none">--Select Province--</option>
+            <!--  <option selected value="none">--Select Province--</option> -->
               @foreach ($province as $provinces)
                   <option value='{{ $provinces->id }}'>{{ $provinces->name }}</option>
               @endforeach
@@ -127,7 +130,7 @@
             <label for="publisherid" class="col-sm-3 col-form-label">District</label>
             <div class="col-sm-5">
             <select name="district_id" class="form-control">
-              <option selected value="none">--Select District--</option>
+         <!--     <option selected value="none">--Select District--</option>-->
                @foreach ($district as $districts)
                   <option value='{{ $districts->id }}'>{{ $districts->name }}</option>
               @endforeach
@@ -138,7 +141,7 @@
             <label for="titleid" class="col-sm-3 col-form-label">Region</label>
             <div class="col-sm-5">
             <select name="region_id" class="form-control">
-              <option selected value="none">--Select Region--</option>
+           <!--   <option selected value="none">--Select Region--</option>-->
                @foreach ($region as $regions)
                   <option value='{{ $regions->id }}'>{{ $regions->name }}</option>
               @endforeach
@@ -153,9 +156,25 @@
         </div>
         
         <div class="form-group row">
-            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(acres)</label>
+            <label for="releasedateid" class="col-sm-3 col-form-label">Harvested Land(ha)</label>
             <div class="col-sm-5">
-                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (acres)">
+                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
+            </div>
+        </div>
+        <hr/>
+        <input type ="checkbox" id="chkddl" onlick="Enableddl(this)"/>
+        Accept the Checkbox, if there any External Factor to reduced Harvest
+        <hr/>
+        <div class="form-group row">
+            <label for="releasedateid" class="col-sm-3 col-form-label">External Factor</label>
+            <div class="col-sm-5">
+            <select name="external_id" id ="DDL" disabled="disabled" class="form-control">
+            <option selected value="none" >--Select External Factor--</option>
+                <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
+                @foreach ($external_factors as $external_factors)
+                  <option value='{{ $external_factors->id }}'>{{ $external_factors->reason }}</option>
+              @endforeach
+            </select>
             </div>
         </div>
         <hr>
@@ -225,6 +244,16 @@ $(function() {
   $('.amount').mask('######',{reverse : true});
 
 });
+</script>
+<!--js function for enable external factor etnry-->
+<script>
+    function Enableddl(chkddl){
+      var ddl = document.getElementById("DDL");
+      ddl.disabled=chkddl.checked ? false : true;
+      if(!ddl.disabled){
+        ddl.focus();
+      }
+    }
 </script>
 </html>
  

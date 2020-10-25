@@ -27,16 +27,16 @@
           <a class="nav-link" href="#">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact Us</a>
+          <a class="nav-link" href="{{url('feedback')}}">Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Main Crops</a>
+        <a class="nav-link" href="{{ url('cropInformation') }}">Crop List</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Paddy</a>
+        <a class="nav-link" href="{{ url('publicMainCrops') }}">Main Crops</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Other Field Crops</a>
+          <a class="nav-link" href="#">Feedback</a>
         </li>
         @guest
           @else

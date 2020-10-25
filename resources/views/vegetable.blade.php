@@ -29,33 +29,10 @@
     @include('layouts.navbar')
 
     <!-- nav bar ends -->
-    <div class="wrapper d-flex align-items-stretch ">
-        <div class="sidebar" style="width: 280px; height: inherit; ">
-
-        <ul class="nav flex-column" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-
-            <div class="card-header text-white bg-success">
-                <h4 class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-                    DATA SUMMARY</h4>
-            </div>
-
-            <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link active" href="/paddySummary">Paddy Summary</a>
-            </li>
-            <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/ofc">OFC Summary</a>
-            </li>
-            <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/vegetable">Vegetable Summary</a>
-            </li>
-            <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/harvest">Harvesting Schedule</a>
-            </li>
-            <li class="nav-item" style="margin-bottom: 20px;">
-                <a class="nav-link" href="/croplist">Crop List</a>
-            </li>
-        </ul>
-        </div>
+    <div class="container-fluid wrapper d-flex align-items-stretch ">
+    <!-- Sidebar begins -->
+    @include('layouts.dataSummaryNav') 
+    <!-- Sidebar ends -->
 
         <div class="main-panel container-fluid">
             <div class="content">

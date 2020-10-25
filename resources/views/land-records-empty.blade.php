@@ -71,7 +71,7 @@
                       <th>No</th>
                       <th>Address No</th>  
                       <th>Lane</th>
-                      <th>City</th>  
+                      <th>Land Type</th>  
                       <th>District</th>
                       <th>Province</th>
                       <th>Land Extent (ha)</th>

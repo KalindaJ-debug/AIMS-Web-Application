@@ -55,7 +55,7 @@
       						<h2>All Feedback</b></h2>
       					</div>
       					<div class="col-sm-6">
-      						<a class="btn btn-success"><i class="fa fa-sort mr-3" aria-hidden="true"></i> <span>Sort by Recent Date</span></a>
+      						<a href="{{url('feedback-view-public-sort')}}" class="btn btn-success"><i class="fa fa-sort mr-3" aria-hidden="true"></i> <span>Sort by Recent Date</span></a>
       						<a href="#deleteFeedback" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash mr-3" aria-hidden="true"></i> <span>Delete All</span></a>
       					</div>
       				</div>
@@ -89,7 +89,7 @@
       								<label for="checkbox1"></label>
       							</span>
       						</td>
-                  <!-- <td><input type="hidden" name="id" value="{{$fPublic->id}}"></td> -->
+                  
                   <td>{{$fPublic->name}}</td>
                   <td>{{$fPublic->email}}</td>
                   <td>{{$fPublic->subject}}</td>
@@ -97,15 +97,20 @@
                   
                   <td>
 
-                  <a href="#deleteSelectedFeedback" class="delete" data-toggle="modal"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                  <!-- <form action="" method="POST">
+                  
+      
+                  
+                  <form action="{{ url('/feedbackpublic',$fPublic->id) }}" method="POST">
+                  
+                  @method('DELETE')
                   @csrf
-      							<a href="#viewFeedback" class="edit" data-toggle="modal"><i class="fa fa-eye" data-toggle="tooltip" title="Edit" aria-hidden="true"></i></a>
-      							<a href="#deleteSelectedFeedback" class="delete" data-toggle="modal" data-id="{{$fPublic->id}}"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
-                  </form>  -->
+
+        
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>  
+                  
+                  </form> 
                   </td>
-                  <td><input id="dataId" type="hidden" value="{{$fPublic->id}}"></input></td>
-      					</tr>
+                </tr>
                 @endforeach
                 
                 
@@ -118,9 +123,14 @@
               
             </table>
               <!-- Pagination -->
-              {{$feedbackPublic->links()}}
+              {{ $feedbackPublic->links() }}
               <div class="clearfix">
-              </div>            
+              <div class="hint-text"><i>Showing {{count($feedbackPublic)}} out of {{$feedbackPublic->total()}} entries</i></div>
+              </div> 
+              <br>
+              <div class="container">
+                  <a href="{{ url('/feedback-management')}}"	class="btn btn-success"><i class="fa fa-caret-left mr-2" style="color:white;" aria-hidden="true"></i>Return to feedback management</a>
+              </div>           
       		</div>
       	</div>
       </div>
@@ -132,59 +142,19 @@
 
      <!-- Modals -->
 
-     <!-- View Modal begins -->
-     <div id="viewFeedback" class="modal fade">
-      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-        <div class="modal-content">
-          <form id="viewFeedbackForm" action="" method="POST">           
-            {{@csrf_field() }}
-            
-
-            <div class="modal-header">
-              <h4 class="modal-title">Feedback Message</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" id="name" class="form-control" value="{{$fPublic->name}}" disabled>
-              </div>
-              <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="email" class="form-control" value="{{$fPublic->email}}" disabled>
-              </div>
-              <div class="form-group">
-                <label>Subject</label>
-                <input type="text" id="subject" class="form-control" value="{{$fPublic->subject}}" disabled>
-              </div>
-              <div class="form-group">
-                <label>Message</label>
-                <textarea id="message" class="form-control" style="height:200px;" value="{{$fPublic->message}}" disabled></textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <!-- <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> -->
-              <input type="submit" class="btn btn-success" value="Close">
-            </div>
-          </form>
-        </div>
-      </div>
-     </div>
-
-     <!-- View Modal ends -->
-
      <!-- Delete Selected Modal begins -->
      <div id="deleteSelectedFeedback" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form method="post" action="{{url('FeedbackController@destroyPublic', $fPublic->id) }}" name="delete">
-            @method('delete');
-            {{ csrf_field() }}
+          
             <div class="modal-header">
               <h4 class="modal-title">Delete Feedback Records</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
+            <form action="feedbackpublic/{{$fPublic->id}}" name="delete" method="post">
+            @method('delete')
+            {{ csrf_field() }}
               <img src="assets/img/delete.png" alt="delete" style="margin-left:350px;margin-top:20px;">
               <input type="hidden" method="DELETE">
               <p class="text-center font-weight-bold" style="font-size:20px;margin-top:20px;">Are you sure you want to delete these feedback record(s)?</p>
@@ -204,7 +174,8 @@
      <div id="deleteFeedback" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <form >
+          <form method="POST" action="{{action('FeedbackPublicController@destroy_all')}}">
+            {{ csrf_field() }}
               <div class="modal-header">
                 <h4 class="modal-title">Delete All Feedback Records</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

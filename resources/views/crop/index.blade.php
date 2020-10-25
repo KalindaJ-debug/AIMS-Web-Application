@@ -56,12 +56,14 @@
     <h1 class="display-3">Cultivation Details</h1>    
     <div>
     <a style="margin: 19px;" href="/Entry-crop-data" class="btn btn-primary">New Cultivation Details</a>
+    <a style="margin: 19px;" href="" class="btn btn-warning">Genarate Pdf</a>
+    <a style="margin: 19px;" href="/Cultivation-list" class="btn btn-success">Cultivation List</a>
     </div>  
   <table class="table table-striped">
     <thead>
         <tr>
           <td>ID</td>
-          <td>Farmer ID</td>
+          <td>Farmer Name</td>
           <td>Season</td>
           <td>Category</td>
           <td>Crop Name</td>
@@ -71,8 +73,8 @@
           <td>Province</td>
           <td>District</td>
           <td>Region</td>
-          <td>Harvested Amount (kg)</td>
-          <td>Cultivated Land (acres)</td>
+          <td>Estimate Harvest Amount (kg)</td>
+          <td>Cultivated Land (ha)</td>
           <td colspan = 2>Actions</td>
         </tr>
     </thead>
@@ -98,9 +100,18 @@
            @php
              $region = App\Region::where('id', $contact->region_id)->first();
           @endphp
+          @php
+            $farmer = App\farmer::where('id', $contact->farmer_id)->first();
+          @endphp
+          @php
+            $land = App\land::where('id', $contact->land_id)->first();
+          @endphp
         <tr>
             <td>{{$contact->id}}</td>
-            <td>{{$contact->farmer_id}}</td>           
+            @if($farmer!==null)
+            <td>{{$farmer->firstName}} {{$farmer->lastName}}</td>  
+            @endif
+            <td>{{$land->farmer->firstName}} {{$land->farmer->lastName}}</td>  
             <td>{{$contact->season}}</td>
             <td>{{$category->name}}</td>
             <td>{{$crop->name}}</td>
@@ -113,6 +124,7 @@
             <td>{{$contact->harvestedAmount}}</td>
             <td>{{$contact->cultivatedLand}}</td>
             <td>
+                <button class="btn btn-warning" type="submit">Edit</button>
                 <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
             </td>
             <td>

@@ -34,7 +34,7 @@
   <title>Agriculture Information Management System | AIMS </title>
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
 </head>
@@ -53,12 +53,14 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
             <div class="col-sm-5">
-                <select name="farmer_id" type="text" class="form-control">
+                <select name="farmer_id" id="farmer_id" class="form-control">
                   <option selected value="none">--Select Name--</option>
                    @foreach ($farmer as $farmers)
                       <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
                    @endforeach  
                 </select>
+                <input type="hidden" id="land_id" name="land_id">
+               
             </div>
         </div>
         <div class="form-group row">
@@ -75,8 +77,8 @@
             <label for="titleid" class="col-sm-3 col-form-label">Crop Category</label>
             <div class="col-sm-5">
                <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
-                <select name="category_id" class="form-control">
-                  <option selected value="none">--Select Crop-Category--</option>
+                <select name="category_id" class="form-control dynamic" data-dependent="crop_categories">
+                  <option selected value="none">--Select Crop Category--</option>
                     @foreach ($CropCategory as $crop_categories)
                       <option value='{{ $crop_categories->id }}'>{{ $crop_categories->name }}</option>   
                     @endforeach                              
@@ -86,7 +88,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
             <div class="col-sm-5">
-            <select name="crop_id" class="form-control">
+            <select name="crop_id" class="form-control" data-dependent="crops">
               <option selected value="none">--Select Crop-Name--</option>
              @foreach ($crop as $crops)
                 <option value='{{ $crops->id }}'>{{ $crops->name }}</option>
@@ -97,7 +99,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
             <div class="col-sm-5">
-            <select name="variety_id" class="form-control">
+            <select name="variety_id" class="form-control" data-dependent="varieties">
               <option selected value="none">--Select Variety--</option>
               @foreach ($variety as $varieties)
                 <option value='{{ $varieties->id }}'>{{ $varieties->name }}</option>
@@ -151,6 +153,18 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="titleid" class="col-sm-3 col-form-label">land Address</label>
+            <div class="col-sm-5">
+            <select name="land_id" class="form-control">
+            <option selected value="none">--Select Address--</option>
+                <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
+                @foreach ($land as $lands)
+                  <option value='{{ $lands->id }}'>{{ $lands->addressNo }}</option>
+              @endforeach
+            </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Amount</label>
             <div class="col-sm-5">
                 <input name="harvestedAmount" type="text" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
@@ -158,9 +172,9 @@
         </div>
         
         <div class="form-group row">
-            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(acres)</label>
+            <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(ha)</label>
             <div class="col-sm-5">
-                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (acres)">
+                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
             </div>
         </div>
         <hr>
@@ -211,6 +225,12 @@
       });
     });
   </script>-->
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+        <script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"></script>
   <!-- Animations -->
 <script type="text/javascript">
 
@@ -227,4 +247,29 @@ $(function() {
 
 });
 </script>
+<!-- ajax data view change -->
+<script>
+$(document).ready(function(){
+  $('#farmer_id').change(function(){
+    if($(this).val() != '')
+    {
+      var farmer_id = $(this).val();
+      
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        url:'/farmer_id',
+        method:"GET",
+        data:{farmer_id:farmer_id, _token:_token},
+        success:function(result)
+        {
+          console.log(result); 
+          $('#land_id').val(result['id']);
+        }
+      })
+    }
+    
+  });
+});
+</script>
+
 </html>
