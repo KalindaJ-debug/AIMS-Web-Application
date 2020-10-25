@@ -523,4 +523,394 @@ class PublicController extends Controller
 
     }//end of method
 
+    //export crop lists
+    public function exportCropList(Request $request){
+        
+        $crop_category = $request->input('crop_category');
+        
+        if( $crop_category == "Vegetables" ){
+            $vegetable = Crop::with('varieties')->where('type_id', "1")->distinct()->get();
+            
+            //html stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Available Crops in Sri Lanka</h3>
+      <p style="margin-left:50px;font-weight:bold;">Crop Category: Vegetables </p>
+      <hr>
+        <br>
+        <p style="margin-left:50px;"> * All Vegetable Crops in Sri Lanka Are Listed Below.</p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;margin-left:50px;margin-right:50px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Name</th>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Variety</th>
+        
+    </tr>
+        ';
+        foreach($vegetable as $item){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;text-align:center;">'.$item->name.'</td>
+            <td style="border: 1px solid; padding:12px;"> 
+                <ul style="margin-left:50px;"> 
+                    ';
+                    foreach($item->varieties as $var){
+                        $htmlStream .='
+                            <li> '.$var->name.'</li>
+                        ';
+                    }
+                    $htmlStream .='
+                </ul>
+            </td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+            //stream pdf
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($htmlStream);
+            return $pdf->stream();
+        }
+        else if($crop_category == "Fruits"){
+            $fruits = Crop::with('varieties')->where('type_id', "2")->distinct()->get();
+            
+            //html stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Available Crops in Sri Lanka</h3>
+      <p style="margin-left:50px;font-weight:bold;">Crop Category: Fruits </p>
+      <hr>
+        <br>
+        <p style="margin-left:50px;"> * All Fruit Crops in Sri Lanka Are Listed Below.</p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;margin-left:50px;margin-right:50px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Name</th>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Variety</th>
+        
+    </tr>
+        ';
+        foreach($fruits as $item){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;text-align:center;">'.$item->name.'</td>
+            <td style="border: 1px solid; padding:12px;"> 
+                <ul style="margin-left:50px;"> 
+                    ';
+                    foreach($item->varieties as $var){
+                        $htmlStream .='
+                            <li> '.$var->name.'</li>
+                        ';
+                    }
+                    $htmlStream .='
+                </ul>
+            </td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+            //stream pdf
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($htmlStream);
+            return $pdf->stream();
+
+        }
+        else if($crop_category == "Roots"){
+            $roots = Crop::with('varieties')->where('type_id', "4")->distinct()->get();
+            
+            //html stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Available Crops in Sri Lanka</h3>
+      <p style="margin-left:50px;font-weight:bold;">Crop Category: Roots and Tubers </p>
+      <hr>
+        <br>
+        <p style="margin-left:50px;"> * All Roots and Tubers Crops in Sri Lanka Are Listed Below.</p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;margin-left:50px;margin-right:50px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Name</th>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Variety</th>
+        
+    </tr>
+        ';
+        foreach($roots as $item){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;text-align:center;">'.$item->name.'</td>
+            <td style="border: 1px solid; padding:12px;"> 
+                <ul style="margin-left:50px;"> 
+                    ';
+                    foreach($item->varieties as $var){
+                        $htmlStream .='
+                            <li> '.$var->name.'</li>
+                        ';
+                    }
+                    $htmlStream .='
+                </ul>
+            </td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+            //stream pdf
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($htmlStream);
+            return $pdf->stream();
+        }
+        else if($crop_category == "Leafy"){
+            $leafy = Crop::with('varieties')->where('type_id', "3")->distinct()->get();
+
+            //html stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Available Crops in Sri Lanka</h3>
+      <p style="margin-left:50px;font-weight:bold;">Crop Category: Leafy Vegetables </p>
+      <hr>
+        <br>
+        <p style="margin-left:50px;"> * All Leafy Vegetable Crops in Sri Lanka Are Listed Below.</p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;margin-left:50px;margin-right:50px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Name</th>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Variety</th>
+        
+    </tr>
+        ';
+        foreach($leafy as $item){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;text-align:center;">'.$item->name.'</td>
+            <td style="border: 1px solid; padding:12px;"> 
+                <ul style="margin-left:50px;"> 
+                    ';
+                    foreach($item->varieties as $var){
+                        $htmlStream .='
+                            <li> '.$var->name.'</li>
+                        ';
+                    }
+                    $htmlStream .='
+                </ul>
+            </td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+            //stream pdf
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($htmlStream);
+            return $pdf->stream();
+        }
+        else if($crop_category == "Paddy"){
+            $paddy = Crop::with('varieties')->where('type_id', "5")->distinct()->get();
+
+            //html stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Available Crops in Sri Lanka</h3>
+      <p style="margin-left:50px;font-weight:bold;">Crop Category: Paddy </p>
+      <hr>
+        <br>
+        <p style="margin-left:50px;"> * All Paddy Crops in Sri Lanka Are Listed Below.</p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;margin-left:50px;margin-right:50px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Name</th>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Variety</th>
+        
+    </tr>
+        ';
+        foreach($paddy as $item){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;text-align:center;">'.$item->name.'</td>
+            <td style="border: 1px solid; padding:12px;"> 
+                <ul style="margin-left:50px;"> 
+                    ';
+                    foreach($item->varieties as $var){
+                        $htmlStream .='
+                            <li> '.$var->name.'</li>
+                        ';
+                    }
+                    $htmlStream .='
+                </ul>
+            </td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+            //stream pdf
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($htmlStream);
+            return $pdf->stream();
+        }
+        else if($crop_category == "ofc"){
+            $ofc = Crop::with('varieties')->where('type_id', "6")->distinct()->get();
+
+            //html stream
+            $htmlStream = '
+        <div class="col-6">
+        <div style="max-width:100%;background-color:#08260E;border:none;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center" style="padding:30px;color:white;">
+              <h2 class="card-title" style="margin-left:20px;">Agriculture Information Management System | AIMS </h2>
+              <p class="card-text" style="margin-left:400px;">Department of Agriculture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <br>
+      <h3 style="margin-left:250px;">All Available Crops in Sri Lanka</h3>
+      <p style="margin-left:50px;font-weight:bold;">Crop Category: Other Field Crops (OFC) </p>
+      <hr>
+        <br>
+        <p style="margin-left:50px;"> * All Other Field Crops in Sri Lanka Are Listed Below.</p>
+        <br>
+    <table width="100%" style="border-collapse: collapse; border: 0px;margin-left:50px;margin-right:50px;">
+    <tr>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Name</th>
+        <th style="border: 1px solid; padding:12px;" width="50%">Crop Variety</th>
+        
+    </tr>
+        ';
+        foreach($ofc as $item){
+            $htmlStream .='
+            <tr>
+            <td style="border: 1px solid; padding:12px;text-align:center;">'.$item->name.'</td>
+            <td style="border: 1px solid; padding:12px;"> 
+                <ul style="margin-left:50px;"> 
+                    ';
+                    foreach($item->varieties as $var){
+                        $htmlStream .='
+                            <li> '.$var->name.'</li>
+                        ';
+                    }
+                    $htmlStream .='
+                </ul>
+            </td>
+           </tr>
+            ';
+        } //end of foreach
+
+        $htmlStream .= '</table>
+        <br>
+        
+        ';
+
+            //stream pdf
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($htmlStream);
+            return $pdf->stream();
+        }
+        else{
+            dd('Wrong Crop Category Selected');
+        }
+
+    } //end of method
+
 } //end of public controller class

@@ -41,46 +41,24 @@ class DVCropVarietyController extends Controller
 
         //Input from district dropdown
         $districtname = $request->input('districtname');
-    
-        // Cultivation extent Chart        
-        $cultivation = cultivation::where('district_id',$districtname)
-                        ->groupBy('variety_id')
-                        ->selectRaw('sum(cultivatedLand) as sum, variety_id')
-                        ->pluck('variety_id','sum');
-                        
-                        
-        //$variety_id = cultivation::pluck('variety_id');
-        //$variety_name = variety::pluck('name')->where('id', $variety_id);
-
-        $cultivationChart = new CropVarietyChart;
-
-        $cultivationChart->title('Cultivation extent(Ha.) vs Crop variety');
-        $cultivationChart->labels($cultivation->values());
-        $cultivationChart->dataset('Cultivation extent', 'bar', $cultivation->keys())
-                            ->backgroundColor('#AADAAA');
-
-
-        // Harvest extent Chart
-        $harvest = harvests::where('district_id',$districtname)
-                        ->groupBy('variety_id')
-                        ->selectRaw('sum(cultivatedLand) as sum, variety_id')
-                        ->pluck('variety_id','sum');
-
-        $harvestChart = new CropVarietyChart;
-
-        $harvestChart->title('Harvest extent(Ha.) vs Crop variety');
-        $harvestChart->labels($harvest->values());
-        $harvestChart->dataset('Cultivation extent', 'bar', $harvest->keys())
-                            ->backgroundColor('#CADAAA');
+                   
+        //Cultivation Chart Query
+        $cultivation = DB::select('select v.name as name, sum(c.cultivatedLand) as sum
+                                   from cultivation c,varieties v 
+                                   where c.district_id = ? AND v.id = c.variety_id
+                                   group by c.variety_id', [$districtname]);
         
+          
+        // Harvest extent Chart Query
+        $harvest = DB::select('select v.name as name, sum(c.cultivatedLand) as sum
+                                   from harvests c,varieties v 
+                                   where c.district_id = ? AND v.id = c.variety_id
+                                   group by c.variety_id', [$districtname]);        
 
-
-        $topic = District::where('id', $districtname)->select('name');
 
         //Return to view
         return view('crop_variety_dv', ['districtname' => $districtname, 
-                'cultivation' => $cultivation, 'cultivationChart' => $cultivationChart, 'harvestChart' => $harvestChart,
-                    'topic'=> $topic]);
+                 'cultivations' => $cultivation,  'harvests' => $harvest]);
     }
 
     }

@@ -14,9 +14,6 @@ class ExternalFactorsSeeder extends Seeder
         DB::table('external_factors')->insert([
             [ 
                 'reason' => 'Rainfall'
-            ],
-            [
-                'reason' => 'Insect Attacks'
             ]
         ]);
     }

@@ -21,23 +21,35 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ url('home') }}"> Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" href="#">About Us</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="{{url('feedback')}}">Contact Us</a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Crop Information
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ url('cropInformation') }}">All Crop Information</a>
+          <a class="dropdown-item" href="{{ url('publicMainCrops') }}">Main Crops</a>
+          </div>
+        </li>
+
+        {{-- <li class="nav-item">
         <a class="nav-link" href="{{ url('cropInformation') }}">Crop List</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="{{ url('publicMainCrops') }}">Main Crops</a>
-        </li>
-        <li class="nav-item">
+        </li> --}}
+        {{-- <li class="nav-item">
           <a class="nav-link" href="#">Feedback</a>
-        </li>
+        </li> --}}
+        {{-- Admin Links  --}}
         @guest
           @else
             @if (Auth::user()->role == 'Admin')
@@ -46,18 +58,83 @@
               </li>
             @endif
         @endguest
+
+        @guest
+          @else
+            @if (Auth::user()->role == 'Admin')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Crop Management
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url('crop') }}">Crop Management</a>
+              <a class="dropdown-item" href="{{ url('crop-data') }}">Crop Cultivation</a>
+              <a class="dropdown-item" href="{{ url('harvest-data') }}">Harvest Management</a>
+              <a class="dropdown-item" href="{{ url('external-data') }}">External Factors</a>
+              </div>
+            </li>
+            @endif
+        @endguest
+
+        @guest
+          @else
+            @if (Auth::user()->role == 'Admin')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Users
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url('register') }}">User Registration</a>
+              <a class="dropdown-item" href="{{ url('adminuser') }}">User Management</a>
+              <a class="dropdown-item" href="{{ url('farmer') }}">Farmer Management</a>
+              <a class="dropdown-item" href="{{ url('device') }}">Device Management</a>
+              </div>
+            </li>
+            @endif
+        @endguest
+            {{-- Data Visualization  --}}
+        @guest
+          @else
+            @if (Auth::user()->role == 'Admin')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Chart Summary
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url('crop-cat-harvest') }}">Crop Category Summary</a>
+              <a class="dropdown-item" href="{{ url('cropVisualization') }}">Crop Summary</a>
+              <a class="dropdown-item" href="{{ url('crop_variety_chart') }}">Crop Variety Summary</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ url('crop-cat-district') }}">Crop Category District Summary</a>
+              <a class="dropdown-item" href="{{ url('crop-cat-district-crop') }}">Crop District Summary</a>
+              <a class="dropdown-item" href="{{ url('crop-cat-district-variety') }}">Crop Variety District Summary</a>
+              </div>
+            </li>
+            @endif
+        @endguest
+
+        @guest
+          @else
+            @if (Auth::user()->role == 'Admin')
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More <i class="fa fa-ellipsis-h ml-2" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url('feedback-management') }}"> Feedback</a>
+              </div>
+            </li>
+            @endif
+        @endguest
         
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Crops</a>
-          <div class="dropdown-menu z-index-dropdown" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Main Crops</a>
-            <a class="dropdown-item" href="#">Paddy</a>
-            <a class="dropdown-item" href="#">Other Field Crops</a>
-          </div>
-        </li> -->
+      
+
+        {{-- AI Links  --}}
+        
+        
       </ul>
-      <form class="form-inline my-2 my-lg-1" style="width:630px;">
-        <input class="form-control mr-sm-2" style="width:500px;" type="text" placeholder="Search AIMS" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Enter To Search">
+    <form class="form-inline my-2 my-lg-1" style="width:450px;" method="GET" action="{{ url('searched') }}">
+        <input class="form-control mr-sm-2" name="search-bar" style="width:300px;" type="text" placeholder="Search AIMS" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Enter To Search">
           <button class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="top" title="Search Crops"> <i class="fas fa-search mr-3"> </i> Search </button>
       </form>
     </div>

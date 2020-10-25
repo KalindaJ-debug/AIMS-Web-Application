@@ -212,6 +212,14 @@
               </div>
               <div class="modal-footer">
                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+              <form action="{{ url('exportCropList') }}" method="GET">
+                {{ csrf_field() }}
+                <input type="hidden" value="Vegetables" name="crop_category">
+                <button type="submit" class="btn bg-dark text-white">
+                  <i class="fas fa-file-pdf mr-2"></i> Download 
+                </button>
+              </form>
+              
               </div>
             
           </div>
@@ -275,6 +283,13 @@
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+              <form action="{{ url('exportCropList') }}" method="GET">
+                {{ csrf_field() }}
+                <input type="hidden" value="Fruits" name="crop_category">
+                <button type="submit" class="btn bg-dark text-white">
+                  <i class="fas fa-file-pdf mr-2"></i> Download 
+                </button>
+              </form>
             </div>
           
         </div>
@@ -338,6 +353,13 @@
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+              <form action="{{ url('exportCropList') }}" method="GET">
+                {{ csrf_field() }}
+                <input type="hidden" value="Roots" name="crop_category">
+                <button type="submit" class="btn bg-dark text-white">
+                  <i class="fas fa-file-pdf mr-2"></i> Download 
+                </button>
+              </form>
             </div>
           
         </div>
@@ -401,6 +423,13 @@
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+              <form action="{{ url('exportCropList') }}" method="GET">
+                {{ csrf_field() }}
+                <input type="hidden" value="Leafy" name="crop_category">
+                <button type="submit" class="btn bg-dark text-white">
+                  <i class="fas fa-file-pdf mr-2"></i> Download 
+                </button>
+              </form>
             </div>
           
         </div>
@@ -464,6 +493,13 @@
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+              <form action="{{ url('exportCropList') }}" method="GET">
+                {{ csrf_field() }}
+                <input type="hidden" value="Paddy" name="crop_category">
+                <button type="submit" class="btn bg-dark text-white">
+                  <i class="fas fa-file-pdf mr-2"></i> Download 
+                </button>
+              </form>
             </div>
           
         </div>
@@ -527,6 +563,13 @@
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+              <form action="{{ url('exportCropList') }}" method="GET">
+                {{ csrf_field() }}
+                <input type="hidden" value="ofc" name="crop_category">
+                <button type="submit" class="btn bg-dark text-white">
+                  <i class="fas fa-file-pdf mr-2"></i> Download 
+                </button>
+              </form>
             </div>
           
         </div>
