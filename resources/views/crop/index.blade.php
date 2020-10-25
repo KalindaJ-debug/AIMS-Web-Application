@@ -46,9 +46,9 @@
   
     <h1 class="display-3">Cultivation Details</h1>   <br> 
     <div>
-    <a style="margin: 0px;" href="/Entry-crop-data" class="btn btn-primary">New Cultivation Details</a>
-    <a style="margin: 0px;" href="" class="btn btn-warning">Genarate Pdf</a>
-    <a style="margin: 0px;" href="/Cultivation-list" class="btn btn-success">Cultivation List</a>
+    <a style="margin: 19px;" href="/Entry-crop-data" class="btn btn-primary">New Cultivation Details</a>
+    <!--<a style="margin: 19px;" href="" class="btn btn-warning">Genarate Pdf</a>-->
+    <a style="margin: 19px;" href="/Cultivation-list" class="btn btn-success">Cultivation List</a>
     </div>  
     <br>
   <table class="table table-striped float-left">
