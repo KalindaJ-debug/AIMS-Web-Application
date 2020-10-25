@@ -56,8 +56,8 @@
           </div>
         </li> -->
       </ul>
-      <form class="form-inline my-2 my-lg-1" style="width:630px;">
-        <input class="form-control mr-sm-2" style="width:500px;" type="text" placeholder="Search AIMS" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Enter To Search">
+    <form class="form-inline my-2 my-lg-1" style="width:630px;" method="GET" action="{{ url('searched') }}">
+        <input class="form-control mr-sm-2" name="search-bar" style="width:500px;" type="text" placeholder="Search AIMS" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Enter To Search">
           <button class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="top" title="Search Crops"> <i class="fas fa-search mr-3"> </i> Search </button>
       </form>
     </div>
