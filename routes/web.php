@@ -267,3 +267,8 @@ Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController
 
 //Search Results
 Route::get('searched', 'HomeController@search');
+
+//mobile API routes
+
+Route::get('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers');
+Route::get('/getFarmers','Mobile\UserController@getAllFarmers');    
