@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!--<meta name="viewport"
-  content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -16,30 +16,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
 
-  <title></title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
+  <title>Harvest Details Entry</title>
+  
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <!-- scrool reveal api-->
-
-  <script src="https://unpkg.com/scrollreveal"></script>
-
-  <title>Agriculture Information Management System | AIMS </title>
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all">
   
-  <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
 </head>
-<body> <!-- onload='document.form1.seasson.focus()'>-->
+<body> 
 <!-- header begins -->
 @include('layouts.header')
 <!--header end-->
@@ -202,6 +190,7 @@
     $(".submitButton").attr("disabled", !this.checked);
     });
   </script>
+
 <!-- function to validate only decimal numbers are allowed in harvest amount field-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <!--date validation jquary function-->
@@ -220,31 +209,7 @@
     }
 });
 </script>
-<!-- Animations -->
-<script type="text/javascript">
 
-ScrollReveal().reveal('.container', {
-  duration:2000,
-  origin:'bottom',
-  distance: '200px',
-  delay:100
-});
-</script>
-<script type="text/javascript">
-
-ScrollReveal().reveal('.container', {
-  duration:2000,
-  origin:'bottom',
-  distance: '200px',
-  delay:100
-});
-</script>
-<script type="text/javascript">
-$(function() {
-  $('.amount').mask('######',{reverse : true});
-
-});
-</script>
 <!--js function for enable external factor etnry-->
 <script>
     function Enableddl(chkddl){
