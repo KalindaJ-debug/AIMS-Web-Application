@@ -49,7 +49,7 @@
 <!-- nav bar ends -->
 
 <div class="container">
-<h3 class="display-5">Enter Harvest Details</h3>
+<h1>Enter Harvest Details</h1>
 <form method="post" action="/harvestDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
@@ -79,10 +79,11 @@
             <label for="titleid" class="col-sm-3 col-form-label">Crop Category</label>
             <div class="col-sm-5">
                <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
-                <select name="category_id" class="form-control">
+                <select name="category_id" id="category_id" class="form-control" onchange='categorychange()'>
                <!--   <option selected value="none">--Select Crop-Category--</option>-->
                     @foreach ($CropCategory as $crop_categories)
-                      <option value='{{ $crop_categories->id }}'>{{ $crop_categories->name }}</option>   
+                      <!-- <option value='{{ $crop_categories->id }}' @if($crop_categories->id == $land->crop_categories) selected @endif>{{ $crop_categories->name }}</option>   -->
+                      <option value='{{ $crop_categories->id }}' @if( $crop_categories->id == $cultivation->category_id) selected @endif >{{$crop_categories->name }}</option> 
                     @endforeach                              
                  </select>
             </div>
@@ -90,10 +91,11 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
             <div class="col-sm-5">
-            <select name="crop_id" class="form-control">
+            <select name="crop_id" id="crop_id" class="form-control" onchange='cropchange()'>
       <!--   <option selected value="none">--Select Crop-Name--</option>-->
              @foreach ($crop as $crops)
-                <option value='{{ $crops->id }}'>{{ $crops->name }}</option>
+                <!-- <option value='{{ $crops->id }}'>@if($crops->id == $land->crops) selected @endif>{{ $crops->name }}</option> -->
+                <option value='{{ $crops->id }}' @if( $crops->id == $cultivation->crop_id) selected @endif >{{$crops->name }}</option> 
              @endforeach 
            </select>
             </div>
@@ -101,10 +103,11 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
             <div class="col-sm-5">
-            <select name="variety_id" class="form-control">
+            <select name="variety_id" id="variety_id" class="form-control">
         <!--      <option selected value="none">--Select Variety--</option> -->
               @foreach ($variety as $varieties)
-                <option value='{{ $varieties->id }}'>{{ $varieties->name }}</option>
+                <!-- <option value='{{ $varieties->id }}'> @if( $varieties->id == $land->varieties) selected @endif > {{ $varieties->name }}</option> -->
+          <option value='{{ $varieties->id }}' @if( $varieties->id == $cultivation->variety_id) selected @endif >{{$varieties->name }}</option>
              @endforeach 
             </select>
         </div>
@@ -132,7 +135,9 @@
             <select name="district_id" class="form-control">
          <!--     <option selected value="none">--Select District--</option>-->
                @foreach ($district as $districts)
-                  <option value='{{ $districts->id }}'>{{ $districts->name }}</option>
+               <option value='{{ $districts->id }}' @if( $districts->id == $cultivation->district_id) selected @endif >{{$districts->name }}</option>
+
+                  
               @endforeach
             </select>
             </div>
@@ -151,24 +156,25 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label"> Harvest Amount</label>
             <div class="col-sm-5">
-                <input name="harvestedAmount" type="text" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
+                <input name="harvestedAmount" type="text" maxlength="6" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
             </div>
         </div>
         
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Harvested Land(ha)</label>
             <div class="col-sm-5">
-                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
+                <input name="cultivatedLand" type="text" maxlength="4" onchange ="validatecultivateland()" class="form-control input-sm text-left amount" id="cultivatedLand" placeholder="XXX (ha)">
+                <input type="hidden" id="cultivatedLandToCompare" name="cultivatedLandToCompare" value="{{$cultivation->cultivatedLand}}">
             </div>
         </div>
-        <hr/>
+        <!--<hr/>
         <input type ="checkbox" id="chkddl" onlick="Enableddl(this)"/>
         Accept the Checkbox, if there any External Factor to reduced Harvest
-        <hr/>
+        <hr/>-->
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">External Factor</label>
             <div class="col-sm-5">
-            <select name="external_id" id ="DDL" disabled="disabled" class="form-control">
+            <select name="external_id" id ="DDL" disabled="disable" class="form-control">
             <option selected value="none" >--Select External Factor--</option>
                 <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
                 @foreach ($external_factors as $external_factors)
@@ -247,13 +253,84 @@ $(function() {
 </script>
 <!--js function for enable external factor etnry-->
 <script>
-    function Enableddl(chkddl){
+    function validatecultivateland(){
       var ddl = document.getElementById("DDL");
-      ddl.disabled=chkddl.checked ? false : true;
-      if(!ddl.disabled){
-        ddl.focus();
+      var cultivatedLand = document.getElementById("cultivatedLand");
+      var cultivatedLandToCompare = document.getElementById("cultivatedLandToCompare");
+
+      if(Number(cultivatedLandToCompare.value)> Number(cultivatedLand.value) && (ddl.disabled == true)){
+      ddl.disabled = false;
+      
       }
     }
+  
+</script>
+<script>
+/*$(document).ready(function(){
+  $('#cultivatedLand').change(function(){
+  alert("test");
+  /* if($(this).val() != '')
+    {
+      var land_id = $(this).val();
+      
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        url:'/validate/cultivatedLand',
+        method:"GET",
+        data:{land_id:land_id, _token:_token},
+        success:function(result)
+        {
+          console.log(result); 
+          $('#land_id').val(result['id']);
+        }
+      })
+    }
+  
+  });
+});*/
+</script> 
+<script>
+
+</script>
+<script>
+function categorychange(){
+  console.log("category change");
+  var cropCategory = document.getElementById('category_id').value;
+
+  $('#crop_id').empty();
+  var sel = document.getElementById('crop_id');
+  console.log(cropCategory);
+  @foreach ($crop as $crops)
+
+  if ('{{$crops->type_id}}' == cropCategory){
+    var opt = document.createElement('option');
+    opt.appendChild( document.createTextNode('{{$crops->name}}'));
+    opt.value = '{{$crops->id}}';
+    sel.appendChild(opt);
+
+  }
+  @endforeach
+}
+</script>
+<script>
+function cropchange(){
+  console.log("crop change");
+  var Crop = document.getElementById('crop_id').value;
+
+  $('#variety_id').empty();
+  var sel = document.getElementById('variety_id');
+  console.log(Crop);
+  @foreach ($variety as $varieties)
+
+  if ('{{$varieties->crop_id}}' == Crop){
+    var opt = document.createElement('option');
+    opt.appendChild( document.createTextNode('{{$varieties->name}}'));
+    opt.value = '{{$varieties->id}}';
+    sel.appendChild(opt);
+
+  }
+  @endforeach
+}
 </script>
 </html>
  

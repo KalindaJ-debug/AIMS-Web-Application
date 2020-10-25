@@ -48,6 +48,7 @@
 <!-- nav bar ends -->
 
 <div class="container">
+<h1>Enter Cultivation Details</h1>
 <form method="post" name="form1" action="/cropDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
@@ -59,8 +60,19 @@
                       <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
                    @endforeach  
                 </select>
-                <input type="hidden" id="land_id" name="land_id">
-               
+                <input type="hidden" id="land_id" name="land_id">  
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="titleid" class="col-sm-3 col-form-label">land Address</label>
+            <div class="col-sm-5">
+            <select name="land_id" id="landId" class="lAddress form-control"  onchange='landChange()'>
+            <option selected value="none">--Select Address--</option>
+                <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
+                @foreach ($land as $lands)
+                  <option value='{{ $lands->id }}'>{{ $lands->addressNo }}</option>
+              @endforeach
+            </select>
             </div>
         </div>
         <div class="form-group row">
@@ -77,7 +89,7 @@
             <label for="titleid" class="col-sm-3 col-form-label">Crop Category</label>
             <div class="col-sm-5">
                <!--<input name="category_id" type="text" class="form-control" id="titleid" placeholder="Crop-Category">-->
-                <select name="category_id" class="form-control dynamic" data-dependent="crop_categories">
+                <select name="category_id" class="form-control dynamic" data-dependent="crop_categories" id="category_id" onchange='categorychange()'>
                   <option selected value="none">--Select Crop Category--</option>
                     @foreach ($CropCategory as $crop_categories)
                       <option value='{{ $crop_categories->id }}'>{{ $crop_categories->name }}</option>   
@@ -88,8 +100,8 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Crop Name</label>
             <div class="col-sm-5">
-            <select name="crop_id" class="form-control" data-dependent="crops">
-              <option selected value="none">--Select Crop-Name--</option>
+            <select name="crop_id" id="crop_id" class="form-control" data-dependent="crops" onchange='cropchange()'>
+            <option selected value="none">--Select Crop-Name--</option> 
              @foreach ($crop as $crops)
                 <option value='{{ $crops->id }}'>{{ $crops->name }}</option>
              @endforeach 
@@ -99,7 +111,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Variety</label>
             <div class="col-sm-5">
-            <select name="variety_id" class="form-control" data-dependent="varieties">
+            <select name="variety_id" id="variety_id" class="form-control" data-dependent="varieties">
               <option selected value="none">--Select Variety--</option>
               @foreach ($variety as $varieties)
                 <option value='{{ $varieties->id }}'>{{ $varieties->name }}</option>
@@ -122,7 +134,7 @@
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">Province</label>
             <div class="col-sm-5">
-            <select name="province_id" class="form-control">
+            <select name="province_id" class="form-control" id="provinceid" onchange='provincechange()'>
             <!--  <option selected value="none">--Select Province--</option>-->
               @foreach ($province as $provinces)
                   <option value='{{ $provinces->id }}'>{{ $provinces->name }}</option>
@@ -133,7 +145,7 @@
         <div class="form-group row">
             <label for="publisherid" class="col-sm-3 col-form-label">District</label>
             <div class="col-sm-5">
-            <select name="district_id" class="form-control">
+            <select name="district_id" class="form-control" id="district_id">
              <!-- <option selected value="none">--Select District--</option>-->
                @foreach ($district as $districts)
                   <option value='{{ $districts->id }}'>{{ $districts->name }}</option>
@@ -144,7 +156,7 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Region</label>
             <div class="col-sm-5">
-            <select name="region_id" class="form-control">
+            <select name="region_id" class="form-control" id="region_id">
               <!--<option selected value="none">--Select Region--</option>-->
                @foreach ($region as $regions)
                   <option value='{{ $regions->id }}'>{{ $regions->name }}</option>
@@ -153,28 +165,16 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">land Address</label>
+            <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Amount(Kg)</label>
             <div class="col-sm-5">
-            <select name="land_id" class="form-control">
-            <option selected value="none">--Select Address--</option>
-                <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
-                @foreach ($land as $lands)
-                  <option value='{{ $lands->id }}'>{{ $lands->addressNo }}</option>
-              @endforeach
-            </select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="titleid" class="col-sm-3 col-form-label">Estimated Harvest Amount</label>
-            <div class="col-sm-5">
-                <input name="harvestedAmount" type="text" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
+                <input name="harvestedAmount" type="text" maxlength="6" class="form-control input-sm text-left amount" id="harvestedAmount" placeholder="XXX (kg)">
             </div>
         </div>
         
         <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Cultivated Land(ha)</label>
             <div class="col-sm-5">
-                <input name="cultivatedLand" type="text" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
+                <input name="cultivatedLand" type="text" maxlength="4" class="form-control input-sm text-left amount" id="releasedateid" placeholder="XXX (ha)">
             </div>
         </div>
         <hr>
@@ -271,5 +271,265 @@ $(document).ready(function(){
   });
 });
 </script>
+<script>
+function categorychange(){
+  console.log("category change");
+  var cropCategory = document.getElementById('category_id').value;
 
+  $('#crop_id').empty();
+  var sel = document.getElementById('crop_id');
+  console.log(cropCategory);
+  @foreach ($crop as $crops)
+
+  if ('{{$crops->type_id}}' == cropCategory){
+    var opt = document.createElement('option');
+    opt.appendChild( document.createTextNode('{{$crops->name}}'));
+    opt.value = '{{$crops->id}}';
+    sel.appendChild(opt);
+
+  }
+  @endforeach
+}
+</script>
+
+<script>
+function cropchange(){
+  console.log("crop change");
+  var Crop = document.getElementById('crop_id').value;
+
+  $('#variety_id').empty();
+  var sel = document.getElementById('variety_id');
+  console.log(Crop);
+  @foreach ($variety as $varieties)
+
+  if ('{{$varieties->crop_id}}' == Crop){
+    var opt = document.createElement('option');
+    opt.appendChild( document.createTextNode('{{$varieties->name}}'));
+    opt.value = '{{$varieties->id}}';
+    sel.appendChild(opt);
+
+  }
+  @endforeach
+}
+</script>
+
+<script>
+$(document).ready(function(){
+  $('#farmer_id').change(function(){
+
+    console.log("working");
+    if($(this).val() != '')
+    {
+      var farmer_id = $(this).val();
+      
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        url:'/farmer_land',
+        method:"GET",
+        data:{farmer_id:farmer_id, _token:_token},
+        
+        success:function(data)
+        {
+
+          // console.log(data);
+          
+         var options = ""; 
+         $.each(data, function(i,r){
+
+          console.log(data);
+          options+="<option value="+r['id']+">"+r['addressNo']+"</option>";
+          // options+="<option value="+r['id']+">"+r['province_id']+"</option>";
+         });
+         // console.log("farmer_land");console.log(result); 
+          $('#landId').html(options);
+          //$('#province_id').html(options);
+        }
+      })
+    }
+    
+  });
+});
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $('#farmer_id').change(function(){
+
+    console.log("working");
+    if($(this).val() != '')
+    {
+      var farmer_id = $(this).val();
+      
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        url:'/farmer_land',
+        method:"GET",
+        data:{farmer_id:farmer_id, _token:_token},
+        
+        success:function(data)
+        {
+
+          // console.log(data);
+          
+         var options = ""; 
+         $.each(data, function(i,r){
+
+          console.log(data);
+          options+="<option value="+r['id']+">"+r['province_id']+"</option>";
+          // options+="<option value="+r['id']+">"+r['province_id']+"</option>";
+         });
+         // console.log("farmer_land");console.log(result); 
+          $('#provinceid').html(options);
+          //$('#province_id').html(options);
+        }
+      })
+    }
+    
+  });
+});
+// $(document).ready(function(){
+//   $('#landId').change(function(){
+
+//     console.log("working2");
+//     if($(this).val() != '')
+//     {
+//       var landId = $(this).val();
+
+//       console.log(landId);
+      
+//       var _token = $('input[name="_token"]').val();
+//       $.ajax({
+//         url:'/farmer_address',
+//         method:"GET",
+//         data:{addressNo:landId, _token:_token},
+//         success:function(data)
+//         {
+
+//           console.log(data);
+//          var options = ""; 
+//          $.each(data, function(i,r){
+//           options+="<option value="+r['id']+">"+r['province_id']+"</option>";
+//           //options+="<option value="+r['id']+">"+r['province_id']+"</option>";
+//          });
+//          // console.log("farmer_land");console.log(result); 
+//           $('#province_id').html(options);
+//           //$('#province_id').html(options);
+//         }
+//       })
+//     }
+    
+//   });
+// });
+
+// $(document).ready(function(){
+
+//   $(document).on('change','.lAddress', function(){
+
+//     console.log("working");
+
+//     var addresId =$(this).val();
+
+//     console.log(addresId);
+//     var div=$(this).parent().parent();
+//     var op= "";
+
+//     $.ajax({
+
+//       type:'get',
+//       url:'/farmer_land',
+//       data: {'id':addresId},
+//       success.function($data){
+
+//         console.log('success');
+//         console.log(data);
+//         console.log(data.length);
+//       }
+
+//     });
+
+
+//   });
+// });
+
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function({
+  function landChange(){
+
+        var land = document.getElementById('landId').value;
+
+          @foreach ($land as $lands){
+            if ('{{lands->id}}' == land) {
+              $('#provinceid').empty();
+
+              var province = document.getElementById('provinceid');
+
+              var opt = document.createElement('option');
+              opt.appendChild( document.createTextNode('{{$land->provinces->name}}'));
+              opt.value = '{{$lands->provinces->id}}';
+              province.appendChild(opt);
+
+              $('#district_id').empty();
+              var district = document.getElementById('district_id');
+
+              var opt = document.createElement('option');
+              opt.appendChild( document.createTextNode('{{$land->districts->name}}'));
+              opt.value = '{{$lands->districts->id}}';
+              district.appendChild(opt);
+
+              $('#region_id').empty();
+              var region = document.getElementById('region_id');
+
+              var opt = document.createElement('option');
+              opt.appendChild( document.createTextNode('{{$land->regions->name}}'));
+              opt.value = '{{$lands->regions->id}}';
+              region.appendChild(opt);
+            }
+            @endforeach
+          }
+        }
+)};
+            
+          
+        
+// $(document).ready(function(){
+//   $('#landId').change(function(){
+
+//     console.log("working");
+//     if($(this).val() != '')
+//     {
+//       var farmer_id = $(this).val();
+      
+//       var _token = $('input[name="_token"]').val();
+//       $.ajax({
+//         url:'/farmer_land',
+//         method:"GET",
+//         data:{farmer_id:farmer_id, _token:_token},
+        
+//         success:function(data)
+//         {
+
+//           // console.log(data);
+          
+//          var options = ""; 
+//          $.each(data, function(i,r){
+
+//           console.log(data);
+//           options+="<option value="+r['id']+">"+r['district_id']+"</option>";
+//           // options+="<option value="+r['id']+">"+r['province_id']+"</option>";
+//          });
+//          // console.log("farmer_land");console.log(result); 
+//           $('#district_id').html(options);
+//           //$('#province_id').html(options);
+//         }
+//       })
+//     }
+    
+//   });
+// });
+
+</script>
 </html>
