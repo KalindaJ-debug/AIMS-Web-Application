@@ -27,17 +27,28 @@
 <!-- nav bar begins -->
 @include('layouts.navbar')
 <!-- nav bar ends -->
-<div class="container">
-    <h1>External Factors</h1>
 
-    <div class ="card-body">
-    <canvas id="bar-chart" width="500" height="200"></canvas>
-    </div>
+<div class="row">
+  <div class="col-2">
+    @include('layouts.dataSummaryNav')
+  </div>
+  <div class="col-10">
+    <div class="container">
+      <br> 
+        <h1>External Factors</h1>
+    
+        <div class ="card-body">
+        <canvas id="bar-chart" width="500" height="200"></canvas>
+        </div>
+    
+        </div>
+  </div>
+</div>
 
-    </div>
 <!-- footer begins -->
 @include('layouts.footer')
 <!-- footer ends -->
+
   </div>
   </div>
   </body>

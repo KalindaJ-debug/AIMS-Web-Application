@@ -26,8 +26,17 @@
 <!-- nav bar begins -->
 @include('layouts.navbar')
 <!-- nav bar ends -->
+
+<div class="row container-fluid">
+    <div class="col-2 container-fluid">
+        @include('layouts.dataSummaryNav')
+    </div>
+    <div class="col-10">
+        {{-- container begins  --}}
 <div class="container">
+    <br>
     <h1>District Summary Cultivation Data for Crop Category</h1>
+    <br> <br>
     <div class="input-group-prepend">
     <form method="POST" action="{{ route('graph.load') }}">
                                @csrf
@@ -35,7 +44,7 @@
                                     <div class="input-group-prepend col-sm-3 ml-5">
                                        <!-- <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>-->
                                     </div>
-                                    <select class="col-sm-3 col-form-label " id="selectDistrict" name="district" required> 
+                                    <select class="custom-select col-md-8" id="selectDistrict" name="district" required>
         
                                         @if($district != null)
                                         
@@ -45,11 +54,8 @@
         
                                         @endif
         
-                                    </select>   
-                                    
-                                   <!-- <button type="submit" class="btn btn-primary">Generate Graph</button>-->
-                                </div>
-                           
+                                    </select> 
+                                </div>   
      </form>  
      </div>                             
     
@@ -57,13 +63,15 @@
         <canvas id="cropCategoryChart" width="500" height="200"></canvas>
     </div>
 </div>
+{{-- container ends  --}}
 
-  </div>
-  </div>
+    </div>
+</div>
   <!-- footer begins -->
   @include('layouts.footer')
 <!-- footer ends -->
   </body>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   
 <script>
