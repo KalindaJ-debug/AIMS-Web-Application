@@ -251,7 +251,7 @@ Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
 
 Route::post('crop_variety_dv', 'DVCropVarietyController@generateChart');
 Route::get('crop_variety_chart', 'DVCropVarietyController@index');
-
+Route::get('Crop Variety Report', 'CropVarietyReportController@generatePDF');
 
 //Data Visualization - Crop Category
 Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
