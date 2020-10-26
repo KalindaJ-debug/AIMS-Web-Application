@@ -61,12 +61,7 @@ class UserController extends Controller
 
             
             $approval->land_id = $request->input('lid');
-            //$approval->crop_id = $variety->crop->id;
-            //$approval->category_id = $variety->crop->category->id;
-            $approval->variety_id = $request->input('variety');
-            //$approval->province_id = $land->provinces->id;
-            //$approval->district_id = $land->districts->id;
-            //$approval->land->regions->id;
+            $approval->variety_id = $request->input('variety');;
             $approval->season = $season;
             $approval->endDate = $endDate;
             $approval->harvestedAmount = $request->input('amount');
@@ -77,6 +72,27 @@ class UserController extends Controller
 
 
 
-            return response()->json(['success'=> 1,'message'=>'successfully added alll data','approval' => $approval]);
+            return response()->json(['success'=> 1,'message'=>'successfully added all data','approval' => $approval]);
+    }
+
+    public function getAllApproval(){
+        $approvals = ApprovalCultivation::where('status', '=', 0)->get();
+
+        return response()->json(['success'=> 1,'message'=>'success','approval' => $approvals]);
+
+    }   
+
+    public function getApproval(Request $request){
+
+        $approval = ApprovalCultivation::where('id', '=', $request->input('id'))->get();
+
+        // $address = "".$approval->land->addressNo. " " .$approval->land->streetName. " ".$approval->land->laneName;
+
+        // $name = $approval->Land->farmer->firstName;
+
+        // $variety = $approval->variety->name;
+
+        return response()->json(['success'=> 1,'message'=>'success','approval' => $approval]);//, 'name' => $name, 'variety' => $variety]);
+
     }
 }

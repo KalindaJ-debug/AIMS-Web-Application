@@ -15,19 +15,6 @@ class FarmerSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-<<<<<<< HEAD
-	        DB::table('farmers')->insert([
-                'firstName' => $faker->firstName,
-                'otherName' => $faker->firstNameMale,
-                'lastName' => $faker->lastName,
-                'userName' => $faker->firstName,
-                'email' => $faker->email,
-                'telephoneNo' => '773734324',
-                'nic' => '981610954V',
-                'nicImage' => $faker->image,
-	            'password' => bcrypt('secret'),
-	        ]);
-=======
         DB::table('farmers')->insert([
             'firstName' => $faker->firstName,
             'otherName' => $faker->firstNameMale,
@@ -39,6 +26,5 @@ class FarmerSeeder extends Seeder
             'nicImage' => $faker->image,
             'password' => bcrypt('secret'),
         ]);
->>>>>>> 1054a75b37d18c37a156cd6401e417bfd661ca3b
     }
 }
