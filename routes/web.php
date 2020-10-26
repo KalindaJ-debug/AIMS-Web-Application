@@ -277,3 +277,6 @@ Route::get('searched', 'HomeController@search');
 Route::get('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers');
 Route::get('/getFarmers','Mobile\UserController@getAllFarmers');    
 Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
+
+//Crop Variety Report Generation Route
+Route::get('Crop Variety Report', 'CropVarietyReportController@generatePDF');
