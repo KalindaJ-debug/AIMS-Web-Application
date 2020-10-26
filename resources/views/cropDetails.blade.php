@@ -350,7 +350,7 @@ $(document).ready(function(){
          $.each(data, function(i,r){
 
           console.log(data);
-          options+="<option value="+r['id']+">"+r['addressNo']+"</option>";
+          options+="<option value="+r['id']+">"+r['$land[0] $land[1] $land[2]']+"</option>";
           // options+="<option value="+r['id']+">"+r['province_id']+"</option>";
          });
          // console.log("farmer_land");console.log(result); 
