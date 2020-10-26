@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  {{-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   <!--Font css Link--> --}}
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 
@@ -34,13 +32,13 @@
 <br> <br>
 <h1 style="margin-left:100px;">Enter Cultivation Details</h1> <br> <br>
 <div class="container">
-<h1>Enter Cultivation Details</h1>
+{{-- <h1>Enter Cultivation Details</h1> --}}
 <form method="post" name="form1" action="/cropDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
             <div class="col-sm-5">
-                <select name="farmer_id" id="farmer_id" class="form-control">
+                <select name="farmer_id" id="farmer_id" class="form-control" onchange="farmerChange()">
                   <option selected value="none">--Select Name--</option>
                    @foreach ($farmer as $farmers)
                       <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
@@ -52,11 +50,11 @@
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">land Address</label>
             <div class="col-sm-5">
-            <select name="land_id" id="landId" class="lAddress form-control"  onchange='landChange()'>
+            <select name="land_id" id="landId" class="lAddress form-control"  onclick='landChange()'>
             <option selected value="none">--Select Address--</option>
                 <!--<input name="" type="text" class="form-control input-sm text-left amount" id="" placeholder="Land ID">-->
                 @foreach ($land as $lands)
-                  <option value='{{ $lands->id }}'>{{ $lands->addressNo }}</option>
+            <option value='{{ $lands->id }}'>{{ $lands->addressNo }} {{ $lands->streetName}} {{ $lands->laneName}}</option>
               @endforeach
             </select>
             </div>
@@ -197,21 +195,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <!--date validation jquary function-->
-<!-- <script>
-    $(document).ready(function(){
-      // $("#startDate").datePicker({
-      $("#startDate").datepicker({
-        showAnim: 'drop',
-        numberOfMonth:1,
-        dateFormat:'dd-MM-yy',
-        // minDate: "2020-11-09"
-        minDate: new Date()
-        // onClose:function(selectedDate){
-        //   $('#endDate').datePicker("option","minDate",selectedDate);
-        // }
-      });
-    });
-  </script>-->
+
   <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
@@ -291,6 +275,28 @@ function categorychange(){
     @endforeach
   }
 
+  function farmerChange(){
+    
+    var farmer = document.getElementById('farmer_id').value;
+    console.log("Farmer Changed");
+
+    $('#landId').empty();
+    var select = document.getElementById('landId');
+
+    @foreach ($land as $lands)
+    
+        if ('{{$lands->farmer_id}}' == farmer) {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('{{$lands->addressNo}} {{$lands->streetName}} {{$lands->laneName}}') );
+          opt.value = '{{$lands->id}}'; 
+          select.appendChild(opt); 
+
+        } //end of if
+                    
+      @endforeach
+
+  }//end of farmer change function
+
   function landChange() {
     console.log("Land Changed");
     var land = document.getElementById('landId').value;
@@ -298,7 +304,6 @@ function categorychange(){
     @foreach ($land as $lands) 
       if ('{{$lands->id}}' == land) {
         $('#provinceid').empty();
-
         var province = document.getElementById('provinceid');
 
         var opt = document.createElement('option');
@@ -323,190 +328,8 @@ function categorychange(){
         region.appendChild(opt);
       }
     @endforeach
-  }      
+  } //end of land change function     
 </script>
-
-<script>
-$(document).ready(function(){
-  $('#farmer_id').change(function(){
-
-    console.log("working");
-    if($(this).val() != '')
-    {
-      var farmer_id = $(this).val();
-      
-      var _token = $('input[name="_token"]').val();
-      $.ajax({
-        url:'/farmer_land',
-        method:"GET",
-        data:{farmer_id:farmer_id, _token:_token},
-        
-        success:function(data)
-        {
-
-          // console.log(data);
-          
-         var options = ""; 
-         $.each(data, function(i,r){
-
-          console.log(data);
-          options+="<option value="+r['id']+">"+r['addressNo']+"</option>";
-          // options+="<option value="+r['id']+">"+r['province_id']+"</option>";
-         });
-         // console.log("farmer_land");console.log(result); 
-          $('#landId').html(options);
-          //$('#province_id').html(options);
-        }
-      })
-    }
-    
-  });
-});
-</script>
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-  $('#farmer_id').change(function(){
-
-    console.log("working");
-    if($(this).val() != '')
-    {
-      var farmer_id = $(this).val();
-      
-      var _token = $('input[name="_token"]').val();
-      $.ajax({
-        url:'/farmer_land',
-        method:"GET",
-        data:{farmer_id:farmer_id, _token:_token},
-        
-        success:function(data)
-        {
-
-          // console.log(data);
-          
-         var options = ""; 
-         $.each(data, function(i,r){
-
-          console.log(data);
-          options+="<option value="+r['id']+">"+r['province_id']+"</option>";
-          // options+="<option value="+r['id']+">"+r['province_id']+"</option>";
-         });
-         // console.log("farmer_land");console.log(result); 
-          $('#provinceid').html(options);
-          //$('#province_id').html(options);
-        }
-      })
-    }
-    
-  });
-});
-// $(document).ready(function(){
-//   $('#landId').change(function(){
-
-//     console.log("working2");
-//     if($(this).val() != '')
-//     {
-//       var landId = $(this).val();
-
-//       console.log(landId);
-      
-//       var _token = $('input[name="_token"]').val();
-//       $.ajax({
-//         url:'/farmer_address',
-//         method:"GET",
-//         data:{addressNo:landId, _token:_token},
-//         success:function(data)
-//         {
-
-//           console.log(data);
-//          var options = ""; 
-//          $.each(data, function(i,r){
-//           options+="<option value="+r['id']+">"+r['province_id']+"</option>";
-//           //options+="<option value="+r['id']+">"+r['province_id']+"</option>";
-//          });
-//          // console.log("farmer_land");console.log(result); 
-//           $('#province_id').html(options);
-//           //$('#province_id').html(options);
-//         }
-//       })
-//     }
-    
-//   });
-// });
-
-// $(document).ready(function(){
-
-//   $(document).on('change','.lAddress', function(){
-
-//     console.log("working");
-
-//     var addresId =$(this).val();
-
-//     console.log(addresId);
-//     var div=$(this).parent().parent();
-//     var op= "";
-
-//     $.ajax({
-
-//       type:'get',
-//       url:'/farmer_land',
-//       data: {'id':addresId},
-//       success.function($data){
-
-//         console.log('success');
-//         console.log(data);
-//         console.log(data.length);
-//       }
-
-//     });
-
-
-//   });
-// });
-
-
-</script>
-
-
-            
-          
-        
-<!-- // $(document).ready(function(){
-//   $('#landId').change(function(){
-
-//     console.log("working");
-//     if($(this).val() != '')
-//     {
-//       var farmer_id = $(this).val();
-      
-//       var _token = $('input[name="_token"]').val();
-//       $.ajax({
-//         url:'/farmer_land',
-//         method:"GET",
-//         data:{farmer_id:farmer_id, _token:_token},
-        
-//         success:function(data)
-//         {
-
-//           // console.log(data);
-          
-//          var options = ""; 
-//          $.each(data, function(i,r){
-
-//           console.log(data);
-//           options+="<option value="+r['id']+">"+r['district_id']+"</option>";
-//           // options+="<option value="+r['id']+">"+r['province_id']+"</option>";
-//          });
-//          // console.log("farmer_land");console.log(result); 
-//           $('#district_id').html(options);
-//           //$('#province_id').html(options);
-//         }
-//       })
-//     }
-    
-//   });
-// }); -->
 
 
 </html>
