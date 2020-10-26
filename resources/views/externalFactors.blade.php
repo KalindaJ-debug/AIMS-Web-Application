@@ -39,17 +39,17 @@
 <h2 class="display-3">External Factors</h2> 
 <form method="post" action="/externalFactors" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div class="form-group row">
+      <!--  <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Harvest ID</label>
-            <div class="col-sm-5">
+           < <div class="col-sm-5">
                 <select name="harvest_id" type="text" class="form-control">
-               <!--   <option selected value="none">--Select ID--</option> -->
+                 -- <option selected value="none">--Select ID--</option> --
                  @foreach ($harvest as $harvests)
                       <option value='{{ $harvests->id }}' @if( $harvests->id == $harvests->id) selected @endif >{{ $harvests->id }}</option>   
                     @endforeach 
                 </select> 
             </div>
-        </div>
+        </div>-->
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Reason</label>
             <div class="col-sm-5">

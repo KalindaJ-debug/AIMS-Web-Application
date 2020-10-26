@@ -62,7 +62,7 @@ Route::post('/harvestDetails', 'HarvestController@store')->name('harvestDetails'
 
 Route::post('/externalFactors', 'ExternalFactorsController@store')->name('externalFactors');
 
-Route::get('/getPDF', 'PDFcontroller@getPDF');
+Route::get('/getPDF', 'PDFcontroller@index');
 
 Route::get('/Cultivation-list', 'DataController@list');
 
