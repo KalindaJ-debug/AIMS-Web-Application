@@ -23,9 +23,7 @@
         <li class="nav-item active">
         <a class="nav-link" href="{{ url('home') }}"> Home <span class="sr-only">(current)</span></a>
         </li>
-        {{-- <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
-        </li> --}}
+        
         <li class="nav-item">
           <a class="nav-link" href="{{url('feedback')}}">Contact Us</a>
         </li>
@@ -69,6 +67,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url('crop') }}">Crop Management</a>
               <a class="dropdown-item" href="{{ url('crop-data') }}">Crop Cultivation</a>
+              <a class="dropdown-item" href="{{ url('Cultivation-list') }}">Cultivated Crop List</a>
               <a class="dropdown-item" href="{{ url('harvest-data') }}">Harvest Management</a>
               <a class="dropdown-item" href="{{ url('external-data') }}">External Factors</a>
               </div>
@@ -95,7 +94,7 @@
             {{-- Data Visualization  --}}
         @guest
           @else
-            @if (Auth::user()->role == 'Admin')
+            @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'AI')
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Chart Summary
@@ -130,11 +129,75 @@
       
 
         {{-- AI Links  --}}
+        @guest
+          @else
+            @if (Auth::user()->role == 'AI')
+              <li class="nav-item">
+              <a class="nav-link" href="{{url('Cultivation-list')}}">Cultivated Crops</a>
+              </li>
+            @endif
+        @endguest
+
+        @guest
+          @else
+            @if (Auth::user()->role == 'AI')
+              <li class="nav-item">
+              <a class="nav-link" href="{{url('harvest-data')}}">Harvested Crops</a>
+              </li>
+            @endif
+        @endguest
+
+        @guest
+          @else
+            @if (Auth::user()->role == 'AI' || Auth::user()->role == 'FO' )
+              <li class="nav-item">
+              <a class="nav-link" href="{{url('feedback-registered')}}">Feedback</a>
+              </li>
+            @endif
+        @endguest
         
+        {{-- FO Links  --}}
+
+        @guest
+        @else
+          @if (Auth::user()->role == 'FO' )
+            <li class="nav-item">
+            <a class="nav-link" href="{{url('Entry-crop-data')}}">Crop Cultivation</a>
+            </li>
+          @endif
+      @endguest
+
+      @guest
+          @else
+            @if (Auth::user()->role == 'FO' )
+              <li class="nav-item">
+              <a class="nav-link" href="{{url('Cultivation-list')}}">Cultivated List</a>
+              </li>
+            @endif
+        @endguest
+
+        @guest
+        @else
+          @if (Auth::user()->role == 'FO' )
+            <li class="nav-item">
+            <a class="nav-link" href="{{url('harvest-data')}}">Harvest</a>
+            </li>
+          @endif
+      @endguest
+
+      @guest
+        @else
+          @if (Auth::user()->role == 'FO' )
+            <li class="nav-item">
+            <a class="nav-link" href="{{url('approval')}}">Cultivation Approval</a>
+            </li>
+          @endif
+      @endguest
+
         
       </ul>
     <form class="form-inline my-2 my-lg-1" style="width:450px;" method="GET" action="{{ url('searched') }}">
-        <input class="form-control mr-sm-2" name="search-bar" style="width:300px;" type="text" placeholder="Search AIMS" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Enter To Search">
+        <input class="form-control mr-sm-2" name="search-bar" style="width:300px;" type="text" placeholder="Search AIMS (Eg: home, crops etc.)" aria-label="Search" data-toggle="tooltip" data-placement="top" title="Enter To Search">
           <button class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle="tooltip" data-placement="top" title="Search Crops"> <i class="fas fa-search mr-3"> </i> Search </button>
       </form>
     </div>

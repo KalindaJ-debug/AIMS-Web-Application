@@ -16,9 +16,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
     <!-- scrool reveal api-->
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -92,7 +89,7 @@
                     <!-- land type -->
                     <div class="input-group mb-3" style="width:1250px;">
                       <div class="input-group-prepend">
-                        <label class="input-group-text" for="selectLandType" style="width:90px;">City</label>
+                        <label class="input-group-text" for="selectLandType" style="width:90px;">Land Type</label>
                       </div>
                       <select class="custom-select" id="selectLandType" name="landType" required>
                         <option selected value="none">Select Land Type...</option>
@@ -104,7 +101,7 @@
                             @if($landType == $item->id)
                               <option selected value="{{ $item->id}}"> {{ $item->name }} </option>
                             @endif
-                            <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                            <option  value="{{ $item->id }}"> {{ $item->name }} </option>
                           @endforeach
                           
                         @endif
@@ -114,7 +111,7 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>
                       </div>
-                      <select class="custom-select" id="selectDistrict" name="district" required>
+                      <select class="custom-select" id="selectDistrict" onchange="districtSelected()" name="district" required>
                         <option selected value="none">Select District...</option>
 
                         @if($districtsList != null)
@@ -137,7 +134,7 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="selectProvince" style="width:90px;">Province</label>
                       </div>
-                      <select class="custom-select" id="selectProvince" name="province" required>
+                      <select class="custom-select" id="selectProvince" onchange="provinceSelected()" name="province" required>
                         <option selected value="none">Select Province...</option>
 
                         @if($provincesList != null)
@@ -166,43 +163,20 @@
                       </div>
                       <select class="custom-select" id="selectGN" name="region" required>
                         <option selected value="none">Select Region...</option>
-                        <option value="1">Attanagalla</option>
-                        <option value="2">Avissawella</option>
-                        <option value="3">Badulla</option>
-                        <option value="4">Balapitiya Grama Niladhari Division</option>
-                        <option value="5">Banduragoda Grama Niladhari Division</option>
-                        <option value="6">Beliatta</option>
-                        <option value="7">Bogambara (Kandy Four Gravets & Gangawata Korale) Grama Niladhari Division</option>
-                        <option value="8">Grama Niladhari Divisions of Colombo Divisional Secretariat</option>
-                        <option value="9">Dambulla</option>
-                        <option value="10">Dehiwala East Grama Niladhari Division</option>
-                        <option value="11">Dehiwala West Grama Niladhari Division</option>
-                        <option value="12">Dewalapola</option>
-                        <option value="13">Hakmana, Kandy</option>
-                        <option value="14">Hurikaduwa South Grama Niladhari Division</option>
-                        <option value="15">Jaffna Town East Grama Niladhari Division</option>
-                        <option value="16">Kalawana</option>
-                        <option value="17">Labuduwa</option>
-                        <option value="18">Mabodale</option>
-                        <option value="19">Mahanuwara Grama Niladhari Division</option>
-                        <option value="20">Mahawatta South Grama Niladhari Division</option>
-                        <option value="21">Mount Lavinia Grama Niladhari Division</option>
-                        <option value="22">Narammala</option>
-                        <option value="23">Nawala</option>
-                        <option value="24">Ninthavur 21 Grama Niladhari Division</option>
-                        <option value="25">Padeniya</option>
-                        <option value="26">Pothuhera</option>
-                        <option value="27">Rikillagaskada</option>
-                        <option value="28">Grama Niladhari Divisions of Kotte Divisional Secretariat‎ </option>
-                        <option value="29">Sigiriya</option>
-                        <option value="30">Sirimalwatte Pallegama Grama Niladhari Division</option>
-                        <option value="31">Grama Niladhari Divisions of Thimbirigasyaya Divisional Secretariat‎ </option>
-                        <option value="32">Thanthirimale</option>
-                        <option value="33">Udugampola</option>
-                        <option value="34">Ukuwela</option>
-                        <option value="35">Urapola</option>
-                        <option value="36">Wadumulla</option>
-                        <option value="37">Yakkala</option>
+                        @if($regionsList != null)
+                          
+                          @foreach ($regionsList as $item)
+
+                            @if($region == $item->id){
+                            <option selected value="{{$item->id}}">{{$item->name}}</option>
+                            }
+                            @endif
+
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+
+                          @endforeach
+
+                        @endif
                       </select>
 
                       <div class="input-group-prepend ml-3">
@@ -409,6 +383,14 @@
    @include('layouts.footer')
     <!-- footer ends here -->
 
+    {{-- Bootstrap  --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+     
+
     <!-- jquery validation links -->
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
@@ -419,6 +401,53 @@
   </body>
 
   <!-- jQuery functions -->
+
+  {{-- Functions for dropdown lists  --}}
+  <script>
+    //province function
+    function provinceSelected(){
+      console.log("Province Selected");
+      var selected_province_id = document.getElementById('selectProvince').value;
+
+      $('#selectDistrict').empty();
+      var select = document.getElementById('selectDistrict');
+
+      @foreach ($districtsList as $district)
+
+        if ('{{$district->province_id}}' == selected_province_id) {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('{{$district->name}}') );
+          opt.value = '{{$district->id}}'; 
+          select.appendChild(opt); 
+        } //end of if
+                    
+      @endforeach
+
+    } //end of function
+
+    // district function 
+    function districtSelected(){
+      console.log("District Selected");
+      var selected_district_id = document.getElementById('selectDistrict').value;
+
+      $('#selectGN').empty();
+      var select = document.getElementById('selectGN');
+
+      @foreach ($regionsList as $region)
+
+        if ('{{$region->district_id}}' == selected_district_id) {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('{{$region->name}}') );
+          opt.value = '{{$region->id}}'; 
+          select.appendChild(opt); 
+        } //end of if
+                    
+      @endforeach
+
+    } //end of function
+
+  </script>
+
   <!-- function to enable submit button after confirmation checkbox -->
   <script>
     $("#confirmCheck").click(function() {

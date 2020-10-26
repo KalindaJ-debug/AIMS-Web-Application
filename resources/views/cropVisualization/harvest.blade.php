@@ -198,6 +198,13 @@
                 },
                 options: {
                 legend: { display: false },
+                scales: {
+                    yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                    }]
+                },
                 title: {
                     display: true,
                     text: 'Cultivated Land (Hectars per district)'
