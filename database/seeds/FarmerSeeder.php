@@ -15,7 +15,6 @@ class FarmerSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1,10) as $index) {
 	        DB::table('farmers')->insert([
                 'firstName' => $faker->firstName,
                 'otherName' => $faker->firstNameMale,
@@ -27,6 +26,5 @@ class FarmerSeeder extends Seeder
                 'nicImage' => $faker->image,
 	            'password' => bcrypt('secret'),
 	        ]);
-	    }
     }
 }
