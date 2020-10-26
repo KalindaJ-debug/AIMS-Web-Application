@@ -270,5 +270,6 @@ Route::get('searched', 'HomeController@search');
 
 //mobile API routes
 
-Route::get('/getRegisteredUsers','Mobile\UserCOntroller@getAllRegisteredUsers');
-Route::get('/getFarmers','Mobile\UserCOntroller@getAllFarmers');    
+Route::post('/getRegisteredUsers','Mobile\UserCOntroller@getAllRegisteredUsers');
+Route::post('/getFarmers','Mobile\UserCOntroller@getAllFarmers');    
+Route::post('/getLand','Mobile\UserCOntroller@getAllLand');  
