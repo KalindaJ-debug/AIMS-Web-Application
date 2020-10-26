@@ -44,7 +44,9 @@
                                     <!-- Return to previous page -->
                                     <a href="{{ url('/crop_variety_chart')}}" class="btn btn-success"><i class="fa fa-caret-left mr-2" style="color:white;" aria-hidden="true"></i>Return</a>
                                 
-
+                                    <br>
+                                    <h3 class="text-center" display="display-4"> <b><i>{{$district_name_display->name}}</i></b> </h3>
+                                    <br>
                                 <form name="districtDropdown" method="get" action="{{action('CropVarietyReportController@generatePDF')}}" enctype="multipart/form-data">
                                 @csrf
                                 
