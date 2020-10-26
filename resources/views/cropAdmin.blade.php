@@ -115,7 +115,7 @@
                         <td>{{ $crop->name }}</td>
                         <td><p style='color:blue'>{{ $variety->name }}</p></td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick='updateVarietyTable(@json($variety->id), @json($variety->crop->id))'><i class="fas fa-pen-alt"></i> Update</button>
+                            <button type="button" class="btn btn-primary" onclick='updateVarietyTable(@json($variety->id), @json($variety->crops->id))'><i class="fas fa-pen-alt"></i> Update</button>
                             <button type="button" class="btn btn-warning" onclick='editVariety(@json($variety->name), @json($variety->id))'><i class="fas fa-edit"></i> Edit</button>
                             <button type="button" class="btn btn-danger" onclick='deleteVariety(@json($variety->id))'><i class="fas fa-trash"></i> Delete</button>
                         </td>
