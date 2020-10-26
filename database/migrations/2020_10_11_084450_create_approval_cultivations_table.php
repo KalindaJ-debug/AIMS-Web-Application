@@ -16,8 +16,6 @@ class CreateApprovalCultivationsTable extends Migration
         Schema::create('approval_cultivations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('land_id');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('crop_id');
             $table->unsignedBigInteger('variety_id');
             $table->string('season');
             $table->date('startDate');
@@ -29,8 +27,6 @@ class CreateApprovalCultivationsTable extends Migration
             $table->timestamps();
 
             $table->foreign('land_id')->references('id')->on('lands');
-            $table->foreign('category_id')->references('id')->on('crop_categories');
-            $table->foreign('crop_id')->references('id')->on('crops');
             $table->foreign('variety_id')->references('id')->on('varieties');
             $table->foreign('external_id')->references('id')->on('external_approvals');
         });

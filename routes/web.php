@@ -41,11 +41,15 @@ Route::get('/crop-data/{id}', 'DataController@show');
 Route::get('/crop-data/{id}/delete', 'DataController@destroy');
 Route::resource('crop-data', 'DataController');
 Route::get('/farmer_id', 'DataController@farmerid');
+Route::get('/farmer_land', 'DataController@farmerLand');
+// Route::get('/farmer_land2', 'DataController@farmerLand2');
+Route::get('/farmer_address', 'DataController@farmerAddress');
 
 Route::get('/harvest-data', 'HarvestController@index');
 Route::get('/Entry-harvest-data/{id}', 'HarvestController@create');
 Route::get('/harvest-data/{id}', 'HarvestController@show');
 Route::resource('harvest-data', 'HarvestController');
+
 
 Route::get('/external-data', 'ExternalFactors@index');
 Route::get('/Entry-external-data', 'ExternalFactorsController@create');
@@ -262,14 +266,15 @@ Route::get('cropVisualization', 'CropVisualizationController@index');
 Route::get('cropHarvestSelect/{id}', 'CropVisualizationController@cropHarvestSelect');
 Route::post('harestVisulisationDetailsUpdate', 'CropVisualizationController@updateHarvest');
 Route::get('cropCultivationSelect/{id}', 'CropVisualizationController@cropCultivationSelect');
-Route::get('harvesrPdfConvert/{id}', 'CropVisualizationController@harvesrPdfConvert');
+Route::get('harvestPdfConvert/{id}', 'CropVisualizationController@harvestPdfConvert');
 Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController@updateCultivation');
 
 //Search Results
 Route::get('searched', 'HomeController@search');
 
 //mobile API routes
-
-Route::post('/getRegisteredUsers','Mobile\UserCOntroller@getAllRegisteredUsers');
-Route::post('/getFarmers','Mobile\UserCOntroller@getAllFarmers');    
+   
 Route::post('/getLand','Mobile\UserCOntroller@getAllLand');  
+Route::get('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers');
+Route::get('/getFarmers','Mobile\UserController@getAllFarmers');    
+Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');

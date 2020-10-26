@@ -21,7 +21,7 @@ class CreateLandsTable extends Migration
             $table->string('laneName');
             $table->string('town');
             $table->unsignedBigInteger('land_type_id');
-            $table->unsignedBigInteger('region_id')->references('id')->on('regions');
+            $table->unsignedBigInteger('region_id');
             $table->unsignedBigInteger('province_id');
             $table->unsignedBigInteger('district_id');
             $table->integer('postalCode')->nullable();
@@ -33,6 +33,7 @@ class CreateLandsTable extends Migration
             $table->foreign('land_type_id')->references('id')->on('land_type');
             $table->foreign('province_id')->references('id')->on('provinces');
             $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreign('region_id')->references('id')->on('regions');
         });
     }
 

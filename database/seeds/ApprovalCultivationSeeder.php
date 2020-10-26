@@ -14,8 +14,6 @@ class ApprovalCultivationSeeder extends Seeder
         DB::table('approval_cultivations')->insert([
             [ 
                 'land_id' => '1',
-                'category_id' => '1',
-                'crop_id' => '3',
                 'variety_id' => '4',
                 'season' => 'Maha',
                 'startDate' => '2020-10-07',

@@ -98,7 +98,9 @@
                             <button type="submit" class="btn btn-outline-dark">Genarate</button>
                         </div>
                         <div class="col-sm">
-                            <a class="btn btn-outline-primary" href="http://127.0.0.1:8000/harvesrPdfConvert/{{$crop->id}}">Report Generation</a>
+                                <a class="btn btn-outline-primary" onclick="harvestReportGeneration()" >
+                                    Report Generation
+                                </a>
                         </div>
                         
                     </div>
@@ -111,9 +113,12 @@
         </div>
 
         <script>
+            function harvestReportGeneration() {
+                var crop = document.getElementById('cropId').value;
+                window.location.href = "http://127.0.0.1:8000/harvestPdfConvert/" + crop;     
+            }
 
-            function provinceChange()
-            {
+            function provinceChange() {
                 console.log("Province Change");
                 var province = document.getElementById('provinceId').value;
 
@@ -168,12 +173,6 @@
             }
             
             $(document).ready( function () {
-                // $('#provinceId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;
-                // $('#districtId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;
-                // $('#regionId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;   
                 $('#cropId option[value={{$cropId}}]').prop('selected', 'selected').change();
             });
 
@@ -199,6 +198,13 @@
                 },
                 options: {
                 legend: { display: false },
+                scales: {
+                    yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                    }]
+                },
                 title: {
                     display: true,
                     text: 'Cultivated Land (Hectars per district)'

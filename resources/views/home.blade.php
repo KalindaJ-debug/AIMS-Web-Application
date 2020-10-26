@@ -62,8 +62,8 @@
         <div class="carousel-item" id="third">
           <img src="assets/img/3.png" class="d-block w-100" alt="thirdSlide" style="width:100%;height:540px;">
           <div class="carousel-caption d-none d-md-block" style="color:#191919;">
-            <h5>Harvesting Schedule</h5>
-            <p>Discover the harvesting schedule for this season</p>
+            <h5>Contact Us</h5>
+            <p>Contact our Department for your inquiries. We are here for you.</p>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
       </div>
        <!-- carousal ends -->
        <br>
-       <h4 class="text-lg-center">Validity Period : 21st of May, 2020 to 5th of June, 2020</h4>
+       <h4 class="text-lg-center">Agriculture Information Management System | AIMS</h4>
        <br>
        <!-- card list begins -->
        <!-- card #1 -->
@@ -127,11 +127,11 @@
          </div>
          <div class="col-md-6">
            <div class="card-body harvestIn">
-             <h5 class="card-title">Harvesting</h5>
-             <p class="card-text">View all harvest schedules and details regarding harvest results.</p>
+             <h5 class="card-title">Contact Us</h5>
+             <p class="card-text">Contact us for your inquiries. We will respond as soon as possible.</p>
              <p class="card-text"><small class="text-muted">Last updated 30 mins ago</small></p>
              <div class="btn-container text-center" style="width:300px;height:30px;padding:50px;margin-left:200px;">
-               <a href="https://www.google.com/" style="text-decoration:none;"> <button type="button" class="btn btn-success btn-lg btn-block" style="background-color:#10391C;" data-toggle="tooltip" data-placement="top" title="Go To Harvest Schedule Page"> Harvest Schedule</button> </a>
+             <a href="{{ url('feedback') }}" style="text-decoration:none;"> <button type="button" class="btn btn-success btn-lg btn-block" style="background-color:#10391C;" data-toggle="tooltip" data-placement="top" title="Contact Us"> Contact Us</button> </a>
              </div>
            </div>
          </div>

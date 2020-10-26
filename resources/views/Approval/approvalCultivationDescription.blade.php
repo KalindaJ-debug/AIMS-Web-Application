@@ -62,12 +62,12 @@
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="form-group">
                                 <label for="category">Crop Category</label>
-                                <input type="text" class="form-control" id="category" value="{{ $cultivation->category->name }}" readonly>
+                                <input type="text" class="form-control" id="category" value="{{ $cultivation->variety->crop->category->name }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="crop">Crop Name</label>
-                                <input type="text" class="form-control" id="crop" value="{{ $cultivation->crop->name }}" readonly>
+                                <input type="text" class="form-control" id="crop" value="{{ $cultivation->variety->crop->name }}" readonly>
                             </div>
                             
                             <div class="form-group">

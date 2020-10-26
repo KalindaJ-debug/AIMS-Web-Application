@@ -183,8 +183,9 @@ class RegistrationController extends Controller
         $provincesList = DB::table('provinces')->distinct()->get();
         $districtsList = DB::table('districts')->distinct()->get();
         $landTypeList = DB::table('land_type')->distinct()->get();
+        $regionsList = DB::table('regions')->distinct()->get();
 
-        return view('land-registration', array('firstName' => $farmer->firstName, 'lastName' => $farmer->lastName, 'otherName' => $farmer->otherName, 'provincesList'=> $provincesList, 'districtsList'=>$districtsList, 'landTypeList' => $landTypeList));
+        return view('land-registration', array('firstName' => $farmer->firstName, 'lastName' => $farmer->lastName, 'otherName' => $farmer->otherName, 'provincesList'=> $provincesList, 'districtsList'=>$districtsList, 'landTypeList' => $landTypeList, 'regionsList' => $regionsList));
          
        
     
