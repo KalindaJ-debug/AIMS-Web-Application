@@ -166,7 +166,7 @@
         <hr>
           <div class="form-group form-check">
              <input type="checkbox" class="form-check-input" id="confirmCheck">
-             <label class="form-check-label" for="confirmCheck">. . .I confirm all of the above provided information is accurate and valid with no false/incorrect data. </label>
+             <label class="form-check-label" for="confirmCheck">I confirm all of the above provided information is accurate and valid with no false/incorrect data. </label>
           </div>
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
@@ -472,7 +472,7 @@ $(document).ready(function(){
             
           
         
-// $(document).ready(function(){
+<!-- // $(document).ready(function(){
 //   $('#landId').change(function(){
 
 //     console.log("working");
@@ -506,7 +506,7 @@ $(document).ready(function(){
 //     }
     
 //   });
-// });
+// }); -->
 
 
 </html>

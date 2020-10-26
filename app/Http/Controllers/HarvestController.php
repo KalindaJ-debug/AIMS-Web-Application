@@ -100,5 +100,13 @@ class HarvestController extends Controller
         // return redirect()->action('HarvestController@index');
         
     }
+
+    public function destroy($id)
+    {
+        $contacts = harvests::find($id);
+        $contacts->delete();
+
+        return redirect('/harvest-data')->with('success', 'Contact deleted!');
+    }
     
 }
