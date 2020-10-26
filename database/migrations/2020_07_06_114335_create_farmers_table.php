@@ -22,7 +22,7 @@ class CreateFarmersTable extends Migration
             $table->string('userName')->unique();
             $table->string('password');
             $table->bigInteger('telephoneNo');
-            $table->string('nic');
+            $table->string('nic')->unique();
             $table->string('nicImage')->nullable();
             $table->timestamps();
         });

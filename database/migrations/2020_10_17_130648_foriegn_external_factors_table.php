@@ -14,8 +14,8 @@ class ForiegnExternalFactorsTable extends Migration
     public function up()
     {
         Schema::table('external_factors', function (Blueprint $table) {
-            $table->unsignedBigInteger('harvest_id');
-            $table->foreign('harvest_id')->references('id')->on('harvests');
+            // $table->unsignedBigInteger('harvest_id');
+            // $table->foreign('harvest_id')->references('id')->on('harvests');
         });
     }
 

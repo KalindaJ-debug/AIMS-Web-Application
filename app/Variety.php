@@ -8,9 +8,9 @@ class Variety extends Model
 {
     protected $table = 'varieties';
 
-    public function crop()
+    public function crops()
     {
-        return $this->belongsTo('App\Crop');
+        return $this->belongsTo('App\Crop', 'crop_id', 'id');
     }
 
     public function approvalHarvest(){

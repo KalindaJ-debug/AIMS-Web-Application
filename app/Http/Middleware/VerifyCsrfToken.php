@@ -13,6 +13,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/getRegisteredUsers',
-        '/getFarmers'
+        '/getFarmers',
+        '/getLand',
+        '/addCulti',
+        '/getApproval',
     ];
 }

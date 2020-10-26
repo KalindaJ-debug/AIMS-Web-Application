@@ -111,9 +111,9 @@
             <!-- Pagination -->
             {{ $feedbackReg->links() }}
               <div class="clearfix">
-              <div class="hint-text"><i>Showing {{count($feedbackReg)}} out of {{$feedbackReg->total()}} entries</i></div>
+                  <div class="hint-text"><i>Showing {{count($feedbackReg)}} out of {{$feedbackReg->total()}} entries</i></div>
               </div> 
-
+              <br>
               <div class="container">
                   <a href="{{ url('/feedback-management')}}"	class="btn btn-success"><i class="fa fa-caret-left mr-2" style="color:white;" aria-hidden="true"></i>Return to feedback management</a>
               </div> 

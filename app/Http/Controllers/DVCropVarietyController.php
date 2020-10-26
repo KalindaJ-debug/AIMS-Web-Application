@@ -41,6 +41,8 @@ class DVCropVarietyController extends Controller
 
         //Input from district dropdown
         $districtname = $request->input('districtname');
+
+        $district_name_display = District::where('id', $districtname)->first(); 
                    
         //Cultivation Chart Query
         $cultivation = DB::select('select v.name as name, sum(c.cultivatedLand) as sum
@@ -58,8 +60,8 @@ class DVCropVarietyController extends Controller
 
         //Return to view
         return view('crop_variety_dv', ['districtname' => $districtname, 
-                 'cultivations' => $cultivation,  'harvests' => $harvest]);
+                 'cultivations' => $cultivation,  'harvests' => $harvest, 'district_name_display' => $district_name_display]);
     }
 
-    }
+}
 
