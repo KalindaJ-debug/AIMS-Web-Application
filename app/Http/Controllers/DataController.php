@@ -148,6 +148,8 @@ class DataController extends Controller
     public function show($id)
     {
         $product = cultivation::find($id);
+       // $product = farmer::find($id);
+        //$product = CropCategory::find($id);
         return view('crop.show',compact('product'));
     }
 
