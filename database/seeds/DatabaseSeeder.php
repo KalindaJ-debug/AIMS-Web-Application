@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             CultivationSeeder::class,
             ApprovalHarvestSeeder::class,
             ApprovalCultivationSeeder::class,
+            ExternalFactorsSeeder::class,
             HarvestSeeder::class,
-            HarvestLandSeeder::class,
-            ExternalFactorsSeeder::class
+            // HarvestLandSeeder::class
         ]);
         //$this->call(ProvincesTableSeeder::class);
     }
