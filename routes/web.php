@@ -49,7 +49,7 @@ Route::get('/harvest-data', 'HarvestController@index');
 Route::get('/Entry-harvest-data/{id}', 'HarvestController@create');
 Route::get('/harvest-data/{id}', 'HarvestController@show');
 Route::resource('harvest-data', 'HarvestController');
-
+Route::get('/harvest-data/{id}/delete', 'HarvestController@destroy');
 
 Route::get('/external-data', 'ExternalFactors@index');
 Route::get('/Entry-external-data', 'ExternalFactorsController@create');

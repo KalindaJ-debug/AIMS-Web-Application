@@ -91,6 +91,7 @@ class DataController extends Controller
         $farmer = farmer::all();
         $land = land::all();
        // dd($land[0]->provinces);
+       
         return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'land' => $land));
     }
 
@@ -148,6 +149,8 @@ class DataController extends Controller
     public function show($id)
     {
         $product = cultivation::find($id);
+       // $product = farmer::find($id);
+        //$product = CropCategory::find($id);
         return view('crop.show',compact('product'));
     }
 

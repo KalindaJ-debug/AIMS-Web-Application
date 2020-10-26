@@ -111,7 +111,7 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="selectDistrict" style="width:90px;">District</label>
                       </div>
-                      <select class="custom-select" id="selectDistrict" name="district" required>
+                      <select class="custom-select" id="selectDistrict" onchange="districtSelected()" name="district" required>
                         <option selected value="none">Select District...</option>
 
                         @if($districtsList != null)
@@ -134,7 +134,7 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="selectProvince" style="width:90px;">Province</label>
                       </div>
-                      <select class="custom-select" id="selectProvince" name="province" required>
+                      <select class="custom-select" id="selectProvince" onchange="provinceSelected()" name="province" required>
                         <option selected value="none">Select Province...</option>
 
                         @if($provincesList != null)
@@ -401,6 +401,53 @@
   </body>
 
   <!-- jQuery functions -->
+
+  {{-- Functions for dropdown lists  --}}
+  <script>
+    //province function
+    function provinceSelected(){
+      console.log("Province Selected");
+      var selected_province_id = document.getElementById('selectProvince').value;
+
+      $('#selectDistrict').empty();
+      var select = document.getElementById('selectDistrict');
+
+      @foreach ($districtsList as $district)
+
+        if ('{{$district->province_id}}' == selected_province_id) {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('{{$district->name}}') );
+          opt.value = '{{$district->id}}'; 
+          select.appendChild(opt); 
+        } //end of if
+                    
+      @endforeach
+
+    } //end of function
+
+    // district function 
+    function districtSelected(){
+      console.log("District Selected");
+      var selected_district_id = document.getElementById('selectDistrict').value;
+
+      $('#selectGN').empty();
+      var select = document.getElementById('selectGN');
+
+      @foreach ($regionsList as $region)
+
+        if ('{{$region->district_id}}' == selected_district_id) {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('{{$region->name}}') );
+          opt.value = '{{$region->id}}'; 
+          select.appendChild(opt); 
+        } //end of if
+                    
+      @endforeach
+
+    } //end of function
+
+  </script>
+
   <!-- function to enable submit button after confirmation checkbox -->
   <script>
     $("#confirmCheck").click(function() {
