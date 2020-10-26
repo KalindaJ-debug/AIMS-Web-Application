@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         '/getRegisteredUsers',
         '/getFarmers',
         '/getLand',
-        '/addCulti'
+        '/addCulti',
+        '/getApproval',
     ];
 }
