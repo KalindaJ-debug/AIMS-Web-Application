@@ -85,7 +85,7 @@
             @if($farmer!==null)
             <td>{{$farmer->firstName}} {{$farmer->lastName}}</td> 
             @endif
-            <td>{{$land->farmer->firstName}} {{$land->farmer->lastName}}</td>
+            <td>{{$land->farmers->firstName}} {{$land->farmers->lastName}}</td>
             <td>{{$land->town}}</td> 
             <td>{{$land->addressNo}}</td> 
             <td>{{$contact->harvestedAmount}}     
