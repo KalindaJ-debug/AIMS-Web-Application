@@ -89,7 +89,7 @@
                     <!-- land type -->
                     <div class="input-group mb-3" style="width:1250px;">
                       <div class="input-group-prepend">
-                        <label class="input-group-text" for="selectLandType" style="width:90px;">City</label>
+                        <label class="input-group-text" for="selectLandType" style="width:90px;">Land Type</label>
                       </div>
                       <select class="custom-select" id="selectLandType" name="landType" required>
                         <option selected value="none">Select Land Type...</option>
@@ -101,7 +101,7 @@
                             @if($landType == $item->id)
                               <option selected value="{{ $item->id}}"> {{ $item->name }} </option>
                             @endif
-                            <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                            <option  value="{{ $item->id }}"> {{ $item->name }} </option>
                           @endforeach
                           
                         @endif
@@ -163,43 +163,20 @@
                       </div>
                       <select class="custom-select" id="selectGN" name="region" required>
                         <option selected value="none">Select Region...</option>
-                        <option value="1">Attanagalla</option>
-                        <option value="2">Avissawella</option>
-                        <option value="3">Badulla</option>
-                        <option value="4">Balapitiya Grama Niladhari Division</option>
-                        <option value="5">Banduragoda Grama Niladhari Division</option>
-                        <option value="6">Beliatta</option>
-                        <option value="7">Bogambara (Kandy Four Gravets & Gangawata Korale) Grama Niladhari Division</option>
-                        <option value="8">Grama Niladhari Divisions of Colombo Divisional Secretariat</option>
-                        <option value="9">Dambulla</option>
-                        <option value="10">Dehiwala East Grama Niladhari Division</option>
-                        <option value="11">Dehiwala West Grama Niladhari Division</option>
-                        <option value="12">Dewalapola</option>
-                        <option value="13">Hakmana, Kandy</option>
-                        <option value="14">Hurikaduwa South Grama Niladhari Division</option>
-                        <option value="15">Jaffna Town East Grama Niladhari Division</option>
-                        <option value="16">Kalawana</option>
-                        <option value="17">Labuduwa</option>
-                        <option value="18">Mabodale</option>
-                        <option value="19">Mahanuwara Grama Niladhari Division</option>
-                        <option value="20">Mahawatta South Grama Niladhari Division</option>
-                        <option value="21">Mount Lavinia Grama Niladhari Division</option>
-                        <option value="22">Narammala</option>
-                        <option value="23">Nawala</option>
-                        <option value="24">Ninthavur 21 Grama Niladhari Division</option>
-                        <option value="25">Padeniya</option>
-                        <option value="26">Pothuhera</option>
-                        <option value="27">Rikillagaskada</option>
-                        <option value="28">Grama Niladhari Divisions of Kotte Divisional Secretariat‎ </option>
-                        <option value="29">Sigiriya</option>
-                        <option value="30">Sirimalwatte Pallegama Grama Niladhari Division</option>
-                        <option value="31">Grama Niladhari Divisions of Thimbirigasyaya Divisional Secretariat‎ </option>
-                        <option value="32">Thanthirimale</option>
-                        <option value="33">Udugampola</option>
-                        <option value="34">Ukuwela</option>
-                        <option value="35">Urapola</option>
-                        <option value="36">Wadumulla</option>
-                        <option value="37">Yakkala</option>
+                        @if($regionsList != null)
+                          
+                          @foreach ($regionsList as $item)
+
+                            @if($region == $item->id){
+                            <option selected value="{{$item->id}}">{{$item->name}}</option>
+                            }
+                            @endif
+
+                            <option value="{{$item->id}}"> {{$item->name}}</option>
+
+                          @endforeach
+
+                        @endif
                       </select>
 
                       <div class="input-group-prepend ml-3">
