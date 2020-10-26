@@ -33,7 +33,7 @@
 <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Show Harvest Details</h2>
+                <h2> Cultivation Details by farmer</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('crop-data.index') }}"> Back</a>
@@ -44,8 +44,8 @@
     <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
             <div class="form-group">
-                <label  class="col-xs-6 col-sm-6 col-md-4">Farmer ID:</label>
-                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->farmer_id }}</p>
+                <label  class="col-xs-6 col-sm-6 col-md-4">Farmer Name:</label>
+                <p class="col-xs-6 col-sm-6 col-md-4" for="">{{ $product->firstName }} {{ $product->lastName }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 20px;margin-top: 20px;">

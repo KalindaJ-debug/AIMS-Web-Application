@@ -29,7 +29,7 @@
 <div class="container">
     <h1>District Summary Cultivation Data for Crop Category</h1>
     <div class="input-group-prepend">
-    <form method="POST" action="{{ route('graph.load') }}">
+   <!-- <form method="POST" action="{{ route('graph.load') }}"> -->
                                @csrf
                                 <div class="row" >
                                     <div class="input-group-prepend col-sm-3 ml-5">
@@ -47,7 +47,7 @@
         
                                     </select>   
                                     
-                                   <!-- <button type="submit" class="btn btn-primary">Generate Graph</button>-->
+                                    <button type="" class="btn btn-primary">Generate Graph</button>
                                 </div>
                            
      </form>  

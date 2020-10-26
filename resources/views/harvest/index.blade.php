@@ -116,10 +116,10 @@
             {{$external_factors->reason}} @endif</td>
             <td>
                 <button class="btn btn-warning" type="submit">Edit</button>
-                <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
+                <!--<a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>-->
             </td>
             <td>
-                <form action="{{ route('crop-data.destroy', $contact->id)}}" method="post">
+                <form action="{{ route('harvest-data.destroy', $contact->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>
