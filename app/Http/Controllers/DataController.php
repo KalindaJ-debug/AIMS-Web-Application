@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\DB;
 //use Illuminate\Support\Facades\Auth;
 use App\cropDetails;
 use App\dataEntry;
@@ -16,7 +17,6 @@ use App\variety;
 use App\district;
 use App\region;
 use App\land;
-use DB;
 
 class DataController extends Controller
 {
@@ -91,7 +91,7 @@ class DataController extends Controller
         $farmer = farmer::all();
         $land = land::all();
        // dd($land[0]->provinces);
-       
+
         return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'land' => $land));
     }
 
@@ -149,9 +149,12 @@ class DataController extends Controller
     public function show($id)
     {
         $product = cultivation::find($id);
-       // $product = farmer::find($id);
-        //$product = CropCategory::find($id);
-        return view('crop.show',compact('product'));
+        
+        $land = Land::with('farmers', 'provinces', 'districts', 'regions')->where('id', $product->land_id)->distinct()->get();
+
+        $crop_variety = variety::with('crops')->where('id', $product->variety_id)->distinct()->get();
+
+        return view('crop.show', ['product' => $product, 'land' => $land, 'crop_variety' => $crop_variety]);
     }
 
     /**

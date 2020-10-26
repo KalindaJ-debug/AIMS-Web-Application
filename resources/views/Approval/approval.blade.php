@@ -66,7 +66,7 @@
                         @else
                             <p style='color:red'>Declined</p>
                         @endif</td>
-                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/cultivationDescription/{{ $cultivations[0] }}">View</a></td>
+                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1/cultivationDescription/{{ $cultivations[0] }}">View</a></td>
                         <!-- <td><button type="button" class="btn btn-dark">Land Details</button></td> -->  
                     </tr> 
                 @endforeach        
@@ -113,7 +113,7 @@
                         @else
                             <p style='color:red'>Declined</p>
                         @endif</td>
-                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/harvestDescription/{{ $harvests[0] }}">View</a></td>
+                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1/harvestDescription/{{ $harvests[0] }}">View</a></td>
                         <!-- <td><button type="button" class="btn btn-dark">Land Details</button></td> -->  
                     </tr> 
                 @endforeach        

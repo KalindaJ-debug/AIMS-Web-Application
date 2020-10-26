@@ -17,11 +17,11 @@ class DVCropCategoryController extends Controller
         $district = DB::table('districts')->get();
         $cultivation = cultivation::Where('district_id', '=', 1)
             ->leftJoin('crop_categories', 'cultivation.category_id', '=', 'crop_categories.id')
-            ->selectRaw('sum(cultivatedLand) as sum, crop_categories.name')
+            ->selectRaw('sum(cultivation.cultivatedLand) as sum, crop_categories.name')
             ->groupBy('crop_categories.name')
             ->get();
 
-        //dd($cultivation);
+        // dd($cultivation);
         $cropCategory = array();
         $categoryAmount = array();
         foreach ($cultivation as $category) {

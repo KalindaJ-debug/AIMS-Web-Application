@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ExternalFactorsSeeder extends Seeder
 {
@@ -14,7 +15,20 @@ class ExternalFactorsSeeder extends Seeder
         DB::table('external_factors')->insert([
             [ 
                 'reason' => 'Rainfall'
+            ],
+            [ 
+                'reason' => 'Land Slides'
+            ],
+            [ 
+                'reason' => 'Insect Infections'
+            ],
+            [ 
+                'reason' => 'Plant Disease'
+            ],
+            [ 
+                'reason' => 'Other'
             ]
+
         ]);
     }
 }

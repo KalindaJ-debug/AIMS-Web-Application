@@ -12,7 +12,7 @@ class Farmer extends Model
 
     public function lands()
     {
-        return $this->hasMany('App\Land');
+        return $this->hasMany('App\Land', 'farmer_id', 'id');
     }
 
     public function device()

@@ -67,7 +67,7 @@ Route::get('/getPDF', 'PDFcontroller@getPDF');
 Route::get('/Cultivation-list', 'DataController@list');
 
 Route::get('/DvCropCat', 'DVCropCategoryController@loadpage');
-Route::post('/DvCropCat', 'dvcropcat\DVCropCategoryController@showGraph')->name('graph.load');
+Route::post('/DvCropCat', 'DVCropCategoryController@showGraph')->name('dv.reload');
 Route::get('/DvExternalFac', 'DvExternalFacController@index');
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
@@ -251,7 +251,7 @@ Route::get('exportMainCropsReport/{id}', 'PublicController@exportReport');
 
 Route::post('crop_variety_dv', 'DVCropVarietyController@generateChart');
 Route::get('crop_variety_chart', 'DVCropVarietyController@index');
-
+Route::get('Crop Variety Report', 'CropVarietyReportController@generatePDF');
 
 //Data Visualization - Crop Category
 Route::get('/crop-cat-harvest' , 'Graphs\CropCategoryController@loadPage');
@@ -281,3 +281,5 @@ Route::post('/addCulti','Mobile\UserController@addCultivationData');
 Route::get('/getAllApproval','Mobile\UserController@getAllApproval'); 
 Route::post('/getApproval','Mobile\UserController@getApproval');      
 Route::post('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
+Route::post('/addCulti','Mobile\UserController@addCultivationData');     
+Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
