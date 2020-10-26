@@ -10,7 +10,7 @@ class CropCategory extends Model
 
     public function crops()
     {
-        return $this->hasMany('App\Crop');
+        return $this->hasMany('App\Crop', 'id');
     }
 
     public function approvalHarvest(){

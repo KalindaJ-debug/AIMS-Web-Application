@@ -97,6 +97,11 @@
                         <div class="col-sm">
                             <button type="submit" class="btn btn-outline-dark">Genarate</button>
                         </div>
+                        <div class="col-sm">
+                                <a class="btn btn-outline-primary" onclick="cultivationReportGeneration()" >
+                                    Report Generation
+                                </a>
+                        </div>
                     </div>
                 </div>
  
@@ -107,6 +112,10 @@
         </div>
 
         <script>
+            function cultivationReportGeneration() {
+                var crop = document.getElementById('cropId').value;
+                window.location.href = "http://127.0.0.1:8000/cultivationPdfConvert/" + crop;     
+            }
 
             function provinceChange()
             {
@@ -164,12 +173,6 @@
             }
             
             $(document).ready( function () {
-                // $('#provinceId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;
-                // $('#districtId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;
-                // $('#regionId option[value=id]').prop('selected', 'selected').change();
-                // document.getElementById("varietyOption").value = cropId;   
                 $('#cropId option[value={{$cropId}}]').prop('selected', 'selected').change();
             });
 

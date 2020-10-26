@@ -97,12 +97,12 @@ class ApprovalController extends Controller
 
             $harvest->cultivation_id = $approvalHarvest->cultivation_id;
             $harvest->land_id = $approvalHarvest->land_id;
-            $harvest->category_id = $approvalHarvest->category_id;
-            $harvest->crop_id = $approvalHarvest->crop_id;
+            $harvest->category_id = $approvalHarvest->variety->crop->category->id;
+            $harvest->crop_id = $approvalHarvest->variety->crop->id;
             $harvest->variety_id = $approvalHarvest->variety_id;
-            $harvest->province_id = $approvalHarvest->province_id;
-            $harvest->district_id = $approvalHarvest->district_id;
-            $harvest->region_id = $approvalHarvest->region_id;
+            $harvest->province_id = $approvalHarvest->land->provinces->id;
+            $harvest->district_id = $approvalHarvest->land->districts->id;
+            $harvest->region_id = $approvalHarvest->land->regions->id;
             $harvest->season = $approvalHarvest->season;
             $harvest->endDate = $approvalHarvest->endDate;
             $harvest->harvestedAmount = $approvalHarvest->harvestedAmount;
@@ -153,12 +153,12 @@ class ApprovalController extends Controller
             $cultivation = new cultivation;
 
             $cultivation->land_id = $approvalCultivation->land_id;
-            $cultivation->category_id = $approvalCultivation->category_id;
-            $cultivation->crop_id = $approvalCultivation->crop_id;
+            $cultivation->category_id = $approvalCultivation->variety->crop->category->id;
+            $cultivation->crop_id = $approvalCultivation->variety->crop->id;
             $cultivation->variety_id = $approvalCultivation->variety_id;
-            $cultivation->province_id = $approvalCultivation->province_id;
-            $cultivation->district_id = $approvalCultivation->district_id;
-            $cultivation->region_id = $approvalCultivation->region_id;
+            $cultivation->province_id = $approvalCultivation->land->provinces->id;
+            $cultivation->district_id = $approvalCultivation->land->districts->id;
+            $cultivation->region_id = $approvalHarvest->land->regions->id;
             $cultivation->season = $approvalCultivation->season;
             $cultivation->startDate = $approvalCultivation->startDate;
             $cultivation->endDate = $approvalCultivation->endDate;

@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Crop extends Model
 {
+    protected $table = 'crops';
+
     public function category()
     {
-        return $this->belongsTo('App\CropCategory');
+        return $this->belongsTo('App\CropCategory', 'id', 'id');
     }
 
     public function varieties()
