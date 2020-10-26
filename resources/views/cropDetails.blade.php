@@ -32,7 +32,7 @@
 <br> <br>
 <h1 style="margin-left:100px;">Enter Cultivation Details</h1> <br> <br>
 <div class="container">
-<h1>Enter Cultivation Details</h1>
+{{-- <h1>Enter Cultivation Details</h1> --}}
 <form method="post" name="form1" action="/cropDetails" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group row">
