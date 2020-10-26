@@ -93,7 +93,7 @@
              $region = App\Region::where('id', $contact->region_id)->first();
           @endphp
           @php
-            $farmer = App\farmer::where('id', $contact->farmer_id)->first();
+            $farmer = App\Farmer::where('id', $contact->farmer_id)->first();
           @endphp
           @php
             $land = App\land::where('id', $contact->land_id)->first();
@@ -103,7 +103,7 @@
             @if($farmer!==null)
             <td>{{$farmer->firstName}} {{$farmer->lastName}}</td>  
             @endif
-            <td>{{$land->farmer->firstName}} {{$land->farmer->lastName}}</td>  
+            <td>{{$land->farmers->firstName}} {{$land->farmers->lastName}}</td>  
             <td>{{$contact->season}}</td>
             <td>{{$category->name}}</td>
             <td>{{$crop->name}}</td>

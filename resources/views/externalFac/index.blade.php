@@ -51,7 +51,7 @@
     <thead>
         <tr>
           <td>ID</td>
-          <td>Harvest ID</td>
+          {{-- <td>Harvest ID</td> --}}
           <td>Reason</td>
           <!--<td>Reason</td>
           <td>New Reason</td>-->
@@ -69,17 +69,17 @@
           @endphp
         <tr>
             <td>{{$contact->id}}</td>
-            <td>{{$contact->harvest_id}}</td>
+            {{-- <td>{{$contact->harvest_id}}</td> --}}
             <td>{{$contact->reason}}</td>
             <td>
-                <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
+                {{-- <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a> --}}
 
             
                 <form action="{{ route('crop-data.destroy', $contact->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>
-                  <button class="btn btn-warning" type="submit">edit</button>
+                  {{-- <button class="btn btn-warning" type="submit">edit</button> --}}
                 </form>
             </td>
         </tr>
