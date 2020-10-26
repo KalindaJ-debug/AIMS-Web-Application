@@ -16,7 +16,7 @@
     <thead>
     <tr>
         <th>ID</td>
-        <th>Farmer ID</th>
+        <th>Farmer Name</th>
         <th>Season</th>
         <th>Harvest Date</th>
         <th>Harvested Amount</th>
@@ -24,14 +24,14 @@
     </tr>
     </thead>
     <tbody>
-     @foreach($harvests as $key => $harvest)   
+     @foreach($harvests as $harvest) 
         <tr>
-            <td>{{$harvest->id}}</td>
-            <td>{{$harvest->farmer_id}}</td>
-            <td>{{$harvest->season}}</td>
-            <td>{{$harvest->endDate}}</td>
-            <td>{{$harvest->harvestedAmount}}</td>
-            <td>{{$harvest->cultivatedLand}}</td>
+            <td>{{$harvest[0]}}</td>
+            <td>{{$harvest[1]}} {{$harvest[2]}}</td>
+            <td>{{$harvest[3]}}</td>
+            <td>{{$harvest[7]}}</td>
+            <td>{{$harvest[4]}}</td>
+            <td>{{$harvest[5]}}</td>
         </tr>
      @endforeach
     </tbody>

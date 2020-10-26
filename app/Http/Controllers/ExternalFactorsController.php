@@ -42,7 +42,7 @@ class ExternalFactorsController extends Controller
         */
         //dd($request);
         $game = new external_factors;
-        $game->harvest_id = request('harvest_id');
+        //$game->harvest_id = request('harvest_id');
         $game->reason = request('reason');
         $game->save();
         
