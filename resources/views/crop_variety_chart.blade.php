@@ -23,6 +23,7 @@
     <title>Crop Variety Summary | AIMS</title>
 </head>
 <body class="white-bg-color" >
+
     <!-- header begins -->
     @include('layouts.header')
     <!-- header ends -->
@@ -69,83 +70,9 @@
                                       </div>
                                   </div> 
                                   </form>   
-                                    <!-- Print and Export buttons -->                                    
+                              
 
-                                    <button class="btn btn-outline-success" type="button" id="print" data-toggle="modal" data-target="#printModal">
-                                        Print
-                                    </button>
-                                    <button class="btn btn-outline-success" type="button" id="export" data-toggle="modal" data-target="#exportModal">
-                                        Export
-                                    </button>
-
-                                </div>
-
-
-                                <!-- Print Modal-->
-                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header bg-light">
-                                          <h5 class="modal-title" id="exampleModalLongTitle">Print Report</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-
-                                        <div class="modal-body">
-                                          <p>Getting things ready to print</p>
-                                        </div>
-
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                                      </div>
-
-                                      </div>
-                                    </div>
-                                </div>
-                                <!--End of Print Modal -->
-
-                                <!-- Export Modal-->
-                                <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header bg-light">
-                                          <h5 class="modal-title" id="exampleModalLongTitle">Export As</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                          <form>
-                                            <div class="form-group">
-                                              <label for="file-name" class="col-form-label">File name:</label>
-                                              <input type="text" class="form-control" id="file-name">
-                                            </div>
-                                            <div class="form-group">
-                                              <select class="custom-select" id="inputGroupSelect01">
-                                                <option selected>Choose file type</option>
-                                                <option value="1">PDF</option>
-                                                <option value="2">EXCEL</option>
-                                                <option value="3">IMAGE</option>
-                                              </select>
-                                              
-                                            </div>
-                                          </form>
-
-                                          
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-secondary">Export</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <!-- End of Export Modal-->
-
-
-                               
+                                </div>                               
                               
                                 <div class="container text-center">  
                                   <!-- <img id="image1" class="vegBgImage rounded mx-auto shadow p-3 mb-5 bg-white rounded " src="{{ ('assets/img/image1.jpg') }}"> -->
