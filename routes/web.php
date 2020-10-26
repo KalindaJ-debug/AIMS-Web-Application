@@ -273,11 +273,9 @@ Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController
 Route::get('searched', 'HomeController@search');
 
 //mobile API routes
-   
-Route::post('/getLand','Mobile\UserCOntroller@getAllLand');  
-Route::get('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers');
-Route::get('/getFarmers','Mobile\UserController@getAllFarmers');    
-Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
 
-//Crop Variety Report Generation Route
-Route::get('Crop Variety Report', 'CropVarietyReportController@generatePDF');
+Route::post('/getLand','Mobile\UserController@getAllLand');  
+Route::post('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers');
+Route::post('/getFarmers','Mobile\UserController@getAllFarmers'); 
+Route::post('/addCulti','Mobile\UserController@addCultivationData');     
+Route::post('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
