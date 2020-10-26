@@ -60,17 +60,14 @@ class PDFcontroller extends Controller
         <br>
     <table width="100%" style="border-collapse: collapse; border: 0px;">
     <tr>
-        <th style="border: 1px solid; padding:12px;" width="5%">Harvest ID</th>
-        <th style="border: 1px solid; padding:12px;" width="5%">Crop Category</th> 
-        <th style="border: 1px solid; padding:12px;" width="5%">Crop</th> 
-        <th style="border: 1px solid; padding:12px;" width="5%">Variety</th> 
-        <th style="border: 1px solid; padding:12px;" width="5%">Province</th> 
-        <th style="border: 1px solid; padding:12px;" width="5%">District</th> 
-        <th style="border: 1px solid; padding:12px;" width="5%">Region</th> 
+        <th style="border: 1px solid; padding:12px;" width="5%">Harvest ID</th> 
+        <th style="border: 1px solid; padding:12px;" width="10%">Crop</th> 
+        <th style="border: 1px solid; padding:12px;" width="5%">Variety</th>   
+        <th style="border: 1px solid; padding:12px;" width="10%">Region</th> 
         <th style="border: 1px solid; padding:12px;" width="5%">Season</th> 
         <th style="border: 1px solid; padding:12px;" width="5%">End Date</th> 
-        <th style="border: 1px solid; padding:12px;" width="5%">Cultivated Amount</th> 
-        <th style="border: 1px solid; padding:12px;" width="5%">Harvested Amount</th> 
+        <th style="border: 1px solid; padding:12px;" width="10%">Cultivated Amount</th> 
+        <th style="border: 1px solid; padding:12px;" width="10%">Harvested Amount</th> 
     </tr>
         ';
         foreach($harvests as $harvest){
@@ -79,12 +76,9 @@ class PDFcontroller extends Controller
             $htmlStream .='
             <tr>
             <td style="border: 1px solid; padding:12px;">'.$harvest->id.'</td>
-            <td style="border: 1px solid; padding:12px;">'.$variety->crop->category->name.'</td>
             <td style="border: 1px solid; padding:12px;">'.$variety->crop->name.'</td>
             <td style="border: 1px solid; padding:12px;">'.$variety->name.'</td>
-            <td style="border: 1px solid; padding:12px;">'.$land->provinces->name.'</td>
-            <td style="border: 1px solid; padding:12px;">'.$land->districts->name.'</td>
-            <td style="border: 1px solid; padding:12px;">'.$land->regions->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$land->regions->name.' ( '.$land->districts->name.' )</td>
             <td style="border: 1px solid; padding:12px;">'.$harvest->season.'</td>
             <td style="border: 1px solid; padding:12px;">'.$harvest->endDate.'</td>
             <td style="border: 1px solid; padding:12px;">'.$harvest->cultivatedLand.'</td>
