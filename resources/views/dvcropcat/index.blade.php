@@ -38,7 +38,7 @@
     <h1>District Summary Cultivation Data for Crop Category</h1>
     <br> <br>
     <div class="input-group-prepend">
-   <!-- <form method="POST" action="{{ route('graph.load') }}"> -->
+   <form method="POST" action="{{ route('dv.reload') }}"> 
                                @csrf
                                 <div class="row" >
                                     <div class="input-group-prepend col-sm-3 ml-5">
@@ -83,6 +83,17 @@
     var densityData = {
     label: 'Land cultivated in the specified time',
     data: category,
+    backgroundColor: [
+            'rgba(0, 99, 132, 0.6)',
+            'rgba(30, 99, 132, 0.6)',
+            'rgba(60, 99, 132, 0.6)',
+            'rgba(90, 99, 132, 0.6)',
+            'rgba(120, 99, 132, 0.6)',
+            'rgba(150, 99, 132, 0.6)',
+            'rgba(180, 99, 132, 0.6)',
+            'rgba(210, 99, 132, 0.6)',
+            'rgba(240, 99, 132, 0.6)'
+        ]
     };
 
     console.log(densityData);
