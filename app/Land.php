@@ -10,9 +10,9 @@ class Land extends Model
 
     protected $fillable = ['farmer_id','addressNo', 'streetName', 'laneName', 'town', 'land_type_id', 'region_id', 'province_id', 'district_id', 'postalCode', 'planningNumber', 'landRegistration', 'landExtend'];
 
-    public function farmer()
+    public function farmers()
     {
-        return $this->belongsTo('App\Farmer');
+        return $this->belongsTo('App\Farmer', 'farmer_id', 'id');
     }
 
     public function land_type(){

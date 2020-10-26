@@ -8,14 +8,14 @@ class Crop extends Model
 {
     protected $table = 'crops';
 
-    public function category()
+    public function crop_categories()
     {
-        return $this->belongsTo('App\CropCategory', 'id', 'id');
+        return $this->belongsTo('App\CropCategory', 'type_id', 'id');
     }
 
     public function varieties()
     {
-        return $this->hasMany('App\Variety');
+        return $this->hasMany('App\Variety', 'crop_id', 'id');
     }
 
     public function approvalHarvest(){
