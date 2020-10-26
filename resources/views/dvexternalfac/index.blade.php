@@ -67,6 +67,13 @@
     },
     options: {
       legend: { display: false },
+      scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          },
       title: {
         display: true,
         text: 'External Factor affected to land extend'

@@ -114,7 +114,17 @@
         data: {
             labels: {!! json_encode($cropCategory) !!},
             datasets: [densityData]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
         }
+
     });
 </script>
 </html>
