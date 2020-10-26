@@ -101,7 +101,7 @@
           @endphp
         <tr>
             <!--<td>{{$contact->id}}</td>-->
-            <td>{{$land->farmer->firstName}} {{$land->farmer->lastName}}</td>           
+            <td>{{$land->farmers->firstName}} {{$land->farmers->lastName}}</td>           
             <td>{{$contact->season}}</td>
             <td>{{$category->name}}</td>
             <td>{{$crop->name}}</td>

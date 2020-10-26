@@ -51,5 +51,6 @@ class ExternalFactorsController extends Controller
         $c->save();
         return redirect('/harvest-data');
         //return redirect()->action('ExternalFactorsController@index');
-    }
+    } //store method
+    
 }
