@@ -470,7 +470,7 @@ $(document).ready(function(){
             
           
         
-// $(document).ready(function(){
+<!-- // $(document).ready(function(){
 //   $('#landId').change(function(){
 
 //     console.log("working");
@@ -504,7 +504,7 @@ $(document).ready(function(){
 //     }
     
 //   });
-// });
+// }); -->
 
 
 </html>
