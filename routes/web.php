@@ -67,7 +67,7 @@ Route::get('/getPDF', 'PDFcontroller@getPDF');
 Route::get('/Cultivation-list', 'DataController@list');
 
 Route::get('/DvCropCat', 'DVCropCategoryController@loadpage');
-Route::post('/DvCropCat', 'dvcropcat\DVCropCategoryController@showGraph')->name('graph.load');
+Route::post('/DvCropCat', 'DVCropCategoryController@showGraph')->name('dv.reload');
 Route::get('/DvExternalFac', 'DvExternalFacController@index');
 //User admin
 //Route::get('/user',"UserController@index")->name('user');
@@ -278,4 +278,4 @@ Route::post('/getLand','Mobile\UserController@getAllLand');
 Route::post('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers');
 Route::post('/getFarmers','Mobile\UserController@getAllFarmers'); 
 Route::post('/addCulti','Mobile\UserController@addCultivationData');     
-Route::post('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
+Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
