@@ -273,8 +273,8 @@ Route::post('cultivationVisulisationDetailsUpdate', 'CropVisualizationController
 Route::get('searched', 'HomeController@search');
 
 //mobile API routes
-   
-Route::post('/getLand','Mobile\UserCOntroller@getAllLand');  
+
+Route::post('/getLand','Mobile\UserController@getAllLand');  
 Route::get('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers');
 Route::get('/getFarmers','Mobile\UserController@getAllFarmers');    
 Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
