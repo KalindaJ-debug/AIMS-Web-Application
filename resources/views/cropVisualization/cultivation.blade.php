@@ -114,7 +114,7 @@
         <script>
             function cultivationReportGeneration() {
                 var crop = document.getElementById('cropId').value;
-                window.location.href = "http://127.0.0.1:8000/cultivationPdfConvert/" + crop;     
+                window.location.href = "http://ec2-34-238-53-95.compute-1.amazonaws.com/cultivationPdfConvert/" + crop;     
             }
 
             function provinceChange()

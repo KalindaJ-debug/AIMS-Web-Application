@@ -25,28 +25,28 @@ class DataController extends Controller
     {
         // $login = Login::all();
         // return response()->json($login);
-        $contacts = cultivation ::all();
+        $contacts = Cultivation ::all();
         return view('crop.index', compact('contacts'));
         
     }
     public function list()
     {
         $contacts = cultivation::all();
-        $land = land::all();
-        $farmer = farmer::all();
+        $land = Land::all();
+        $farmer = Farmer::all();
         return view('crop.list', compact('contacts'));
     }
     public function farmerLand(){
-        $land = land::where('farmer_id', request('farmer_id'))->get();
+        $land = Land::where('farmer_id', request('farmer_id'))->get();
         return $land;
     }
 
 
     public function farmerAddress(Request $request){
         $land = array();
-        $addressNo =land::where('addressNo', request('landId'))->get();
-        $street =land::where('streetName', request('landId'))->get();
-        $lane =land::where('laneName', request('landId'))->get();
+        $addressNo =Land::where('addressNo', request('landId'))->get();
+        $street =Land::where('streetName', request('landId'))->get();
+        $lane =Land::where('laneName', request('landId'))->get();
         // dd($land);
 
         array_push($land, $addressNo, $street, $lane);
@@ -60,7 +60,7 @@ class DataController extends Controller
 
     public function farmerid()
     {
-        $land = land::where('farmer_id', request('farmer_id'))->first();
+        $land = Land::where('farmer_id', request('farmer_id'))->first();
         return $land;
     }
 
@@ -89,12 +89,12 @@ class DataController extends Controller
     {
         $province = Province::all();
         $CropCategory = CropCategory::all();
-        $crop = crop::all();
-        $variety = variety::all();
-        $district = district::all();
-        $region = region::all();
-        $farmer = farmer::all();
-        $land = land::all();
+        $crop = Crop::all();
+        $variety = Variety::all();
+        $district = District::all();
+        $region = Region::all();
+        $farmer = Farmer::all();
+        $land = Land::all();
        // dd($land[0]->provinces);
 
         return view('cropDetails', array('province' => $province, 'CropCategory' => $CropCategory, 'crop' => $crop, 'variety' => $variety, 'district' => $district, 'region' => $region, 'farmer' => $farmer, 'land' => $land));

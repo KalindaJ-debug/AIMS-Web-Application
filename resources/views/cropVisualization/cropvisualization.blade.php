@@ -50,8 +50,8 @@
                     <tr>
                         <th scope="row">{{$crop->id}}</th>
                         <td>{{$crop->name}}</td>
-                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/cropCultivationSelect/{{$crop->id}}">Report</a></td>
-                        <td><a class="btn btn-outline-primary" href="http://127.0.0.1:8000/cropHarvestSelect/{{$crop->id}}">Report</a></td>
+                        <td><a class="btn btn-outline-primary" href="{{ url('cropCultivationSelect/'.$crop->id.'' ) }}">Report</a></td>
+                        <td><a class="btn btn-outline-primary" href="{{ url('cropHarvestSelect/'.$crop->id.'' ) }}">Report</a></td>
                     </tr>
                     @endforeach
                 </tbody>

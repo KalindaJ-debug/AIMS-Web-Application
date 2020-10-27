@@ -108,7 +108,7 @@
             <button type="button" class="btn bg-dark text-white" onclick="location.href='{{url('farmersReport')}}';">
                 <i class="fas fa-file-pdf"></i> Download Report
             </button>
-            <button type="button" class="btn btn-warning" onclick="location.href='{{url('sendFarmerReport')}}';">
+            <button type="button" class="btn btn-warning" onclick="location.href='{{url('sendFarmersReport')}}';">
                 <i class="fas fa-file-pdf"></i> Email Report
             </button>
 
