@@ -29,8 +29,8 @@ class ApprovalController extends Controller
         foreach ($approvalCultivation as $cultivate) {
             $row = [
                 $cultivate->id, 
-                $cultivate->land->farmer->firstName, 
-                $cultivate->land->farmer->lastName, 
+                $cultivate->land->farmers->firstName, 
+                $cultivate->land->farmers->lastName, 
                 $cultivate->season
             ];
             
@@ -55,8 +55,8 @@ class ApprovalController extends Controller
             //dd($harvest->crop);
             $row = [
                 $harvest->id, 
-                $harvest->land->farmer->firstName, 
-                $harvest->land->farmer->lastName, 
+                $harvest->land->farmers->firstName, 
+                $harvest->land->farmers->lastName, 
                 $harvest->season
             ];
             
