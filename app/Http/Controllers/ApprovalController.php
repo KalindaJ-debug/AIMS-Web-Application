@@ -48,11 +48,10 @@ class ApprovalController extends Controller
         }
 
         $approvalHarvest = ApprovalHarvest::select('id', 'land_id', 'cultivation_id', 'season', 'endDate', 'status')->get();
-        //dd($approvalHarvest[0]->approvalHarvest);
-
+        
         $harvestData = array();
         foreach ($approvalHarvest as $harvest) {
-            //dd($harvest->crop);
+
             $row = [
                 $harvest->id, 
                 $harvest->land->farmers->firstName, 
@@ -145,13 +144,11 @@ class ApprovalController extends Controller
     }
 
     public function updateCultivation(Request $request) {
-        //dd($request->request);
        
         $approvalCultivation = ApprovalCultivation::where('id', $request->input('id'))->first();
         if ($request->input('status') == "approved") {
             $approvalCultivation->status = 1;
 
-            //dd($approvalCultivation->variety->crop);
             $cultivation = new cultivation;
 
             $cultivation->land_id = $approvalCultivation->land_id;
