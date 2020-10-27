@@ -43,8 +43,13 @@ class DataController extends Controller
 
 
     public function farmerAddress(Request $request){
-        $land =land::where('addressNo', request('landId'))->get();
+        $land = array();
+        $addressNo =land::where('addressNo', request('landId'))->get();
+        $street =land::where('streetName', request('landId'))->get();
+        $lane =land::where('laneName', request('landId'))->get();
         // dd($land);
+
+        array_push($land, $addressNo, $street, $lane);
 
         // $land =land::select('province_id','id')->where('id' , $request->id)
         // ->take(100)->get();
