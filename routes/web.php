@@ -44,6 +44,7 @@ Route::get('/farmer_id', 'DataController@farmerid');
 Route::get('/farmer_land', 'DataController@farmerLand');
 // Route::get('/farmer_land2', 'DataController@farmerLand2');
 Route::get('/farmer_address', 'DataController@farmerAddress');
+Route::get('/cultivation-edit/{id}', 'DataController@edit');
 
 Route::get('/harvest-data', 'HarvestController@index');
 Route::get('/Entry-harvest-data/{id}', 'HarvestController@create');
@@ -55,6 +56,7 @@ Route::get('/external-data', 'ExternalFactors@index');
 Route::get('/Entry-external-data', 'ExternalFactorsController@create');
 Route::get('/external-data/{id}', 'ExternalFactorsController@show');
 Route::resource('external-data', 'ExternalFactorsController');
+Route::get('/external-data/{id}/delete', 'ExternalFactorController@destroy');
 
 Route::post('/cropDetails', 'DataController@store')->name('cropDetails');
 
