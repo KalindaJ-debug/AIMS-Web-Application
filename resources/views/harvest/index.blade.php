@@ -97,7 +97,7 @@
             $external_factors = App\external_factors::where('id', $contact->external_id)->first();
           @endphp
           @php
-            $land = App\land::where('id', $contact->land_id)->first();
+            $land = App\Land::where('id', $contact->land_id)->first();
           @endphp
         <tr>
             <!--<td>{{$contact->id}}</td>-->

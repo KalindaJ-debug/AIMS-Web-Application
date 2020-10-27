@@ -34,7 +34,7 @@ class FarmersReportController extends Controller
             'footer-right' => 'AIMS Sri Lanka',
         ]);
         
-        Mail::send('email.report', [], function ($message) use($pdf) {
+        \Mail::send('email.report', [], function ($message) use($pdf) {
             $message->to(Auth::user()->email);
             $message->subject('AIMS farmer list and activity');
             $message->attachData($pdf->output(), 'farmersList.pdf', [

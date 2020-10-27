@@ -21,7 +21,7 @@ class ExternalFactorsController extends Controller
     }
     public function create()
     {
-        $harvest = harvest::all();
+        $harvest = Harvest::all();
         $external_factors = external_factors::all();
         $a = Harvest::join('cultivation', 'cultivation.land_id', 'harvests.land_id')
         ->whereRaw('cultivation.harvestedAmount < harvests.harvestedAmount')->select('harvests.id')->get();
