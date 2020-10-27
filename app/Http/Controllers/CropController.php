@@ -22,7 +22,7 @@ class CropController extends Controller
         $category = CropCategory::all();
         $district = District::all();
         //dd($variety);
-        return view('cropAdmin', array('district' => $district,'varieties' => $variety, 'crop' => $crop, 'category' => $category, 'categoryList' => $category, 'cropList' => $crop, 'categoryAddList' => $category, 'cropAddList' => $crop));
+        return view('cropManagement.cropAdmin', array('district' => $district,'varieties' => $variety, 'crop' => $crop, 'category' => $category, 'categoryList' => $category, 'cropList' => $crop, 'categoryAddList' => $category, 'cropAddList' => $crop));
     }
 
     /**

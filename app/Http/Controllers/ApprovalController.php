@@ -29,8 +29,8 @@ class ApprovalController extends Controller
         foreach ($approvalCultivation as $cultivate) {
             $row = [
                 $cultivate->id, 
-                $cultivate->land->farmer->firstName, 
-                $cultivate->land->farmer->lastName, 
+                $cultivate->land->farmers->firstName, 
+                $cultivate->land->farmers->lastName, 
                 $cultivate->season
             ];
             
@@ -55,8 +55,8 @@ class ApprovalController extends Controller
             //dd($harvest->crop);
             $row = [
                 $harvest->id, 
-                $harvest->land->farmer->firstName, 
-                $harvest->land->farmer->lastName, 
+                $harvest->land->farmers->firstName, 
+                $harvest->land->farmers->lastName, 
                 $harvest->season
             ];
             
@@ -85,6 +85,7 @@ class ApprovalController extends Controller
 
     public function cultivationDescription($id) {
         $approvalCultivation = ApprovalCultivation::where('id', $id)->first();
+        //dd($approvalCultivation->variety->crops->crop_categories->name);
         return view('Approval.approvalCultivationDescription', array('cultivation' => $approvalCultivation));
     }
 
