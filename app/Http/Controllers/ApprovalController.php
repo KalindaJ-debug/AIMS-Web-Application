@@ -98,8 +98,8 @@ class ApprovalController extends Controller
 
             $harvest->cultivation_id = $approvalHarvest->cultivation_id;
             $harvest->land_id = $approvalHarvest->land_id;
-            $harvest->category_id = $approvalHarvest->variety->crop->category->id;
-            $harvest->crop_id = $approvalHarvest->variety->crop->id;
+            $harvest->category_id = $approvalHarvest->variety->crops->crop_categories->id;
+            $harvest->crop_id = $approvalHarvest->variety->crops->id;
             $harvest->variety_id = $approvalHarvest->variety_id;
             $harvest->province_id = $approvalHarvest->land->provinces->id;
             $harvest->district_id = $approvalHarvest->land->districts->id;
@@ -151,11 +151,12 @@ class ApprovalController extends Controller
         if ($request->input('status') == "approved") {
             $approvalCultivation->status = 1;
 
+            //dd($approvalCultivation->variety->crop);
             $cultivation = new cultivation;
 
             $cultivation->land_id = $approvalCultivation->land_id;
-            $cultivation->category_id = $approvalCultivation->variety->crop->category->id;
-            $cultivation->crop_id = $approvalCultivation->variety->crop->id;
+            $cultivation->category_id = $approvalCultivation->variety->crops->crop_categories->id;
+            $cultivation->crop_id = $approvalCultivation->variety->crops->id;
             $cultivation->variety_id = $approvalCultivation->variety_id;
             $cultivation->province_id = $approvalCultivation->land->provinces->id;
             $cultivation->district_id = $approvalCultivation->land->districts->id;
