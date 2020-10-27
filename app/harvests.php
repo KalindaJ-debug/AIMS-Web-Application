@@ -28,6 +28,12 @@ class harvests extends Model
         return $this->hasOne('App\Land', 'id', 'land_id');
     }
 
+    public function external()
+    {
+        return $this->hasOne('App\external_factor', 'id', 'external_id');
+    }
+
+
     public function category()
     {
         return $this->hasOne('App\CropCategory', 'id');
