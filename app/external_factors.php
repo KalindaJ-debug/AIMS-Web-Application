@@ -13,5 +13,5 @@ class external_factors extends Model
     
     protected $table = 'external_factors';
 
-    protected $fillable = ['harvest_id', 'reason'];
+    protected $fillable = [ 'reason'];
 }

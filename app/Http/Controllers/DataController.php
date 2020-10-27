@@ -170,7 +170,23 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact = cultivation::findOrFail($id);
+        $province = Province::all();
+        $CropCategory = CropCategory::all();
+        $crop = crop::all();
+        $variety = variety::all();
+        $district = district::all();
+        $region = region::all();
+        $farmer = farmer::all();
+        // $land = land::all();
+        // dd($contact);
+        // dd($product);
+        
+        $land = Land::with('farmers', 'provinces', 'districts', 'regions')->where('id', $contact->land_id)->distinct()->get();
+       // dd('farmers');
+        // return view ('crop.edit', ['product' => $contact]);
+
+        return view('crop.edit', compact('contact','land','farmer','region','district','variety','crop','CropCategory','province'));
     }
 
     /**
@@ -182,7 +198,8 @@ class DataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        
     }
 
     /**

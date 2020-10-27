@@ -76,7 +76,7 @@ class PDFcontroller extends Controller
             $htmlStream .='
             <tr>
             <td style="border: 1px solid; padding:12px;">'.$harvest->id.'</td>
-            <td style="border: 1px solid; padding:12px;">'.$variety->crop->name.'</td>
+            <td style="border: 1px solid; padding:12px;">'.$variety->crops->name.'</td>
             <td style="border: 1px solid; padding:12px;">'.$variety->name.'</td>
             <td style="border: 1px solid; padding:12px;">'.$land->regions->name.' ( '.$land->districts->name.' )</td>
             <td style="border: 1px solid; padding:12px;">'.$harvest->season.'</td>

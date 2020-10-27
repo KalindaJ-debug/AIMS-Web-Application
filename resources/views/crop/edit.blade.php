@@ -30,10 +30,11 @@
 @include('layouts.navbar')
 <!-- nav bar ends -->
 <br> <br>
-<h1 style="margin-left:100px;">Enter Cultivation Details</h1> <br> <br>
+<h1 style="margin-left:100px;">Edit Cultivation Details</h1> <br> <br>
 <div class="container">
-{{-- <h1>Enter Cultivation Details</h1> --}}
-<form method="post" name="form1" action="/cropDetails" enctype="multipart/form-data">
+{{-- <h1>Edit Cultivation Details</h1> --}}
+<form method="post" name="form1" action="{{route('crop-data.update',$contact)}}" enctype="multipart/form-data">
+
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Farmer Name</label>
@@ -41,7 +42,8 @@
                 <select name="farmer_id" id="farmer_id" class="form-control" onchange="farmerChange()">
                   <option selected value="none">--Select Name--</option>
                    @foreach ($farmer as $farmers)
-                      <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option>   
+                      <option value='{{ $farmers->id }}'>{{ $farmers->firstName }} {{ $farmers->lastName }}</option> 
+                     
                    @endforeach  
                 </select>
                 <input type="hidden" id="land_id" name="land_id">  
@@ -172,6 +174,7 @@
             </div>
         </div>
        </form>
+    
     </div>
 
       </div>

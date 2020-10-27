@@ -50,7 +50,7 @@
                     @endforeach 
                 </select> 
             </div>
-        </div>-->
+        </div>
         <div class="form-group row">
             <label for="titleid" class="col-sm-3 col-form-label">Reason</label>
             <div class="col-sm-5">
@@ -61,11 +61,11 @@
                     @endforeach 
                 </select>
           </div>
-          </div>
+          </div>-->
           <div class="form-group row">
             <label for="releasedateid" class="col-sm-3 col-form-label">Add a new External Factor</label>
             <div class="col-sm-5">
-                <input name="externalFac" type="text" class="form-control" id="releasedateid" placeholder="Reason">
+                <input name="reason" type="text" class="form-control" id="reason" placeholder="Reason">
             </div>
         </div>
       <!--  <input type="radio" id="male" name="gender" value="male">
@@ -76,9 +76,6 @@
                 <button type="submit" name ='submit' class="btn btn-primary submitButton" id="submitButton"  data-placement="right" title="Submit Details"> <i class="fa fa mr-9" aria-hidden="true"></i> Submit </button>
             </div>
         </div>
-        
-
-
 </form>
 </div>
 
