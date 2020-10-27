@@ -96,7 +96,7 @@
             $farmer = App\Farmer::where('id', $contact->farmer_id)->first();
           @endphp
           @php
-            $land = App\land::where('id', $contact->land_id)->first();
+            $land = App\Land::where('id', $contact->land_id)->first();
           @endphp
         <tr>
             <td>{{$contact->id}}</td>
