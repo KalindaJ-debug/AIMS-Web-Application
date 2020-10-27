@@ -75,7 +75,7 @@
                 {{-- <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a> --}}
 
             
-                <form action="{{ route('crop-data.destroy', $contact->id)}}" method="post">
+                <form action="{{ route('external-data.destroy', $contact->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>

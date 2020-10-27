@@ -29,6 +29,7 @@ class ExternalFactorsController extends Controller
 
         
     }
+    
     public function store(Request $request)
     {
        /* $request->validate([
@@ -46,11 +47,21 @@ class ExternalFactorsController extends Controller
         $game->reason = request('reason');
         $game->save();
         
-        $c = harvest::find(request('harvest_id'));
-        $c->external_id = $game->reason;
-        $c->save();
-        return redirect('/harvest-data');
+        //$c = harvest::find(request('harvest_id'));
+       // $c->external_id = $game->reason;
+       // $c->save();
+        return redirect('/external-data');
         //return redirect()->action('ExternalFactorsController@index');
     } //store method
+
+    public function destroy($id)
+    {
+        $contact = external_factors::find($id);
+
+        // $contact->
+        $contact->delete();
+
+        return redirect('/external-data')->with('success', 'Contact deleted!');
+    }
     
 }

@@ -44,6 +44,7 @@ Route::get('/farmer_id', 'DataController@farmerid');
 Route::get('/farmer_land', 'DataController@farmerLand');
 // Route::get('/farmer_land2', 'DataController@farmerLand2');
 Route::get('/farmer_address', 'DataController@farmerAddress');
+Route::get('/cultivation-edit/{id}', 'DataController@edit');
 
 Route::get('/harvest-data', 'HarvestController@index');
 Route::get('/Entry-harvest-data/{id}', 'HarvestController@create');
@@ -55,6 +56,7 @@ Route::get('/external-data', 'ExternalFactors@index');
 Route::get('/Entry-external-data', 'ExternalFactorsController@create');
 Route::get('/external-data/{id}', 'ExternalFactorsController@show');
 Route::resource('external-data', 'ExternalFactorsController');
+Route::get('/external-data/{id}/delete', 'ExternalFactorController@destroy');
 
 Route::post('/cropDetails', 'DataController@store')->name('cropDetails');
 
@@ -279,7 +281,8 @@ Route::post('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers')
 Route::post('/getFarmers','Mobile\UserController@getAllFarmers'); 
 Route::post('/addCulti','Mobile\UserController@addCultivationData');
 Route::get('/getAllApproval','Mobile\UserController@getAllApproval'); 
-Route::post('/getApproval','Mobile\UserController@getApproval');      
+Route::post('/getApproval','Mobile\UserController@getApproval');
+Route::post('/ApproveData','Mobile\UserController@ApproveData');       
 Route::post('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
 Route::post('/addCulti','Mobile\UserController@addCultivationData');     
 Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');

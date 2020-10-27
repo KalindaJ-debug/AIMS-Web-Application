@@ -158,7 +158,7 @@ class ApprovalController extends Controller
             $cultivation->variety_id = $approvalCultivation->variety_id;
             $cultivation->province_id = $approvalCultivation->land->provinces->id;
             $cultivation->district_id = $approvalCultivation->land->districts->id;
-            $cultivation->region_id = $approvalHarvest->land->regions->id;
+            $cultivation->region_id = $approvalCultivation->land->regions->id;
             $cultivation->season = $approvalCultivation->season;
             $cultivation->startDate = $approvalCultivation->startDate;
             $cultivation->endDate = $approvalCultivation->endDate;

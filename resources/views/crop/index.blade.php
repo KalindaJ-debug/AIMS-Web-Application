@@ -116,8 +116,10 @@
             <td>{{$contact->harvestedAmount}}</td>
             <td>{{$contact->cultivatedLand}}</td>
             <td>
-                <button class="btn btn-warning" type="submit">Edit</button>
-                <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>
+                
+            <a href="{{ route('crop-data.edit',$contact->id)}}"> <button type="submit" class="btn btn-warning">Edit</button></a>
+                
+                <a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a> </button>
             </td>
             <td>
                 <form action="{{ route('crop-data.destroy', $contact->id)}}" method="post">

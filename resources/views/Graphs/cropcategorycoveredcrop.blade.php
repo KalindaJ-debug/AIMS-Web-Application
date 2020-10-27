@@ -44,7 +44,7 @@
                                      Crops</h4>
                             </div>    
                             <br>  
-                            <form method="POST" action="{{ route('graphdataVariety.load') }}">
+                            <form method="POST" action="{{ route('graphdataCrop.load') }}">
                                 @csrf
                                 <div class="row" >
                                     <div class="input-group-prepend col-md-1 ml-5">
