@@ -85,6 +85,7 @@ class ApprovalController extends Controller
 
     public function cultivationDescription($id) {
         $approvalCultivation = ApprovalCultivation::where('id', $id)->first();
+        //dd($approvalCultivation->variety->crops->crop_categories->name);
         return view('Approval.approvalCultivationDescription', array('cultivation' => $approvalCultivation));
     }
 

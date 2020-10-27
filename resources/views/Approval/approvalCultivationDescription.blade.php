@@ -16,7 +16,7 @@
         @include('layouts.navbar')
         <div class="container">
             </br>
-            <button type="button" class="btn btn-outline-primary" onclick="window.location.href = 'http://127.0.0.1:8000/approval';"><i class="fas fa-arrow-left"> Back</i></button>
+            <button type="button" class="btn btn-outline-primary" href="{{ url('approval' ) }}"><i class="fas fa-arrow-left"> Back</i></button>
             
             </br></br>
             <div class="row">
@@ -31,17 +31,17 @@
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="form-group">
                                 <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" id="firstName" value="{{ $cultivation->land->farmer->firstName }}" readonly>
+                                <input type="text" class="form-control" id="firstName" value="{{ $cultivation->land->farmers->firstName }}" readonly>
                             </div>
                                 
                             <div class="form-group">
                                 <label for="otherName">Other Name</label>
-                                <input type="text" class="form-control" id="otherName" value="{{ $cultivation->land->farmer->otherName }}" readonly>
+                                <input type="text" class="form-control" id="otherName" value="{{ $cultivation->land->farmers->otherName }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" value="{{ $cultivation->land->farmer->lastName }}" readonly>
+                                <input type="text" class="form-control" id="lastName" value="{{ $cultivation->land->farmers->lastName }}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -62,12 +62,12 @@
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="form-group">
                                 <label for="category">Crop Category</label>
-                                <input type="text" class="form-control" id="category" value="{{ $cultivation->variety->crop->category->name }}" readonly>
+                                <input type="text" class="form-control" id="category" value="{{ $cultivation->variety->crops->crop_categories->name }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="crop">Crop Name</label>
-                                <input type="text" class="form-control" id="crop" value="{{ $cultivation->variety->crop->name }}" readonly>
+                                <input type="text" class="form-control" id="crop" value="{{ $cultivation->variety->crops->name }}" readonly>
                             </div>
                             
                             <div class="form-group">
