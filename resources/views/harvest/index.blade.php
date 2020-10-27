@@ -115,7 +115,7 @@
             <td>@if($external_factors!==null)
             {{$external_factors->reason}} @endif</td>
             <td>
-               <!-- <button class="btn btn-warning" type="submit">Edit</button>-->
+                <button class="btn btn-warning" type="submit">Edit</button>
                 <!--<a href="{{ route('crop-data.show',$contact->id)}}" class="btn btn-primary">View</a>-->
             </td>
             <td>
