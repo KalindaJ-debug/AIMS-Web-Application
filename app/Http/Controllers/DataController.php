@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\DB;
 use App\cropDetails;
 use App\dataEntry;
 use App\cultivation;
-use App\farmer;
+use App\Farmer;
 use App\Province;
 use App\CropCategory;
-use App\crop;
-use App\variety;
-use App\district;
-use App\region;
-use App\land;
+use App\Crop;
+use App\Variety;
+use App\District;
+use App\Region;
+use App\Land;
 
 class DataController extends Controller
 {
