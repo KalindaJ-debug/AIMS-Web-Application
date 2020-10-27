@@ -279,7 +279,8 @@ Route::post('/getRegisteredUsers','Mobile\UserController@getAllRegisteredUsers')
 Route::post('/getFarmers','Mobile\UserController@getAllFarmers'); 
 Route::post('/addCulti','Mobile\UserController@addCultivationData');
 Route::get('/getAllApproval','Mobile\UserController@getAllApproval'); 
-Route::post('/getApproval','Mobile\UserController@getApproval');      
+Route::post('/getApproval','Mobile\UserController@getApproval');
+Route::post('/ApproveData','Mobile\UserController@ApproveData');       
 Route::post('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
 Route::post('/addCulti','Mobile\UserController@addCultivationData');     
 Route::get('cultivationPdfConvert/{id}', 'CropVisualizationController@cultivationPdfConvert');
